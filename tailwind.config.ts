@@ -9,27 +9,42 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        navy:    '#08121F',
-        slate:   '#1B2433',
-        electric:'#3B82F6',
-        coral:   '#FF8A5B',
-        'soft-white': '#F8FAFC',
-        'cool-gray':  '#AEB7C6',
+        navy:    '#04080F',
+        slate:   '#0C1524',
+        'slate-2': '#131F30',
+        electric:'#5B9CF8',
+        violet:  '#8B5CF6',
+        coral:   '#FF7555',
+        'soft-white': '#F1F5FA',
+        'cool-gray':  '#8A97A8',
       },
       fontFamily: {
         heading: ['var(--font-sora)', 'sans-serif'],
         body:    ['var(--font-inter)', 'sans-serif'],
       },
       backgroundImage: {
-        'dot-pattern': 'radial-gradient(rgba(59,130,246,0.12) 1px, transparent 1px)',
+        'dot-pattern':  'radial-gradient(rgba(91,156,248,0.10) 1px, transparent 1px)',
+        'grid-pattern': 'linear-gradient(rgba(91,156,248,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(91,156,248,0.04) 1px, transparent 1px)',
+        'gradient-primary': 'linear-gradient(135deg, #5B9CF8 0%, #8B5CF6 100%)',
+        'gradient-coral':   'linear-gradient(135deg, #FF7555 0%, #FF5A2E 100%)',
       },
       backgroundSize: {
-        'dot': '28px 28px',
+        'dot':  '30px 30px',
+        'grid': '60px 60px',
+      },
+      boxShadow: {
+        'glow-blue':   '0 0 32px rgba(91,156,248,0.35), 0 4px 20px rgba(91,156,248,0.15)',
+        'glow-violet': '0 0 32px rgba(139,92,246,0.35), 0 4px 20px rgba(139,92,246,0.15)',
+        'glow-coral':  '0 0 24px rgba(255,117,85,0.30)',
+        'card':        '0 4px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06)',
       },
       animation: {
-        'fade-in': 'fadeIn 0.4s ease-out',
-        'slide-up': 'slideUp 0.4s ease-out',
-        'pulse-slow': 'pulse 3s cubic-bezier(0.4,0,0.6,1) infinite',
+        'fade-in':    'fadeIn 0.5s ease-out',
+        'slide-up':   'slideUp 0.5s ease-out',
+        'float':      'float 5s ease-in-out infinite',
+        'float-slow': 'float 7s ease-in-out infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4,0,0.6,1) infinite',
+        'shimmer':    'shimmer 2s linear infinite',
       },
       keyframes: {
         fadeIn: {
@@ -37,8 +52,16 @@ const config: Config = {
           '100%': { opacity: '1' },
         },
         slideUp: {
-          '0%':   { opacity: '0', transform: 'translateY(16px)' },
+          '0%':   { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%':      { transform: 'translateY(-10px)' },
+        },
+        shimmer: {
+          '0%':   { backgroundPosition: '-200% center' },
+          '100%': { backgroundPosition: '200% center' },
         },
       },
     },
