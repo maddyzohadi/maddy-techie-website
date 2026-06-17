@@ -12,7 +12,7 @@ export default function CurriculumSection() {
     {
       number: '01',
       icon: Zap,
-      accent: { text: '#5B9CF8', bg: 'rgba(91,156,248,0.12)', border: 'rgba(91,156,248,0.22)', badge: '#5B9CF8' },
+      accent: { text: '#6B9FFF', bg: 'rgba(107,159,255,0.10)', border: 'rgba(107,159,255,0.20)' },
       title: t('part0title'),
       tagline: t('part0tagline'),
       items: [t('part0item0'), t('part0item1'), t('part0item2'), t('part0item3')],
@@ -20,7 +20,7 @@ export default function CurriculumSection() {
     {
       number: '02',
       icon: Brain,
-      accent: { text: '#FF7555', bg: 'rgba(255,117,85,0.12)', border: 'rgba(255,117,85,0.22)', badge: '#FF7555' },
+      accent: { text: '#A78BFA', bg: 'rgba(167,139,250,0.10)', border: 'rgba(167,139,250,0.20)' },
       title: t('part1title'),
       tagline: t('part1tagline'),
       items: [t('part1item0'), t('part1item1'), t('part1item2'), t('part1item3')],
@@ -28,7 +28,7 @@ export default function CurriculumSection() {
     {
       number: '03',
       icon: Bot,
-      accent: { text: '#8B5CF6', bg: 'rgba(139,92,246,0.12)', border: 'rgba(139,92,246,0.22)', badge: '#8B5CF6' },
+      accent: { text: '#A78BFA', bg: 'rgba(167,139,250,0.10)', border: 'rgba(167,139,250,0.20)' },
       title: t('part2title'),
       tagline: t('part2tagline'),
       items: [t('part2item0'), t('part2item1'), t('part2item2'), t('part2item3')],
@@ -36,7 +36,7 @@ export default function CurriculumSection() {
     {
       number: '04',
       icon: Layers,
-      accent: { text: '#FF7555', bg: 'rgba(255,117,85,0.12)', border: 'rgba(255,117,85,0.22)', badge: '#FF7555' },
+      accent: { text: '#6B9FFF', bg: 'rgba(107,159,255,0.10)', border: 'rgba(107,159,255,0.20)' },
       title: t('part3title'),
       tagline: t('part3tagline'),
       items: [t('part3item0'), t('part3item1'), t('part3item2'), t('part3item3')],
@@ -45,23 +45,33 @@ export default function CurriculumSection() {
 
   return (
     <section id="training" className="py-24 md:py-32 relative" style={{ background: '#04080F' }}>
-      <div aria-hidden className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 60% 60% at 50% 0%, rgba(91,156,248,0.06) 0%, transparent 60%)' }} />
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse 60% 60% at 50% 0%, rgba(107,159,255,0.06) 0%, transparent 60%)' }}
+      />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-16">
-          <span className="inline-block font-body text-[11px] font-semibold uppercase tracking-widest mb-4" style={{ color: '#5B9CF8' }}>
+          <span
+            className="inline-block font-body text-sm md:text-base font-semibold uppercase tracking-[0.22em] mb-4"
+            style={{ color: '#6B9FFF' }}
+          >
             {t('badge')}
           </span>
           <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-soft-white mb-5 leading-tight">
             {t('title')}
           </h2>
-          <p className="font-body text-lg max-w-2xl mx-auto leading-relaxed" style={{ color: '#8A97A8' }}>
+          <p
+            className="font-body text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
             {t('subtitle')}
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-3">
+        <div className="max-w-4xl mx-auto space-y-2.5">
           {parts.map((part, index) => {
             const Icon = part.icon
             const isOpen = openPart === index
@@ -70,37 +80,65 @@ export default function CurriculumSection() {
               <div
                 key={part.number}
                 className="card-gradient-border overflow-hidden transition-all duration-300"
-                style={isOpen ? { border: `1px solid ${a.border}`, boxShadow: `0 0 24px ${a.bg}, 0 4px 20px rgba(0,0,0,0.3)` } : {}}
+                style={isOpen ? { borderColor: a.border } : {}}
               >
                 <button
                   onClick={() => setOpenPart(isOpen ? null : index)}
                   className="w-full flex items-center gap-4 p-6 md:p-7 text-left group cursor-pointer"
                   aria-expanded={isOpen}
                 >
-                  <span className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-heading font-bold text-sm text-white" style={{ background: `linear-gradient(135deg, ${a.text}, ${a.badge}dd)` }}>
+                  <span
+                    className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center font-heading font-bold text-sm"
+                    style={{ background: a.bg, border: `1px solid ${a.border}`, color: a.text }}
+                  >
                     <span dir="ltr">{part.number}</span>
                   </span>
-                  <div className="flex-shrink-0 p-2 rounded-xl" style={{ background: a.bg, border: `1px solid ${a.border}` }}>
+                  <div
+                    className="flex-shrink-0 p-2 rounded-xl"
+                    style={{ background: a.bg, border: `1px solid ${a.border}` }}
+                  >
                     <Icon size={18} style={{ color: a.text }} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="font-heading font-semibold text-soft-white text-base md:text-lg leading-snug">
+                    <div className="font-heading font-semibold text-soft-white text-xl md:text-2xl leading-snug">
                       {t('partLabel')} {part.number} · {part.title}
                     </div>
-                    <div className="font-body text-sm mt-0.5 hidden sm:block" style={{ color: '#8A97A8' }}>
+                    <div
+                      className="font-body text-base md:text-lg mt-0.5 hidden sm:block"
+                      style={{ color: 'var(--color-text-secondary)' }}
+                    >
                       {part.tagline}
                     </div>
                   </div>
-                  <ChevronDown size={20} className={`flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} style={{ color: isOpen ? a.text : '#6A7A8E' }} />
+                  <ChevronDown
+                    size={18}
+                    className={`flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                    style={{ color: isOpen ? a.text : 'var(--color-text-muted)' }}
+                  />
                 </button>
 
                 <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
-                  <div className="px-6 md:px-7 pb-7 border-t pt-5" style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
-                    <p className="font-body text-sm mb-5 sm:hidden" style={{ color: '#8A97A8' }}>{part.tagline}</p>
+                  <div
+                    className="px-6 md:px-7 pb-7 pt-5"
+                    style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}
+                  >
+                    <p
+                      className="font-body text-base md:text-lg mb-5 sm:hidden"
+                      style={{ color: 'var(--color-text-secondary)' }}
+                    >
+                      {part.tagline}
+                    </p>
                     <ul className="space-y-3">
                       {part.items.map((item, i) => (
-                        <li key={i} className="flex items-start gap-3 font-body text-sm" style={{ color: '#8A97A8' }}>
-                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: a.text }} />
+                        <li
+                          key={i}
+                          className="flex items-start gap-3 font-body text-base md:text-lg"
+                          style={{ color: 'var(--color-text-secondary)' }}
+                        >
+                          <span
+                            className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
+                            style={{ background: a.text }}
+                          />
                           {item}
                         </li>
                       ))}
@@ -112,9 +150,12 @@ export default function CurriculumSection() {
           })}
         </div>
 
-        <p className="text-center font-body text-sm mt-10" style={{ color: '#8A97A8' }}>
+        <p
+          className="text-center font-body text-sm mt-10"
+          style={{ color: 'var(--color-text-secondary)' }}
+        >
           {t('bottomNote')}{' '}
-          <span className="text-soft-white">{t('bottomNoteHighlight')}</span>
+          <span className="font-medium text-soft-white">{t('bottomNoteHighlight')}</span>
         </p>
 
       </div>

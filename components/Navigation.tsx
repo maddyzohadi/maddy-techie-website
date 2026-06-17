@@ -1,18 +1,17 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ArrowRight } from 'lucide-react'
 import { useTranslations, useLocale } from 'next-intl'
 import { Link, usePathname } from '@/i18n/navigation'
 
-const navKeys: { key: 'home' | 'learn' | 'templates' | 'projects' | 'workWithMe' | 'about' | 'contact'; href: string }[] = [
+const navKeys: { key: 'home' | 'learn' | 'templates' | 'projects' | 'workWithMe' | 'about'; href: string }[] = [
   { key: 'home',       href: '#home' },
   { key: 'learn',      href: '#training' },
   { key: 'templates',  href: '#templates' },
   { key: 'projects',   href: '#projects' },
   { key: 'workWithMe', href: '#contact' },
   { key: 'about',      href: '#about' },
-  { key: 'contact',    href: '#contact' },
 ]
 
 export default function Navigation() {
@@ -53,7 +52,7 @@ export default function Navigation() {
         <div
           className={`absolute bottom-0 left-0 right-0 h-[1px] transition-opacity duration-300 ${scrolled ? 'opacity-100' : 'opacity-0'}`}
           style={{
-            background: 'linear-gradient(90deg, transparent 0%, rgba(91,156,248,0.3) 20%, rgba(139,92,246,0.2) 80%, transparent 100%)',
+            background: 'linear-gradient(90deg, transparent 0%, rgba(107,159,255,0.30) 20%, rgba(167,139,250,0.20) 80%, transparent 100%)',
           }}
         />
 
@@ -63,12 +62,13 @@ export default function Navigation() {
             {/* Logo */}
             <a
               href="#home"
-              className="flex flex-col leading-tight group"
+              className="flex flex-col leading-tight group flex-shrink-0"
               onClick={() => handleNavClick('#home')}
             >
-              <span className="font-heading font-bold text-xl text-soft-white group-hover:text-transparent group-hover:bg-clip-text transition-all duration-300"
+              <span
+                className="font-heading font-bold text-xl"
                 style={{
-                  backgroundImage: 'linear-gradient(135deg, #5B9CF8, #8B5CF6)',
+                  backgroundImage: 'linear-gradient(135deg, #6B9FFF, #A78BFA)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -76,29 +76,29 @@ export default function Navigation() {
               >
                 Maddy the Techie
               </span>
-              <span className="text-electric text-xs font-body font-medium tracking-wide" style={{ color: '#5B9CF8' }}>
+              <span className="font-body text-xs font-medium tracking-wide" style={{ color: '#6B9FFF' }}>
                 Practical AI &amp; Automation
               </span>
             </a>
 
             {/* Desktop nav */}
-            <nav className="hidden md:flex items-center gap-1">
+            <nav className="hidden md:flex items-center gap-0.5">
               {navKeys.map((link) => (
                 <a
                   key={link.key}
                   href={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className={`relative px-4 py-2 rounded-lg font-body text-sm font-medium transition-all duration-200 ${
+                  className={`relative px-3.5 py-2 rounded-lg font-body text-sm font-medium transition-all duration-200 ${
                     activeLink === link.href
-                      ? 'text-electric bg-electric/[0.08]'
+                      ? 'text-electric bg-electric/[0.07]'
                       : 'text-cool-gray hover:text-soft-white hover:bg-white/[0.04]'
                   }`}
                 >
                   {t(link.key)}
                   {activeLink === link.href && (
                     <span
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
-                      style={{ background: '#5B9CF8' }}
+                      className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
+                      style={{ background: '#6B9FFF' }}
                     />
                   )}
                 </a>
@@ -106,18 +106,19 @@ export default function Navigation() {
             </nav>
 
             {/* Desktop right: language switcher + CTA */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-3 flex-shrink-0">
               {/* Language switcher */}
-              <div className="flex items-center gap-1 rounded-full px-1 py-1" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
+              <div
+                className="flex items-center gap-1 rounded-full px-1 py-1"
+                style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
+              >
                 <Link
                   href={pathname}
                   locale="en"
                   className={`px-3 py-1 rounded-full text-xs font-body font-semibold transition-all duration-200 ${
-                    locale === 'en'
-                      ? 'text-white'
-                      : 'text-cool-gray hover:text-soft-white'
+                    locale === 'en' ? '' : 'text-cool-gray hover:text-soft-white'
                   }`}
-                  style={locale === 'en' ? { background: 'rgba(91,156,248,0.18)', color: '#5B9CF8' } : {}}
+                  style={locale === 'en' ? { background: 'rgba(107,159,255,0.18)', color: '#6B9FFF' } : {}}
                 >
                   EN
                 </Link>
@@ -125,21 +126,21 @@ export default function Navigation() {
                   href={pathname}
                   locale="fa"
                   className={`px-3 py-1 rounded-full text-xs font-body font-semibold transition-all duration-200 ${
-                    locale === 'fa'
-                      ? 'text-white'
-                      : 'text-cool-gray hover:text-soft-white'
+                    locale === 'fa' ? '' : 'text-cool-gray hover:text-soft-white'
                   }`}
-                  style={locale === 'fa' ? { background: 'rgba(91,156,248,0.18)', color: '#5B9CF8' } : {}}
+                  style={locale === 'fa' ? { background: 'rgba(107,159,255,0.18)', color: '#6B9FFF' } : {}}
                 >
                   FA
                 </Link>
               </div>
 
               <a
-                href="#training"
-                className="btn-primary font-body font-semibold text-sm px-5 py-2.5 rounded-full cursor-pointer"
+                href="#contact"
+                onClick={() => handleNavClick('#contact')}
+                className="btn-primary inline-flex items-center gap-2 font-body font-semibold text-sm px-5 py-2.5 rounded-full cursor-pointer"
               >
-                {t('startLearning')}
+                {t('startProject')}
+                <ArrowRight size={14} />
               </a>
             </div>
 
@@ -178,7 +179,7 @@ export default function Navigation() {
                 onClick={() => handleNavClick(link.href)}
                 className={`px-4 py-3.5 rounded-xl font-body text-sm font-medium transition-all duration-200 ${
                   activeLink === link.href
-                    ? 'text-electric bg-electric/[0.08]'
+                    ? 'text-electric bg-electric/[0.07]'
                     : 'text-cool-gray hover:text-soft-white hover:bg-white/[0.04]'
                 }`}
               >
@@ -194,7 +195,7 @@ export default function Navigation() {
                   onClick={() => setIsOpen(false)}
                   className={`flex-1 text-center py-2 rounded-xl text-sm font-body font-semibold transition-all duration-200 ${
                     locale === 'en'
-                      ? 'text-electric bg-electric/[0.08]'
+                      ? 'text-electric bg-electric/[0.07]'
                       : 'text-cool-gray hover:text-soft-white hover:bg-white/[0.04]'
                   }`}
                 >
@@ -206,7 +207,7 @@ export default function Navigation() {
                   onClick={() => setIsOpen(false)}
                   className={`flex-1 text-center py-2 rounded-xl text-sm font-body font-semibold transition-all duration-200 ${
                     locale === 'fa'
-                      ? 'text-electric bg-electric/[0.08]'
+                      ? 'text-electric bg-electric/[0.07]'
                       : 'text-cool-gray hover:text-soft-white hover:bg-white/[0.04]'
                   }`}
                 >
@@ -214,11 +215,12 @@ export default function Navigation() {
                 </Link>
               </div>
               <a
-                href="#training"
-                onClick={() => handleNavClick('#training')}
-                className="block btn-primary font-body font-semibold text-sm px-5 py-3 rounded-full text-center cursor-pointer"
+                href="#contact"
+                onClick={() => handleNavClick('#contact')}
+                className="btn-primary inline-flex items-center justify-center gap-2 font-body font-semibold text-sm px-5 py-3 rounded-full text-center cursor-pointer"
               >
-                {t('startLearning')}
+                {t('startProject')}
+                <ArrowRight size={14} />
               </a>
             </div>
           </nav>
