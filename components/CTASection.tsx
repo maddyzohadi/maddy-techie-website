@@ -41,7 +41,7 @@ export default function CTASection() {
   return (
     <section
       id="contact"
-      className="py-24 md:py-32 relative overflow-hidden"
+      className="py-24 md:py-32 relative overflow-hidden scroll-mt-24"
       style={{ background: 'linear-gradient(135deg, #050D1D 0%, #07112A 50%, #04080F 100%)' }}
     >
       <div aria-hidden className="absolute inset-0 grid-bg opacity-60 pointer-events-none" />

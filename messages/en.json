@@ -245,8 +245,11 @@
     "pill2": "Practical from day one"
   },
   "footer": {
-    "tagline": "Practical AI & automation for modern work",
-    "motto": "Learn AI. Automate Work. No Coding",
+    "brand": "AI education, templates, and workflow services for modern work",
+    "learn": "Learn",
+    "services": "Services",
+    "startProject": "Start a Project",
+    "disclaimer": "Educational guidance only, not professional advice",
     "copyright": "All rights reserved.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Use",

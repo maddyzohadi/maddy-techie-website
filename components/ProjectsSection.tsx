@@ -43,7 +43,7 @@ export default async function ProjectsSection() {
   ] as const
 
   return (
-    <section id="projects" className="py-24 md:py-32 relative" style={{ background: '#060B14' }}>
+    <section id="projects" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#060B14' }}>
       <div className="section-divider absolute top-0 left-0 right-0" />
 
       <div

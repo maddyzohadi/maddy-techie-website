@@ -19,7 +19,7 @@ export default async function AboutSection() {
   ] as const
 
   return (
-    <section id="about" className="py-24 md:py-32 relative" style={{ background: '#04080F' }}>
+    <section id="about" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#04080F' }}>
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"

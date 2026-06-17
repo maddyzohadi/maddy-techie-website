@@ -44,7 +44,7 @@ export default function CurriculumSection() {
   ]
 
   return (
-    <section id="training" className="py-24 md:py-32 relative" style={{ background: '#04080F' }}>
+    <section id="training" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#04080F' }}>
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"

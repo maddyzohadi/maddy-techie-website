@@ -25,9 +25,9 @@ export default function Home() {
       <ProblemSection />
       <MethodSection />
       <CurriculumSection />
+      <ResourcesSection />
       <ProjectsSection />
       <WhoItsFor />
-      <ResourcesSection />
       <ServicesSection />
       <AboutSection />
       <CTASection />
