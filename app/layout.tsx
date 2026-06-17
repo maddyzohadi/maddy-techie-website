@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import { Sora, Inter } from 'next/font/google'
+import { Sora, Inter, Vazirmatn } from 'next/font/google'
+import { headers } from 'next/headers'
 import './globals.css'
 
 const sora = Sora({
@@ -14,6 +15,13 @@ const inter = Inter({
   variable: '--font-inter',
   display: 'swap',
   weight: ['300', '400', '500', '600', '700'],
+})
+
+const vazirmatn = Vazirmatn({
+  subsets: ['arabic'],
+  variable: '--font-vazirmatn',
+  display: 'swap',
+  weight: ['300', '400', '500', '600', '700', '800'],
 })
 
 export const metadata: Metadata = {
@@ -37,13 +45,21 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const headersList = await headers()
+  const locale = headersList.get('x-next-intl-locale') ?? 'en'
+  const dir = locale === 'fa' ? 'rtl' : 'ltr'
+
   return (
-    <html lang="en" className={`${sora.variable} ${inter.variable}`}>
+    <html
+      lang={locale}
+      dir={dir}
+      className={`${sora.variable} ${inter.variable} ${vazirmatn.variable}`}
+    >
       <body>{children}</body>
     </html>
   )

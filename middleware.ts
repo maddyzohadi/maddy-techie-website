@@ -1,11 +1,23 @@
+import createMiddleware from 'next-intl/middleware'
+import { routing } from './i18n/routing'
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
-export async function middleware(request: NextRequest) {
-  let supabaseResponse = NextResponse.next({ request })
+const intlMiddleware = createMiddleware(routing)
 
+export async function middleware(request: NextRequest) {
+  // next-intl runs first — handles /en /fa detection and root redirect
+  const intlResponse = intlMiddleware(request)
+
+  // Skip Supabase session refresh when env vars are unconfigured placeholders
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
+  if (!supabaseUrl || supabaseUrl.startsWith('your-')) {
+    return intlResponse
+  }
+
+  // Merge Supabase session cookies into the intl response
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    supabaseUrl,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
@@ -13,43 +25,28 @@ export async function middleware(request: NextRequest) {
           return request.cookies.getAll()
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value)
-          )
-          supabaseResponse = NextResponse.next({ request })
           cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options)
+            intlResponse.cookies.set(name, value, options)
           )
         },
       },
     }
   )
 
-  // Refresh session — do not remove this
   const { data: { user } } = await supabase.auth.getUser()
 
-  // Protect /dashboard routes — redirect unauthenticated users to login
-  if (!user && request.nextUrl.pathname.startsWith('/dashboard')) {
+  if (!user && request.nextUrl.pathname.match(/^\/(en|fa)\/dashboard/)) {
     const url = request.nextUrl.clone()
-    url.pathname = '/auth/login'
+    url.pathname = '/en/auth/login'
     return NextResponse.redirect(url)
   }
 
-  // Redirect logged-in users away from auth pages
-  if (user && (
-    request.nextUrl.pathname === '/auth/login' ||
-    request.nextUrl.pathname === '/auth/signup'
-  )) {
-    const url = request.nextUrl.clone()
-    url.pathname = '/dashboard'
-    return NextResponse.redirect(url)
-  }
-
-  return supabaseResponse
+  return intlResponse
 }
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    // Exclude /api, /auth, Next.js internals, and static assets
+    '/((?!api|auth|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 }

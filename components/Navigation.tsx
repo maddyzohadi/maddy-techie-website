@@ -2,17 +2,24 @@
 
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
+import { useTranslations, useLocale } from 'next-intl'
+import { Link, usePathname } from '@/i18n/navigation'
 
-const navLinks = [
-  { label: 'Home',      href: '#home' },
-  { label: 'Training',  href: '#training' },
-  { label: 'Projects',  href: '#projects' },
-  { label: 'Templates', href: '#templates' },
-  { label: 'About',     href: '#about' },
-  { label: 'Contact',   href: '#contact' },
+const navKeys: { key: 'home' | 'learn' | 'templates' | 'projects' | 'workWithMe' | 'about' | 'contact'; href: string }[] = [
+  { key: 'home',       href: '#home' },
+  { key: 'learn',      href: '#training' },
+  { key: 'templates',  href: '#templates' },
+  { key: 'projects',   href: '#projects' },
+  { key: 'workWithMe', href: '#contact' },
+  { key: 'about',      href: '#about' },
+  { key: 'contact',    href: '#contact' },
 ]
 
 export default function Navigation() {
+  const t = useTranslations('nav')
+  const locale = useLocale()
+  const pathname = usePathname()
+
   const [isOpen, setIsOpen]         = useState(false)
   const [scrolled, setScrolled]     = useState(false)
   const [activeLink, setActiveLink] = useState('#home')
@@ -76,9 +83,9 @@ export default function Navigation() {
 
             {/* Desktop nav */}
             <nav className="hidden md:flex items-center gap-1">
-              {navLinks.map((link) => (
+              {navKeys.map((link) => (
                 <a
-                  key={link.href}
+                  key={link.key}
                   href={link.href}
                   onClick={() => handleNavClick(link.href)}
                   className={`relative px-4 py-2 rounded-lg font-body text-sm font-medium transition-all duration-200 ${
@@ -87,7 +94,7 @@ export default function Navigation() {
                       : 'text-cool-gray hover:text-soft-white hover:bg-white/[0.04]'
                   }`}
                 >
-                  {link.label}
+                  {t(link.key)}
                   {activeLink === link.href && (
                     <span
                       className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
@@ -98,13 +105,41 @@ export default function Navigation() {
               ))}
             </nav>
 
-            {/* CTA button */}
+            {/* Desktop right: language switcher + CTA */}
             <div className="hidden md:flex items-center gap-3">
+              {/* Language switcher */}
+              <div className="flex items-center gap-1 rounded-full px-1 py-1" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                <Link
+                  href={pathname}
+                  locale="en"
+                  className={`px-3 py-1 rounded-full text-xs font-body font-semibold transition-all duration-200 ${
+                    locale === 'en'
+                      ? 'text-white'
+                      : 'text-cool-gray hover:text-soft-white'
+                  }`}
+                  style={locale === 'en' ? { background: 'rgba(91,156,248,0.18)', color: '#5B9CF8' } : {}}
+                >
+                  EN
+                </Link>
+                <Link
+                  href={pathname}
+                  locale="fa"
+                  className={`px-3 py-1 rounded-full text-xs font-body font-semibold transition-all duration-200 ${
+                    locale === 'fa'
+                      ? 'text-white'
+                      : 'text-cool-gray hover:text-soft-white'
+                  }`}
+                  style={locale === 'fa' ? { background: 'rgba(91,156,248,0.18)', color: '#5B9CF8' } : {}}
+                >
+                  FA
+                </Link>
+              </div>
+
               <a
                 href="#training"
                 className="btn-primary font-body font-semibold text-sm px-5 py-2.5 rounded-full cursor-pointer"
               >
-                Start Learning
+                {t('startLearning')}
               </a>
             </div>
 
@@ -136,9 +171,9 @@ export default function Navigation() {
           }`}
         >
           <nav className="flex flex-col p-4 gap-1">
-            {navLinks.map((link) => (
+            {navKeys.map((link) => (
               <a
-                key={link.href}
+                key={link.key}
                 href={link.href}
                 onClick={() => handleNavClick(link.href)}
                 className={`px-4 py-3.5 rounded-xl font-body text-sm font-medium transition-all duration-200 ${
@@ -147,16 +182,43 @@ export default function Navigation() {
                     : 'text-cool-gray hover:text-soft-white hover:bg-white/[0.04]'
                 }`}
               >
-                {link.label}
+                {t(link.key)}
               </a>
             ))}
-            <div className="pt-3 border-t border-white/[0.06] mt-2">
+            <div className="pt-3 border-t border-white/[0.06] mt-2 flex flex-col gap-3">
+              {/* Mobile language switcher */}
+              <div className="flex items-center gap-2 px-1">
+                <Link
+                  href={pathname}
+                  locale="en"
+                  onClick={() => setIsOpen(false)}
+                  className={`flex-1 text-center py-2 rounded-xl text-sm font-body font-semibold transition-all duration-200 ${
+                    locale === 'en'
+                      ? 'text-electric bg-electric/[0.08]'
+                      : 'text-cool-gray hover:text-soft-white hover:bg-white/[0.04]'
+                  }`}
+                >
+                  English
+                </Link>
+                <Link
+                  href={pathname}
+                  locale="fa"
+                  onClick={() => setIsOpen(false)}
+                  className={`flex-1 text-center py-2 rounded-xl text-sm font-body font-semibold transition-all duration-200 ${
+                    locale === 'fa'
+                      ? 'text-electric bg-electric/[0.08]'
+                      : 'text-cool-gray hover:text-soft-white hover:bg-white/[0.04]'
+                  }`}
+                >
+                  فارسی
+                </Link>
+              </div>
               <a
                 href="#training"
                 onClick={() => handleNavClick('#training')}
                 className="block btn-primary font-body font-semibold text-sm px-5 py-3 rounded-full text-center cursor-pointer"
               >
-                Start Learning
+                {t('startLearning')}
               </a>
             </div>
           </nav>

@@ -230,3 +230,19 @@ h1, h2, h3, h4, h5, h6 {
 @supports (filter: url('#noise')) {
   .noise-layer { filter: url('#noise'); }
 }
+
+/* ─── RTL / Farsi font override ──────────────── */
+[dir="rtl"] body,
+[dir="rtl"] .font-body {
+  font-family: var(--font-vazirmatn), sans-serif;
+}
+
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6,
+[dir="rtl"] .font-heading {
+  font-family: var(--font-vazirmatn), sans-serif;
+}
