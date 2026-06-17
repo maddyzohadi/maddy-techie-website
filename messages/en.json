@@ -10,12 +10,13 @@
     "startLearning": "Start Learning"
   },
   "hero": {
-    "badge": "Complete AI + Automation Training",
-    "title": "Learn AI for real work, without coding.",
-    "subtitle": "Simple lessons, templates, and practical systems using ChatGPT, Claude, and Google Sheets.",
+    "badge": "Practical AI + Workflow Systems",
+    "title": "Learn practical AI for real work.",
+    "titleLine2": "No coding required.",
+    "subtitle": "Beginner-friendly lessons, templates, and AI workflow services using ChatGPT, Claude, and Google Sheets.",
     "cta": "Start Learning",
     "ctaSecondary": "Get Free Starter Kit",
-    "toolsLabel": "Build workflows with tools like",
+    "toolsLabel": "Build workflows with",
     "noCoding": "No coding experience required — ever.",
     "card1Title": "Automation",
     "card1Sub": "Running 3 workflows",
@@ -23,10 +24,14 @@
     "card2Sub": "Draft ready",
     "card3Title": "No coding needed",
     "card3Sub": "100% practical",
-    "statModules": "Training Modules",
-    "statProjects": "Real Workflow Projects",
-    "statCode": "Lines of Code Needed",
-    "statPractical": "Practical & Hands-On"
+    "stat0value": "100%",
+    "stat0label": "Practical",
+    "stat1value": "0",
+    "stat1label": "Coding Required",
+    "stat2value": "3",
+    "stat2label": "Core Tools",
+    "stat3value": "+",
+    "stat3label": "Templates & Services"
   },
   "problem": {
     "badge": "Sound familiar?",

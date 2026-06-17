@@ -10,9 +10,10 @@
     "startLearning": "شروع یادگیری"
   },
   "hero": {
-    "badge": "آموزش کامل AI و اتوماسیون",
-    "title": "AI را برای کارهای واقعی یاد بگیر، بدون کدنویسی.",
-    "subtitle": "آموزش‌های ساده، قالب‌های آماده و سیستم‌های کاربردی با ChatGPT، Claude و Google Sheets.",
+    "badge": "AI کاربردی + سیستم‌های کاری",
+    "title": "AI کاربردی را برای کارهای واقعی یاد بگیر.",
+    "titleLine2": "بدون نیاز به کدنویسی.",
+    "subtitle": "آموزش‌های ساده، قالب‌های آماده و خدمات طراحی workflow با ChatGPT، Claude و Google Sheets.",
     "cta": "شروع یادگیری",
     "ctaSecondary": "دریافت Starter Kit رایگان",
     "toolsLabel": "با ابزارهایی مثل",
@@ -23,10 +24,14 @@
     "card2Sub": "پیش‌نویس آماده",
     "card3Title": "بدون کد",
     "card3Sub": "۱۰۰٪ کاربردی",
-    "statModules": "ماژول آموزشی",
-    "statProjects": "پروژه واقعی",
-    "statCode": "خط کد لازم",
-    "statPractical": "کاربردی و عملی"
+    "stat0value": "۱۰۰٪",
+    "stat0label": "کاربردی",
+    "stat1value": "۰",
+    "stat1label": "کدنویسی لازم نیست",
+    "stat2value": "۳",
+    "stat2label": "ابزار اصلی",
+    "stat3value": "+",
+    "stat3label": "قالب‌ها + خدمات"
   },
   "problem": {
     "badge": "آشنا به نظر می‌رسد؟",
