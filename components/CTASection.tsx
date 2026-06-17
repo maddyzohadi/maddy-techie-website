@@ -112,7 +112,7 @@ export default function CTASection() {
             {t('startLearning')}
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-200" />
           </a>
-          <a href="#templates" className="flex items-center gap-2 font-body font-semibold text-base px-10 py-4 rounded-full w-full sm:w-auto justify-center cursor-pointer transition-all duration-200" style={{ border: '1px solid rgba(255,255,255,0.12)', color: '#F1F5FA' }}>
+          <a href="#services" className="flex items-center gap-2 font-body font-semibold text-base px-10 py-4 rounded-full w-full sm:w-auto justify-center cursor-pointer transition-all duration-200" style={{ border: '1px solid rgba(255,255,255,0.12)', color: '#F1F5FA' }}>
             {t('getStarterKit')}
           </a>
         </div>

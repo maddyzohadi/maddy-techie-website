@@ -10,7 +10,7 @@ const navKeys: { key: 'home' | 'learn' | 'templates' | 'projects' | 'workWithMe'
   { key: 'learn',      href: '#training' },
   { key: 'templates',  href: '#templates' },
   { key: 'projects',   href: '#projects' },
-  { key: 'workWithMe', href: '#contact' },
+  { key: 'workWithMe', href: '#services' },
   { key: 'about',      href: '#about' },
 ]
 

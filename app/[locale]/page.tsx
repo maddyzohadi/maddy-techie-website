@@ -6,6 +6,7 @@ import CurriculumSection from '@/components/CurriculumSection'
 import ProjectsSection from '@/components/ProjectsSection'
 import WhoItsFor from '@/components/WhoItsFor'
 import ResourcesSection from '@/components/ResourcesSection'
+import ServicesSection from '@/components/ServicesSection'
 import AboutSection from '@/components/AboutSection'
 import CTASection from '@/components/CTASection'
 import Footer from '@/components/Footer'
@@ -27,6 +28,7 @@ export default function Home() {
       <ProjectsSection />
       <WhoItsFor />
       <ResourcesSection />
+      <ServicesSection />
       <AboutSection />
       <CTASection />
       <Footer />

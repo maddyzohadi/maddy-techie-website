@@ -160,6 +160,8 @@
     "badge": "منابع",
     "title": "قالب‌ها و ابزارهای رایگان",
     "subtitle": "قبل از آموزش کامل شروع کن. منابع کاربردی که همین الان می‌توانی استفاده کنی تا در زمان صرفه‌جویی کنی و گردش‌کارهای بهتری بسازی.",
+    "whatsIncluded": "What's included",
+    "comingSoon": "به زودی",
     "starterTitle": "دریافت Starter Kit رایگان",
     "starterDesc": "پرامپت‌ها، قالب‌ها و چک‌لیست مبتدی — همه چیزی که برای شروع این هفته نیاز داری، رایگان.",
     "getStarterKit": "دریافت Starter Kit",
@@ -167,6 +169,10 @@
     "res0desc": "مجموعه‌ای از پرامپت‌های مناسب مبتدیان، معرفی ابزارها و چک‌لیست گام‌به‌گام برای شروع استفاده از AI در کارت این هفته.",
     "res0badge": "رایگان",
     "res0cta": "دریافت Starter Kit رایگان",
+    "res0inc0": "Beginner prompt templates",
+    "res0inc1": "AI tool recommendations",
+    "res0inc2": "Step-by-step checklist",
+    "res0inc3": "Quick-start workflow guide",
     "res1title": "قالب‌های پرامپت",
     "res1desc": "پرامپت‌های آماده برای ایمیل، گزارش، خلاصه جلسه، ایده‌های محتوا، تحقیق و بیشتر. کپی، جای‌گذاری و شخصی‌سازی کن.",
     "res1badge": "قالب‌ها",
@@ -187,6 +193,18 @@
     "res5desc": "بررسی ساده ابزارهای برتر AI و اتوماسیون — هر کدام چه کاری می‌کند، کِی استفاده شود و کدام‌ها ارزش وقتت را دارند.",
     "res5badge": "به زودی",
     "res5cta": "به زودی"
+  },
+  "services": {
+    "badge": "Services",
+    "title": "Get help building your AI workflow",
+    "subtitle": "Need help turning ideas into a simple system? Start with a focused setup using ChatGPT, Claude, and Google Sheets",
+    "cta": "Start a Project",
+    "svc0title": "AI Workflow Audit",
+    "svc0desc": "Find what tasks can be simplified with AI",
+    "svc1title": "Custom Prompt System",
+    "svc1desc": "Create reusable prompts for emails, reports, content, and research",
+    "svc2title": "Google Sheets Workflow Setup",
+    "svc2desc": "Build simple trackers, planners, and workflow systems"
   },
   "about": {
     "badge": "درباره",
