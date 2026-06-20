@@ -119,6 +119,15 @@ export default async function Footer() {
                 </svg>
                 {t('tiktok')}
               </a>
+              <a
+                href="https://www.linkedin.com/in/maddy-techie-08362b418/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-sm transition-colors duration-200 hover:text-soft-white"
+                style={{ color: 'var(--color-text-muted)' }}
+              >
+                {t('linkedin')}
+              </a>
             </nav>
             <a
               href="#contact"
