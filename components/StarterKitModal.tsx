@@ -3,11 +3,18 @@
 import { useState, useEffect, useRef } from 'react'
 import { X, ArrowRight, CheckCircle, Loader2 } from 'lucide-react'
 
-// TODO: connect to email service
 async function submitStarterKit(email: string): Promise<void> {
-  await new Promise<void>((resolve) => setTimeout(resolve, 900))
-  // TODO: connect to email service — replace with real API call
-  void email
+  const res = await fetch('/api/starter-kit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  })
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}))
+    throw new Error(
+      (data as { error?: string }).error ?? 'Something went wrong. Please try again.'
+    )
+  }
 }
 
 interface StarterKitModalProps {
@@ -59,8 +66,9 @@ export default function StarterKitModal({ isOpen, onClose }: StarterKitModalProp
     try {
       await submitStarterKit(email.trim())
       setStatus('success')
-    } catch {
-      setEmailError('Something went wrong. Please try again.')
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Something went wrong. Please try again.'
+      setEmailError(msg)
       setStatus('idle')
     }
   }
