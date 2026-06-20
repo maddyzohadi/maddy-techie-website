@@ -49,8 +49,8 @@ export default async function Footer() {
             </p>
           </div>
 
-          {/* Nav links + CTA */}
-          <div className="flex flex-col gap-4">
+          {/* Nav links + CTA + social row */}
+          <div className="flex flex-col gap-3">
             <nav className="flex flex-wrap gap-x-6 gap-y-2">
               {navLinks.map((link) => (
                 <a
@@ -62,6 +62,17 @@ export default async function Footer() {
                   {t(link.labelKey)}
                 </a>
               ))}
+            </nav>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-1.5 font-body font-semibold text-sm self-start transition-opacity duration-200 hover:opacity-80"
+              style={{ color: '#6B9FFF' }}
+            >
+              {t('startProject')}
+              <ArrowRight size={13} />
+            </a>
+            {/* Social links — separate row below CTA */}
+            <div className="flex flex-wrap gap-x-5 gap-y-2 pt-0.5">
               <a
                 href="https://instagram.com/maddythetechie"
                 target="_blank"
@@ -128,15 +139,7 @@ export default async function Footer() {
               >
                 {t('linkedin')}
               </a>
-            </nav>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-1.5 font-body font-semibold text-sm self-start transition-opacity duration-200 hover:opacity-80"
-              style={{ color: '#6B9FFF' }}
-            >
-              {t('startProject')}
-              <ArrowRight size={13} />
-            </a>
+            </div>
           </div>
 
         </div>

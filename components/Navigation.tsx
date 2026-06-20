@@ -5,13 +5,13 @@ import { Menu, X, ArrowRight } from 'lucide-react'
 import { useTranslations, useLocale } from 'next-intl'
 import { Link, usePathname } from '@/i18n/navigation'
 
-const navLinks: { key: 'home' | 'learn' | 'templates' | 'projects' | 'workWithMe' | 'about'; href: string }[] = [
-  { key: 'home',       href: '/'           },
-  { key: 'learn',      href: '/learn'      },
-  { key: 'templates',  href: '/templates'  },
-  { key: 'projects',   href: '/projects'   },
-  { key: 'workWithMe', href: '/collaborate' },
-  { key: 'about',      href: '/about'      },
+const navLinks: { key: 'home' | 'learn' | 'templates' | 'projects' | 'services' | 'about'; href: string }[] = [
+  { key: 'home',      href: '/'         },
+  { key: 'learn',     href: '/learn'    },
+  { key: 'templates', href: '/templates'},
+  { key: 'projects',  href: '/projects' },
+  { key: 'services',  href: '/services' },
+  { key: 'about',     href: '/about'    },
 ]
 
 export default function Navigation() {
@@ -128,7 +128,7 @@ export default function Navigation() {
               </div>
 
               <Link
-                href="/collaborate"
+                href="/services"
                 className="font-body font-medium inline-flex items-center gap-1.5 transition-all duration-200 cursor-pointer"
                 style={{
                   padding: '9px 16px',
@@ -236,7 +236,7 @@ export default function Navigation() {
                 </Link>
               </div>
               <Link
-                href="/collaborate"
+                href="/services"
                 onClick={() => setIsOpen(false)}
                 className="font-body font-medium inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer"
                 style={{

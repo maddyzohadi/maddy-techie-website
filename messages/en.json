@@ -5,6 +5,7 @@
     "templates": "Templates",
     "projects": "Projects",
     "workWithMe": "Collaborate",
+    "services": "Services",
     "about": "About",
     "contact": "Contact",
     "startLearning": "Start Learning",
@@ -288,5 +289,60 @@
     "starter2": "Which workflow should I learn first?",
     "starter3": "What's the difference between automation and AI agents?",
     "starter4": "Can AI help with emails and reports?"
+  },
+  "servicesPage": {
+    "heroBadge": "Services",
+    "heroTitle": "AI workflow services for modern work",
+    "heroSubtitle": "Practical AI setup, automation planning, and workflow systems for professionals, creators, and small teams using ChatGPT, Claude, and Google Sheets.",
+    "heroCta": "Start a Project",
+
+    "svc1title": "AI Workflow Setup",
+    "svc1desc": "A focused session to map your current work and find where AI and automation can save you the most time. You leave with a clear plan and actionable next steps.",
+    "svc1bestFor": "Professionals who don't know where to start with AI",
+    "svc1cta": "Start with a Workflow Setup",
+
+    "svc2title": "Claude & ChatGPT Prompt Systems",
+    "svc2desc": "Custom prompts built around your specific role and tasks. Includes a reusable prompt library for emails, reports, summaries, and more that you can use every day.",
+    "svc2bestFor": "Anyone who wants to use AI more effectively in their work",
+    "svc2cta": "Get a Custom Prompt System",
+
+    "svc3title": "Google Sheets Workflow Automation",
+    "svc3desc": "Simple, structured Google Sheets systems for tracking leads, planning content, generating reports, and organizing work — no code required.",
+    "svc3bestFor": "Teams and individuals who rely on spreadsheets to run their work",
+    "svc3cta": "Build a Sheets Workflow",
+
+    "svc4title": "AI Content System",
+    "svc4desc": "A complete content planning and creation workflow using AI tools. Includes an editorial calendar, prompt templates, and a system for producing consistent content with less effort.",
+    "svc4bestFor": "Creators, coaches, and business owners producing regular content",
+    "svc4cta": "Build a Content System",
+
+    "bestForLabel": "Best for",
+    "toolsLabel": "Tools",
+
+    "howBadge": "The process",
+    "howTitle": "How it works",
+    "step1num": "01",
+    "step1title": "Book a free call",
+    "step1desc": "Tell me about your work, your tools, and where things feel slow or messy. No preparation needed.",
+    "step2num": "02",
+    "step2title": "Get a clear plan",
+    "step2desc": "You receive a simple workflow plan tailored to your situation, goals, and the tools you already use.",
+    "step3num": "03",
+    "step3title": "We build it together",
+    "step3desc": "I set up your AI tools, prompt systems, or automations while you learn how everything works.",
+    "step4num": "04",
+    "step4title": "You leave ready to go",
+    "step4desc": "Prompts, templates, systems, and the confidence to keep building on your own.",
+
+    "whoBadge": "Who this is for",
+    "whoTitle": "Built for people who work, not developers",
+    "who0": "Professionals who want to use AI in daily work but don't know where to start",
+    "who1": "Creators who want to produce more content with less time and effort",
+    "who2": "Small business owners who need simple, reliable systems without hiring a developer",
+    "who3": "Remote workers and freelancers who want to work faster and smarter",
+
+    "startTitle": "Not sure where to start?",
+    "startDesc": "Start with a free 20-minute workflow review. We'll look at your current work and figure out the best first step together.",
+    "startCta": "Book a Free Call"
   }
 }
