@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 import { ArrowRight, Zap, MessageSquare, LayoutGrid, PenLine, CheckCircle } from 'lucide-react'
+import ServiceInquiryForm from '@/components/ServiceInquiryForm'
 
 const gradientText = {
   background: 'linear-gradient(135deg, #6B9FFF, #A78BFA)',
@@ -295,6 +296,30 @@ export default async function ServicesPageContent() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Inquiry Form ───────────────────────────────────────── */}
+      <section
+        className="py-20 md:py-24 relative"
+        style={{ background: '#020509', borderTop: '1px solid rgba(255,255,255,0.04)' }}
+      >
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span
+              className="inline-block font-body text-sm font-semibold uppercase tracking-[0.22em] mb-4"
+              style={{ color: '#6B9FFF' }}
+            >
+              {t('formBadge')}
+            </span>
+            <h2 className="font-heading font-bold text-3xl md:text-4xl text-soft-white leading-tight mb-4">
+              {t('formTitle')}
+            </h2>
+            <p className="font-body text-base leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+              {t('formSubtitle')}
+            </p>
+          </div>
+          <ServiceInquiryForm />
         </div>
       </section>
 
