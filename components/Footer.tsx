@@ -86,6 +86,53 @@ export default async function Footer() {
                 </svg>
                 {t('instagram')}
               </a>
+              <a
+                href="https://x.com/maddythetechie"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-sm inline-flex items-center gap-1.5 transition-colors duration-200 hover:text-soft-white"
+                style={{ color: 'var(--color-text-muted)' }}
+              >
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+                {t('x')}
+              </a>
+              <a
+                href="https://www.tiktok.com/@maddythetechie"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-body text-sm inline-flex items-center gap-1.5 transition-colors duration-200 hover:text-soft-white"
+                style={{ color: 'var(--color-text-muted)' }}
+              >
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 18V5l12-2v13" />
+                  <circle cx="6" cy="18" r="3" />
+                  <circle cx="18" cy="16" r="3" />
+                </svg>
+                {t('tiktok')}
+              </a>
             </nav>
             <a
               href="#contact"
