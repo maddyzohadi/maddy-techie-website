@@ -252,13 +252,24 @@
     "pill1": "بدون تجربه فنی لازم",
     "pill2": "کاربردی از روز اول"
   },
+  "instagram": {
+    "eyebrow": "در اینستاگرام دنبال کن",
+    "body": "مددی را در اینستاگرام دنبال کن تا نکات کاربردی AI، ایده‌های اتوماسیون و گردش‌کارهای ساده برای مبتدیان را از دست ندهی.",
+    "cta": "دنبال کردن در اینستاگرام"
+  },
   "footer": {
     "brand": "AI education, templates, and workflow services for modern work",
     "learn": "Learn",
     "services": "Services",
     "startProject": "Start a Project",
+    "instagram": "اینستاگرام",
+    "linkedin": "LinkedIn",
+    "socialLabel": "دنبال کن",
+    "contactLabel": "سوال‌های عمومی",
+    "ctaTitle": "یادگیری عملی AI و اتوماسیون",
+    "ctaBody": "آموزش‌های مناسب مبتدیان، قالب‌ها و ایده‌های گردش‌کار برای استفاده از ChatGPT، Claude و Google Sheets.",
+    "tagline": "ساخته شده با هوش مصنوعی، دقت، و تب‌های زیادی در مرورگر.",
     "disclaimer": "Educational guidance only, not professional advice",
-    "tagline": "AI و اتوماسیون عملی برای کار مدرن",
     "motto": "AI یاد بگیر. کار را اتوماتیک کن. بدون کد.",
     "copyright": "تمام حقوق محفوظ است.",
     "privacy": "سیاست حریم خصوصی",

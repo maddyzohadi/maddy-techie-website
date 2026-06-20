@@ -250,11 +250,23 @@
     "pill1": "No technical experience needed",
     "pill2": "Practical from day one"
   },
+  "instagram": {
+    "eyebrow": "Stay connected",
+    "body": "Follow Maddy on Instagram for practical AI tips, automation ideas, and beginner-friendly workflows.",
+    "cta": "Follow on Instagram"
+  },
   "footer": {
     "brand": "AI education, templates, and workflow services for modern work",
     "learn": "Learn",
     "services": "Services",
     "startProject": "Start a Project",
+    "instagram": "Instagram",
+    "linkedin": "LinkedIn",
+    "socialLabel": "Follow",
+    "contactLabel": "General inquiries",
+    "ctaTitle": "Learn practical AI & automation",
+    "ctaBody": "Beginner-friendly tutorials, templates, and workflow ideas for using ChatGPT, Claude, and Google Sheets.",
+    "tagline": "Built with AI, care, and too many browser tabs.",
     "disclaimer": "Educational guidance only, not professional advice",
     "copyright": "All rights reserved.",
     "privacy": "Privacy Policy",
