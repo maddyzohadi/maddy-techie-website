@@ -19,7 +19,7 @@ export default async function AboutSection() {
   ] as const
 
   return (
-    <section id="about" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#04080F' }}>
+    <section id="about" className="py-24 md:py-32 relative scroll-mt-[88px]" style={{ background: '#04080F' }}>
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -31,78 +31,76 @@ export default async function AboutSection() {
 
           {/* Left — visual card */}
           <div className="order-2 lg:order-1">
-            <div className="relative">
-              <div
-                className="rounded-3xl overflow-hidden relative"
-                style={{
-                  background: 'linear-gradient(135deg, #0A1525 0%, #0C1B2E 50%, #091421 100%)',
-                  border: '1px solid rgba(107,159,255,0.15)',
-                }}
-              >
-                <div aria-hidden className="absolute -top-16 -right-16 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(107,159,255,0.08) 0%, transparent 70%)' }} />
-                <div aria-hidden className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(167,139,250,0.07) 0%, transparent 70%)' }} />
+            <div
+              className="rounded-3xl overflow-hidden relative"
+              style={{
+                background: 'linear-gradient(135deg, #0A1525 0%, #0C1B2E 50%, #091421 100%)',
+                border: '1px solid rgba(107,159,255,0.15)',
+              }}
+            >
+              <div aria-hidden className="absolute -top-16 -right-16 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(107,159,255,0.08) 0%, transparent 70%)' }} />
+              <div aria-hidden className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(167,139,250,0.07) 0%, transparent 70%)' }} />
 
-                <div className="relative z-10 p-10 flex flex-col items-center text-center">
-                  <div className="relative mb-5">
-                    <div
-                      className="w-28 h-28 rounded-full flex items-center justify-center"
-                      style={{
-                        background: 'linear-gradient(135deg, rgba(107,159,255,0.20), rgba(167,139,250,0.20))',
-                        border: '2px solid rgba(107,159,255,0.25)',
-                      }}
-                    >
-                      <span className="font-heading font-bold text-4xl" style={{ color: '#6B9FFF' }}>M</span>
-                    </div>
-                    <div
-                      className="absolute -top-1 -right-1 w-7 h-7 rounded-full flex items-center justify-center"
-                      style={{ background: 'linear-gradient(135deg, #6B9FFF, #A78BFA)' }}
-                    >
-                      <Sparkles size={13} className="text-white" />
-                    </div>
+              <div className="relative z-10 p-10 flex flex-col items-center text-center">
+                <div className="relative mb-5">
+                  <div
+                    className="w-28 h-28 rounded-full flex items-center justify-center"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(107,159,255,0.20), rgba(167,139,250,0.20))',
+                      border: '2px solid rgba(107,159,255,0.25)',
+                    }}
+                  >
+                    <span className="font-heading font-bold text-4xl" style={{ color: '#6B9FFF' }}>M</span>
                   </div>
-
-                  <div className="font-heading font-bold text-soft-white text-xl mb-1">Maddy the Techie</div>
-                  <div className="font-body text-sm mb-4" style={{ color: 'var(--color-text-secondary)' }}>{t('subtitle')}</div>
-
-                  <div className="flex gap-1 mb-3">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={14} style={{ color: '#A78BFA', fill: '#A78BFA' }} />
-                    ))}
-                  </div>
-                  <p className="font-body text-xs italic max-w-xs leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                    {t('tagline')}
-                  </p>
-
-                  <div className="mt-7 grid grid-cols-3 gap-3 w-full">
-                    {stats.map((s) => (
-                      <div
-                        key={s.labelKey}
-                        className="rounded-xl py-3 text-center"
-                        style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}
-                      >
-                        <div className="font-heading font-bold text-base" style={{ color: '#6B9FFF' }}>
-                          <span dir="ltr">{s.value}</span>
-                        </div>
-                        <div className="font-body text-[10px] mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
-                          {t(s.labelKey)}
-                        </div>
-                      </div>
-                    ))}
+                  <div
+                    className="absolute -top-1 -right-1 w-7 h-7 rounded-full flex items-center justify-center"
+                    style={{ background: 'linear-gradient(135deg, #6B9FFF, #A78BFA)' }}
+                  >
+                    <Sparkles size={13} className="text-white" />
                   </div>
                 </div>
-              </div>
 
-              {/* Floating badge */}
-              <div
-                className="absolute -bottom-5 -right-4 md:-right-8 rounded-2xl px-5 py-3.5 shadow-2xl"
-                style={{
-                  background: '#0C1524',
-                  border: '1px solid rgba(167,139,250,0.20)',
-                  boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
-                }}
-              >
-                <div className="font-body text-xs mb-0.5" style={{ color: 'var(--color-text-muted)' }}>{t('badgeLabel')}</div>
-                <div className="font-heading font-bold text-soft-white text-sm">{t('badge100')}</div>
+                <div className="font-heading font-bold text-soft-white text-xl mb-1">Maddy the Techie</div>
+                <div className="font-body text-sm mb-4" style={{ color: 'var(--color-text-secondary)' }}>{t('subtitle')}</div>
+
+                <div className="flex gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={14} style={{ color: '#A78BFA', fill: '#A78BFA' }} />
+                  ))}
+                </div>
+                <p className="font-body text-xs italic max-w-xs leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+                  {t('tagline')}
+                </p>
+
+                <div className="mt-7 grid grid-cols-3 gap-3 w-full">
+                  {stats.map((s) => (
+                    <div
+                      key={s.labelKey}
+                      className="rounded-xl py-3 text-center"
+                      style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}
+                    >
+                      <div className="font-heading font-bold text-base" style={{ color: '#6B9FFF' }}>
+                        <span dir="ltr">{s.value}</span>
+                      </div>
+                      <div className="font-body text-[10px] mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
+                        {t(s.labelKey)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Approach badge — inline below stats, fully inside card */}
+                <div
+                  className="mt-4 w-full rounded-2xl px-5 py-3.5 text-left"
+                  style={{
+                    background: '#0C1524',
+                    border: '1px solid rgba(167,139,250,0.20)',
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.35)',
+                  }}
+                >
+                  <div className="font-body text-xs mb-0.5" style={{ color: 'var(--color-text-muted)' }}>{t('badgeLabel')}</div>
+                  <div className="font-heading font-bold text-soft-white text-sm">{t('badge100')}</div>
+                </div>
               </div>
             </div>
           </div>

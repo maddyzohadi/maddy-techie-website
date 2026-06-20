@@ -1,5 +1,6 @@
 import { Mail, LayoutDashboard, FileText, BookOpen, Users } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
+import { Link } from '@/i18n/navigation'
 
 export default async function ProjectsSection() {
   const t = await getTranslations('projects')
@@ -135,12 +136,13 @@ export default async function ProjectsSection() {
 
         {/* CTA */}
         <div className="mt-12 text-center">
-          <a
-            href="#training"
-            className="btn-primary inline-flex items-center gap-2.5 font-body font-semibold text-base px-9 py-4 rounded-full cursor-pointer"
+          <Link
+            href="/learn"
+            className="font-body font-semibold text-sm inline-flex items-center gap-1.5 cursor-pointer transition-opacity hover:opacity-70"
+            style={{ color: '#6B9FFF' }}
           >
-            {t('seeFull')}
-          </a>
+            {t('seeFull')} →
+          </Link>
         </div>
 
       </div>

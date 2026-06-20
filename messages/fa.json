@@ -32,7 +32,13 @@
     "stat2value": "۳",
     "stat2label": "ابزار اصلی",
     "stat3value": "+",
-    "stat3label": "قالب‌ها + خدمات"
+    "stat3label": "قالب‌ها + خدمات",
+    "card1Before": "Messy notes",
+    "card1After": "Clear summary",
+    "card2Before": "Repetitive tasks",
+    "card2After": "Simple workflow",
+    "card3Before": "Scattered ideas",
+    "card3After": "Organized system"
   },
   "problem": {
     "badge": "آشنا به نظر می‌رسد؟",

@@ -5,13 +5,13 @@ import { Menu, X, ArrowRight } from 'lucide-react'
 import { useTranslations, useLocale } from 'next-intl'
 import { Link, usePathname } from '@/i18n/navigation'
 
-const navKeys: { key: 'home' | 'learn' | 'templates' | 'projects' | 'workWithMe' | 'about'; href: string }[] = [
-  { key: 'home',       href: '#home' },
-  { key: 'learn',      href: '#training' },
-  { key: 'templates',  href: '#templates' },
-  { key: 'projects',   href: '#projects' },
-  { key: 'workWithMe', href: '#services' },
-  { key: 'about',      href: '#about' },
+const navLinks: { key: 'home' | 'learn' | 'templates' | 'projects' | 'workWithMe' | 'about'; href: string }[] = [
+  { key: 'home',       href: '/'           },
+  { key: 'learn',      href: '/learn'      },
+  { key: 'templates',  href: '/templates'  },
+  { key: 'projects',   href: '/projects'   },
+  { key: 'workWithMe', href: '/collaborate' },
+  { key: 'about',      href: '/about'      },
 ]
 
 export default function Navigation() {
@@ -19,9 +19,8 @@ export default function Navigation() {
   const locale = useLocale()
   const pathname = usePathname()
 
-  const [isOpen, setIsOpen]         = useState(false)
-  const [scrolled, setScrolled]     = useState(false)
-  const [activeLink, setActiveLink] = useState('#home')
+  const [isOpen, setIsOpen]     = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -34,80 +33,68 @@ export default function Navigation() {
     return () => { document.body.style.overflow = '' }
   }, [isOpen])
 
-  const handleNavClick = (href: string) => {
-    setActiveLink(href)
-    setIsOpen(false)
-  }
+  const isActive = (href: string) => pathname === href
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-navy/90 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.4)]'
-            : 'bg-transparent'
+          scrolled ? 'backdrop-blur-xl border-b border-white/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.4)]' : 'bg-transparent'
         }`}
+        style={scrolled ? { background: 'rgba(8,12,18,0.88)' } : {}}
       >
-        {/* Gradient line on scroll */}
+        {/* Gradient accent line on scroll */}
         <div
           className={`absolute bottom-0 left-0 right-0 h-[1px] transition-opacity duration-300 ${scrolled ? 'opacity-100' : 'opacity-0'}`}
-          style={{
-            background: 'linear-gradient(90deg, transparent 0%, rgba(107,159,255,0.30) 20%, rgba(167,139,250,0.20) 80%, transparent 100%)',
-          }}
+          style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(139,123,255,0.35) 30%, rgba(74,168,255,0.25) 70%, transparent 100%)' }}
         />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+        <div className="max-w-[1480px] mx-auto px-6 lg:px-14">
+          <div className="flex items-center justify-between h-[72px]">
 
-            {/* Logo */}
-            <a
-              href="#home"
-              className="flex flex-col leading-tight group flex-shrink-0"
-              onClick={() => handleNavClick('#home')}
+            {/* Logo lockup */}
+            <Link
+              href="/"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center gap-2.5 flex-shrink-0 group"
             >
-              <span
-                className="font-heading font-bold text-xl"
+              <div
                 style={{
-                  backgroundImage: 'linear-gradient(135deg, #6B9FFF, #A78BFA)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
+                  width: '30px', height: '30px', borderRadius: '9px',
+                  background: 'linear-gradient(150deg, #8b7bff, #4aa8ff)',
+                  boxShadow: '0 0 18px rgba(120,110,255,0.50)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  flexShrink: 0,
                 }}
               >
-                Maddy the Techie
+                <span style={{ fontWeight: 700, fontSize: '15px', color: '#0a0a0f', lineHeight: 1 }}>M</span>
+              </div>
+              <span className="font-body hidden sm:inline" style={{ fontSize: '15.5px', letterSpacing: '-0.01em', lineHeight: 1.2 }}>
+                <span style={{ fontWeight: 600, color: '#f4f3f9' }}>Maddy</span>
+                <span style={{ fontWeight: 500, color: '#8e8aa6' }}> the Techie</span>
               </span>
-              <span className="font-body text-xs font-medium tracking-wide" style={{ color: '#6B9FFF' }}>
-                Practical AI &amp; Automation
-              </span>
-            </a>
+            </Link>
 
-            {/* Desktop nav */}
-            <nav className="hidden md:flex items-center gap-0.5">
-              {navKeys.map((link) => (
-                <a
+            {/* Desktop nav — shown at lg+ */}
+            <nav className="hidden lg:flex items-center" style={{ gap: '24px' }}>
+              {navLinks.map((link) => (
+                <Link
                   key={link.key}
                   href={link.href}
-                  onClick={() => handleNavClick(link.href)}
-                  className={`relative px-3.5 py-2 rounded-lg font-body text-sm font-medium transition-all duration-200 ${
-                    activeLink === link.href
-                      ? 'text-electric bg-electric/[0.07]'
-                      : 'text-cool-gray hover:text-soft-white hover:bg-white/[0.04]'
-                  }`}
+                  className="font-body font-medium transition-colors duration-200 cursor-pointer"
+                  style={{ fontSize: '14.5px', color: isActive(link.href) ? '#ffffff' : '#a8a6bd' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#ffffff' }}
+                  onMouseLeave={(e) => {
+                    ;(e.currentTarget as HTMLAnchorElement).style.color = isActive(link.href) ? '#ffffff' : '#a8a6bd'
+                  }}
                 >
                   {t(link.key)}
-                  {activeLink === link.href && (
-                    <span
-                      className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
-                      style={{ background: '#6B9FFF' }}
-                    />
-                  )}
-                </a>
+                </Link>
               ))}
             </nav>
 
-            {/* Desktop right: language switcher + CTA */}
-            <div className="hidden md:flex items-center gap-3 flex-shrink-0">
-              {/* Language switcher */}
+            {/* Desktop right: language switcher + ghost pill CTA */}
+            <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
               <div
                 className="flex items-center gap-1 rounded-full px-1 py-1"
                 style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
@@ -115,39 +102,62 @@ export default function Navigation() {
                 <Link
                   href={pathname}
                   locale="en"
-                  className={`px-3 py-1 rounded-full text-xs font-body font-semibold transition-all duration-200 ${
-                    locale === 'en' ? '' : 'text-cool-gray hover:text-soft-white'
-                  }`}
-                  style={locale === 'en' ? { background: 'rgba(107,159,255,0.18)', color: '#6B9FFF' } : {}}
+                  className="px-3 py-1 rounded-full font-body font-semibold transition-all duration-200"
+                  style={{
+                    fontSize: '12px',
+                    ...(locale === 'en'
+                      ? { background: 'rgba(139,123,255,0.18)', color: '#a99bff' }
+                      : { color: '#a8a6bd' }),
+                  }}
                 >
                   EN
                 </Link>
                 <Link
                   href={pathname}
                   locale="fa"
-                  className={`px-3 py-1 rounded-full text-xs font-body font-semibold transition-all duration-200 ${
-                    locale === 'fa' ? '' : 'text-cool-gray hover:text-soft-white'
-                  }`}
-                  style={locale === 'fa' ? { background: 'rgba(107,159,255,0.18)', color: '#6B9FFF' } : {}}
+                  className="px-3 py-1 rounded-full font-body font-semibold transition-all duration-200"
+                  style={{
+                    fontSize: '12px',
+                    ...(locale === 'fa'
+                      ? { background: 'rgba(139,123,255,0.18)', color: '#a99bff' }
+                      : { color: '#a8a6bd' }),
+                  }}
                 >
                   FA
                 </Link>
               </div>
 
-              <a
-                href="#contact"
-                onClick={() => handleNavClick('#contact')}
-                className="btn-primary inline-flex items-center gap-2 font-body font-semibold text-sm px-5 py-2.5 rounded-full cursor-pointer"
+              <Link
+                href="/collaborate"
+                className="font-body font-medium inline-flex items-center gap-1.5 transition-all duration-200 cursor-pointer"
+                style={{
+                  padding: '9px 16px',
+                  border: '1px solid rgba(255,255,255,0.14)',
+                  borderRadius: '999px',
+                  fontSize: '14.5px',
+                  color: '#e9e8f0',
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget as HTMLAnchorElement
+                  el.style.borderColor = 'rgba(255,255,255,0.32)'
+                  el.style.color = '#ffffff'
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget as HTMLAnchorElement
+                  el.style.borderColor = 'rgba(255,255,255,0.14)'
+                  el.style.color = '#e9e8f0'
+                }}
               >
                 {t('startProject')}
-                <ArrowRight size={14} />
-              </a>
+                <ArrowRight size={13} />
+              </Link>
             </div>
 
-            {/* Mobile hamburger */}
+            {/* Mobile hamburger — shown below lg */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-xl text-cool-gray hover:text-soft-white hover:bg-white/[0.06] transition-colors cursor-pointer"
+              className="lg:hidden p-2 rounded-xl transition-colors cursor-pointer"
+              style={{ color: '#a8a6bd' }}
               aria-label="Toggle navigation"
             >
               {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -156,48 +166,57 @@ export default function Navigation() {
         </div>
       </header>
 
-      {/* Mobile overlay */}
+      {/* Mobile overlay — shown below lg */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
+        className={`fixed inset-0 z-40 lg:hidden transition-all duration-300 ${
           isOpen ? 'visible opacity-100' : 'invisible opacity-0'
         }`}
       >
         <div
-          className="absolute inset-0 bg-navy/80 backdrop-blur-sm"
+          className="absolute inset-0 backdrop-blur-sm"
+          style={{ background: 'rgba(8,12,18,0.80)' }}
           onClick={() => setIsOpen(false)}
         />
         <div
-          className={`absolute top-20 left-0 right-0 mx-4 rounded-2xl card-glass border border-white/[0.08] shadow-2xl transition-all duration-300 ${
+          className={`absolute left-0 right-0 mx-4 rounded-2xl shadow-2xl transition-all duration-300 ${
             isOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
           }`}
+          style={{
+            top: '80px',
+            background: 'rgba(13,17,28,0.97)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            backdropFilter: 'blur(20px)',
+          }}
         >
           <nav className="flex flex-col p-4 gap-1">
-            {navKeys.map((link) => (
-              <a
+            {navLinks.map((link) => (
+              <Link
                 key={link.key}
                 href={link.href}
-                onClick={() => handleNavClick(link.href)}
-                className={`px-4 py-3.5 rounded-xl font-body text-sm font-medium transition-all duration-200 ${
-                  activeLink === link.href
-                    ? 'text-electric bg-electric/[0.07]'
-                    : 'text-cool-gray hover:text-soft-white hover:bg-white/[0.04]'
-                }`}
+                onClick={() => setIsOpen(false)}
+                className="px-4 py-3.5 rounded-xl font-body font-medium transition-all duration-200 cursor-pointer"
+                style={{
+                  fontSize: '15px',
+                  color: isActive(link.href) ? '#ffffff' : '#a8a6bd',
+                  background: isActive(link.href) ? 'rgba(139,123,255,0.07)' : undefined,
+                }}
               >
                 {t(link.key)}
-              </a>
+              </Link>
             ))}
-            <div className="pt-3 border-t border-white/[0.06] mt-2 flex flex-col gap-3">
-              {/* Mobile language switcher */}
+            <div className="pt-3 mt-2 flex flex-col gap-3" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
               <div className="flex items-center gap-2 px-1">
                 <Link
                   href={pathname}
                   locale="en"
                   onClick={() => setIsOpen(false)}
-                  className={`flex-1 text-center py-2 rounded-xl text-sm font-body font-semibold transition-all duration-200 ${
-                    locale === 'en'
-                      ? 'text-electric bg-electric/[0.07]'
-                      : 'text-cool-gray hover:text-soft-white hover:bg-white/[0.04]'
-                  }`}
+                  className="flex-1 text-center py-2 rounded-xl font-body font-semibold transition-all duration-200"
+                  style={{
+                    fontSize: '14px',
+                    ...(locale === 'en'
+                      ? { color: '#a99bff', background: 'rgba(139,123,255,0.08)' }
+                      : { color: '#a8a6bd' }),
+                  }}
                 >
                   English
                 </Link>
@@ -205,23 +224,32 @@ export default function Navigation() {
                   href={pathname}
                   locale="fa"
                   onClick={() => setIsOpen(false)}
-                  className={`flex-1 text-center py-2 rounded-xl text-sm font-body font-semibold transition-all duration-200 ${
-                    locale === 'fa'
-                      ? 'text-electric bg-electric/[0.07]'
-                      : 'text-cool-gray hover:text-soft-white hover:bg-white/[0.04]'
-                  }`}
+                  className="flex-1 text-center py-2 rounded-xl font-body font-semibold transition-all duration-200"
+                  style={{
+                    fontSize: '14px',
+                    ...(locale === 'fa'
+                      ? { color: '#a99bff', background: 'rgba(139,123,255,0.08)' }
+                      : { color: '#a8a6bd' }),
+                  }}
                 >
                   فارسی
                 </Link>
               </div>
-              <a
-                href="#contact"
-                onClick={() => handleNavClick('#contact')}
-                className="btn-primary inline-flex items-center justify-center gap-2 font-body font-semibold text-sm px-5 py-3 rounded-full text-center cursor-pointer"
+              <Link
+                href="/collaborate"
+                onClick={() => setIsOpen(false)}
+                className="font-body font-medium inline-flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer"
+                style={{
+                  padding: '13px 20px',
+                  border: '1px solid rgba(255,255,255,0.14)',
+                  borderRadius: '999px',
+                  fontSize: '15px',
+                  color: '#e9e8f0',
+                }}
               >
                 {t('startProject')}
                 <ArrowRight size={14} />
-              </a>
+              </Link>
             </div>
           </nav>
         </div>

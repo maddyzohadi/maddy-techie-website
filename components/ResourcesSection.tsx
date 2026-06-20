@@ -1,223 +1,454 @@
-import { Download, FileText, Workflow, CheckSquare, BookOpen, Lightbulb, ArrowRight, CheckCircle, Clock } from 'lucide-react'
-import { getTranslations } from 'next-intl/server'
+'use client'
 
-export default async function ResourcesSection() {
-  const t = await getTranslations('resources')
+import { useState } from 'react'
+import { ArrowRight } from 'lucide-react'
 
-  const includedKeys = ['res0inc0', 'res0inc1', 'res0inc2', 'res0inc3'] as const
+// ── Data ───────────────────────────────────────────────────────────────────
+type Tier = 'Free' | 'Premium'
 
-  const resources = [
-    {
-      icon: Lightbulb,
-      titleKey: 'res1title',
-      descKey:  'res1desc',
-      badgeKey: 'res1badge',
-      accent: { text: '#A78BFA', bg: 'rgba(167,139,250,0.12)', border: 'rgba(167,139,250,0.22)' },
-    },
-    {
-      icon: Workflow,
-      titleKey: 'res2title',
-      descKey:  'res2desc',
-      badgeKey: 'res2badge',
-      accent: { text: '#6B9FFF', bg: 'rgba(107,159,255,0.12)', border: 'rgba(107,159,255,0.22)' },
-    },
-    {
-      icon: CheckSquare,
-      titleKey: 'res3title',
-      descKey:  'res3desc',
-      badgeKey: 'res3badge',
-      accent: { text: '#A78BFA', bg: 'rgba(167,139,250,0.12)', border: 'rgba(167,139,250,0.22)' },
-    },
-    {
-      icon: BookOpen,
-      titleKey: 'res4title',
-      descKey:  'res4desc',
-      badgeKey: 'res4badge',
-      accent: { text: '#6B9FFF', bg: 'rgba(107,159,255,0.12)', border: 'rgba(107,159,255,0.22)' },
-    },
-    {
-      icon: FileText,
-      titleKey: 'res5title',
-      descKey:  'res5desc',
-      badgeKey: 'res5badge',
-      accent: { text: '#A78BFA', bg: 'rgba(167,139,250,0.10)', border: 'rgba(167,139,250,0.18)' },
-    },
-  ] as const
+interface Template {
+  id: number
+  name: string
+  cat: string
+  desc: string
+  tools: string[]
+  tier: Tier
+}
+
+const TEMPLATES: Template[] = [
+  {
+    id: 1,
+    name: 'AI Email Reply Kit',
+    cat: 'AI Prompts',
+    desc: 'Reusable prompts that help you write, reply, and clear your inbox in minutes, no starting from scratch.',
+    tools: ['ChatGPT', 'Claude'],
+    tier: 'Free',
+  },
+  {
+    id: 2,
+    name: 'Weekly Report Summary Sheet',
+    cat: 'Reports',
+    desc: 'Paste your notes or data and get a clean written summary with key highlights, ready to send.',
+    tools: ['Google Sheets', 'Claude'],
+    tier: 'Free',
+  },
+  {
+    id: 3,
+    name: 'Google Sheets Content Planner',
+    cat: 'Content Planning',
+    desc: 'Plan a full month of content with topics, post formats, and captions, all in one organized sheet.',
+    tools: ['Google Sheets', 'ChatGPT'],
+    tier: 'Premium',
+  },
+  {
+    id: 4,
+    name: 'Prompt Library Tracker',
+    cat: 'Google Sheets',
+    desc: 'Save and organize your best prompts by task so you reuse what works without starting over every time.',
+    tools: ['Google Sheets', 'ChatGPT'],
+    tier: 'Free',
+  },
+  {
+    id: 5,
+    name: 'Client Lead Tracker',
+    cat: 'Client Work',
+    desc: 'Track leads and follow-ups with status columns, notes, and simple filters, ready to use in minutes.',
+    tools: ['Google Sheets'],
+    tier: 'Free',
+  },
+  {
+    id: 6,
+    name: 'Meeting Notes Summary Prompt',
+    cat: 'Reports',
+    desc: 'Turn raw meeting notes into clean summaries, action items, and follow-up email drafts instantly.',
+    tools: ['Claude', 'ChatGPT'],
+    tier: 'Premium',
+  },
+]
+
+const CATEGORIES = ['All', 'AI Prompts', 'Google Sheets', 'Content Planning', 'Reports', 'Client Work']
+
+const ACCENTS: Record<string, { color: string; glow: string; soft: string }> = {
+  'AI Prompts':       { color: '#6B9FFF', glow: 'rgba(107,159,255,.40)', soft: 'rgba(107,159,255,.13)' },
+  'Google Sheets':    { color: '#8b7bff', glow: 'rgba(139,123,255,.40)', soft: 'rgba(139,123,255,.13)' },
+  'Content Planning': { color: '#5b9bff', glow: 'rgba(91,155,255,.40)',  soft: 'rgba(91,155,255,.13)'  },
+  'Reports':          { color: '#a99bff', glow: 'rgba(169,155,255,.40)', soft: 'rgba(169,155,255,.13)' },
+  'Client Work':      { color: '#4aa8ff', glow: 'rgba(74,168,255,.40)',  soft: 'rgba(74,168,255,.13)'  },
+}
+
+// ── Thumbnail ──────────────────────────────────────────────────────────────
+function Thumbnail({ accent }: { accent: { color: string; glow: string; soft: string } }) {
+  return (
+    <div
+      style={{
+        height: '152px',
+        borderRadius: '15px',
+        overflow: 'hidden',
+        position: 'relative',
+        background: `linear-gradient(158deg, ${accent.soft}, rgba(255,255,255,.015))`,
+        border: '1px solid rgba(255,255,255,.07)',
+        flexShrink: 0,
+      }}
+    >
+      {/* Dot grid */}
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute', inset: 0,
+          backgroundImage: 'radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px)',
+          backgroundSize: '18px 18px',
+        }}
+      />
+
+      {/* Connector line */}
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute',
+          top: '63px',
+          left: '40px',
+          right: '40px',
+          height: '1px',
+          background: `linear-gradient(90deg, transparent, ${accent.color}55, transparent)`,
+        }}
+      />
+
+      {/* 3 nodes */}
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute',
+          top: '55px',
+          left: 0, right: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '38px',
+        }}
+      >
+        <div style={{ width: '11px', height: '11px', borderRadius: '50%', background: accent.color, opacity: 0.55 }} />
+        <div style={{
+          width: '18px', height: '18px', borderRadius: '50%',
+          background: accent.color,
+          boxShadow: `0 0 12px 4px ${accent.glow}`,
+          animation: 'mtPulse 3.4s ease-in-out infinite',
+        }} />
+        <div style={{ width: '11px', height: '11px', borderRadius: '50%', background: accent.color, opacity: 0.55 }} />
+      </div>
+
+      {/* Mini frosted cards */}
+      <div
+        aria-hidden
+        style={{
+          position: 'absolute',
+          bottom: '14px', left: '14px', right: '14px',
+          display: 'flex', gap: '8px',
+        }}
+      >
+        {[{ w: '55%', opacity: 0.055 }, { w: '38%', opacity: 0.04 }].map((c, i) => (
+          <div
+            key={i}
+            style={{
+              flex: 1, height: '28px',
+              borderRadius: '9px',
+              background: `rgba(255,255,255,${c.opacity})`,
+              backdropFilter: 'blur(6px)',
+              border: '1px solid rgba(255,255,255,.08)',
+              padding: '0 10px',
+              display: 'flex', alignItems: 'center',
+            }}
+          >
+            <div style={{ width: c.w, height: '3px', borderRadius: '2px', background: 'rgba(255,255,255,.22)' }} />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// ── Main section ───────────────────────────────────────────────────────────
+export default function ResourcesSection() {
+  const [filter, setFilter] = useState('All')
+  const visible = filter === 'All' ? TEMPLATES : TEMPLATES.filter((t) => t.cat === filter)
 
   return (
     <section id="templates" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#060B14' }}>
       <div className="section-divider absolute top-0 left-0 right-0" />
 
+      {/* Background glow */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 60% 50% at 20% 50%, rgba(107,159,255,0.05) 0%, transparent 60%)' }}
+        style={{ background: 'radial-gradient(ellipse 70% 55% at 15% 50%, rgba(107,159,255,.05) 0%, transparent 60%)' }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-[1160px] mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Section header */}
-        <div className="text-center mb-16">
-          <span
-            className="inline-block font-body text-sm md:text-base font-semibold uppercase tracking-[0.22em] mb-4"
-            style={{ color: '#6B9FFF' }}
+        {/* ── Intro ──────────────────────────────────── */}
+        <div className="text-center mb-12">
+          <p
+            className="font-body font-bold mb-5"
+            style={{ fontSize: '13px', letterSpacing: '.22em', color: '#5b9bff', textTransform: 'uppercase' }}
           >
-            {t('badge')}
-          </span>
-          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-soft-white mb-5 leading-tight">
-            {t('title')}
+            TEMPLATES
+          </p>
+          <h2
+            className="font-heading font-extrabold mx-auto mb-5"
+            style={{
+              fontSize: 'clamp(36px, 5.4vw, 62px)',
+              lineHeight: 1.04,
+              letterSpacing: '-.025em',
+              color: '#f4f5fb',
+              maxWidth: '14ch',
+            }}
+          >
+            Start with{' '}
+            <span
+              style={{
+                background: 'linear-gradient(100deg, #a99bff, #5cb2ff)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              a system
+            </span>
+            , not a blank page
           </h2>
           <p
-            className="font-body text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
-            style={{ color: 'var(--color-text-secondary)' }}
+            className="font-body mx-auto"
+            style={{ fontSize: '18.5px', lineHeight: 1.55, color: '#9da0b6', maxWidth: '600px' }}
           >
-            {t('subtitle')}
+            Plug-and-play AI and no-code workflows you can grab, tweak, and run today. Built for real work, no building from scratch.
           </p>
         </div>
 
-        {/* Featured card — Free Starter Kit */}
+        {/* ── Filter pills ───────────────────────────── */}
         <div
-          className="card-gradient-border p-7 md:p-10 mb-5 flex flex-col md:flex-row gap-8 md:gap-10 items-start"
-          style={{ boxShadow: '0 0 32px rgba(107,159,255,0.10), 0 4px 24px rgba(0,0,0,0.25)' }}
+          style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', marginBottom: '14px' }}
         >
-          {/* Left — content */}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-3 mb-5">
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
-                style={{ background: 'rgba(107,159,255,0.12)', border: '1px solid rgba(107,159,255,0.24)' }}
+          {CATEGORIES.map((cat) => {
+            const active = filter === cat
+            return (
+              <button
+                key={cat}
+                onClick={() => setFilter(cat)}
+                className="font-body font-semibold cursor-pointer transition-all duration-200"
+                style={{
+                  padding: '10px 20px',
+                  borderRadius: '999px',
+                  fontSize: '14.5px',
+                  border: active ? 'none' : '1px solid rgba(255,255,255,.13)',
+                  background: active
+                    ? 'linear-gradient(135deg, #a99bff, #5cb2ff)'
+                    : 'rgba(255,255,255,.03)',
+                  color: active ? '#0a0e17' : '#c2c5d6',
+                }}
               >
-                <Download size={22} style={{ color: '#6B9FFF' }} />
-              </div>
-              <span
-                className="font-body text-xs font-semibold px-3 py-1.5 rounded-full"
-                style={{ background: 'rgba(107,159,255,0.10)', border: '1px solid rgba(107,159,255,0.25)', color: '#6B9FFF' }}
-              >
-                {t('res0badge')}
-              </span>
-            </div>
-            <h3 className="font-heading font-bold text-soft-white text-2xl md:text-3xl mb-3 leading-snug">
-              {t('res0title')}
-            </h3>
-            <p
-              className="font-body text-base md:text-lg leading-relaxed mb-6"
-              style={{ color: 'var(--color-text-secondary)' }}
-            >
-              {t('res0desc')}
-            </p>
-            <a
-              href="#contact"
-              className="btn-primary inline-flex items-center gap-2 font-body font-semibold text-sm px-6 py-3 rounded-full cursor-pointer"
-            >
-              {t('res0cta')}
-              <ArrowRight size={15} />
-            </a>
-          </div>
-
-          {/* Right — what's included */}
-          <div
-            className="w-full md:w-60 lg:w-72 rounded-2xl p-5 flex-shrink-0"
-            style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
-          >
-            <p
-              className="font-body text-xs uppercase tracking-[0.18em] font-semibold mb-4"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              {t('whatsIncluded')}
-            </p>
-            <div className="space-y-3">
-              {includedKeys.map((k) => (
-                <div
-                  key={k}
-                  className="flex items-start gap-2.5 font-body text-sm leading-snug"
-                  style={{ color: 'var(--color-text-secondary)' }}
-                >
-                  <CheckCircle size={14} style={{ color: '#6B9FFF', flexShrink: 0, marginTop: 2 }} />
-                  <span>{t(k)}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+                {cat}
+              </button>
+            )
+          })}
         </div>
 
-        {/* Resource cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-          {resources.map((resource) => {
-            const Icon = resource.icon
-            const a = resource.accent
+        {/* Count line */}
+        <p
+          className="font-body text-center mb-10"
+          style={{ fontSize: '13.5px', color: '#787c92' }}
+        >
+          {visible.length} ready-to-run template{visible.length !== 1 ? 's' : ''}
+        </p>
+
+        {/* ── Template card grid ─────────────────────── */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(330px, 1fr))',
+            gap: '22px',
+            marginBottom: '72px',
+          }}
+        >
+          {visible.map((tmpl) => {
+            const accent = ACCENTS[tmpl.cat]
             return (
               <div
-                key={resource.titleKey}
-                className="card-gradient-border p-6 md:p-7 flex flex-col"
+                key={tmpl.id}
+                className="template-card"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '15px',
+                  padding: '15px',
+                  borderRadius: '20px',
+                  background: 'rgba(255,255,255,.025)',
+                  border: '1px solid rgba(255,255,255,.08)',
+                  cursor: 'pointer',
+                  '--card-glow': accent.glow,
+                } as React.CSSProperties}
               >
-                {/* Icon + type badge */}
-                <div className="flex items-start justify-between mb-5">
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center"
-                    style={{ background: a.bg, border: `1px solid ${a.border}` }}
-                  >
-                    <Icon size={20} style={{ color: a.text }} />
-                  </div>
+                {/* Thumbnail + tier badge overlay */}
+                <div style={{ position: 'relative' }}>
+                  <Thumbnail accent={accent} />
                   <span
-                    className="font-body text-xs font-semibold px-2.5 py-1 rounded-full"
+                    className="font-body font-bold"
                     style={{
-                      background: 'rgba(255,255,255,0.05)',
-                      border: '1px solid rgba(255,255,255,0.08)',
-                      color: 'var(--color-text-muted)',
+                      position: 'absolute', top: '10px', right: '10px',
+                      padding: '5px 11px',
+                      borderRadius: '999px',
+                      fontSize: '11px',
+                      letterSpacing: '.03em',
+                      ...(tmpl.tier === 'Premium'
+                        ? {
+                            background: 'linear-gradient(135deg, #a99bff, #5cb2ff)',
+                            color: '#0a0e17',
+                            boxShadow: '0 6px 16px -6px rgba(120,110,255,.6)',
+                          }
+                        : {
+                            background: 'rgba(10,14,23,.55)',
+                            border: '1px solid rgba(255,255,255,.18)',
+                            color: '#d2d5e2',
+                            backdropFilter: 'blur(4px)',
+                          }),
                     }}
                   >
-                    {t(resource.badgeKey)}
+                    {tmpl.tier.toUpperCase()}
                   </span>
                 </div>
 
-                <h3 className="font-heading font-semibold text-soft-white text-xl md:text-2xl mb-3 leading-snug">
-                  {t(resource.titleKey)}
-                </h3>
-                <p
-                  className="font-body text-base md:text-lg leading-relaxed flex-1"
-                  style={{ color: 'var(--color-text-secondary)' }}
+                {/* Name */}
+                <h3
+                  className="font-heading"
+                  style={{ fontSize: '18px', fontWeight: 700, color: '#f1f2f8', letterSpacing: '-.01em', lineHeight: 1.25, margin: 0 }}
                 >
-                  {t(resource.descKey)}
+                  {tmpl.name}
+                </h3>
+
+                {/* Description */}
+                <p
+                  className="font-body"
+                  style={{ fontSize: '14px', color: '#9598ab', lineHeight: 1.5, margin: 0, flexGrow: 1 }}
+                >
+                  {tmpl.desc}
                 </p>
 
-                {/* Coming soon footer */}
+                {/* Tool tags */}
+                <div style={{ display: 'flex', gap: '7px', flexWrap: 'wrap' }}>
+                  {tmpl.tools.map((tool) => (
+                    <span
+                      key={tool}
+                      className="font-body"
+                      style={{
+                        padding: '5px 10px',
+                        borderRadius: '7px',
+                        fontSize: '12px',
+                        fontWeight: 500,
+                        color: '#b7bacb',
+                        background: 'rgba(255,255,255,.04)',
+                        border: '1px solid rgba(255,255,255,.09)',
+                      }}
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Card footer */}
                 <div
-                  className="mt-5 pt-4 flex items-center gap-2"
-                  style={{ borderTop: '1px solid rgba(255,255,255,0.05)' }}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    paddingTop: '12px',
+                    borderTop: '1px solid rgba(255,255,255,.06)',
+                  }}
                 >
-                  <Clock size={12} style={{ color: 'var(--color-text-muted)', flexShrink: 0 }} />
-                  <span className="font-body text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                    {t('comingSoon')}
-                  </span>
+                  <a
+                    href="#contact"
+                    className="font-body font-bold inline-flex items-center gap-1.5"
+                    style={{ fontSize: '14.5px', color: accent.color, textDecoration: 'none' }}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Get template
+                    <ArrowRight size={14} />
+                  </a>
+                  <button
+                    className="font-body cursor-pointer transition-colors duration-200"
+                    style={{ fontSize: '13.5px', fontWeight: 500, color: '#82859b', background: 'none', border: 'none', padding: 0 }}
+                    onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.color = '#c7cad9' }}
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.color = '#82859b' }}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Preview
+                  </button>
                 </div>
               </div>
             )
           })}
         </div>
 
-        {/* Bottom callout */}
-        <div className="mt-14 max-w-xl mx-auto">
+        {/* ── Custom template CTA ────────────────────── */}
+        <div
+          className="relative overflow-hidden text-center"
+          style={{
+            padding: 'clamp(40px, 5vw, 64px) 32px',
+            borderRadius: '24px',
+            border: '1px solid rgba(255,255,255,.10)',
+            background: [
+              'radial-gradient(700px 320px at 50% 0%, rgba(120,100,255,.18), transparent 65%)',
+              'rgba(255,255,255,.022)',
+            ].join(', '),
+          }}
+        >
+          {/* Dot grid overlay */}
           <div
-            className="rounded-2xl p-7 text-center relative overflow-hidden"
+            aria-hidden
             style={{
-              background: 'linear-gradient(135deg, rgba(107,159,255,0.08) 0%, rgba(167,139,250,0.06) 100%)',
-              border: '1px solid rgba(107,159,255,0.16)',
+              position: 'absolute', inset: 0,
+              backgroundImage: 'radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px)',
+              backgroundSize: '34px 34px',
+              opacity: 0.5,
+              pointerEvents: 'none',
             }}
-          >
-            <h3 className="font-heading font-semibold text-soft-white text-xl md:text-2xl mb-2">
-              {t('starterTitle')}
-            </h3>
+          />
+          <div className="relative z-10">
             <p
-              className="font-body text-base md:text-lg mb-5 leading-relaxed"
-              style={{ color: 'var(--color-text-secondary)' }}
+              className="font-body font-bold mb-4"
+              style={{ fontSize: '13px', letterSpacing: '.20em', color: '#5b9bff', textTransform: 'uppercase' }}
             >
-              {t('starterDesc')}
+              Can&apos;t find your exact workflow?
+            </p>
+            <h2
+              className="font-heading font-extrabold mx-auto mb-4"
+              style={{
+                fontSize: 'clamp(26px, 3.4vw, 42px)',
+                color: '#f4f5fb',
+                maxWidth: '16ch',
+                letterSpacing: '-.02em',
+                lineHeight: 1.1,
+              }}
+            >
+              Tell me how you work<br />I&apos;ll build the system for it
+            </h2>
+            <p
+              className="font-body mx-auto mb-8"
+              style={{ fontSize: '16.5px', color: '#9da0b6', maxWidth: '480px', lineHeight: 1.6 }}
+            >
+              A template made for your real day-to-day tasks, set up in plain English with no code and no jargon<br />You bring the workflow, I&apos;ll do the building
             </p>
             <a
               href="#contact"
-              className="btn-primary inline-flex items-center gap-2 font-body font-semibold text-sm px-6 py-3 rounded-full cursor-pointer"
+              className="font-body font-bold inline-flex items-center gap-2 cursor-pointer"
+              style={{
+                padding: '15px 28px',
+                borderRadius: '13px',
+                fontSize: '15.5px',
+                color: '#0a0e17',
+                background: 'linear-gradient(140deg, #a99bff, #5cb2ff)',
+                boxShadow: '0 12px 32px -10px rgba(120,110,255,.6), inset 0 1px 0 rgba(255,255,255,.4)',
+                textDecoration: 'none',
+              }}
             >
-              {t('getStarterKit')}
+              Get my custom template
               <ArrowRight size={16} />
             </a>
           </div>

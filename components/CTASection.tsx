@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { ArrowRight, Zap } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import StarterKitCTA from './StarterKitCTA'
 
 export default function CTASection() {
   const t = useTranslations('cta')
@@ -108,11 +109,12 @@ export default function CTASection() {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-          <a href="#training" className="btn-primary group flex items-center gap-2.5 font-body font-semibold text-base px-10 py-4 rounded-full w-full sm:w-auto justify-center cursor-pointer">
-            {t('startLearning')}
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-200" />
-          </a>
-          <a href="#services" className="flex items-center gap-2 font-body font-semibold text-base px-10 py-4 rounded-full w-full sm:w-auto justify-center cursor-pointer transition-all duration-200" style={{ border: '1px solid rgba(255,255,255,0.12)', color: '#F1F5FA' }}>
+          <StarterKitCTA className="w-full sm:w-auto justify-center" />
+          <a
+            href="/collaborate"
+            className="font-body font-semibold text-base px-8 py-3.5 rounded-full w-full sm:w-auto flex items-center justify-center gap-2 cursor-pointer transition-all duration-200"
+            style={{ border: '1px solid rgba(255,255,255,0.10)', color: '#9DA8BE' }}
+          >
             {t('getStarterKit')}
           </a>
         </div>

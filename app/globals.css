@@ -396,3 +396,62 @@ p {
 [dir="rtl"] .font-body.text-xs {
   line-height: 1.85;
 }
+
+/* ─── Hero animations ─────────────────────────── */
+@keyframes floatDown {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(8px); }
+}
+@keyframes heroOrbPulse {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+@keyframes connFlow {
+  to { stroke-dashoffset: -2; }
+}
+
+/* ─── Transformation visual stage animations ─── */
+@keyframes mhFloatA {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+@keyframes mhFloatB {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(9px); }
+}
+@keyframes mhDrift {
+  0%, 100% { transform: translateY(0px) translateX(0px) rotate(var(--rot, 0deg)); }
+  50%       { transform: translateY(-7px) translateX(6px) rotate(calc(var(--rot, 0deg) + 1.5deg)); }
+}
+@keyframes mhGlow {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 0.9; }
+}
+@keyframes mhTravel {
+  0%   { top: 252px; opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { top: 588px; opacity: 0; }
+}
+@keyframes mhDash {
+  to { stroke-dashoffset: -240; }
+}
+@keyframes mhRing {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(140,130,255,.4), 0 0 18px 2px rgba(120,110,255,.35); }
+  50%       { box-shadow: 0 0 0 1px rgba(140,130,255,.7), 0 0 26px 5px rgba(120,110,255,.55); }
+}
+
+/* ─── Templates section ──────────────────────── */
+@keyframes mtPulse {
+  0%, 100% { transform: scale(1);    opacity: .85; }
+  50%       { transform: scale(1.25); opacity: 1;   }
+}
+
+.template-card {
+  transition: transform .28s cubic-bezier(.2,.7,.2,1), box-shadow .28s ease, border-color .28s ease;
+}
+.template-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(255,255,255,.20) !important;
+  box-shadow: 0 26px 54px -20px var(--card-glow, rgba(107,159,255,.4)), inset 0 1px 0 rgba(255,255,255,.06);
+}
