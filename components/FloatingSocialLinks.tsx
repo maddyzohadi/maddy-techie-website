@@ -5,6 +5,13 @@ const TIKTOK_URL   = 'https://www.tiktok.com/@maddythetechie'
 const X_URL        = 'https://x.com/maddythetechie'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/maddy-techie-08362b418/'
 
+const IDLE_BORDER   = 'rgba(107,159,255,0.38)'
+const HOVER_BORDER  = 'rgba(140,120,255,0.70)'
+const IDLE_COLOR    = '#C2D4F0'
+const HOVER_COLOR   = '#EEF2F8'
+const IDLE_SHADOW   = '0 2px 10px rgba(107,159,255,0.10)'
+const HOVER_SHADOW  = '0 4px 22px rgba(107,159,255,0.32), 0 0 10px rgba(167,139,250,0.18)'
+
 const btnBase: React.CSSProperties = {
   display: 'flex',
   alignItems: 'center',
@@ -12,13 +19,14 @@ const btnBase: React.CSSProperties = {
   width: '40px',
   height: '40px',
   borderRadius: '50%',
-  background: 'rgba(14,20,36,0.88)',
-  border: '1px solid rgba(107,159,255,0.18)',
+  background: 'linear-gradient(135deg, rgba(18,26,52,0.95) 0%, rgba(22,18,46,0.95) 100%)',
+  border: `1.5px solid ${IDLE_BORDER}`,
   backdropFilter: 'blur(14px)',
   WebkitBackdropFilter: 'blur(14px)',
-  color: '#9DB0C8',
+  boxShadow: IDLE_SHADOW,
+  color: IDLE_COLOR,
   cursor: 'pointer',
-  transition: 'transform 200ms ease, border-color 200ms ease, color 200ms ease',
+  transition: 'transform 200ms ease, border-color 200ms ease, color 200ms ease, box-shadow 200ms ease',
   textDecoration: 'none',
   flexShrink: 0,
 }
@@ -33,15 +41,17 @@ function SocialLink({ href, label, children }: { href: string; label: string; ch
       style={btnBase}
       onMouseEnter={(e) => {
         const el = e.currentTarget as HTMLAnchorElement
-        el.style.transform = 'scale(1.12)'
-        el.style.borderColor = 'rgba(107,159,255,0.45)'
-        el.style.color = '#EEF2F8'
+        el.style.transform = 'scale(1.13) translateY(-1px)'
+        el.style.borderColor = HOVER_BORDER
+        el.style.color = HOVER_COLOR
+        el.style.boxShadow = HOVER_SHADOW
       }}
       onMouseLeave={(e) => {
         const el = e.currentTarget as HTMLAnchorElement
-        el.style.transform = 'scale(1)'
-        el.style.borderColor = 'rgba(107,159,255,0.18)'
-        el.style.color = '#9DB0C8'
+        el.style.transform = 'scale(1) translateY(0)'
+        el.style.borderColor = IDLE_BORDER
+        el.style.color = IDLE_COLOR
+        el.style.boxShadow = IDLE_SHADOW
       }}
     >
       {children}
