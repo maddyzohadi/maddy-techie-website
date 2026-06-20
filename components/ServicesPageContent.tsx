@@ -96,7 +96,7 @@ export default async function ServicesPageContent() {
             {t('heroSubtitle')}
           </p>
           <a
-            href="mailto:hello@maddythetechie.com?subject=Start%20a%20Project"
+            href="#contact-form"
             className="btn-primary inline-flex items-center gap-2.5 font-body font-semibold text-base px-9 py-4 rounded-full"
           >
             {t('heroCta')}
@@ -189,7 +189,7 @@ export default async function ServicesPageContent() {
 
                   {/* cta */}
                   <a
-                    href={`mailto:hello@maddythetechie.com?subject=${encodeURIComponent(t(svc.ctaKey))}`}
+                    href="#contact-form"
                     className="mt-auto inline-flex items-center gap-1.5 font-body font-semibold text-sm transition-opacity duration-200 hover:opacity-75 self-start"
                     style={{ color: a.text }}
                   >
@@ -301,6 +301,7 @@ export default async function ServicesPageContent() {
 
       {/* ── Inquiry Form ───────────────────────────────────────── */}
       <section
+        id="contact-form"
         className="py-20 md:py-24 relative"
         style={{ background: '#020509', borderTop: '1px solid rgba(255,255,255,0.04)' }}
       >
@@ -350,7 +351,7 @@ export default async function ServicesPageContent() {
             {t('startDesc')}
           </p>
           <a
-            href="mailto:hello@maddythetechie.com?subject=Free%20Workflow%20Review"
+            href="#contact-form"
             className="btn-primary inline-flex items-center gap-2.5 font-body font-semibold text-base px-9 py-4 rounded-full"
           >
             {t('startCta')}
