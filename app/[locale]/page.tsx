@@ -9,7 +9,6 @@ import WhoItsFor from '@/components/WhoItsFor'
 import ResourcesSection from '@/components/ResourcesSection'
 import ServicesSection from '@/components/ServicesSection'
 import AboutSection from '@/components/AboutSection'
-import InstagramSection from '@/components/InstagramSection'
 import CTASection from '@/components/CTASection'
 import Footer from '@/components/Footer'
 import AIAssistant from '@/components/AIAssistant'
@@ -33,7 +32,6 @@ export default function Home() {
       <WhoItsFor />
       <ServicesSection />
       <AboutSection />
-      <InstagramSection />
       <CTASection />
       <Footer />
       <AIAssistant />
