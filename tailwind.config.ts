@@ -9,18 +9,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        navy:        '#080C12',       // warmer dark base (was #04080F)
-        slate:       '#0C1524',
-        'slate-2':   '#131F30',
-        surface:     '#0E1520',       // solid card surface (new)
-        electric:    '#6B9FFF',       // softer periwinkle (was #5B9CF8)
-        violet:      '#A78BFA',       // softer lavender (was #8B5CF6)
-        coral:       '#FF7555',       // warm coral — unchanged
-        warm:        '#F97B4B',       // amber-orange warm accent (new)
-        mint:        '#6EE7B7',       // soft mint for success states (new)
-        'soft-white': '#EEF2F8',      // slightly warmer (was #F1F5FA)
-        'cool-gray':  '#8A9AB0',      // slightly warmer (was #8A97A8)
-        muted:        '#6A7A8E',      // named token for muted text (was inline-only)
+        navy:        '#272625',
+        slate:       '#272625',
+        'slate-2':   '#f4f3ef',
+        surface:     '#FFFFFF',
+        electric:    '#272625',   // coral accent
+        violet:      '#272625',   // navy
+        coral:       '#272625',
+        warm:        '#272625',
+        mint:        '#272625',
+        'soft-white': '#f4f3ef',  // cream page bg
+        'cool-gray':  '#6d6c6b',  // body text
+        muted:        '#6d6c6b',
       },
       fontFamily: {
         heading: ['var(--font-sora)', 'sans-serif'],
@@ -28,23 +28,23 @@ const config: Config = {
         farsi:   ['var(--font-vazirmatn)', 'sans-serif'],
       },
       backgroundImage: {
-        'dot-pattern':      'radial-gradient(rgba(107,159,255,0.08) 1px, transparent 1px)',
-        'grid-pattern':     'linear-gradient(rgba(107,159,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(107,159,255,0.03) 1px, transparent 1px)',
-        'gradient-primary': 'linear-gradient(135deg, #6B9FFF 0%, #A78BFA 100%)',
-        'gradient-warm':    'linear-gradient(135deg, #F97B4B 0%, #FF7555 100%)',
-        'gradient-coral':   'linear-gradient(135deg, #FF7555 0%, #F97B4B 100%)',
+        'dot-pattern':      'radial-gradient(rgba(177,177,175,0.06) 1px, transparent 1px)',
+        'grid-pattern':     'linear-gradient(rgba(177,177,175,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(177,177,175,0.03) 1px, transparent 1px)',
+        'gradient-primary': 'linear-gradient(135deg, #272625 0%, #272625 100%)',
+        'gradient-warm':    'linear-gradient(135deg, #272625 0%, #272625 100%)',
+        'gradient-coral':   'linear-gradient(135deg, #272625 0%, #272625 100%)',
       },
       backgroundSize: {
         'dot':  '30px 30px',
         'grid': '60px 60px',
       },
       boxShadow: {
-        'glow-blue':   '0 0 28px rgba(107,159,255,0.30), 0 4px 16px rgba(107,159,255,0.12)',
-        'glow-violet': '0 0 28px rgba(167,139,250,0.30), 0 4px 16px rgba(167,139,250,0.12)',
-        'glow-coral':  '0 0 20px rgba(255,117,85,0.25)',
-        'glow-warm':   '0 0 20px rgba(249,123,75,0.25)',
-        'glow-mint':   '0 0 20px rgba(110,231,183,0.20)',
-        'card':        '0 4px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.05)',
+        'glow-blue':   '0 0 28px rgba(177,177,175,0.25), 0 4px 16px rgba(177,177,175,0.12)',
+        'glow-violet': '0 0 28px rgba(177,177,175,0.20), 0 4px 16px rgba(177,177,175,0.10)',
+        'glow-coral':  '0 0 20px rgba(177,177,175,0.25)',
+        'glow-warm':   '0 0 20px rgba(177,177,175,0.25)',
+        'glow-mint':   '0 0 20px rgba(177,177,175,0.20)',
+        'card':        '0 4px 24px rgba(177,177,175,0.08), inset 0 1px 0 rgba(255,255,255,0.80)',
       },
       animation: {
         'fade-in':      'fadeIn 0.5s ease-out',

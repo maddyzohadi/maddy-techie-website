@@ -5,7 +5,9 @@ import { NextResponse, type NextRequest } from 'next/server'
 
 const intlMiddleware = createMiddleware(routing)
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl
+
   // next-intl runs first — handles /en /fa detection and root redirect
   const intlResponse = intlMiddleware(request)
 

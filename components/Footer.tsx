@@ -7,11 +7,10 @@ export default async function Footer() {
   const locale = await getLocale()
 
   const navLinks = [
-    { labelKey: 'learn'     as const, href: '#training' },
-    { labelKey: 'templates' as const, href: '#templates' },
-    { labelKey: 'projects'  as const, href: '#projects' },
-    { labelKey: 'services'  as const, href: '#services' },
-    { labelKey: 'about'     as const, href: '#about' },
+    { labelKey: 'learn'     as const, href: '/learn' },
+    { labelKey: 'templates' as const, href: '/templates' },
+    { labelKey: 'services'  as const, href: '/services' },
+    { labelKey: 'about'     as const, href: '/about' },
   ]
 
   const legalLinks = [
@@ -19,12 +18,15 @@ export default async function Footer() {
     { labelKey: 'terms'   as const, href: '#' },
   ]
 
+  const isFa = locale === 'fa'
+
   return (
-    <footer className="relative" style={{ background: '#02060D', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-      <div
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(107,159,255,0.30) 20%, rgba(167,139,250,0.20) 80%, transparent 100%)' }}
-      />
+    <footer
+      className="relative"
+      style={isFa
+        ? { background: '#eeefe9', borderTop: '1px solid #d2d3cc' }
+        : { background: '#f4f3ef', borderTop: '1px solid #ecebea' }}
+    >
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
@@ -35,126 +37,51 @@ export default async function Footer() {
           <div className="max-w-xs">
             <div
               className="font-heading font-bold text-xl mb-2"
-              style={{
-                background: 'linear-gradient(135deg, #6B9FFF, #A78BFA)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
+              style={{ color: isFa ? '#111827' : '#272625' }}
             >
               Maddy the Techie
             </div>
-            <p className="font-body text-sm leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
+            <p className="font-body text-sm leading-relaxed" style={{ color: isFa ? '#4d4f46' : '#6d6c6b' }}>
               {t('brand')}
             </p>
           </div>
 
-          {/* Nav links + CTA + social row */}
+          {/* Nav links + CTA */}
           <div className="flex flex-col gap-3">
             <nav className="flex flex-wrap gap-x-6 gap-y-2">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
-                  className="font-body text-sm transition-colors duration-200 hover:text-soft-white"
-                  style={{ color: 'var(--color-text-muted)' }}
+                  className="footer-nav-link font-body text-sm"
                 >
                   {t(link.labelKey)}
-                </a>
+                </Link>
               ))}
             </nav>
-            <a
-              href="#contact"
+            <Link
+              href="/services#contact-form"
               className="inline-flex items-center gap-1.5 font-body font-semibold text-sm self-start transition-opacity duration-200 hover:opacity-80"
-              style={{ color: '#6B9FFF' }}
+              style={{ color: isFa ? '#2f80fa' : '#272625' }}
             >
               {t('startProject')}
               <ArrowRight size={13} />
-            </a>
-            {/* Social links — separate row below CTA */}
-            <div className="flex flex-wrap gap-x-5 gap-y-2 pt-0.5">
-              <a
-                href="https://instagram.com/maddythetechie"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-body text-sm inline-flex items-center gap-1.5 transition-colors duration-200 hover:text-soft-white"
-                style={{ color: 'var(--color-text-muted)' }}
-              >
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                </svg>
-                {t('instagram')}
-              </a>
-              <a
-                href="https://x.com/maddythetechie"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-body text-sm transition-colors duration-200 hover:text-soft-white"
-                style={{ color: 'var(--color-text-muted)' }}
-              >
-                {t('x')}
-              </a>
-              <a
-                href="https://www.tiktok.com/@maddythetechie"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-body text-sm inline-flex items-center gap-1.5 transition-colors duration-200 hover:text-soft-white"
-                style={{ color: 'var(--color-text-muted)' }}
-              >
-                <svg
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M9 18V5l12-2v13" />
-                  <circle cx="6" cy="18" r="3" />
-                  <circle cx="18" cy="16" r="3" />
-                </svg>
-                {t('tiktok')}
-              </a>
-              <a
-                href="https://www.linkedin.com/in/maddy-techie-08362b418/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-body text-sm transition-colors duration-200 hover:text-soft-white"
-                style={{ color: 'var(--color-text-muted)' }}
-              >
-                {t('linkedin')}
-              </a>
-            </div>
+            </Link>
           </div>
 
         </div>
 
         {/* Divider */}
-        <div className="section-divider mb-6" />
+        <div className="mb-6" style={{ height: '1px', background: isFa ? '#d2d3cc' : '#ecebea' }} />
 
         {/* Bottom: copyright + disclaimer left, lang switcher + legal right */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
 
           <div className="flex flex-col gap-1.5">
-            <p className="font-body text-xs" style={{ color: 'rgba(106,122,142,0.65)' }}>
+            <p className="font-body text-xs" style={{ color: isFa ? '#65675e' : '#6d6c6b' }}>
               © <span dir="ltr">2026</span> Maddy the Techie
             </p>
-            <p className="font-body text-xs" style={{ color: 'rgba(106,122,142,0.60)' }}>
+            <p className="font-body text-xs" style={{ color: isFa ? '#65675e' : '#6d6c6b' }}>
               {t('disclaimer')}
             </p>
           </div>
@@ -162,26 +89,28 @@ export default async function Footer() {
           <div className="flex items-center gap-5">
             {/* Language switcher */}
             <div
-              className="flex items-center gap-1 rounded-full px-1 py-1"
-              style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
+              className="flex items-center gap-1 px-1 py-1"
+              style={isFa
+                ? { background: '#fdfdf8', border: '1px solid #d2d3cc', borderRadius: '4px' }
+                : { background: '#ffffff', border: '1px solid #ecebea', borderRadius: '9999px' }}
             >
               <Link
                 href="/"
                 locale="en"
-                className={`px-3 py-1 rounded-full text-xs font-body font-semibold transition-all duration-200 ${
-                  locale === 'en' ? '' : 'text-cool-gray hover:text-soft-white'
-                }`}
-                style={locale === 'en' ? { background: 'rgba(107,159,255,0.18)', color: '#6B9FFF' } : {}}
+                className="px-3 py-1 text-xs font-body font-semibold transition-all duration-200"
+                style={locale === 'en'
+                  ? { background: isFa ? '#111827' : '#272625', color: '#ffffff', borderRadius: isFa ? '4px' : '9999px' }
+                  : { color: isFa ? '#65675e' : '#6d6c6b' }}
               >
                 EN
               </Link>
               <Link
                 href="/"
                 locale="fa"
-                className={`px-3 py-1 rounded-full text-xs font-body font-semibold transition-all duration-200 ${
-                  locale === 'fa' ? '' : 'text-cool-gray hover:text-soft-white'
-                }`}
-                style={locale === 'fa' ? { background: 'rgba(107,159,255,0.18)', color: '#6B9FFF' } : {}}
+                className="px-3 py-1 text-xs font-body font-semibold transition-all duration-200"
+                style={locale === 'fa'
+                  ? { background: isFa ? '#111827' : '#272625', color: '#ffffff', borderRadius: isFa ? '4px' : '9999px' }
+                  : { color: isFa ? '#65675e' : '#6d6c6b' }}
               >
                 FA
               </Link>
@@ -193,8 +122,8 @@ export default async function Footer() {
                 <a
                   key={link.labelKey}
                   href={link.href}
-                  className="font-body text-xs transition-colors duration-200 hover:text-cool-gray"
-                  style={{ color: 'rgba(106,122,142,0.6)' }}
+                  className="font-body text-xs transition-colors duration-200"
+                  style={{ color: isFa ? '#65675e' : '#6d6c6b' }}
                 >
                   {t(link.labelKey)}
                 </a>

@@ -6,24 +6,18 @@ import { CheckCircle, AlertCircle, Send } from 'lucide-react'
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
-const TOOLS          = ['chatgpt', 'claude', 'sheets', 'notion', 'canva', 'other'] as const
-const PROJECT_TYPES  = ['workflow', 'prompt', 'sheets_auto', 'content', 'unsure']  as const
-const TIMELINES      = ['week', 'month', 'flexible']                                as const
-const BUDGETS        = ['under300', 'mid', 'upper', 'unsure']                      as const
+const PROJECT_TYPES = ['workflow', 'prompt', 'sheets_auto', 'content', 'unsure'] as const
+const TIMELINES     = ['week', 'month', 'flexible']                               as const
 
-type ToolKey        = typeof TOOLS[number]
 type ProjectTypeKey = typeof PROJECT_TYPES[number]
 type TimelineKey    = typeof TIMELINES[number]
-type BudgetKey      = typeof BUDGETS[number]
 
 interface FormState {
   name:        string
   email:       string
   help:        string
-  tools:       ToolKey[]
   projectType: ProjectTypeKey | ''
   timeline:    TimelineKey | ''
-  budget:      BudgetKey | ''
   message:     string
 }
 
@@ -33,24 +27,28 @@ interface FormErrors {
   message?: string
 }
 
+const EMPTY: FormState = {
+  name: '', email: '', help: '', projectType: '', timeline: '', message: '',
+}
+
 // ─── Styles ───────────────────────────────────────────────────────────────────
 
 const inputBase =
-  'w-full font-body text-sm rounded-xl px-4 py-3 outline-none transition-colors duration-200 placeholder:text-[#3A4A5C]'
+  'w-full font-body text-sm rounded-xl px-4 py-3 outline-none transition-colors duration-200 placeholder:text-[#A8B0BF]'
 const inputStyle = {
-  background:  'rgba(8,12,24,0.82)',
-  border:      '1px solid rgba(107,159,255,0.16)',
-  color:       '#EEF2F8',
+  background: '#FFFFFF',
+  border:     '1px solid #ecebea',
+  color:      '#272625',
 }
-const inputFocusStyle = { borderColor: 'rgba(107,159,255,0.45)' }
-const inputErrorStyle = { borderColor: 'rgba(255,100,100,0.55)' }
+const inputFocusStyle = { borderColor: 'rgba(177,177,175,0.55)' }
+const inputErrorStyle = { borderColor: 'rgba(239,68,68,0.55)' }
 
 function FieldLabel({ htmlFor, children }: { htmlFor: string; children: React.ReactNode }) {
   return (
     <label
       htmlFor={htmlFor}
       className="block font-body text-xs font-semibold uppercase tracking-[0.15em] mb-2"
-      style={{ color: '#6B9FFF' }}
+      style={{ color: '#272625' }}
     >
       {children}
     </label>
@@ -59,7 +57,7 @@ function FieldLabel({ htmlFor, children }: { htmlFor: string; children: React.Re
 
 function FieldError({ msg }: { msg?: string }) {
   if (!msg) return null
-  return <p className="mt-1.5 font-body text-xs" style={{ color: '#F08080' }}>{msg}</p>
+  return <p className="mt-1.5 font-body text-xs" style={{ color: '#EF4444' }}>{msg}</p>
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -67,10 +65,7 @@ function FieldError({ msg }: { msg?: string }) {
 export default function ServiceInquiryForm() {
   const t = useTranslations('serviceForm')
 
-  const [form, setForm] = useState<FormState>({
-    name: '', email: '', help: '', tools: [],
-    projectType: '', timeline: '', budget: '', message: '',
-  })
+  const [form,    setForm]    = useState<FormState>(EMPTY)
   const [errors,  setErrors]  = useState<FormErrors>({})
   const [focused, setFocused] = useState<string | null>(null)
   const [status,  setStatus]  = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
@@ -79,7 +74,7 @@ export default function ServiceInquiryForm() {
 
   const validate = (): boolean => {
     const e: FormErrors = {}
-    if (!form.name.trim())  e.name    = t('errorRequired')
+    if (!form.name.trim()) e.name = t('errorRequired')
     if (!form.email.trim()) {
       e.email = t('errorRequired')
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
@@ -106,7 +101,7 @@ export default function ServiceInquiryForm() {
 
       if (!res.ok) throw new Error('non-2xx response')
 
-      setForm({ name: '', email: '', help: '', tools: [], projectType: '', timeline: '', budget: '', message: '' })
+      setForm(EMPTY)
       setErrors({})
       setStatus('success')
     } catch {
@@ -120,37 +115,22 @@ export default function ServiceInquiryForm() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => setForm((prev) => ({ ...prev, [key]: e.target.value }))
 
-  const toggleTool = (tool: ToolKey) =>
-    setForm((prev) => ({
-      ...prev,
-      tools: prev.tools.includes(tool)
-        ? prev.tools.filter((t) => t !== tool)
-        : [...prev.tools, tool],
-    }))
-
-  const selectSingle =
-    (key: 'projectType' | 'timeline' | 'budget') => (val: string) =>
-      setForm((prev) => ({ ...prev, [key]: val }))
+  const selectSingle = (key: 'projectType' | 'timeline') => (val: string) =>
+    setForm((prev) => ({ ...prev, [key]: val }))
 
   const borderFor = (field: keyof FormErrors) =>
-    errors[field]
-      ? inputErrorStyle
-      : focused === field
-      ? inputFocusStyle
-      : {}
+    errors[field] ? inputErrorStyle : focused === field ? inputFocusStyle : {}
 
   // ── Pill helpers ───────────────────────────────────────────────────────────
 
   const pillCls = (active: boolean) =>
     `cursor-pointer select-none font-body text-sm px-3.5 py-1.5 rounded-full transition-all duration-150 ${
-      active
-        ? 'text-[#C2D4F0]'
-        : 'text-[#6A7A8C] hover:text-[#9DB0C8]'
+      active ? 'text-[#272625]' : 'text-[#6d6c6b] hover:text-[#6d6c6b]'
     }`
   const pillStyle = (active: boolean): React.CSSProperties =>
     active
-      ? { background: 'rgba(107,159,255,0.15)', border: '1px solid rgba(107,159,255,0.38)' }
-      : { background: 'rgba(8,12,24,0.60)',     border: '1px solid rgba(255,255,255,0.09)' }
+      ? { background: '#f4f3ef', border: '1px solid rgba(177,177,175,0.38)' }
+      : { background: '#f4f3ef', border: '1px solid #ecebea' }
 
   // ── Form ───────────────────────────────────────────────────────────────────
 
@@ -162,10 +142,10 @@ export default function ServiceInquiryForm() {
         <div
           className="flex items-center gap-3 px-5 py-4 rounded-xl"
           role="alert"
-          style={{ background: 'rgba(107,159,255,0.08)', border: '1px solid rgba(107,159,255,0.30)' }}
+          style={{ background: '#f4f3ef', border: '1px solid rgba(177,177,175,0.30)' }}
         >
-          <CheckCircle size={18} className="flex-shrink-0" style={{ color: '#6B9FFF' }} />
-          <p className="font-body text-sm font-medium" style={{ color: '#C2D4F0' }}>
+          <CheckCircle size={18} className="flex-shrink-0" style={{ color: '#272625' }} />
+          <p className="font-body text-sm font-medium" style={{ color: '#272625' }}>
             {t('successMessage')}
           </p>
         </div>
@@ -176,10 +156,10 @@ export default function ServiceInquiryForm() {
         <div
           className="flex items-center gap-3 px-5 py-4 rounded-xl"
           role="alert"
-          style={{ background: 'rgba(255,100,100,0.07)', border: '1px solid rgba(255,100,100,0.30)' }}
+          style={{ background: 'rgba(239,68,68,0.07)', border: '1px solid rgba(239,68,68,0.30)' }}
         >
-          <AlertCircle size={18} className="flex-shrink-0" style={{ color: '#F08080' }} />
-          <p className="font-body text-sm font-medium" style={{ color: '#F0A0A0' }}>
+          <AlertCircle size={18} className="flex-shrink-0" style={{ color: '#EF4444' }} />
+          <p className="font-body text-sm font-medium" style={{ color: '#EF4444' }}>
             {t('errorSubmit')}
           </p>
         </div>
@@ -241,27 +221,6 @@ export default function ServiceInquiryForm() {
         />
       </div>
 
-      {/* Tools */}
-      <div>
-        <FieldLabel htmlFor="inq-tools">{t('toolsLabel')}</FieldLabel>
-        <div id="inq-tools" className="flex flex-wrap gap-2.5" role="group" aria-label={t('toolsLabel')}>
-          {TOOLS.map((tool) => {
-            const active = form.tools.includes(tool)
-            return (
-              <label key={tool} className={pillCls(active)} style={pillStyle(active)}>
-                <input
-                  type="checkbox"
-                  className="sr-only"
-                  checked={active}
-                  onChange={() => toggleTool(tool)}
-                />
-                {t(`tool_${tool}` as const)}
-              </label>
-            )
-          })}
-        </div>
-      </div>
-
       {/* Project type */}
       <div>
         <FieldLabel htmlFor="inq-project">{t('projectTypeLabel')}</FieldLabel>
@@ -284,47 +243,25 @@ export default function ServiceInquiryForm() {
         </div>
       </div>
 
-      {/* Timeline + Budget */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <div>
-          <FieldLabel htmlFor="inq-timeline">{t('timelineLabel')}</FieldLabel>
-          <div id="inq-timeline" className="flex flex-wrap gap-2" role="radiogroup" aria-label={t('timelineLabel')}>
-            {TIMELINES.map((tl) => {
-              const active = form.timeline === tl
-              return (
-                <label key={tl} className={pillCls(active)} style={pillStyle(active)}>
-                  <input
-                    type="radio"
-                    name="timeline"
-                    className="sr-only"
-                    checked={active}
-                    onChange={() => selectSingle('timeline')(tl)}
-                  />
-                  {t(`timeline_${tl}` as const)}
-                </label>
-              )
-            })}
-          </div>
-        </div>
-        <div>
-          <FieldLabel htmlFor="inq-budget">{t('budgetLabel')}</FieldLabel>
-          <div id="inq-budget" className="flex flex-wrap gap-2" role="radiogroup" aria-label={t('budgetLabel')}>
-            {BUDGETS.map((b) => {
-              const active = form.budget === b
-              return (
-                <label key={b} className={pillCls(active)} style={pillStyle(active)}>
-                  <input
-                    type="radio"
-                    name="budget"
-                    className="sr-only"
-                    checked={active}
-                    onChange={() => selectSingle('budget')(b)}
-                  />
-                  {t(`budget_${b}` as const)}
-                </label>
-              )
-            })}
-          </div>
+      {/* Timeline */}
+      <div>
+        <FieldLabel htmlFor="inq-timeline">{t('timelineLabel')}</FieldLabel>
+        <div id="inq-timeline" className="flex flex-wrap gap-2.5" role="radiogroup" aria-label={t('timelineLabel')}>
+          {TIMELINES.map((tl) => {
+            const active = form.timeline === tl
+            return (
+              <label key={tl} className={pillCls(active)} style={pillStyle(active)}>
+                <input
+                  type="radio"
+                  name="timeline"
+                  className="sr-only"
+                  checked={active}
+                  onChange={() => selectSingle('timeline')(tl)}
+                />
+                {t(`timeline_${tl}` as const)}
+              </label>
+            )
+          })}
         </div>
       </div>
 

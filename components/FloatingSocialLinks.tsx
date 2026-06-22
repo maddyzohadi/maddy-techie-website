@@ -5,12 +5,13 @@ const TIKTOK_URL   = 'https://www.tiktok.com/@maddythetechie'
 const X_URL        = 'https://x.com/maddythetechie'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/maddy-techie-08362b418/'
 
-const IDLE_BORDER   = 'rgba(107,159,255,0.38)'
-const HOVER_BORDER  = 'rgba(140,120,255,0.70)'
-const IDLE_COLOR    = '#C2D4F0'
-const HOVER_COLOR   = '#EEF2F8'
-const IDLE_SHADOW   = '0 2px 10px rgba(107,159,255,0.10)'
-const HOVER_SHADOW  = '0 4px 22px rgba(107,159,255,0.32), 0 0 10px rgba(167,139,250,0.18)'
+const IDLE_BORDER   = '#ecebea'
+const HOVER_BORDER  = '#272625'
+const IDLE_COLOR    = '#6d6c6b'
+const HOVER_COLOR   = '#272625'
+const IDLE_BG       = '#FFFFFF'
+const IDLE_SHADOW   = '0 2px 8px rgba(177,177,175,0.08)'
+const HOVER_SHADOW  = '0 4px 18px rgba(177,177,175,0.20)'
 
 const btnBase: React.CSSProperties = {
   display: 'flex',
@@ -19,10 +20,8 @@ const btnBase: React.CSSProperties = {
   width: '40px',
   height: '40px',
   borderRadius: '50%',
-  background: 'linear-gradient(135deg, rgba(18,26,52,0.95) 0%, rgba(22,18,46,0.95) 100%)',
+  background: IDLE_BG,
   border: `1.5px solid ${IDLE_BORDER}`,
-  backdropFilter: 'blur(14px)',
-  WebkitBackdropFilter: 'blur(14px)',
   boxShadow: IDLE_SHADOW,
   color: IDLE_COLOR,
   cursor: 'pointer',

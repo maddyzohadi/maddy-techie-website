@@ -2,17 +2,23 @@
 
 import { useState } from 'react'
 import { ChevronDown, Zap, Brain, Bot, Layers } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 
 export default function CurriculumSection() {
   const t = useTranslations('curriculum')
+  const locale = useLocale()
+  const isFa = locale === 'fa'
   const [openPart, setOpenPart] = useState<number | null>(0)
+
+  const neutral = isFa
+    ? { text: '#4d4f46', bg: '#eeefe9', border: '#d2d3cc' }
+    : { text: '#272625', bg: 'rgba(177,177,175,0.08)', border: 'rgba(177,177,175,0.18)' }
 
   const parts = [
     {
       number: '01',
       icon: Zap,
-      accent: { text: '#6B9FFF', bg: 'rgba(107,159,255,0.10)', border: 'rgba(107,159,255,0.20)' },
+      accent: neutral,
       title: t('part0title'),
       tagline: t('part0tagline'),
       items: [t('part0item0'), t('part0item1'), t('part0item2'), t('part0item3')],
@@ -20,7 +26,7 @@ export default function CurriculumSection() {
     {
       number: '02',
       icon: Brain,
-      accent: { text: '#A78BFA', bg: 'rgba(167,139,250,0.10)', border: 'rgba(167,139,250,0.20)' },
+      accent: neutral,
       title: t('part1title'),
       tagline: t('part1tagline'),
       items: [t('part1item0'), t('part1item1'), t('part1item2'), t('part1item3')],
@@ -28,7 +34,7 @@ export default function CurriculumSection() {
     {
       number: '03',
       icon: Bot,
-      accent: { text: '#A78BFA', bg: 'rgba(167,139,250,0.10)', border: 'rgba(167,139,250,0.20)' },
+      accent: neutral,
       title: t('part2title'),
       tagline: t('part2tagline'),
       items: [t('part2item0'), t('part2item1'), t('part2item2'), t('part2item3')],
@@ -36,19 +42,24 @@ export default function CurriculumSection() {
     {
       number: '04',
       icon: Layers,
-      accent: { text: '#6B9FFF', bg: 'rgba(107,159,255,0.10)', border: 'rgba(107,159,255,0.20)' },
+      accent: neutral,
       title: t('part3title'),
       tagline: t('part3tagline'),
       items: [t('part3item0'), t('part3item1'), t('part3item2'), t('part3item3')],
     },
   ]
 
+  const sectionBg    = isFa ? '#fdfdf8' : '#f4f3ef'
+  const headingColor = isFa ? '#111827' : '#272625'
+  const bodyColor    = isFa ? '#4d4f46' : '#6d6c6b'
+  const badgeColor   = isFa ? '#65675e' : '#272625'
+
   return (
-    <section id="training" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#04080F' }}>
+    <section id="training" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: sectionBg }}>
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 60% 60% at 50% 0%, rgba(107,159,255,0.06) 0%, transparent 60%)' }}
+        style={{ background: 'radial-gradient(ellipse 60% 60% at 50% 0%, rgba(177,177,175,0.04) 0%, transparent 60%)' }}
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -56,16 +67,17 @@ export default function CurriculumSection() {
         <div className="text-center mb-16">
           <span
             className="inline-block font-body text-sm md:text-base font-semibold uppercase tracking-[0.22em] mb-4"
-            style={{ color: '#6B9FFF' }}
+            style={{ color: badgeColor }}
           >
             {t('badge')}
           </span>
-          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-soft-white mb-5 leading-tight">
-            {t('title')}
+          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight" style={{ color: headingColor }}>
+            {t('title')}{' '}
+            <span style={{ color: bodyColor }}>{t('titleHighlight')}</span>
           </h2>
           <p
             className="font-body text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
-            style={{ color: 'var(--color-text-secondary)' }}
+            style={{ color: bodyColor }}
           >
             {t('subtitle')}
           </p>
@@ -87,12 +99,14 @@ export default function CurriculumSection() {
                   className="w-full flex items-center gap-4 p-6 md:p-7 text-left group cursor-pointer"
                   aria-expanded={isOpen}
                 >
-                  <span
-                    className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center font-heading font-bold text-sm"
-                    style={{ background: a.bg, border: `1px solid ${a.border}`, color: a.text }}
-                  >
-                    <span dir="ltr">{part.number}</span>
-                  </span>
+                  {!isFa && (
+                    <span
+                      className="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center font-heading font-bold text-sm"
+                      style={{ background: a.bg, border: `1px solid ${a.border}`, color: a.text }}
+                    >
+                      <span dir="ltr">{part.number}</span>
+                    </span>
+                  )}
                   <div
                     className="flex-shrink-0 p-2 rounded-xl"
                     style={{ background: a.bg, border: `1px solid ${a.border}` }}
@@ -100,12 +114,12 @@ export default function CurriculumSection() {
                     <Icon size={18} style={{ color: a.text }} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="font-heading font-semibold text-soft-white text-xl md:text-2xl leading-snug">
-                      {t('partLabel')} {part.number} · {part.title}
+                    <div className="font-heading font-semibold text-xl md:text-2xl leading-snug" style={{ color: headingColor }}>
+                      {isFa ? part.title : `${t('partLabel')} ${part.number} · ${part.title}`}
                     </div>
                     <div
                       className="font-body text-base md:text-lg mt-0.5 hidden sm:block"
-                      style={{ color: 'var(--color-text-secondary)' }}
+                      style={{ color: bodyColor }}
                     >
                       {part.tagline}
                     </div>
@@ -113,18 +127,18 @@ export default function CurriculumSection() {
                   <ChevronDown
                     size={18}
                     className={`flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-                    style={{ color: isOpen ? a.text : 'var(--color-text-muted)' }}
+                    style={{ color: isOpen ? a.text : '#6d6c6b' }}
                   />
                 </button>
 
                 <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
                   <div
                     className="px-6 md:px-7 pb-7 pt-5"
-                    style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}
+                    style={{ borderTop: '1px solid #ecebea' }}
                   >
                     <p
                       className="font-body text-base md:text-lg mb-5 sm:hidden"
-                      style={{ color: 'var(--color-text-secondary)' }}
+                      style={{ color: bodyColor }}
                     >
                       {part.tagline}
                     </p>
@@ -133,7 +147,7 @@ export default function CurriculumSection() {
                         <li
                           key={i}
                           className="flex items-start gap-3 font-body text-base md:text-lg"
-                          style={{ color: 'var(--color-text-secondary)' }}
+                          style={{ color: bodyColor }}
                         >
                           <span
                             className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
@@ -152,10 +166,10 @@ export default function CurriculumSection() {
 
         <p
           className="text-center font-body text-sm mt-10"
-          style={{ color: 'var(--color-text-secondary)' }}
+          style={{ color: bodyColor }}
         >
           {t('bottomNote')}{' '}
-          <span className="font-medium text-soft-white">{t('bottomNoteHighlight')}</span>
+          <span className="font-medium" style={{ color: headingColor }}>{t('bottomNoteHighlight')}</span>
         </p>
 
       </div>

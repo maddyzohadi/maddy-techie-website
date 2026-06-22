@@ -1,159 +1,150 @@
-import { CheckCircle, Star, Sparkles } from 'lucide-react'
-import { getTranslations } from 'next-intl/server'
+import { Sparkles, ArrowRight } from 'lucide-react'
+import { getTranslations, getLocale } from 'next-intl/server'
+import { Link } from '@/i18n/navigation'
 
 export default async function AboutSection() {
+  const locale = await getLocale()
   const t = await getTranslations('about')
+  const isFa = locale === 'fa'
 
-  const beliefs = ['belief0', 'belief1'] as const
-  const highlights = [
-    { labelKey: 'highlight0label', valueKey: 'highlight0value' },
-    { labelKey: 'highlight1label', valueKey: 'highlight1value' },
-    { labelKey: 'highlight2label', valueKey: 'highlight2value' },
-    { labelKey: 'highlight3label', valueKey: 'highlight3value' },
-  ] as const
-
-  const stats = [
-    { value: '4',    labelKey: 'statModules'   },
-    { value: '12+',  labelKey: 'statProjects'  },
-    { value: '100%', labelKey: 'statPractical' },
-  ] as const
+  const sectionBg    = isFa ? '#fdfdf8' : '#f4f3ef'
+  const borderColor  = isFa ? '#d2d3cc' : '#ecebea'
+  const headingColor = isFa ? '#111827' : '#272625'
+  const bodyColor    = isFa ? '#4d4f46' : '#6d6c6b'
+  const badgeColor   = isFa ? '#65675e' : '#272625'
 
   return (
-    <section id="about" className="py-24 md:py-32 relative scroll-mt-[88px]" style={{ background: '#04080F' }}>
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 70% 60% at 70% 50%, rgba(107,159,255,0.06) 0%, transparent 60%)' }}
-      />
+    <>
+      <section id="about" className="py-24 md:py-32 relative scroll-mt-[88px]" style={{ background: sectionBg }}>
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse 70% 60% at 70% 50%, rgba(177,177,175,0.04) 0%, transparent 60%)' }}
+        />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-          {/* Left — visual card */}
-          <div className="order-2 lg:order-1">
-            <div
-              className="rounded-3xl overflow-hidden relative"
-              style={{
-                background: 'linear-gradient(135deg, #0A1525 0%, #0C1B2E 50%, #091421 100%)',
-                border: '1px solid rgba(107,159,255,0.15)',
-              }}
-            >
-              <div aria-hidden className="absolute -top-16 -right-16 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(107,159,255,0.08) 0%, transparent 70%)' }} />
-              <div aria-hidden className="absolute -bottom-16 -left-16 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(167,139,250,0.07) 0%, transparent 70%)' }} />
+            {/* Left — avatar card */}
+            <div className="order-2 lg:order-1">
+              <div
+                className="rounded-3xl overflow-hidden relative max-w-sm mx-auto"
+                style={{
+                  background: '#FFFFFF',
+                  border: `1px solid ${borderColor}`,
+                }}
+              >
+                <div aria-hidden className="absolute -top-16 -right-16 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(177,177,175,0.06) 0%, transparent 70%)' }} />
 
-              <div className="relative z-10 p-10 flex flex-col items-center text-center">
-                <div className="relative mb-5">
-                  <div
-                    className="w-28 h-28 rounded-full flex items-center justify-center"
-                    style={{
-                      background: 'linear-gradient(135deg, rgba(107,159,255,0.20), rgba(167,139,250,0.20))',
-                      border: '2px solid rgba(107,159,255,0.25)',
-                    }}
-                  >
-                    <span className="font-heading font-bold text-4xl" style={{ color: '#6B9FFF' }}>M</span>
-                  </div>
-                  <div
-                    className="absolute -top-1 -right-1 w-7 h-7 rounded-full flex items-center justify-center"
-                    style={{ background: 'linear-gradient(135deg, #6B9FFF, #A78BFA)' }}
-                  >
-                    <Sparkles size={13} className="text-white" />
-                  </div>
-                </div>
-
-                <div className="font-heading font-bold text-soft-white text-xl mb-1">Maddy the Techie</div>
-                <div className="font-body text-sm mb-4" style={{ color: 'var(--color-text-secondary)' }}>{t('subtitle')}</div>
-
-                <div className="flex gap-1 mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={14} style={{ color: '#A78BFA', fill: '#A78BFA' }} />
-                  ))}
-                </div>
-                <p className="font-body text-xs italic max-w-xs leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-                  {t('tagline')}
-                </p>
-
-                <div className="mt-7 grid grid-cols-3 gap-3 w-full">
-                  {stats.map((s) => (
+                <div className="relative z-10 p-10 flex flex-col items-center text-center">
+                  <div className="relative mb-5">
                     <div
-                      key={s.labelKey}
-                      className="rounded-xl py-3 text-center"
-                      style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}
+                      className="w-24 h-24 rounded-full flex items-center justify-center"
+                      style={{
+                        background: isFa ? '#eeefe9' : '#f4f3ef',
+                        border: isFa ? `2px solid ${borderColor}` : '2px solid rgba(177,177,175,0.25)',
+                      }}
                     >
-                      <div className="font-heading font-bold text-base" style={{ color: '#6B9FFF' }}>
-                        <span dir="ltr">{s.value}</span>
-                      </div>
-                      <div className="font-body text-[10px] mt-0.5" style={{ color: 'var(--color-text-muted)' }}>
-                        {t(s.labelKey)}
-                      </div>
+                      <span className="font-heading font-bold text-4xl" style={{ color: headingColor }}>M</span>
                     </div>
-                  ))}
-                </div>
+                    <div
+                      className="absolute -top-1 -right-1 w-7 h-7 rounded-full flex items-center justify-center"
+                      style={{ background: isFa ? '#2f80fa' : 'linear-gradient(135deg, #272625, #272625)' }}
+                    >
+                      <Sparkles size={13} className="text-white" />
+                    </div>
+                  </div>
 
-                {/* Approach badge — inline below stats, fully inside card */}
-                <div
-                  className="mt-4 w-full rounded-2xl px-5 py-3.5 text-left"
-                  style={{
-                    background: '#0C1524',
-                    border: '1px solid rgba(167,139,250,0.20)',
-                    boxShadow: '0 4px 16px rgba(0,0,0,0.35)',
-                  }}
-                >
-                  <div className="font-body text-xs mb-0.5" style={{ color: 'var(--color-text-muted)' }}>{t('badgeLabel')}</div>
-                  <div className="font-heading font-bold text-soft-white text-sm">{t('badge100')}</div>
+                  <div className="font-heading font-bold text-xl mb-1" style={{ color: headingColor }}>Maddy the Techie</div>
+                  <div className="font-body text-sm mb-4" style={{ color: bodyColor }}>{t('subtitle')}</div>
+
+                  <p className="font-body text-sm italic max-w-xs leading-relaxed" style={{ color: bodyColor }}>
+                    {t('tagline')}
+                  </p>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Right — text */}
-          <div className="order-1 lg:order-2">
-            <span
-              className="inline-block font-body text-sm md:text-base font-semibold uppercase tracking-[0.22em] mb-4"
-              style={{ color: '#6B9FFF' }}
-            >
-              {t('badge')}
-            </span>
-            <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-soft-white mb-6 leading-tight">
-              {t('title')}
-              <br />
-              <span className="gradient-text">{t('titleHighlight')}</span>
-            </h2>
+            {/* Right — short intro */}
+            <div className="order-1 lg:order-2">
+              <span
+                className="inline-block font-body text-sm md:text-base font-semibold uppercase tracking-[0.22em] mb-4"
+                style={{ color: badgeColor }}
+              >
+                {t('badge')}
+              </span>
+              <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight" style={{ color: headingColor }}>
+                {t('title')}
+                <br />
+                <span className="gradient-text">{t('titleHighlight')}</span>
+              </h2>
 
-            <p className="font-body text-lg md:text-xl leading-relaxed mb-5" style={{ color: 'var(--color-text-secondary)' }}>
-              {t('desc1')}
-            </p>
-            <p className="font-body text-base md:text-lg leading-relaxed mb-8" style={{ color: 'var(--color-text-secondary)' }}>
-              {t('desc2')}
-            </p>
+              <p className="font-body text-lg leading-relaxed mb-7" style={{ color: bodyColor }}>
+                {t('desc1')}
+              </p>
 
-            <div className="space-y-3.5 mb-8">
-              {beliefs.map((key) => (
-                <div key={key} className="flex items-start gap-3 font-body text-base md:text-lg text-soft-white">
-                  <CheckCircle size={17} style={{ color: '#6B9FFF', flexShrink: 0, marginTop: 2 }} />
-                  <span>{t(key)}</span>
-                </div>
-              ))}
+              {/* Stat strip */}
+              <div
+                className="flex flex-wrap gap-x-6 gap-y-2 mb-8"
+                style={{ borderTop: `1px solid ${borderColor}`, paddingTop: '20px' }}
+              >
+                {([t('stat0'), t('stat1'), t('stat2')] as string[]).map((stat, i) => (
+                  <span
+                    key={i}
+                    className="font-body font-semibold text-sm"
+                    style={{ color: headingColor }}
+                  >
+                    {stat}
+                  </span>
+                ))}
+              </div>
+
+              <Link
+                href="/about"
+                className="btn-primary inline-flex items-center gap-2.5 font-body font-semibold text-base px-9 py-4 rounded-full"
+              >
+                {t('ctaLabel')}
+                <ArrowRight size={16} className={locale === 'fa' ? 'rotate-180' : ''} />
+              </Link>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              {highlights.map((h) => (
-                <div
-                  key={h.labelKey}
-                  className="rounded-xl px-4 py-3.5 transition-colors duration-200"
-                  style={{ background: 'rgba(12, 21, 36, 0.8)', border: '1px solid rgba(255,255,255,0.06)' }}
-                >
-                  <div className="font-body text-[10px] uppercase tracking-wide mb-1" style={{ color: 'var(--color-text-muted)' }}>
-                    {t(h.labelKey)}
-                  </div>
-                  <div className="font-heading font-semibold text-soft-white text-sm leading-snug">
-                    {t(h.valueKey)}
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
-
         </div>
+      </section>
+
+      {/* Final CTA — FA only */}
+      {locale === 'fa' && <FaFinalCTA />}
+    </>
+  )
+}
+
+async function FaFinalCTA() {
+  const t = await getTranslations('homepageFaCta')
+  return (
+    <section
+      className="py-20 md:py-24 relative overflow-hidden"
+      style={{ background: '#eeefe9', borderTop: '1px solid #d2d3cc' }}
+    >
+      <div className="relative z-10 max-w-xl mx-auto px-4 sm:px-6 text-center">
+        <h2
+          className="font-heading font-bold text-2xl md:text-3xl mb-4 leading-snug"
+          style={{ color: '#111827' }}
+        >
+          {t('title')}
+        </h2>
+        <p
+          className="font-body text-base md:text-lg leading-relaxed mb-8"
+          style={{ color: '#4d4f46' }}
+        >
+          {t('subtitle')}
+        </p>
+        <Link
+          href="/services#contact-form"
+          className="btn-primary inline-flex items-center gap-2.5 font-body font-semibold text-base px-9 py-4 rounded-full"
+        >
+          {t('cta')}
+          <ArrowRight size={16} className="rotate-180" />
+        </Link>
       </div>
     </section>
   )

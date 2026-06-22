@@ -1,5 +1,6 @@
 import { Zap, MessageSquare, LayoutGrid, ArrowRight } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
+import { Link } from '@/i18n/navigation'
 
 export default async function ServicesSection() {
   const t = await getTranslations('services')
@@ -9,31 +10,31 @@ export default async function ServicesSection() {
       icon: Zap,
       titleKey: 'svc0title',
       descKey:  'svc0desc',
-      accent: { text: '#6B9FFF', bg: 'rgba(107,159,255,0.12)', border: 'rgba(107,159,255,0.22)' },
+      accent: { text: '#10054d', bg: 'rgba(226,221,253,0.30)', border: 'rgba(226,221,253,0.65)' },
     },
     {
       icon: MessageSquare,
       titleKey: 'svc1title',
       descKey:  'svc1desc',
-      accent: { text: '#A78BFA', bg: 'rgba(167,139,250,0.12)', border: 'rgba(167,139,250,0.22)' },
+      accent: { text: '#272625', bg: 'rgba(183,239,178,0.30)', border: 'rgba(183,239,178,0.65)' },
     },
     {
       icon: LayoutGrid,
       titleKey: 'svc2title',
       descKey:  'svc2desc',
-      accent: { text: '#6B9FFF', bg: 'rgba(107,159,255,0.12)', border: 'rgba(107,159,255,0.22)' },
+      accent: { text: '#272625', bg: 'rgba(255,239,153,0.30)', border: 'rgba(255,239,153,0.65)' },
     },
   ] as const
 
   return (
-    <section id="services" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#04080F' }}>
+    <section id="services" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#f4f3ef' }}>
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 60% 50% at 80% 40%, rgba(167,139,250,0.06) 0%, transparent 60%), ' +
-            'radial-gradient(ellipse 50% 40% at 20% 70%, rgba(107,159,255,0.05) 0%, transparent 60%)',
+            'radial-gradient(ellipse 60% 50% at 80% 40%, rgba(177,177,175,0.04) 0%, transparent 60%), ' +
+            'radial-gradient(ellipse 50% 40% at 20% 70%, rgba(177,177,175,0.04) 0%, transparent 60%)',
         }}
       />
 
@@ -42,16 +43,16 @@ export default async function ServicesSection() {
         <div className="text-center mb-16">
           <span
             className="inline-block font-body text-sm md:text-base font-semibold uppercase tracking-[0.22em] mb-4"
-            style={{ color: '#6B9FFF' }}
+            style={{ color: '#272625' }}
           >
             {t('badge')}
           </span>
-          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-soft-white mb-5 leading-tight">
+          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight" style={{ color: '#272625' }}>
             {t('title')}
           </h2>
           <p
             className="font-body text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
-            style={{ color: 'var(--color-text-secondary)' }}
+            style={{ color: '#6d6c6b' }}
           >
             {t('subtitle')}
           </p>
@@ -69,12 +70,12 @@ export default async function ServicesSection() {
                 >
                   <Icon size={22} style={{ color: a.text }} />
                 </div>
-                <h3 className="font-heading font-semibold text-soft-white text-xl md:text-2xl mb-3 leading-snug">
+                <h3 className="font-heading font-semibold text-xl md:text-2xl mb-3 leading-snug" style={{ color: '#272625' }}>
                   {t(service.titleKey)}
                 </h3>
                 <p
                   className="font-body text-base md:text-lg leading-relaxed flex-1"
-                  style={{ color: 'var(--color-text-secondary)' }}
+                  style={{ color: '#6d6c6b' }}
                 >
                   {t(service.descKey)}
                 </p>
@@ -84,13 +85,13 @@ export default async function ServicesSection() {
         </div>
 
         <div className="text-center">
-          <a
-            href="#contact"
+          <Link
+            href="/services"
             className="btn-primary inline-flex items-center gap-2.5 font-body font-semibold text-base px-9 py-4 rounded-full cursor-pointer"
           >
             {t('cta')}
             <ArrowRight size={16} />
-          </a>
+          </Link>
         </div>
 
       </div>
