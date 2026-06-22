@@ -21,18 +21,19 @@ export default function StarterKitCTA({
         type="button"
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
-        className={`font-body inline-flex items-center gap-2.5 cursor-pointer transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#272625] ${className}`}
+        className={`font-ui inline-flex items-center gap-2.5 cursor-pointer transition-opacity duration-150 hover:opacity-88 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7B2FBE] ${className}`}
         style={{
-          padding: '13px 28px',
-          borderRadius: '999px',
-          fontSize: '15.5px',
-          fontWeight: 600,
+          padding: '10px 22px',
+          borderRadius: '8px',
+          fontSize: '14px',
+          fontWeight: 500,
           color: '#ffffff',
-          background: '#272625',
+          background: '#7B2FBE',
+          border: 'none',
         }}
       >
         {label}
-        <ArrowRight size={16} />
+        <ArrowRight size={15} />
       </button>
 
       <StarterKitModal isOpen={open} onClose={() => setOpen(false)} />

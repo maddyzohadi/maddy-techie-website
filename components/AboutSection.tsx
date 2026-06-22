@@ -7,20 +7,13 @@ export default async function AboutSection() {
   const t = await getTranslations('about')
   const isFa = locale === 'fa'
 
-  const sectionBg    = isFa ? '#fdfdf8' : '#f4f3ef'
-  const borderColor  = isFa ? '#d2d3cc' : '#ecebea'
-  const headingColor = isFa ? '#111827' : '#272625'
-  const bodyColor    = isFa ? '#4d4f46' : '#6d6c6b'
-  const badgeColor   = isFa ? '#65675e' : '#272625'
+  const headingColor = '#1A1A2E'
+  const bodyColor    = 'rgba(26,26,46,0.60)'
+  const badgeColor   = 'rgba(26,26,46,0.50)'
 
   return (
     <>
-      <section id="about" className="py-24 md:py-32 relative scroll-mt-[88px]" style={{ background: sectionBg }}>
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 70% 60% at 70% 50%, rgba(177,177,175,0.04) 0%, transparent 60%)' }}
-        />
+      <section id="about" className="py-24 md:py-32 relative scroll-mt-[88px]" style={{ background: '#F5F0E8' }}>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -31,69 +24,79 @@ export default async function AboutSection() {
                 className="rounded-3xl overflow-hidden relative max-w-sm mx-auto"
                 style={{
                   background: '#FFFFFF',
-                  border: `1px solid ${borderColor}`,
+                  border: '0.5px solid rgba(123,47,190,0.25)',
                 }}
               >
-                <div aria-hidden className="absolute -top-16 -right-16 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(177,177,175,0.06) 0%, transparent 70%)' }} />
-
                 <div className="relative z-10 p-10 flex flex-col items-center text-center">
                   <div className="relative mb-5">
                     <div
                       className="w-24 h-24 rounded-full flex items-center justify-center"
                       style={{
-                        background: isFa ? '#eeefe9' : '#f4f3ef',
-                        border: isFa ? `2px solid ${borderColor}` : '2px solid rgba(177,177,175,0.25)',
+                        background: 'rgba(123,47,190,0.12)',
+                        border: '0.5px solid rgba(123,47,190,0.30)',
                       }}
                     >
-                      <span className="font-heading font-bold text-4xl" style={{ color: headingColor }}>M</span>
+                      <span
+                        className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-4xl`}
+                        style={{ color: headingColor }}
+                      >
+                        M
+                      </span>
                     </div>
                     <div
                       className="absolute -top-1 -right-1 w-7 h-7 rounded-full flex items-center justify-center"
-                      style={{ background: isFa ? '#2f80fa' : 'linear-gradient(135deg, #272625, #272625)' }}
+                      style={{
+                        background: 'rgba(123,47,190,0.12)',
+                        border: '0.5px solid rgba(123,47,190,0.30)',
+                      }}
                     >
-                      <Sparkles size={13} className="text-white" />
+                      <Sparkles size={13} style={{ color: '#1A1A2E' }} />
                     </div>
                   </div>
 
-                  <div className="font-heading font-bold text-xl mb-1" style={{ color: headingColor }}>Maddy the Techie</div>
-                  <div className="font-body text-sm mb-4" style={{ color: bodyColor }}>{t('subtitle')}</div>
+                  <div
+                    className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-xl mb-1`}
+                    style={{ color: headingColor }}
+                  >
+                    Maddy the Techie
+                  </div>
+                  <div className="font-ui text-sm mb-4" style={{ color: bodyColor }}>{t('subtitle')}</div>
 
-                  <p className="font-body text-sm italic max-w-xs leading-relaxed" style={{ color: bodyColor }}>
+                  <p className="font-ui text-sm italic max-w-xs leading-relaxed" style={{ color: bodyColor }}>
                     {t('tagline')}
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Right — short intro */}
+            {/* Right — intro */}
             <div className="order-1 lg:order-2">
               <span
-                className="inline-block font-body text-sm md:text-base font-semibold uppercase tracking-[0.22em] mb-4"
+                className="inline-block font-ui text-sm md:text-base font-semibold uppercase tracking-[0.22em] mb-4"
                 style={{ color: badgeColor }}
               >
                 {t('badge')}
               </span>
-              <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight" style={{ color: headingColor }}>
+              <h2
+                className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight`}
+                style={{ color: headingColor }}
+              >
                 {t('title')}
                 <br />
-                <span className="gradient-text">{t('titleHighlight')}</span>
+                <span style={{ color: bodyColor }}>{t('titleHighlight')}</span>
               </h2>
 
-              <p className="font-body text-lg leading-relaxed mb-7" style={{ color: bodyColor }}>
+              <p className="font-ui text-lg leading-relaxed mb-7" style={{ color: bodyColor }}>
                 {t('desc1')}
               </p>
 
               {/* Stat strip */}
               <div
                 className="flex flex-wrap gap-x-6 gap-y-2 mb-8"
-                style={{ borderTop: `1px solid ${borderColor}`, paddingTop: '20px' }}
+                style={{ borderTop: '0.5px solid rgba(123,47,190,0.20)', paddingTop: '20px' }}
               >
                 {([t('stat0'), t('stat1'), t('stat2')] as string[]).map((stat, i) => (
-                  <span
-                    key={i}
-                    className="font-body font-semibold text-sm"
-                    style={{ color: headingColor }}
-                  >
+                  <span key={i} className="font-ui font-semibold text-sm" style={{ color: headingColor }}>
                     {stat}
                   </span>
                 ))}
@@ -101,7 +104,14 @@ export default async function AboutSection() {
 
               <Link
                 href="/about"
-                className="btn-primary inline-flex items-center gap-2.5 font-body font-semibold text-base px-9 py-4 rounded-full"
+                className="inline-flex items-center gap-2.5 font-ui font-semibold text-base px-9 py-4"
+                style={{
+                  background: '#7B2FBE',
+                  color: '#ffffff',
+                  borderRadius: '8px',
+                  border: 'none',
+                  textDecoration: 'none',
+                }}
               >
                 {t('ctaLabel')}
                 <ArrowRight size={16} className={locale === 'fa' ? 'rotate-180' : ''} />
@@ -112,7 +122,6 @@ export default async function AboutSection() {
         </div>
       </section>
 
-      {/* Final CTA — FA only */}
       {locale === 'fa' && <FaFinalCTA />}
     </>
   )
@@ -123,24 +132,31 @@ async function FaFinalCTA() {
   return (
     <section
       className="py-20 md:py-24 relative overflow-hidden"
-      style={{ background: '#eeefe9', borderTop: '1px solid #d2d3cc' }}
+      style={{ background: '#1A1A2E', borderTop: '0.5px solid rgba(245,240,232,0.10)' }}
     >
       <div className="relative z-10 max-w-xl mx-auto px-4 sm:px-6 text-center">
         <h2
-          className="font-heading font-bold text-2xl md:text-3xl mb-4 leading-snug"
-          style={{ color: '#111827' }}
+          className="font-fa font-bold text-2xl md:text-3xl mb-4 leading-snug"
+          style={{ color: '#F5F0E8' }}
         >
           {t('title')}
         </h2>
         <p
-          className="font-body text-base md:text-lg leading-relaxed mb-8"
-          style={{ color: '#4d4f46' }}
+          className="font-fa text-base md:text-lg leading-relaxed mb-8"
+          style={{ color: 'rgba(245,240,232,0.60)' }}
         >
           {t('subtitle')}
         </p>
         <Link
           href="/services#contact-form"
-          className="btn-primary inline-flex items-center gap-2.5 font-body font-semibold text-base px-9 py-4 rounded-full"
+          className="inline-flex items-center gap-2.5 font-fa font-semibold text-base px-9 py-4"
+          style={{
+            background: '#7B2FBE',
+            color: '#ffffff',
+            borderRadius: '8px',
+            border: 'none',
+            textDecoration: 'none',
+          }}
         >
           {t('cta')}
           <ArrowRight size={16} className="rotate-180" />

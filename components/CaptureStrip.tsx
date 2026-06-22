@@ -19,32 +19,21 @@ export default async function CaptureStrip() {
   const isFa = locale === 'fa'
   const stages: { title: string; sub: string }[] = isFa ? FA_STAGES : EN_STAGES
 
-  const borderColor  = isFa ? '#d2d3cc' : '#ecebea'
-  const titleColor   = isFa ? '#111827' : '#272625'
-  const subColor     = isFa ? '#65675e' : '#6d6c6b'
-
   return (
     <div
       style={{
-        background: '#FFFFFF',
-        borderTop: `1px solid ${borderColor}`,
-        borderBottom: `1px solid ${borderColor}`,
+        background: '#1A1A2E',
+        borderTop: '0.5px solid rgba(245,240,232,0.10)',
+        borderBottom: '0.5px solid rgba(245,240,232,0.10)',
       }}
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'stretch',
-            overflowX: 'auto',
-          }}
-        >
+        <div style={{ display: 'flex', alignItems: 'stretch', overflowX: 'auto' }}>
           {stages.map((stage, i) => (
             <div
               key={i}
               style={{ display: 'flex', alignItems: 'stretch', flex: '1 0 auto', minWidth: 0 }}
             >
-              {/* Stage item */}
               <div
                 style={{
                   display: 'flex',
@@ -55,13 +44,12 @@ export default async function CaptureStrip() {
                   minWidth: isFa ? '140px' : '160px',
                 }}
               >
-                {/* Text */}
                 <div style={{ minWidth: 0 }}>
                   <p
-                    className="font-heading font-bold"
+                    className="font-ui font-bold"
                     style={{
                       fontSize: isFa ? '15px' : '14.5px',
-                      color: titleColor,
+                      color: '#F5F0E8',
                       lineHeight: 1.2,
                       whiteSpace: 'nowrap',
                     }}
@@ -69,10 +57,10 @@ export default async function CaptureStrip() {
                     {stage.title}
                   </p>
                   <p
-                    className="font-body"
+                    className="font-ui"
                     style={{
                       fontSize: isFa ? '13px' : '12.5px',
-                      color: subColor,
+                      color: 'rgba(245,240,232,0.60)',
                       lineHeight: 1.4,
                       marginTop: '3px',
                     }}
@@ -82,7 +70,6 @@ export default async function CaptureStrip() {
                 </div>
               </div>
 
-              {/* Arrow separator (not after last item) */}
               {i < stages.length - 1 && (
                 <div
                   aria-hidden
@@ -91,7 +78,7 @@ export default async function CaptureStrip() {
                     alignItems: 'center',
                     padding: '0 2px',
                     flexShrink: 0,
-                    color: borderColor,
+                    color: 'rgba(245,240,232,0.25)',
                     fontSize: '16px',
                     userSelect: 'none',
                   }}

@@ -1,0 +1,35 @@
+// tailwind.config.js — Maddy the Techie Design System
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        midnight:   '#1A1A2E',
+        violet:     '#7B2FBE',
+        champagne:  '#E8B86D',
+        ivory:      '#F5F0E8',
+      },
+      fontFamily: {
+        fa:      ['Noto Naskh Arabic', 'serif'],
+        en:      ['DM Serif Display', 'serif'],
+        ui:      ['system-ui', '-apple-system', 'sans-serif'],
+        heading: ['DM Serif Display', 'serif'],
+        body:    ['system-ui', '-apple-system', 'sans-serif'],
+        farsi:   ['Noto Naskh Arabic', 'serif'],
+      },
+      borderRadius: {
+        btn:  '8px',
+        card: '12px',
+        pill: '20px',
+      },
+      // No shadows — depth comes from surface color steps
+      boxShadow: {},
+    },
+  },
+  plugins: [],
+}

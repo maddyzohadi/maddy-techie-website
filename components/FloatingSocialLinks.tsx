@@ -5,14 +5,6 @@ const TIKTOK_URL   = 'https://www.tiktok.com/@maddythetechie'
 const X_URL        = 'https://x.com/maddythetechie'
 const LINKEDIN_URL = 'https://www.linkedin.com/in/maddy-techie-08362b418/'
 
-const IDLE_BORDER   = '#ecebea'
-const HOVER_BORDER  = '#272625'
-const IDLE_COLOR    = '#6d6c6b'
-const HOVER_COLOR   = '#272625'
-const IDLE_BG       = '#FFFFFF'
-const IDLE_SHADOW   = '0 2px 8px rgba(177,177,175,0.08)'
-const HOVER_SHADOW  = '0 4px 18px rgba(177,177,175,0.20)'
-
 const btnBase: React.CSSProperties = {
   display: 'flex',
   alignItems: 'center',
@@ -20,12 +12,11 @@ const btnBase: React.CSSProperties = {
   width: '40px',
   height: '40px',
   borderRadius: '50%',
-  background: IDLE_BG,
-  border: `1.5px solid ${IDLE_BORDER}`,
-  boxShadow: IDLE_SHADOW,
-  color: IDLE_COLOR,
+  background: '#FFFFFF',
+  border: '0.5px solid rgba(123,47,190,0.25)',
+  color: 'rgba(26,26,46,0.60)',
   cursor: 'pointer',
-  transition: 'transform 200ms ease, border-color 200ms ease, color 200ms ease, box-shadow 200ms ease',
+  transition: 'transform 200ms ease, border-color 200ms ease, color 200ms ease',
   textDecoration: 'none',
   flexShrink: 0,
 }
@@ -41,16 +32,14 @@ function SocialLink({ href, label, children }: { href: string; label: string; ch
       onMouseEnter={(e) => {
         const el = e.currentTarget as HTMLAnchorElement
         el.style.transform = 'scale(1.13) translateY(-1px)'
-        el.style.borderColor = HOVER_BORDER
-        el.style.color = HOVER_COLOR
-        el.style.boxShadow = HOVER_SHADOW
+        el.style.borderColor = 'rgba(123,47,190,0.55)'
+        el.style.color = '#1A1A2E'
       }}
       onMouseLeave={(e) => {
         const el = e.currentTarget as HTMLAnchorElement
         el.style.transform = 'scale(1) translateY(0)'
-        el.style.borderColor = IDLE_BORDER
-        el.style.color = IDLE_COLOR
-        el.style.boxShadow = IDLE_SHADOW
+        el.style.borderColor = 'rgba(123,47,190,0.25)'
+        el.style.color = 'rgba(26,26,46,0.60)'
       }}
     >
       {children}

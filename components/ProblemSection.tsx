@@ -6,73 +6,42 @@ export default async function ProblemSection() {
   const t = await getTranslations('problem')
   const isFa = locale === 'fa'
 
-  const neutral = isFa
-    ? { text: '#4d4f46', bg: '#eeefe9', border: '#d2d3cc' }
-    : { text: '#272625', bg: 'rgba(177,177,175,0.08)', border: 'rgba(177,177,175,0.18)' }
+  const accent = { text: '#1A1A2E', bg: 'rgba(123,47,190,0.12)', border: 'rgba(123,47,190,0.30)' }
 
-  const sectionBg    = isFa ? '#fdfdf8' : '#f4f3ef'
-  const headingColor = isFa ? '#111827' : '#272625'
-  const bodyColor    = isFa ? '#4d4f46' : '#6d6c6b'
-  const badgeColor   = isFa ? '#65675e' : '#272625'
+  const headingColor = '#1A1A2E'
+  const bodyColor    = 'rgba(26,26,46,0.60)'
+  const badgeColor   = 'rgba(26,26,46,0.50)'
 
   const allProblems = [
-    {
-      icon: RefreshCw,
-      title: t('item0title'),
-      description: t('item0desc'),
-      accent: neutral,
-      number: '01',
-    },
-    {
-      icon: AlertCircle,
-      title: t('item1title'),
-      description: t('item1desc'),
-      accent: neutral,
-      number: '02',
-    },
-    {
-      icon: MessageSquare,
-      title: t('item2title'),
-      description: t('item2desc'),
-      accent: neutral,
-      number: '03',
-    },
-    {
-      icon: TrendingUp,
-      title: t('item3title'),
-      description: t('item3desc'),
-      accent: neutral,
-      number: '04',
-    },
+    { icon: RefreshCw,     title: t('item0title'), description: t('item0desc'), number: '01' },
+    { icon: AlertCircle,   title: t('item1title'), description: t('item1desc'), number: '02' },
+    { icon: MessageSquare, title: t('item2title'), description: t('item2desc'), number: '03' },
+    { icon: TrendingUp,    title: t('item3title'), description: t('item3desc'), number: '04' },
   ]
 
   const problems = isFa ? [] : allProblems
 
   return (
-    <section className="py-24 md:py-32 relative" style={{ background: sectionBg }}>
-      <div className="section-divider absolute top-0 left-0 right-0" />
-
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 70% 50% at 80% 50%, rgba(177,177,175,0.04) 0%, transparent 65%)' }}
-      />
+    <section className="py-24 md:py-32 relative" style={{ background: '#F5F0E8' }}>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}
         <div className="text-center mb-16">
           <span
-            className="inline-block font-body text-sm md:text-base font-semibold uppercase tracking-[0.22em] mb-4"
+            className="inline-block font-ui text-sm md:text-base font-semibold uppercase tracking-[0.22em] mb-4"
             style={{ color: badgeColor }}
           >
             {t('badge')}
           </span>
-          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight" style={{ color: headingColor }}>
+          <h2
+            className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight`}
+            style={{ color: headingColor }}
+          >
             {t('title')}
           </h2>
           <p
-            className="font-body text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+            className="font-ui text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
             style={{ color: bodyColor }}
           >
             {t('subtitle')}
@@ -83,60 +52,70 @@ export default async function ProblemSection() {
         <div className={`grid grid-cols-1 sm:grid-cols-2 gap-5 ${isFa ? 'lg:grid-cols-3' : 'lg:grid-cols-4'}`}>
           {problems.map((problem) => {
             const Icon = problem.icon
-            const a = problem.accent
             return (
-              <div key={problem.number} className="card-gradient-border p-7 group flex flex-col">
-
-                {/* Number badge + icon */}
+              <div
+                key={problem.number}
+                className="p-7 group flex flex-col"
+                style={{
+                  background: '#FFFFFF',
+                  border: '0.5px solid rgba(123,47,190,0.25)',
+                  borderRadius: '12px',
+                }}
+              >
                 <div className="flex items-start justify-between mb-5">
                   <span
-                    className="font-body text-[10px] font-bold tracking-widest px-2 py-1 rounded-md leading-none"
-                    style={{ background: a.bg, color: a.text, border: `1px solid ${a.border}` }}
+                    className="font-ui text-[10px] font-bold tracking-widest px-2 py-1 rounded-md leading-none"
+                    style={{ background: accent.bg, color: accent.text, border: `0.5px solid ${accent.border}` }}
                   >
                     <span dir="ltr">{problem.number}</span>
                   </span>
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: a.bg, border: `1px solid ${a.border}` }}
+                    style={{ background: accent.bg, border: `0.5px solid ${accent.border}` }}
                   >
-                    <Icon size={20} style={{ color: a.text }} />
+                    <Icon size={20} style={{ color: accent.text }} />
                   </div>
                 </div>
 
-                <h3 className="font-heading font-semibold text-xl md:text-2xl mb-3 leading-snug" style={{ color: headingColor }}>
+                <h3
+                  className={`${isFa ? 'font-fa' : 'font-en'} font-semibold text-xl md:text-2xl mb-3 leading-snug`}
+                  style={{ color: headingColor }}
+                >
                   {problem.title}
                 </h3>
                 <p
-                  className="font-body text-base md:text-lg leading-relaxed flex-1"
+                  className="font-ui text-base md:text-lg leading-relaxed flex-1"
                   style={{ color: bodyColor }}
                 >
                   {problem.description}
                 </p>
 
-                {/* Hover accent line */}
                 <div
                   className="mt-5 h-px w-0 group-hover:w-full transition-all duration-500 rounded-full"
-                  style={{ background: `linear-gradient(90deg, ${a.text}60, transparent)` }}
+                  style={{ background: 'rgba(123,47,190,0.20)' }}
                 />
               </div>
             )
           })}
         </div>
 
-        {/* Bottom hint — soft callout */}
+        {/* Bottom hint */}
         <div className="mt-14 flex justify-center">
           <div
             className="px-8 py-5 text-center"
             style={{
-              borderRadius: isFa ? '4px' : '1rem',
-              background: isFa ? '#eeefe9' : 'rgba(177,177,175,0.06)',
-              border: `1px solid ${isFa ? '#d2d3cc' : 'rgba(177,177,175,0.14)'}`,
+              borderRadius: '12px',
+              background: 'rgba(123,47,190,0.08)',
+              border: '0.5px solid rgba(123,47,190,0.20)',
             }}
           >
-            <p className="font-body text-base" style={{ color: bodyColor }}>
+            <p className="font-ui text-base" style={{ color: bodyColor }}>
               {t('hint')}
             </p>
-            <p className="font-heading font-semibold text-base mt-1.5" style={{ color: headingColor }}>
+            <p
+              className={`${isFa ? 'font-fa' : 'font-en'} font-semibold text-base mt-1.5`}
+              style={{ color: headingColor }}
+            >
               {t('hintHighlight')}
             </p>
           </div>
@@ -144,7 +123,6 @@ export default async function ProblemSection() {
 
       </div>
 
-      <div className="section-divider absolute bottom-0 left-0 right-0" />
     </section>
   )
 }

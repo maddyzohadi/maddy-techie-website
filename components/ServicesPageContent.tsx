@@ -3,10 +3,6 @@ import { ArrowRight, Zap, MessageSquare, LayoutGrid, PenLine, CheckCircle } from
 import ServiceInquiryForm from '@/components/ServiceInquiryForm'
 import ServicesPageContentFa from '@/components/ServicesPageContentFa'
 
-const gradientText = {
-  color: '#272625',
-}
-
 const SERVICES = [
   {
     icon: Zap,
@@ -15,7 +11,6 @@ const SERVICES = [
     bestForKey: 'svc1bestFor' as const,
     ctaKey:     'svc1cta'   as const,
     tools: ['ChatGPT', 'Claude', 'Google Sheets'],
-    accent: { text: '#10054d', bg: 'rgba(226,221,253,0.30)', border: 'rgba(226,221,253,0.65)' },
   },
   {
     icon: MessageSquare,
@@ -24,7 +19,6 @@ const SERVICES = [
     bestForKey: 'svc2bestFor' as const,
     ctaKey:     'svc2cta'   as const,
     tools: ['ChatGPT', 'Claude'],
-    accent: { text: '#272625', bg: 'rgba(183,239,178,0.30)', border: 'rgba(183,239,178,0.65)' },
   },
   {
     icon: LayoutGrid,
@@ -33,7 +27,6 @@ const SERVICES = [
     bestForKey: 'svc3bestFor' as const,
     ctaKey:     'svc3cta'   as const,
     tools: ['Google Sheets', 'Make', 'Zapier'],
-    accent: { text: '#272625', bg: 'rgba(255,239,153,0.30)', border: 'rgba(255,239,153,0.65)' },
   },
   {
     icon: PenLine,
@@ -42,7 +35,6 @@ const SERVICES = [
     bestForKey: 'svc4bestFor' as const,
     ctaKey:     'svc4cta'   as const,
     tools: ['ChatGPT', 'Claude', 'Google Sheets'],
-    accent: { text: '#272625', bg: 'rgba(255,215,240,0.30)', border: 'rgba(255,215,240,0.65)' },
   },
 ] as const
 
@@ -63,42 +55,34 @@ export default async function ServicesPageContent() {
 
   return (
     <>
-      {/* ── Hero ───────────────────────────────────────────────── */}
+      {/* Hero */}
       <section
         className="py-24 md:py-32 relative overflow-hidden"
-        style={{ background: '#f4f3ef' }}
+        style={{ background: '#F5F0E8' }}
       >
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(ellipse 70% 60% at 50% 30%, rgba(177,177,175,0.06) 0%, transparent 65%), ' +
-              'radial-gradient(ellipse 50% 40% at 80% 80%, rgba(177,177,175,0.04) 0%, transparent 60%)',
-          }}
-        />
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <span
-            className="inline-block font-body text-sm font-semibold uppercase tracking-[0.22em] mb-5"
-            style={{ color: '#272625' }}
+            className="inline-block font-ui text-sm font-semibold uppercase tracking-[0.22em] mb-5"
+            style={{ color: 'rgba(26,26,46,0.50)' }}
           >
             {t('heroBadge')}
           </span>
           <h1
-            className="font-heading font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6"
-            style={gradientText}
+            className="font-en font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6"
+            style={{ color: '#1A1A2E', letterSpacing: '-.025em' }}
           >
             {t('heroTitle')}
           </h1>
           <p
-            className="font-body text-lg md:text-xl leading-relaxed mb-10 max-w-2xl mx-auto"
-            style={{ color: '#6d6c6b' }}
+            className="font-ui text-lg md:text-xl leading-relaxed mb-10 max-w-2xl mx-auto"
+            style={{ color: 'rgba(26,26,46,0.60)' }}
           >
             {t('heroSubtitle')}
           </p>
           <a
             href="#contact-form"
-            className="btn-primary inline-flex items-center gap-2.5 font-body font-semibold text-base px-9 py-4 rounded-full"
+            className="font-ui inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4"
+            style={{ background: '#7B2FBE', color: '#ffffff', borderRadius: '8px', textDecoration: 'none' }}
           >
             {t('heroCta')}
             <ArrowRight size={16} />
@@ -106,68 +90,60 @@ export default async function ServicesPageContent() {
         </div>
       </section>
 
-      {/* ── Service Cards ──────────────────────────────────────── */}
+      {/* Service Cards */}
       <section
         className="py-20 md:py-24 relative"
-        style={{ background: '#FFFFFF' }}
+        style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
       >
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(ellipse 60% 50% at 20% 50%, rgba(177,177,175,0.03) 0%, transparent 60%)',
-          }}
-        />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {SERVICES.map((svc) => {
               const Icon = svc.icon
-              const a = svc.accent
               return (
                 <div
                   key={svc.titleKey}
-                  className="card-gradient-border p-7 md:p-8 flex flex-col gap-4"
+                  style={{
+                    background: '#FFFFFF',
+                    border: '0.5px solid rgba(123,47,190,0.25)',
+                    borderRadius: '12px',
+                    padding: '28px 30px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '16px',
+                  }}
                 >
-                  {/* icon */}
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: a.bg, border: `1px solid ${a.border}` }}
+                    style={{ background: 'rgba(123,47,190,0.12)', border: '0.5px solid rgba(123,47,190,0.30)' }}
                   >
-                    <Icon size={20} style={{ color: a.text }} />
+                    <Icon size={20} style={{ color: '#1A1A2E' }} />
                   </div>
 
-                  {/* title + desc */}
                   <div>
-                    <h2 className="font-heading font-semibold text-xl md:text-2xl mb-2 leading-snug" style={{ color: '#272625' }}>
+                    <h2 className="font-en font-semibold text-xl md:text-2xl mb-2 leading-snug" style={{ color: '#1A1A2E' }}>
                       {t(svc.titleKey)}
                     </h2>
-                    <p
-                      className="font-body text-base leading-relaxed"
-                      style={{ color: '#6d6c6b' }}
-                    >
+                    <p className="font-ui text-base leading-relaxed" style={{ color: 'rgba(26,26,46,0.60)' }}>
                       {t(svc.descKey)}
                     </p>
                   </div>
 
-                  {/* best for */}
                   <div>
                     <span
-                      className="font-body text-xs font-semibold uppercase tracking-[0.14em] block mb-1"
-                      style={{ color: a.text }}
+                      className="font-ui text-xs font-semibold uppercase tracking-[0.14em] block mb-1"
+                      style={{ color: 'rgba(26,26,46,0.50)' }}
                     >
                       {t('bestForLabel')}
                     </span>
-                    <p className="font-body text-sm" style={{ color: '#6d6c6b' }}>
+                    <p className="font-ui text-sm" style={{ color: 'rgba(26,26,46,0.60)' }}>
                       {t(svc.bestForKey)}
                     </p>
                   </div>
 
-                  {/* tools */}
                   <div>
                     <span
-                      className="font-body text-xs font-semibold uppercase tracking-[0.14em] block mb-2"
-                      style={{ color: a.text }}
+                      className="font-ui text-xs font-semibold uppercase tracking-[0.14em] block mb-2"
+                      style={{ color: 'rgba(26,26,46,0.50)' }}
                     >
                       {t('toolsLabel')}
                     </span>
@@ -175,11 +151,11 @@ export default async function ServicesPageContent() {
                       {svc.tools.map((tool) => (
                         <span
                           key={tool}
-                          className="font-body text-xs px-2.5 py-1 rounded-full"
+                          className="font-ui text-xs px-2.5 py-1 rounded-md"
                           style={{
-                            background: a.bg,
-                            border: `1px solid ${a.border}`,
-                            color: a.text,
+                            background: 'rgba(123,47,190,0.08)',
+                            border: '0.5px solid rgba(123,47,190,0.20)',
+                            color: 'rgba(26,26,46,0.60)',
                           }}
                         >
                           {tool}
@@ -188,11 +164,10 @@ export default async function ServicesPageContent() {
                     </div>
                   </div>
 
-                  {/* cta */}
                   <a
                     href="#contact-form"
-                    className="mt-auto inline-flex items-center gap-1.5 font-body font-semibold text-sm transition-opacity duration-200 hover:opacity-75 self-start"
-                    style={{ color: a.text }}
+                    className="mt-auto inline-flex items-center gap-1.5 font-ui font-semibold text-sm transition-opacity duration-200 hover:opacity-75 self-start"
+                    style={{ color: '#7B2FBE' }}
                   >
                     {t(svc.ctaKey)}
                     <ArrowRight size={13} />
@@ -204,52 +179,47 @@ export default async function ServicesPageContent() {
         </div>
       </section>
 
-      {/* ── How It Works ───────────────────────────────────────── */}
+      {/* How It Works */}
       <section
         className="py-20 md:py-24 relative overflow-hidden"
-        style={{ background: '#f4f3ef', borderTop: '1px solid #ecebea' }}
+        style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
       >
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(ellipse 55% 50% at 50% 50%, rgba(177,177,175,0.04) 0%, transparent 65%)',
-          }}
-        />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span
-              className="inline-block font-body text-sm font-semibold uppercase tracking-[0.22em] mb-4"
-              style={{ color: '#272625' }}
+              className="inline-block font-ui text-sm font-semibold uppercase tracking-[0.22em] mb-4"
+              style={{ color: 'rgba(26,26,46,0.50)' }}
             >
               {t('howBadge')}
             </span>
-            <h2 className="font-heading font-bold text-3xl md:text-4xl leading-tight" style={{ color: '#272625' }}>
+            <h2
+              className="font-en font-bold text-3xl md:text-4xl leading-tight"
+              style={{ color: '#1A1A2E', letterSpacing: '-.02em' }}
+            >
               {t('howTitle')}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {HOW_STEPS.map((step, i) => (
+            {HOW_STEPS.map((step) => (
               <div
                 key={step.numKey}
                 className="relative p-6 rounded-2xl"
                 style={{
                   background: '#FFFFFF',
-                  border: '1px solid #ecebea',
+                  border: '0.5px solid rgba(123,47,190,0.25)',
                 }}
               >
                 <div
-                  className="font-heading font-bold text-4xl mb-4 leading-none"
-                  style={{ color: i % 2 === 0 ? 'rgba(177,177,175,0.20)' : 'rgba(177,177,175,0.15)' }}
+                  className="font-en font-bold text-4xl mb-4 leading-none"
+                  style={{ color: 'rgba(123,47,190,0.20)' }}
                 >
                   {t(step.numKey)}
                 </div>
-                <h3 className="font-heading font-semibold text-lg mb-2" style={{ color: '#272625' }}>
+                <h3 className="font-en font-semibold text-lg mb-2" style={{ color: '#1A1A2E' }}>
                   {t(step.titleKey)}
                 </h3>
-                <p className="font-body text-sm leading-relaxed" style={{ color: '#6d6c6b' }}>
+                <p className="font-ui text-sm leading-relaxed" style={{ color: 'rgba(26,26,46,0.60)' }}>
                   {t(step.descKey)}
                 </p>
               </div>
@@ -258,20 +228,23 @@ export default async function ServicesPageContent() {
         </div>
       </section>
 
-      {/* ── Who This Is For ────────────────────────────────────── */}
+      {/* Who This Is For */}
       <section
         className="py-20 md:py-24 relative"
-        style={{ background: '#f4f3ef', borderTop: '1px solid #ecebea' }}
+        style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span
-              className="inline-block font-body text-sm font-semibold uppercase tracking-[0.22em] mb-4"
-              style={{ color: '#272625' }}
+              className="inline-block font-ui text-sm font-semibold uppercase tracking-[0.22em] mb-4"
+              style={{ color: 'rgba(26,26,46,0.50)' }}
             >
               {t('whoBadge')}
             </span>
-            <h2 className="font-heading font-bold text-3xl md:text-4xl leading-tight" style={{ color: '#272625' }}>
+            <h2
+              className="font-en font-bold text-3xl md:text-4xl leading-tight"
+              style={{ color: '#1A1A2E', letterSpacing: '-.02em' }}
+            >
               {t('whoTitle')}
             </h2>
           </div>
@@ -283,15 +256,15 @@ export default async function ServicesPageContent() {
                 className="flex items-start gap-3 p-5 rounded-xl"
                 style={{
                   background: '#FFFFFF',
-                  border: '1px solid #ecebea',
+                  border: '0.5px solid rgba(123,47,190,0.25)',
                 }}
               >
                 <CheckCircle
                   size={18}
                   className="flex-shrink-0 mt-0.5"
-                  style={{ color: '#272625' }}
+                  style={{ color: '#1A1A2E' }}
                 />
-                <p className="font-body text-sm leading-relaxed" style={{ color: '#6d6c6b' }}>
+                <p className="font-ui text-sm leading-relaxed" style={{ color: 'rgba(26,26,46,0.60)' }}>
                   {t(key)}
                 </p>
               </div>
@@ -300,24 +273,27 @@ export default async function ServicesPageContent() {
         </div>
       </section>
 
-      {/* ── Inquiry Form ───────────────────────────────────────── */}
+      {/* Inquiry Form */}
       <section
         id="contact-form"
         className="py-20 md:py-24 relative"
-        style={{ background: '#f4f3ef', borderTop: '1px solid #ecebea' }}
+        style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
       >
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span
-              className="inline-block font-body text-sm font-semibold uppercase tracking-[0.22em] mb-4"
-              style={{ color: '#272625' }}
+              className="inline-block font-ui text-sm font-semibold uppercase tracking-[0.22em] mb-4"
+              style={{ color: 'rgba(26,26,46,0.50)' }}
             >
               {t('formBadge')}
             </span>
-            <h2 className="font-heading font-bold text-3xl md:text-4xl leading-tight mb-4" style={{ color: '#272625' }}>
+            <h2
+              className="font-en font-bold text-3xl md:text-4xl leading-tight mb-4"
+              style={{ color: '#1A1A2E', letterSpacing: '-.02em' }}
+            >
               {t('formTitle')}
             </h2>
-            <p className="font-body text-base leading-relaxed" style={{ color: '#6d6c6b' }}>
+            <p className="font-ui text-base leading-relaxed" style={{ color: 'rgba(26,26,46,0.60)' }}>
               {t('formSubtitle')}
             </p>
           </div>
@@ -325,35 +301,28 @@ export default async function ServicesPageContent() {
         </div>
       </section>
 
-      {/* ── Start CTA ──────────────────────────────────────────── */}
+      {/* Start CTA */}
       <section
         className="py-20 md:py-24 relative overflow-hidden"
-        style={{ background: '#f4f3ef', borderTop: '1px solid #ecebea' }}
+        style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
       >
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(ellipse 60% 70% at 50% 50%, rgba(177,177,175,0.05) 0%, transparent 65%)',
-          }}
-        />
         <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <h2
-            className="font-heading font-bold text-2xl md:text-3xl mb-4 leading-snug"
-            style={gradientText}
+            className="font-en font-bold text-2xl md:text-3xl mb-4 leading-snug"
+            style={{ color: '#1A1A2E', letterSpacing: '-.02em' }}
           >
             {t('startTitle')}
           </h2>
           <p
-            className="font-body text-base md:text-lg leading-relaxed mb-8"
-            style={{ color: '#6d6c6b' }}
+            className="font-ui text-base md:text-lg leading-relaxed mb-8"
+            style={{ color: 'rgba(26,26,46,0.60)' }}
           >
             {t('startDesc')}
           </p>
           <a
             href="#contact-form"
-            className="btn-primary inline-flex items-center gap-2.5 font-body font-semibold text-base px-9 py-4 rounded-full"
+            className="font-ui inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4"
+            style={{ background: '#7B2FBE', color: '#ffffff', borderRadius: '8px', textDecoration: 'none' }}
           >
             {t('startCta')}
             <ArrowRight size={16} />

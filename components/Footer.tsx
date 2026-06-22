@@ -18,16 +18,11 @@ export default async function Footer() {
     { labelKey: 'terms'   as const, href: '#' },
   ]
 
-  const isFa = locale === 'fa'
-
   return (
     <footer
       className="relative"
-      style={isFa
-        ? { background: '#eeefe9', borderTop: '1px solid #d2d3cc' }
-        : { background: '#f4f3ef', borderTop: '1px solid #ecebea' }}
+      style={{ background: '#1A1A2E', borderTop: '0.5px solid rgba(245,240,232,0.10)' }}
     >
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
         {/* Top: brand left, nav + CTA right */}
@@ -35,25 +30,22 @@ export default async function Footer() {
 
           {/* Brand */}
           <div className="max-w-xs">
-            <div
-              className="font-heading font-bold text-xl mb-2"
-              style={{ color: isFa ? '#111827' : '#272625' }}
-            >
+            <div className="font-ui font-bold text-xl mb-2" style={{ color: '#F5F0E8' }}>
               Maddy the Techie
             </div>
-            <p className="font-body text-sm leading-relaxed" style={{ color: isFa ? '#4d4f46' : '#6d6c6b' }}>
+            <p className="font-ui text-sm leading-relaxed" style={{ color: 'rgba(245,240,232,0.60)' }}>
               {t('brand')}
             </p>
           </div>
 
-          {/* Nav links + CTA */}
+          {/* Nav + CTA */}
           <div className="flex flex-col gap-3">
             <nav className="flex flex-wrap gap-x-6 gap-y-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="footer-nav-link font-body text-sm"
+                  className="footer-nav-link font-ui text-sm"
                 >
                   {t(link.labelKey)}
                 </Link>
@@ -61,8 +53,8 @@ export default async function Footer() {
             </nav>
             <Link
               href="/services#contact-form"
-              className="inline-flex items-center gap-1.5 font-body font-semibold text-sm self-start transition-opacity duration-200 hover:opacity-80"
-              style={{ color: isFa ? '#2f80fa' : '#272625' }}
+              className="inline-flex items-center gap-1.5 font-ui font-semibold text-sm self-start transition-opacity duration-200 hover:opacity-80"
+              style={{ color: '#F5F0E8' }}
             >
               {t('startProject')}
               <ArrowRight size={13} />
@@ -72,16 +64,16 @@ export default async function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="mb-6" style={{ height: '1px', background: isFa ? '#d2d3cc' : '#ecebea' }} />
+        <div className="mb-6" style={{ height: '1px', background: 'rgba(245,240,232,0.10)' }} />
 
-        {/* Bottom: copyright + disclaimer left, lang switcher + legal right */}
+        {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
 
           <div className="flex flex-col gap-1.5">
-            <p className="font-body text-xs" style={{ color: isFa ? '#65675e' : '#6d6c6b' }}>
+            <p className="font-ui text-xs" style={{ color: 'rgba(245,240,232,0.40)' }}>
               © <span dir="ltr">2026</span> Maddy the Techie
             </p>
-            <p className="font-body text-xs" style={{ color: isFa ? '#65675e' : '#6d6c6b' }}>
+            <p className="font-ui text-xs" style={{ color: 'rgba(245,240,232,0.40)' }}>
               {t('disclaimer')}
             </p>
           </div>
@@ -89,28 +81,26 @@ export default async function Footer() {
           <div className="flex items-center gap-5">
             {/* Language switcher */}
             <div
-              className="flex items-center gap-1 px-1 py-1"
-              style={isFa
-                ? { background: '#fdfdf8', border: '1px solid #d2d3cc', borderRadius: '4px' }
-                : { background: '#ffffff', border: '1px solid #ecebea', borderRadius: '9999px' }}
+              className="flex items-center gap-1 px-1 py-1 rounded-full"
+              style={{ background: 'rgba(123,47,190,0.15)', border: '0.5px solid rgba(123,47,190,0.30)' }}
             >
               <Link
                 href="/"
                 locale="en"
-                className="px-3 py-1 text-xs font-body font-semibold transition-all duration-200"
+                className="px-3 py-1 text-xs font-ui font-semibold transition-all duration-200 rounded-full"
                 style={locale === 'en'
-                  ? { background: isFa ? '#111827' : '#272625', color: '#ffffff', borderRadius: isFa ? '4px' : '9999px' }
-                  : { color: isFa ? '#65675e' : '#6d6c6b' }}
+                  ? { background: '#7B2FBE', color: '#ffffff' }
+                  : { color: 'rgba(245,240,232,0.60)' }}
               >
                 EN
               </Link>
               <Link
                 href="/"
                 locale="fa"
-                className="px-3 py-1 text-xs font-body font-semibold transition-all duration-200"
+                className="px-3 py-1 text-xs font-ui font-semibold transition-all duration-200 rounded-full"
                 style={locale === 'fa'
-                  ? { background: isFa ? '#111827' : '#272625', color: '#ffffff', borderRadius: isFa ? '4px' : '9999px' }
-                  : { color: isFa ? '#65675e' : '#6d6c6b' }}
+                  ? { background: '#7B2FBE', color: '#ffffff' }
+                  : { color: 'rgba(245,240,232,0.60)' }}
               >
                 FA
               </Link>
@@ -122,8 +112,8 @@ export default async function Footer() {
                 <a
                   key={link.labelKey}
                   href={link.href}
-                  className="font-body text-xs transition-colors duration-200"
-                  style={{ color: isFa ? '#65675e' : '#6d6c6b' }}
+                  className="font-ui text-xs transition-opacity duration-200 hover:opacity-70"
+                  style={{ color: 'rgba(245,240,232,0.40)' }}
                 >
                   {t(link.labelKey)}
                 </a>

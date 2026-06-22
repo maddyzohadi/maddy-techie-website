@@ -4,23 +4,17 @@ import StarterKitCTA from './StarterKitCTA'
 import HeroFa from './HeroFa'
 
 const stageNodes = [
-  {
-    no: '01', title: 'Capture',  sub: 'Every note, email & idea in one place', top: '236px', delay: '0s',
-    Icon: Inbox,        accent: { text: '#272625', bg: '#f4f3ef', border: 'rgba(177,177,175,0.20)', card: 'rgba(177,177,175,0.06)' },
-  },
-  {
-    no: '02', title: 'Organize', sub: 'AI sorts and labels it automatically',   top: '340px', delay: '.6s',
-    Icon: LayoutGrid,   accent: { text: '#272625', bg: '#f4f3ef', border: 'rgba(177,177,175,0.20)', card: 'rgba(177,177,175,0.06)' },
-  },
-  {
-    no: '03', title: 'Automate', sub: 'The repetitive busywork runs itself',    top: '444px', delay: '1.2s',
-    Icon: Zap,          accent: { text: '#272625', bg: '#f4f3ef', border: 'rgba(177,177,175,0.20)', card: 'rgba(177,177,175,0.06)' },
-  },
-  {
-    no: '04', title: 'Deliver',  sub: 'Polished and ready, every single time',  top: '548px', delay: '1.8s',
-    Icon: CheckCircle2, accent: { text: '#272625', bg: '#f4f3ef', border: 'rgba(177,177,175,0.20)', card: 'rgba(177,177,175,0.06)' },
-  },
+  { no: '01', title: 'Capture',  sub: 'Every note, email and idea in one place', top: '236px', delay: '0s',   Icon: Inbox },
+  { no: '02', title: 'Organize', sub: 'AI sorts and labels it automatically',     top: '340px', delay: '.6s',  Icon: LayoutGrid },
+  { no: '03', title: 'Automate', sub: 'The repetitive busywork runs itself',      top: '444px', delay: '1.2s', Icon: Zap },
+  { no: '04', title: 'Deliver',  sub: 'Polished and ready, every single time',   top: '548px', delay: '1.8s', Icon: CheckCircle2 },
 ]
+
+const cardStyle = {
+  background: 'rgba(123,47,190,0.12)',
+  border: '0.5px solid rgba(123,47,190,0.3)',
+  borderRadius: '12px',
+} as const
 
 export default async function Hero() {
   const locale = await getLocale()
@@ -32,98 +26,48 @@ export default async function Hero() {
     <section
       id="home"
       className="relative min-h-screen overflow-hidden flex flex-col justify-center"
-      style={{
-        background: [
-          'radial-gradient(1100px 700px at 78% 18%, rgba(177,177,175,0.06), transparent 60%)',
-          'radial-gradient(900px 640px at 92% 88%, rgba(177,177,175,0.04), transparent 60%)',
-          'radial-gradient(700px 520px at 8% 92%, rgba(177,177,175,0.04), transparent 65%)',
-          '#f4f3ef',
-        ].join(', '),
-      }}
+      style={{ background: '#1A1A2E' }}
     >
-      {/* Dot grid */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(rgba(177,177,175,.04) 1px, transparent 1px)',
-          backgroundSize: '34px 34px',
-          opacity: 0.6,
-        }}
-      />
-      {/* Subtle vignette */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(120% 120% at 50% 0%, transparent 55%, rgba(252,250,238,.80) 100%)' }}
-      />
-
       {/* Two-column layout */}
       <div className="relative z-10 w-full max-w-[1480px] mx-auto px-6 lg:px-14 pt-28 pb-20">
         <div className="flex items-center gap-10">
 
-          {/* ── Left column: copy ─────────────────────────── */}
+          {/* ── Left column: copy ───────────────────────── */}
           <div style={{ flex: '1 1 0', minWidth: 0, maxWidth: '600px' }}>
 
-            {/* Eyebrow pill */}
-            <div
-              className="inline-flex items-center gap-2.5 mb-8"
-              style={{
-                padding: '7px 14px',
-                border: '1px solid #ecebea',
-                borderRadius: '999px',
-                background: '#f4f3ef',
-              }}
-            >
-              <span
-                aria-hidden
-                style={{
-                  width: '6px', height: '6px', borderRadius: '50%',
-                  background: '#e8400d',
-                  boxShadow: '0 0 8px rgba(232,64,13,0.5)',
-                  flexShrink: 0, display: 'inline-block',
-                }}
-              />
-              <span
-                className="font-body"
-                style={{ fontSize: '12px', letterSpacing: '.16em', fontWeight: 600, color: '#272625' }}
-              >
-                {t('badge')}
-              </span>
+            {/* Eyebrow badge */}
+            <div className="badge mb-8" style={{ display: 'inline-flex' }}>
+              <span className="badge-dot" aria-hidden />
+              {t('badge')}
             </div>
 
-            {/* H1 */}
+            {/* H1 — one word in champagne */}
             <h1
-              className="font-heading font-bold mb-5"
+              className="font-en mb-5"
               style={{
                 fontSize: 'clamp(36px, 3.2vw, 54px)',
-                lineHeight: 1.04,
+                lineHeight: 1.08,
                 letterSpacing: '-.022em',
-                color: '#272625',
+                fontWeight: 600,
+                color: '#F5F0E8',
               }}
             >
               Use AI for the<br />
               <span style={{ whiteSpace: 'nowrap' }}>
                 work you{' '}
-                <em
-                  style={{
-                    fontStyle: 'italic',
-                    color: '#272625',
-                    WebkitTextFillColor: 'initial',
-                  }}
-                >
-                  already do
-                </em>
+                <em style={{ fontStyle: 'italic', color: '#E8B86D' }}>already</em>
+                {' '}do
               </span>
             </h1>
 
-            {/* Subtitle line */}
+            {/* Subtitle */}
             <p
-              className="font-heading font-semibold mb-6"
+              className="font-ui mb-6"
               style={{
-                fontSize: 'clamp(17px, 1.8vw, 24px)',
-                lineHeight: 1.3,
-                color: '#272625',
+                fontSize: 'clamp(17px, 1.8vw, 22px)',
+                lineHeight: 1.4,
+                fontWeight: 500,
+                color: '#F5F0E8',
               }}
             >
               {t('titleLine2')}
@@ -131,8 +75,8 @@ export default async function Hero() {
 
             {/* Body copy */}
             <p
-              className="font-body mb-10"
-              style={{ fontSize: '18px', lineHeight: 1.6, color: '#6d6c6b', maxWidth: '440px' }}
+              className="font-ui mb-10"
+              style={{ fontSize: '17px', lineHeight: 1.75, color: 'rgba(245,240,232,0.60)', maxWidth: '440px' }}
             >
               {t('subtitle')}
             </p>
@@ -142,17 +86,16 @@ export default async function Hero() {
               <StarterKitCTA />
               <a
                 href="#training"
-                className="font-body inline-flex items-center gap-2.5 cursor-pointer"
+                className="font-ui inline-flex items-center gap-2 cursor-pointer transition-opacity duration-150 hover:opacity-80"
                 style={{
-                  padding: '14px 22px',
-                  borderRadius: '13px',
-                  fontSize: '15.5px',
+                  padding: '10px 22px',
+                  borderRadius: '8px',
+                  fontSize: '14px',
                   fontWeight: 500,
-                  color: '#272625',
-                  border: '1px solid #ecebea',
-                  background: 'rgba(252,250,238,0.6)',
+                  color: 'rgba(245,240,232,0.80)',
+                  background: 'transparent',
+                  border: '0.5px solid rgba(245,240,232,0.25)',
                   textDecoration: 'none',
-                  transition: 'border-color .2s, background .2s',
                 }}
               >
                 {t('ctaSecondary')}
@@ -160,197 +103,107 @@ export default async function Hero() {
             </div>
 
             {/* Byline */}
-            <div className="flex items-center gap-3" style={{ color: '#6d6c6b', fontSize: '13.5px' }}>
+            <div className="flex items-center gap-3" style={{ fontSize: '13.5px', color: 'rgba(245,240,232,0.55)' }}>
               <div
                 aria-hidden
-                className="flex-shrink-0 flex items-center justify-center font-body font-semibold"
+                className="flex-shrink-0 flex items-center justify-center font-ui font-semibold"
                 style={{
                   width: '36px', height: '36px', borderRadius: '50%',
-                  background: '#f4f3ef',
-                  border: '1px solid #ecebea',
-                  fontSize: '14px', color: '#272625',
+                  background: 'rgba(123,47,190,0.12)',
+                  border: '0.5px solid rgba(123,47,190,0.3)',
+                  fontSize: '14px', color: '#F5F0E8',
                 }}
               >
                 M
               </div>
-              <span className="font-body" style={{ lineHeight: 1.5 }}>
-                AI doesn&apos;t have to be complicated<br />
-                <strong style={{ color: '#272625', fontWeight: 600 }}>Maddy</strong>
+              <span className="font-ui" style={{ lineHeight: 1.6 }}>
+                AI does not have to be complicated<br />
+                <strong style={{ color: '#E8B86D', fontWeight: 600 }}>Maddy</strong>
                 {' '}makes it simple for everyday work
               </span>
             </div>
           </div>
 
-          {/* ── Right column: transformation visual stage ─── */}
-          {/* Hidden below xl — shown xl+ (1280px+) */}
+          {/* ── Right column: transformation visual ─────── */}
           <div className="hidden xl:flex flex-shrink-0 justify-center items-center">
-            {/* Stage: 680×700, all children absolutely positioned */}
             <div style={{ position: 'relative', width: '680px', height: '700px' }}>
 
-              {/* Glow blobs */}
-              <div
-                aria-hidden
-                style={{
-                  position: 'absolute', top: '-60px', left: '90px',
-                  width: '380px', height: '380px', borderRadius: '50%',
-                  background: 'radial-gradient(circle, rgba(177,177,175,.12), transparent 65%)',
-                  filter: 'blur(70px)',
-                  animation: 'mhGlow 7s ease-in-out infinite',
-                }}
-              />
-              <div
-                aria-hidden
-                style={{
-                  position: 'absolute', bottom: '-40px', right: '30px',
-                  width: '340px', height: '340px', borderRadius: '50%',
-                  background: 'radial-gradient(circle, rgba(177,177,175,.08), transparent 65%)',
-                  filter: 'blur(75px)',
-                  animation: 'mhGlow 9s ease-in-out infinite .8s',
-                }}
-              />
-
-              {/* SVG connector */}
+              {/* SVG connector — solid stroke, no gradient */}
               <svg
                 aria-hidden
-                width="680"
-                height="700"
-                viewBox="0 0 680 700"
+                width="680" height="700" viewBox="0 0 680 700"
                 style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
               >
-                <defs>
-                  <linearGradient id="mhConnLine" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0"   stopColor="#272625" stopOpacity="0" />
-                    <stop offset="0.5" stopColor="#272625" stopOpacity=".45" />
-                    <stop offset="1"   stopColor="#272625" stopOpacity=".6" />
-                  </linearGradient>
-                </defs>
                 <path
                   d="M 200 200 C 300 250, 300 210, 360 258"
                   fill="none"
-                  stroke="url(#mhConnLine)"
+                  stroke="rgba(123,47,190,0.40)"
                   strokeWidth="1.5"
                   strokeDasharray="5 7"
                   style={{ animation: 'mhDash 6s linear infinite' }}
                 />
               </svg>
 
-              {/* ── Messy "before" cards ── */}
-              <div
-                aria-hidden
-                style={{
-                  '--rot': '-6deg',
-                  position: 'absolute', top: '24px', left: '24px',
-                  width: '148px', padding: '13px 15px',
-                  borderRadius: '11px',
-                  background: 'rgba(252,250,238,0.80)',
-                  border: '1px dashed #ecebea',
-                  backdropFilter: 'blur(3px)',
-                  transform: 'rotate(-6deg)',
-                  color: '#6d6c6b', fontSize: '13px',
-                  filter: 'blur(.2px)',
-                  animation: 'mhDrift 8s ease-in-out infinite',
-                } as React.CSSProperties}
-              >
-                <div style={{ height: '6px', width: '60%', background: '#ecebea', borderRadius: '3px', marginBottom: '8px' }} />
-                re: invoices?
-              </div>
+              {/* "Before" messy cards */}
+              {([
+                { rot: '-6deg', top: '24px',  left: '24px',  w: '148px', text: 're: invoices?',      bar: true,  delay: '0s',   blur: '.2px', pad: '13px 15px', fs: '13px' },
+                { rot:  '5deg', top: '62px',  left: '196px', w: '138px', text: 'call client back',   bar: false, delay: '.6s',  blur: '.3px', pad: '13px 15px', fs: '13px' },
+                { rot: '-3deg', top: '150px', left: '62px',  w: '156px', text: "where's that file",  bar: true,  delay: '1.1s', blur: '.2px', pad: '13px 15px', fs: '13px' },
+                { rot:  '9deg', top: '118px', left: '248px', w: '120px', text: 'follow up Mon',      bar: false, delay: '.3s',  blur: '.4px', pad: '11px 14px', fs: '12.5px' },
+              ] as const).map((c, i) => (
+                <div
+                  key={i}
+                  aria-hidden
+                  style={{
+                    '--rot': c.rot,
+                    position: 'absolute', top: c.top, left: c.left, width: c.w,
+                    padding: c.pad, borderRadius: '8px',
+                    background: 'rgba(26,26,46,0.80)',
+                    border: '0.5px dashed rgba(123,47,190,0.35)',
+                    backdropFilter: 'blur(3px)',
+                    transform: `rotate(${c.rot})`,
+                    color: 'rgba(245,240,232,0.50)', fontSize: c.fs,
+                    filter: `blur(${c.blur})`,
+                    animation: `mhDrift ${7.5 + i * 0.5}s ease-in-out infinite ${c.delay}`,
+                  } as React.CSSProperties}
+                >
+                  {c.bar && (
+                    <div style={{ height: '5px', width: '60%', background: 'rgba(123,47,190,0.35)', borderRadius: '3px', marginBottom: '7px' }} />
+                  )}
+                  {c.text}
+                </div>
+              ))}
 
-              <div
-                aria-hidden
-                style={{
-                  '--rot': '5deg',
-                  position: 'absolute', top: '62px', left: '196px',
-                  width: '138px', padding: '13px 15px',
-                  borderRadius: '11px',
-                  background: 'rgba(252,250,238,0.70)',
-                  border: '1px dashed #ecebea',
-                  backdropFilter: 'blur(3px)',
-                  transform: 'rotate(5deg)',
-                  color: '#6d6c6b', fontSize: '13px',
-                  filter: 'blur(.3px)',
-                  animation: 'mhDrift 9s ease-in-out infinite .6s',
-                } as React.CSSProperties}
-              >
-                call client back
-              </div>
-
-              <div
-                aria-hidden
-                style={{
-                  '--rot': '-3deg',
-                  position: 'absolute', top: '150px', left: '62px',
-                  width: '156px', padding: '13px 15px',
-                  borderRadius: '11px',
-                  background: 'rgba(252,250,238,0.75)',
-                  border: '1px dashed #ecebea',
-                  backdropFilter: 'blur(3px)',
-                  transform: 'rotate(-3deg)',
-                  color: '#6d6c6b', fontSize: '13px',
-                  filter: 'blur(.2px)',
-                  animation: 'mhDrift 7.5s ease-in-out infinite 1.1s',
-                } as React.CSSProperties}
-              >
-                <div style={{ height: '6px', width: '75%', background: '#ecebea', borderRadius: '3px', marginBottom: '8px' }} />
-                where&rsquo;s that file&hellip;
-              </div>
-
-              <div
-                aria-hidden
-                style={{
-                  '--rot': '9deg',
-                  position: 'absolute', top: '118px', left: '248px',
-                  width: '120px', padding: '11px 14px',
-                  borderRadius: '11px',
-                  background: 'rgba(252,250,238,0.65)',
-                  border: '1px dashed #ecebea',
-                  backdropFilter: 'blur(2px)',
-                  transform: 'rotate(9deg)',
-                  color: '#6d6c6b', fontSize: '12.5px',
-                  filter: 'blur(.4px)',
-                  animation: 'mhDrift 8.5s ease-in-out infinite .3s',
-                } as React.CSSProperties}
-              >
-                follow up Mon
-              </div>
-
-              {/* ── Workflow spine ── */}
+              {/* Workflow spine — solid */}
               <div
                 aria-hidden
                 style={{
                   position: 'absolute', left: '359px', top: '252px',
-                  width: '2px', height: '340px',
-                  background: 'linear-gradient(#272625, #272625)',
-                  borderRadius: '2px',
-                  opacity: 0.4,
+                  width: '1.5px', height: '340px',
+                  background: '#7B2FBE',
+                  borderRadius: '2px', opacity: 0.45,
                 }}
               />
 
-              {/* Traveling pulse dot */}
+              {/* Traveling pulse dot — no shadow */}
               <div
                 aria-hidden
                 style={{
                   position: 'absolute', left: '351px',
                   width: '18px', height: '18px', borderRadius: '50%',
-                  background: '#272625',
-                  boxShadow: '0 0 22px 6px rgba(177,177,175,.45)',
+                  background: '#7B2FBE',
                   animation: 'mhTravel 5s ease-in-out infinite',
                 }}
               />
 
-              {/* ── Transformation accent cards ── */}
-
-              {/* "12 tasks sorted" */}
+              {/* Accent card — tasks sorted */}
               <div
                 aria-hidden
                 style={{
                   position: 'absolute', top: '356px', left: '128px',
                   padding: '10px 14px',
-                  borderRadius: '12px',
-                  background: '#ffffff',
-                  border: '1px solid rgba(232,64,13,0.20)',
-                  backdropFilter: 'blur(6px)',
+                  ...cardStyle,
                   display: 'flex', alignItems: 'center', gap: '9px',
-                  boxShadow: '0 12px 30px -12px rgba(232,64,13,0.15)',
                   animation: 'mhFloatA 6s ease-in-out infinite',
                 }}
               >
@@ -358,30 +211,24 @@ export default async function Hero() {
                   aria-hidden
                   style={{
                     width: '18px', height: '18px', borderRadius: '6px',
-                    background: '#e8400d',
+                    background: '#7B2FBE',
                     display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                    color: '#ffffff', fontSize: '11px', fontWeight: 700, flexShrink: 0,
+                    color: '#fff', fontSize: '11px', fontWeight: 700, flexShrink: 0,
                   }}
-                >
-                  ✓
-                </span>
-                <span className="font-body whitespace-nowrap" style={{ fontSize: '13px', color: '#272625', fontWeight: 600 }}>
+                >✓</span>
+                <span className="font-ui whitespace-nowrap" style={{ fontSize: '13px', color: '#F5F0E8', fontWeight: 600 }}>
                   12 tasks sorted
                 </span>
               </div>
 
-              {/* "Draft ready to send" */}
+              {/* Accent card — draft ready */}
               <div
                 aria-hidden
                 style={{
                   position: 'absolute', top: '498px', left: '104px',
                   padding: '10px 14px',
-                  borderRadius: '12px',
-                  background: '#f4f3ef',
-                  border: '1px solid #ecebea',
-                  backdropFilter: 'blur(6px)',
+                  ...cardStyle,
                   display: 'flex', alignItems: 'center', gap: '9px',
-                  boxShadow: '0 4px 16px rgba(177,177,175,0.10)',
                   animation: 'mhFloatB 7s ease-in-out infinite .9s',
                 }}
               >
@@ -389,73 +236,64 @@ export default async function Hero() {
                   aria-hidden
                   style={{
                     width: '18px', height: '18px', borderRadius: '6px',
-                    background: '#ffffff',
-                    border: '1px solid #ecebea',
+                    background: 'rgba(232,184,109,0.15)',
+                    border: '0.5px solid rgba(232,184,109,0.40)',
                     display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                    color: '#272625', fontSize: '11px', fontWeight: 700, flexShrink: 0,
+                    color: '#E8B86D', fontSize: '11px', fontWeight: 700, flexShrink: 0,
                   }}
-                >
-                  ↗
-                </span>
-                <span className="font-body whitespace-nowrap" style={{ fontSize: '13px', color: '#272625', fontWeight: 600 }}>
+                >↗</span>
+                <span className="font-ui whitespace-nowrap" style={{ fontSize: '13px', color: '#F5F0E8', fontWeight: 600 }}>
                   Draft ready to send
                 </span>
               </div>
 
-              {/* ── Organized workflow nodes ── */}
+              {/* Stage nodes */}
               {stageNodes.map((node) => {
                 const NodeIcon = node.Icon
                 return (
-                  <div
-                    key={node.no}
-                    style={{ position: 'absolute', left: '392px', width: '280px', top: node.top }}
-                  >
-                    {/* Icon badge — sits on the spine */}
+                  <div key={node.no} style={{ position: 'absolute', left: '392px', width: '280px', top: node.top }}>
+                    {/* Spine badge */}
                     <div
                       aria-hidden
                       style={{
                         position: 'absolute', left: '-41px', top: '18px',
-                        width: '34px', height: '34px', borderRadius: '11px',
-                        background: node.accent.bg,
-                        border: `1px solid ${node.accent.border}`,
+                        width: '34px', height: '34px',
+                        ...cardStyle,
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         animation: 'mhRing 4s ease-in-out infinite',
                       }}
                     >
-                      <NodeIcon size={15} style={{ color: node.accent.text }} />
+                      <NodeIcon size={15} style={{ color: '#E8B86D' }} />
                     </div>
                     {/* Card */}
                     <div
                       style={{
-                        padding: '13px 16px', borderRadius: '15px',
-                        background: '#FFFFFF',
-                        border: `1px solid ${node.accent.border}`,
-                        boxShadow: `0 4px 24px rgba(177,177,175,0.07)`,
+                        padding: '13px 16px',
+                        ...cardStyle,
                         display: 'flex', alignItems: 'center', gap: '12px',
                         animation: `mhFloatA 7s ease-in-out infinite ${node.delay}`,
                       }}
                     >
-                      {/* Icon chip */}
                       <div
                         aria-hidden
                         style={{
-                          width: '38px', height: '38px', borderRadius: '11px',
-                          background: node.accent.bg,
-                          border: `1px solid ${node.accent.border}`,
+                          width: '38px', height: '38px',
+                          ...cardStyle,
+                          borderRadius: '8px',
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
                           flexShrink: 0,
                         }}
                       >
-                        <NodeIcon size={18} style={{ color: node.accent.text }} />
+                        <NodeIcon size={18} style={{ color: '#E8B86D' }} />
                       </div>
                       <div>
                         <div
-                          className="font-body"
-                          style={{ fontSize: '15px', fontWeight: 700, color: '#272625', letterSpacing: '-.01em', marginBottom: '2px' }}
+                          className="font-ui"
+                          style={{ fontSize: '15px', fontWeight: 700, color: '#F5F0E8', letterSpacing: '-.01em', marginBottom: '2px' }}
                         >
                           {node.title}
                         </div>
-                        <div className="font-body" style={{ fontSize: '12.5px', color: '#6d6c6b', lineHeight: 1.35 }}>
+                        <div className="font-ui" style={{ fontSize: '12.5px', color: 'rgba(245,240,232,0.55)', lineHeight: 1.35 }}>
                           {node.sub}
                         </div>
                       </div>
@@ -466,17 +304,9 @@ export default async function Hero() {
 
             </div>
           </div>
-          {/* End right column */}
 
         </div>
       </div>
-
-      {/* Bottom fade into next section */}
-      <div
-        aria-hidden
-        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-        style={{ background: 'linear-gradient(to top, #f4f3ef, transparent)' }}
-      />
     </section>
   )
 }

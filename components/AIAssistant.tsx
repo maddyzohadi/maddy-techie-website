@@ -4,31 +4,12 @@ import { useState, useRef, useEffect } from 'react'
 import { MessageCircle, X, Send, Bot, User, Loader2 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
-// ── Types ──────────────────────────────────────────────────────────────────
 interface Message {
   id: string
   role: 'user' | 'assistant'
   content: string
 }
 
-// ── Design tokens ──────────────────────────────────────────────────────────
-const C = {
-  panelBg:   '#FFFFFF',
-  headerBg:  '#f4f3ef',
-  deepBg:    '#f4f3ef',
-  surface:   '#f4f3ef',
-  pillBg:    '#f4f3ef',
-  pillHover: '#f4f3ef',
-  coral:     '#272625',
-  navy:      '#272625',
-  text:      '#272625',
-  muted:     '#6d6c6b',
-  hint:      '#6d6c6b',
-  online:    '#34D399',
-  border:    '#ecebea',
-} as const
-
-// ── API call ───────────────────────────────────────────────────────────────
 async function sendMessageToApi(
   text: string,
   history: { role: 'user' | 'assistant'; content: string }[],
@@ -44,7 +25,6 @@ async function sendMessageToApi(
   return data.reply as string
 }
 
-// ── Quick-pill sub-component ───────────────────────────────────────────────
 function QuickPill({ label, onSelect }: { label: string; onSelect: (t: string) => void }) {
   const [hovered, setHovered] = useState(false)
   return (
@@ -53,11 +33,11 @@ function QuickPill({ label, onSelect }: { label: string; onSelect: (t: string) =
       onClick={() => onSelect(label)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="text-left font-body text-xs rounded-xl px-3 py-2 transition-all duration-150 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-[#272625]"
+      className="text-left font-ui text-xs rounded-xl px-3 py-2 transition-all duration-150 cursor-pointer"
       style={{
-        background: hovered ? C.pillHover : C.pillBg,
-        border: `1px solid ${hovered ? 'rgba(177,177,175,0.30)' : C.border}`,
-        color: hovered ? C.text : C.muted,
+        background: hovered ? 'rgba(123,47,190,0.20)' : 'rgba(123,47,190,0.12)',
+        border: `0.5px solid ${hovered ? 'rgba(123,47,190,0.50)' : 'rgba(123,47,190,0.30)'}`,
+        color: hovered ? '#F5F0E8' : 'rgba(245,240,232,0.70)',
       }}
     >
       {label}
@@ -65,7 +45,6 @@ function QuickPill({ label, onSelect }: { label: string; onSelect: (t: string) =
   )
 }
 
-// ── Main component ─────────────────────────────────────────────────────────
 export default function AIAssistant() {
   const t = useTranslations('aiAssistant')
 
@@ -136,7 +115,7 @@ export default function AIAssistant() {
 
   return (
     <>
-      {/* ── Chat panel ──────────────────────────────────────────────────── */}
+      {/* Chat panel */}
       <div
         role="dialog"
         aria-label={t('ariaLabel')}
@@ -151,37 +130,35 @@ export default function AIAssistant() {
         <div
           className="flex flex-col rounded-2xl overflow-hidden"
           style={{
-            background: C.panelBg,
-            border: `1px solid ${C.border}`,
+            background: '#1A1A2E',
+            border: '0.5px solid rgba(245,240,232,0.12)',
             maxHeight: 'min(600px, 82vh)',
-            boxShadow: '0 12px 40px rgba(177,177,175,0.12), 0 2px 8px rgba(177,177,175,0.06)',
           }}
         >
-
           {/* Header */}
           <div
             className="flex items-center gap-3 px-5 py-4 flex-shrink-0"
-            style={{ background: C.headerBg, borderBottom: `1px solid ${C.border}` }}
+            style={{
+              background: 'rgba(123,47,190,0.15)',
+              borderBottom: '0.5px solid rgba(245,240,232,0.10)',
+            }}
           >
             <div
               className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
               style={{
-                background: '#f4f3ef',
-                border: '1px solid rgba(177,177,175,0.28)',
+                background: 'rgba(123,47,190,0.20)',
+                border: '0.5px solid rgba(123,47,190,0.40)',
               }}
             >
-              <Bot size={17} style={{ color: C.coral }} />
+              <Bot size={17} style={{ color: '#F5F0E8' }} />
             </div>
 
             <div className="flex-1 min-w-0">
-              <p className="font-heading font-semibold text-sm leading-tight" style={{ color: C.text }}>
+              <p className="font-en font-semibold text-sm leading-tight" style={{ color: '#F5F0E8' }}>
                 Maddy AI Assistant
               </p>
-              <p className="font-body text-xs flex items-center gap-1.5 mt-0.5" style={{ color: C.muted }}>
-                <span
-                  className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                  style={{ background: C.online, boxShadow: `0 0 6px ${C.online}80` }}
-                />
+              <p className="font-ui text-xs flex items-center gap-1.5 mt-0.5" style={{ color: 'rgba(245,240,232,0.60)' }}>
+                <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: '#34D399' }} />
                 {t('online')}
               </p>
             </div>
@@ -190,10 +167,10 @@ export default function AIAssistant() {
               type="button"
               onClick={close}
               aria-label={t('ariaClose')}
-              className="p-1.5 rounded-lg transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#272625] focus-visible:outline-offset-2"
-              style={{ color: C.hint }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = C.muted)}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = C.hint)}
+              className="p-1.5 rounded-lg transition-colors"
+              style={{ color: 'rgba(245,240,232,0.60)' }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#F5F0E8')}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(245,240,232,0.60)')}
             >
               <X size={16} />
             </button>
@@ -202,46 +179,52 @@ export default function AIAssistant() {
           {/* Disclaimer strip */}
           <div
             className="px-4 py-2.5 flex-shrink-0"
-            style={{ background: C.deepBg, borderBottom: `1px solid ${C.border}` }}
+            style={{
+              background: 'rgba(123,47,190,0.08)',
+              borderBottom: '0.5px solid rgba(245,240,232,0.08)',
+            }}
           >
-            <p className="font-body text-xs text-center" style={{ color: C.hint }}>
+            <p className="font-ui text-xs text-center" style={{ color: 'rgba(245,240,232,0.50)' }}>
               {t('disclaimer')}{' '}
-              <span style={{ color: `${C.coral}90` }}>{t('disclaimerNote')}</span>
+              <span style={{ color: 'rgba(245,240,232,0.40)' }}>{t('disclaimerNote')}</span>
             </p>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto chat-scroll p-4 space-y-4" style={{ minHeight: 0, background: '#FFFFFF' }}>
+          <div
+            className="flex-1 overflow-y-auto chat-scroll p-4 space-y-4"
+            style={{ minHeight: 0, background: '#1A1A2E' }}
+          >
             {messages.map((msg) => (
               <div
                 key={msg.id}
                 className={`flex gap-2.5 animate-fade-in ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
               >
-                {/* Avatar */}
                 <div
                   className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center mt-0.5"
                   style={
                     msg.role === 'assistant'
-                      ? { background: '#f4f3ef', border: '1px solid rgba(177,177,175,0.26)' }
-                      : { background: '#f4f3ef', border: '1px solid #ecebea' }
+                      ? { background: 'rgba(123,47,190,0.20)', border: '0.5px solid rgba(123,47,190,0.40)' }
+                      : { background: 'rgba(245,240,232,0.08)', border: '0.5px solid rgba(245,240,232,0.15)' }
                   }
                 >
                   {msg.role === 'assistant'
-                    ? <Bot  size={13} style={{ color: C.coral }} />
-                    : <User size={13} style={{ color: C.navy }} />}
+                    ? <Bot  size={13} style={{ color: '#F5F0E8' }} />
+                    : <User size={13} style={{ color: 'rgba(245,240,232,0.80)' }} />}
                 </div>
 
-                {/* Bubble */}
                 <div
-                  className="max-w-[80%] font-body text-sm leading-relaxed whitespace-pre-line"
+                  className="max-w-[80%] font-ui text-sm leading-relaxed whitespace-pre-line"
                   style={{
                     padding: '10px 14px',
-                    color: C.text,
+                    color: '#F5F0E8',
                     background: msg.role === 'assistant'
-                      ? '#f4f3ef'
-                      : '#f4f3ef',
-                    border: `1px solid ${
-                      msg.role === 'assistant' ? C.border : 'rgba(177,177,175,0.22)'
+                      ? 'rgba(123,47,190,0.12)'
+                      : 'rgba(245,240,232,0.08)',
+                    border: `0.5px solid ${
+                      msg.role === 'assistant'
+                        ? 'rgba(123,47,190,0.30)'
+                        : 'rgba(245,240,232,0.15)'
                     }`,
                     borderRadius: msg.role === 'assistant'
                       ? '18px 18px 18px 4px'
@@ -253,21 +236,20 @@ export default function AIAssistant() {
               </div>
             ))}
 
-            {/* Typing indicator */}
             {isLoading && (
               <div className="flex gap-2.5 animate-fade-in">
                 <div
                   className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center mt-0.5"
-                  style={{ background: '#f4f3ef', border: '1px solid rgba(177,177,175,0.26)' }}
+                  style={{ background: 'rgba(123,47,190,0.20)', border: '0.5px solid rgba(123,47,190,0.40)' }}
                 >
-                  <Bot size={13} style={{ color: C.coral }} />
+                  <Bot size={13} style={{ color: '#F5F0E8' }} />
                 </div>
                 <div
                   className="flex items-center gap-1.5"
                   style={{
                     padding: '12px 16px',
-                    background: '#f4f3ef',
-                    border: `1px solid ${C.border}`,
+                    background: 'rgba(123,47,190,0.12)',
+                    border: '0.5px solid rgba(123,47,190,0.30)',
                     borderRadius: '18px 18px 18px 4px',
                   }}
                 >
@@ -275,7 +257,7 @@ export default function AIAssistant() {
                     <span
                       key={delay}
                       className="w-1.5 h-1.5 rounded-full motion-safe:animate-bounce"
-                      style={{ background: C.muted, opacity: 0.7, animationDelay: `${delay}ms` }}
+                      style={{ background: 'rgba(245,240,232,0.60)', animationDelay: `${delay}ms` }}
                     />
                   ))}
                 </div>
@@ -289,9 +271,9 @@ export default function AIAssistant() {
           {messages.length === 1 && !isLoading && (
             <div
               className="px-4 pb-3 pt-2.5 flex-shrink-0"
-              style={{ borderTop: `1px solid ${C.border}`, background: '#FFFFFF' }}
+              style={{ borderTop: '0.5px solid rgba(245,240,232,0.08)', background: '#1A1A2E' }}
             >
-              <p className="font-body text-xs mb-2.5 px-0.5" style={{ color: C.hint }}>
+              <p className="font-ui text-xs mb-2.5 px-0.5" style={{ color: 'rgba(245,240,232,0.50)' }}>
                 {t('quickStart')}
               </p>
               <div className="flex flex-col gap-1.5">
@@ -306,7 +288,10 @@ export default function AIAssistant() {
           <form
             onSubmit={(e) => { e.preventDefault(); sendMessage(input) }}
             className="flex items-center gap-2 px-3 py-3 flex-shrink-0"
-            style={{ background: C.deepBg, borderTop: `1px solid ${C.border}` }}
+            style={{
+              background: 'rgba(123,47,190,0.08)',
+              borderTop: '0.5px solid rgba(245,240,232,0.08)',
+            }}
           >
             <input
               ref={inputRef}
@@ -316,54 +301,50 @@ export default function AIAssistant() {
               placeholder={t('placeholder')}
               disabled={isLoading}
               aria-label={t('placeholder')}
-              className="flex-1 font-body text-sm rounded-xl px-4 py-2.5 transition-all disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#272625] focus-visible:outline-offset-1 placeholder:opacity-60"
+              className="flex-1 font-ui text-sm rounded-xl px-4 py-2.5 transition-all disabled:opacity-50 placeholder:opacity-40"
               style={{
-                background: '#FFFFFF',
-                border: `1px solid ${C.border}`,
-                color: C.text,
-                caretColor: C.coral,
+                background: 'rgba(245,240,232,0.06)',
+                border: '0.5px solid rgba(245,240,232,0.15)',
+                color: '#F5F0E8',
+                caretColor: '#F5F0E8',
+                outline: 'none',
               }}
             />
             <button
               type="submit"
               disabled={!input.trim() || isLoading}
               aria-label="Send message"
-              className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#272625] focus-visible:outline-offset-2"
-              style={{ background: C.coral }}
+              className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed"
+              style={{ background: '#7B2FBE' }}
             >
               {isLoading
                 ? <Loader2 size={16} className="text-white animate-spin" />
                 : <Send    size={16} className="text-white" />}
             </button>
           </form>
-
         </div>
       </div>
 
-      {/* ── Launcher button ─────────────────────────────────────────────── */}
+      {/* Launcher button */}
       <button
         type="button"
         onClick={toggle}
         aria-label={isOpen ? t('ariaClose') : t('ariaOpen')}
         aria-expanded={isOpen}
-        className="fixed bottom-5 right-4 sm:right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#272625] focus-visible:outline-offset-2"
+        className="fixed bottom-5 right-4 sm:right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300"
         style={{
-          background: isOpen ? '#f4f3ef' : C.coral,
-          border: `1px solid ${isOpen ? C.border : 'transparent'}`,
-          boxShadow: isOpen
-            ? '0 4px 16px rgba(177,177,175,0.10)'
-            : '0 8px 28px rgba(177,177,175,0.40), 0 2px 8px rgba(177,177,175,0.10)',
+          background: isOpen ? 'rgba(123,47,190,0.15)' : '#7B2FBE',
+          border: isOpen ? '0.5px solid rgba(123,47,190,0.40)' : 'none',
         }}
       >
-        {/* Unread badge */}
         {hasNew && !isOpen && (
           <span
             className="absolute -top-1 -right-1 w-4 h-4 rounded-full border-2 motion-safe:animate-bounce"
-            style={{ background: C.coral, borderColor: '#f4f3ef' }}
+            style={{ background: '#7B2FBE', borderColor: '#1A1A2E' }}
           />
         )}
         {isOpen
-          ? <X size={22} style={{ color: C.muted }} />
+          ? <X size={22} style={{ color: 'rgba(245,240,232,0.70)' }} />
           : <MessageCircle size={24} className="text-white" />}
       </button>
 
@@ -373,12 +354,11 @@ export default function AIAssistant() {
           <div
             className="rounded-full px-3 py-1.5"
             style={{
-              background: '#FFFFFF',
-              border: `1px solid ${C.border}`,
-              boxShadow: '0 4px 16px rgba(177,177,175,0.08)',
+              background: '#1A1A2E',
+              border: '0.5px solid rgba(245,240,232,0.15)',
             }}
           >
-            <span className="font-body text-xs whitespace-nowrap" style={{ color: C.muted }}>
+            <span className="font-ui text-xs whitespace-nowrap" style={{ color: 'rgba(245,240,232,0.60)' }}>
               {t('askMaddy')}
             </span>
           </div>

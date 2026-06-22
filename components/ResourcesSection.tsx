@@ -142,47 +142,20 @@ const FA_CATEGORY_LABELS: Record<string, string> = {
   'Client Work': 'کار مشتری',
 }
 
-const ACCENTS: Record<string, { color: string; glow: string; soft: string }> = {
-  'AI Prompts':    { color: '#272625', glow: 'rgba(177,177,175,.35)',  soft: 'rgba(177,177,175,.10)'  },
-  'Google Sheets': { color: '#272625', glow: 'rgba(177,177,175,.30)',   soft: 'rgba(177,177,175,.07)'   },
-  'Content':       { color: '#272625', glow: 'rgba(177,177,175,.35)',  soft: 'rgba(177,177,175,.10)'  },
-  'Reports':       { color: '#272625', glow: 'rgba(42,54,86,.30)',   soft: 'rgba(42,54,86,.07)'   },
-  'Client Work':   { color: '#272625', glow: 'rgba(177,177,175,.35)',  soft: 'rgba(177,177,175,.10)'  },
-}
-
 // ── Thumbnail ──────────────────────────────────────────────────────────────
-function Thumbnail({ accent }: { accent: { color: string; glow: string; soft: string } }) {
+function Thumbnail() {
   return (
     <div
       style={{
         height: '152px',
-        borderRadius: '15px',
+        borderRadius: '12px',
         overflow: 'hidden',
         position: 'relative',
-        background: `linear-gradient(158deg, ${accent.soft}, rgba(252,250,238,.50))`,
-        border: '1px solid #ecebea',
+        background: 'rgba(123,47,190,0.06)',
+        border: '0.5px solid rgba(123,47,190,0.20)',
         flexShrink: 0,
       }}
     >
-      <div
-        aria-hidden
-        style={{
-          position: 'absolute', inset: 0,
-          backgroundImage: 'radial-gradient(rgba(177,177,175,.04) 1px, transparent 1px)',
-          backgroundSize: '18px 18px',
-        }}
-      />
-      <div
-        aria-hidden
-        style={{
-          position: 'absolute',
-          top: '63px',
-          left: '40px',
-          right: '40px',
-          height: '1px',
-          background: `linear-gradient(90deg, transparent, ${accent.color}55, transparent)`,
-        }}
-      />
       <div
         aria-hidden
         style={{
@@ -195,14 +168,9 @@ function Thumbnail({ accent }: { accent: { color: string; glow: string; soft: st
           gap: '38px',
         }}
       >
-        <div style={{ width: '11px', height: '11px', borderRadius: '50%', background: accent.color, opacity: 0.55 }} />
-        <div style={{
-          width: '18px', height: '18px', borderRadius: '50%',
-          background: accent.color,
-          boxShadow: `0 0 12px 4px ${accent.glow}`,
-          animation: 'mtPulse 3.4s ease-in-out infinite',
-        }} />
-        <div style={{ width: '11px', height: '11px', borderRadius: '50%', background: accent.color, opacity: 0.55 }} />
+        <div style={{ width: '11px', height: '11px', borderRadius: '50%', background: 'rgba(123,47,190,0.30)' }} />
+        <div style={{ width: '18px', height: '18px', borderRadius: '50%', background: 'rgba(123,47,190,0.50)', border: '0.5px solid rgba(123,47,190,0.60)' }} />
+        <div style={{ width: '11px', height: '11px', borderRadius: '50%', background: 'rgba(123,47,190,0.30)' }} />
       </div>
       <div
         aria-hidden
@@ -217,14 +185,14 @@ function Thumbnail({ accent }: { accent: { color: string; glow: string; soft: st
             key={i}
             style={{
               flex: 1, height: '28px',
-              borderRadius: '9px',
+              borderRadius: '8px',
               background: '#FFFFFF',
-              border: '1px solid #ecebea',
+              border: '0.5px solid rgba(123,47,190,0.20)',
               padding: '0 10px',
               display: 'flex', alignItems: 'center',
             }}
           >
-            <div style={{ width: c.w, height: '3px', borderRadius: '2px', background: '#ecebea' }} />
+            <div style={{ width: c.w, height: '3px', borderRadius: '2px', background: 'rgba(123,47,190,0.20)' }} />
           </div>
         ))}
       </div>
@@ -242,7 +210,6 @@ function PreviewModal({
   isFa: boolean
   onClose: () => void
 }) {
-  const accent = ACCENTS[tmpl.cat]
   const tierLabel = tmpl.tier === 'Free'
     ? (isFa ? 'رایگان' : 'FREE')
     : (isFa ? 'ویژه' : 'PREMIUM')
@@ -258,26 +225,22 @@ function PreviewModal({
         padding: '16px',
       }}
     >
-      {/* Backdrop */}
       <div
         aria-hidden
         onClick={onClose}
-        style={{ position: 'absolute', inset: 0, background: 'rgba(177,177,175,0.55)', backdropFilter: 'blur(4px)' }}
+        style={{ position: 'absolute', inset: 0, background: 'rgba(26,26,46,0.75)', backdropFilter: 'blur(4px)' }}
       />
 
-      {/* Modal panel */}
       <div
         style={{
           position: 'relative', zIndex: 1,
           background: '#FFFFFF',
-          border: '1px solid #ecebea',
-          borderRadius: '24px',
+          border: '0.5px solid rgba(123,47,190,0.30)',
+          borderRadius: '16px',
           padding: 'clamp(28px, 5vw, 44px)',
           maxWidth: '520px', width: '100%',
-          boxShadow: '0 32px 80px -16px rgba(177,177,175,0.22)',
         }}
       >
-        {/* Close */}
         <button
           onClick={onClose}
           aria-label={isFa ? 'بستن' : 'Close'}
@@ -285,81 +248,71 @@ function PreviewModal({
             position: 'absolute', top: '16px', right: '16px',
             width: '36px', height: '36px', borderRadius: '50%',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            background: '#f4f3ef', border: '1px solid #ecebea',
-            cursor: 'pointer', color: '#6d6c6b',
+            background: 'rgba(123,47,190,0.08)',
+            border: '0.5px solid rgba(123,47,190,0.25)',
+            cursor: 'pointer', color: '#1A1A2E',
           }}
         >
           <X size={16} />
         </button>
 
-        {/* Tier badge */}
         <span
-          className="font-body font-bold"
+          className="font-ui font-bold"
           style={{
             display: 'inline-block',
             marginBottom: '14px',
             padding: '5px 13px',
-            borderRadius: '999px',
+            borderRadius: '8px',
             fontSize: '11px',
             letterSpacing: '.05em',
             ...(tmpl.tier === 'Premium'
-              ? {
-                  background: 'linear-gradient(135deg, #272625, #272625)',
-                  color: '#FFFFFF',
-                }
-              : {
-                  background: '#f4f3ef',
-                  border: '1px solid rgba(177,177,175,0.25)',
-                  color: '#272625',
-                }),
+              ? { background: '#7B2FBE', color: '#FFFFFF' }
+              : { background: 'rgba(123,47,190,0.10)', border: '0.5px solid rgba(123,47,190,0.25)', color: '#1A1A2E' }),
           }}
         >
           {tierLabel}
         </span>
 
-        {/* Name */}
         <h3
-          className="font-heading font-bold"
-          style={{ fontSize: 'clamp(20px, 4vw, 26px)', color: '#272625', marginBottom: '8px', lineHeight: 1.2 }}
+          className="font-en font-bold"
+          style={{ fontSize: 'clamp(20px, 4vw, 26px)', color: '#1A1A2E', marginBottom: '8px', lineHeight: 1.2 }}
         >
           {tmpl.name}
         </h3>
 
-        {/* One-liner */}
         <p
-          className="font-body"
-          style={{ fontSize: '16px', color: '#6d6c6b', lineHeight: 1.55, marginBottom: '16px' }}
+          className={`${isFa ? 'font-fa' : 'font-ui'}`}
+          style={{ fontSize: '16px', color: 'rgba(26,26,46,0.60)', lineHeight: 1.55, marginBottom: '16px' }}
         >
           {tmpl.desc}
         </p>
 
-        {/* Divider */}
-        <div style={{ height: '1px', background: '#ecebea', marginBottom: '16px' }} />
+        <div style={{ height: '0.5px', background: 'rgba(123,47,190,0.15)', marginBottom: '16px' }} />
 
-        {/* What's inside */}
         <p
-          className="font-body font-semibold"
-          style={{ fontSize: '12px', letterSpacing: '.18em', textTransform: 'uppercase', color: '#6d6c6b', marginBottom: '10px' }}
+          className="font-ui font-semibold"
+          style={{ fontSize: '12px', letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(26,26,46,0.50)', marginBottom: '10px' }}
         >
           {isFa ? 'چه شامل می‌شود' : "What's inside"}
         </p>
         <p
-          className="font-body"
-          style={{ fontSize: '15px', color: '#6d6c6b', lineHeight: 1.6, marginBottom: '22px' }}
+          className={`${isFa ? 'font-fa' : 'font-ui'}`}
+          style={{ fontSize: '15px', color: 'rgba(26,26,46,0.60)', lineHeight: 1.6, marginBottom: '22px' }}
         >
           {tmpl.preview}
         </p>
 
-        {/* Tools */}
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '24px' }}>
           {tmpl.tools.map((tool) => (
             <span
               key={tool}
-              className="font-body"
+              className="font-ui"
               style={{
                 padding: '5px 11px', borderRadius: '7px',
                 fontSize: '12px', fontWeight: 500,
-                color: '#6d6c6b', background: '#f4f3ef', border: '1px solid #ecebea',
+                color: 'rgba(26,26,46,0.60)',
+                background: 'rgba(123,47,190,0.08)',
+                border: '0.5px solid rgba(123,47,190,0.25)',
               }}
             >
               {tool}
@@ -367,17 +320,15 @@ function PreviewModal({
           ))}
         </div>
 
-        {/* CTA */}
         <a
           href="#contact"
           onClick={onClose}
-          className="font-body font-bold inline-flex items-center justify-center gap-2"
+          className="font-ui font-bold inline-flex items-center justify-center gap-2"
           style={{
             width: '100%', padding: '14px 24px',
-            borderRadius: '12px', fontSize: '15px',
+            borderRadius: '8px', fontSize: '15px',
             color: '#FFFFFF', textDecoration: 'none',
-            background: 'linear-gradient(135deg, #272625, #272625)',
-            boxShadow: '0 10px 28px -8px rgba(177,177,175,.42)',
+            background: '#7B2FBE',
           }}
         >
           {isFa ? 'دریافت قالب' : 'Get template'}
@@ -408,55 +359,39 @@ export default function ResourcesSection() {
 
   return (
     <>
-      <section id="templates" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#FFFFFF' }}>
-        <div className="section-divider absolute top-0 left-0 right-0" />
-
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse 70% 55% at 15% 50%, rgba(177,177,175,.04) 0%, transparent 60%)' }}
-        />
-
+      <section
+        id="templates"
+        className="py-24 md:py-32 relative scroll-mt-24"
+        style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
+      >
         <div className="relative z-10 max-w-[1160px] mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* ── Intro ──────────────────────────────────── */}
           <div className="text-center mb-12">
             <p
-              className="font-body font-bold mb-5"
-              style={{ fontSize: '13px', letterSpacing: '.22em', color: '#272625', textTransform: 'uppercase' }}
+              className="font-ui font-bold mb-5"
+              style={{ fontSize: '13px', letterSpacing: '.22em', color: 'rgba(26,26,46,0.50)', textTransform: 'uppercase' }}
             >
               {isFa ? 'قالب‌ها' : 'TEMPLATES'}
             </p>
             <h2
-              className="font-heading font-extrabold mx-auto mb-5"
+              className={`${isFa ? 'font-fa' : 'font-en'} font-extrabold mx-auto mb-5`}
               style={{
                 fontSize: 'clamp(36px, 5.4vw, 62px)',
                 lineHeight: 1.04,
                 letterSpacing: '-.025em',
-                color: '#272625',
+                color: '#1A1A2E',
                 maxWidth: isFa ? '20ch' : '14ch',
               }}
             >
               {isFa ? (
-                <>
-                  با یک سیستم شروع کن،{' '}
-                  <span style={{ color: '#272625' }}>
-                    نه یک صفحه‌ی خالی
-                  </span>
-                </>
+                <>با یک سیستم شروع کن، <span style={{ color: 'rgba(26,26,46,0.60)' }}>نه یک صفحه‌ی خالی</span></>
               ) : (
-                <>
-                  Start with{' '}
-                  <span style={{ color: '#272625' }}>
-                    a system
-                  </span>
-                  , not a blank page
-                </>
+                <>Start with <span style={{ color: 'rgba(26,26,46,0.60)' }}>a system</span>, not a blank page</>
               )}
             </h2>
             <p
-              className="font-body mx-auto"
-              style={{ fontSize: '18.5px', lineHeight: 1.55, color: '#6d6c6b', maxWidth: '600px' }}
+              className={`${isFa ? 'font-fa' : 'font-ui'} mx-auto`}
+              style={{ fontSize: '18.5px', lineHeight: 1.55, color: 'rgba(26,26,46,0.60)', maxWidth: '600px' }}
             >
               {isFa
                 ? 'گردش‌کارهای AI و بدون‌کد آماده که می‌توانی همین امروز بگیری، تنظیم کنی و اجرا کنی. ساخته‌شده برای کار واقعی.'
@@ -464,26 +399,21 @@ export default function ResourcesSection() {
             </p>
           </div>
 
-          {/* ── Filter pills ───────────────────────────── */}
-          <div
-            style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', marginBottom: '14px' }}
-          >
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', marginBottom: '14px' }}>
             {CATEGORIES.map((cat) => {
               const active = filter === cat
               return (
                 <button
                   key={cat}
                   onClick={() => setFilter(cat)}
-                  className="font-body font-semibold cursor-pointer transition-all duration-200"
+                  className={`${isFa ? 'font-fa' : 'font-ui'} font-semibold cursor-pointer transition-all duration-200`}
                   style={{
-                    padding: '10px 20px',
-                    borderRadius: '999px',
-                    fontSize: '14.5px',
-                    border: active ? 'none' : '1px solid #ecebea',
-                    background: active
-                      ? 'linear-gradient(135deg, #272625, #272625)'
-                      : '#f4f3ef',
-                    color: active ? '#FFFFFF' : '#6d6c6b',
+                    padding: '9px 20px',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    border: active ? 'none' : '0.5px solid rgba(123,47,190,0.25)',
+                    background: active ? '#7B2FBE' : '#FFFFFF',
+                    color: active ? '#FFFFFF' : 'rgba(26,26,46,0.60)',
                   }}
                 >
                   {catLabel(cat)}
@@ -492,191 +422,160 @@ export default function ResourcesSection() {
             })}
           </div>
 
-          {/* Count line */}
           <p
-            className="font-body text-center mb-10"
-            style={{ fontSize: '13.5px', color: '#6d6c6b' }}
+            className={`${isFa ? 'font-fa' : 'font-ui'} text-center mb-10`}
+            style={{ fontSize: '13.5px', color: 'rgba(26,26,46,0.50)' }}
           >
             {isFa
               ? `${visible.length} قالب آماده`
               : `${visible.length} ready-to-run template${visible.length !== 1 ? 's' : ''}`}
           </p>
 
-          {/* ── Template card grid ─────────────────────── */}
           <div
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(330px, 1fr))',
-              gap: '22px',
+              gap: '20px',
               marginBottom: '72px',
             }}
           >
-            {visible.map((tmpl) => {
-              const accent = ACCENTS[tmpl.cat]
-              return (
-                <div
-                  key={tmpl.id}
-                  className="template-card"
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '15px',
-                    padding: '15px',
-                    borderRadius: '20px',
-                    background: '#FFFFFF',
-                    border: '1px solid #ecebea',
-                    '--card-glow': accent.glow,
-                  } as React.CSSProperties}
-                >
-                  {/* Thumbnail + tier badge overlay */}
-                  <div style={{ position: 'relative' }}>
-                    <Thumbnail accent={accent} />
-                    <span
-                      className="font-body font-bold"
-                      style={{
-                        position: 'absolute', top: '10px', right: '10px',
-                        padding: '5px 11px',
-                        borderRadius: '999px',
-                        fontSize: '11px',
-                        letterSpacing: '.03em',
-                        ...(tmpl.tier === 'Premium'
-                          ? {
-                              background: 'linear-gradient(135deg, #272625, #272625)',
-                              color: '#FFFFFF',
-                              boxShadow: '0 6px 16px -6px rgba(177,177,175,.50)',
-                            }
-                          : {
-                              background: '#f4f3ef',
-                              border: '1px solid #ecebea',
-                              color: '#6d6c6b',
-                            }),
-                      }}
-                    >
-                      {tierLabel(tmpl.tier)}
-                    </span>
-                  </div>
-
-                  {/* Name */}
-                  <h3
-                    className="font-heading"
-                    style={{ fontSize: '18px', fontWeight: 700, color: '#272625', letterSpacing: '-.01em', lineHeight: 1.25, margin: 0 }}
-                  >
-                    {tmpl.name}
-                  </h3>
-
-                  {/* Description */}
-                  <p
-                    className="font-body"
-                    style={{ fontSize: '14px', color: '#6d6c6b', lineHeight: 1.5, margin: 0, flexGrow: 1 }}
-                  >
-                    {tmpl.desc}
-                  </p>
-
-                  {/* Tool tags */}
-                  <div style={{ display: 'flex', gap: '7px', flexWrap: 'wrap' }}>
-                    {tmpl.tools.map((tool) => (
-                      <span
-                        key={tool}
-                        className="font-body"
-                        style={{
-                          padding: '5px 10px',
-                          borderRadius: '7px',
-                          fontSize: '12px',
-                          fontWeight: 500,
-                          color: '#6d6c6b',
-                          background: '#f4f3ef',
-                          border: '1px solid #ecebea',
-                        }}
-                      >
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Card footer */}
-                  <div
+            {visible.map((tmpl) => (
+              <div
+                key={tmpl.id}
+                className="template-card"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '15px',
+                  padding: '15px',
+                  borderRadius: '12px',
+                  background: '#FFFFFF',
+                  border: '0.5px solid rgba(123,47,190,0.25)',
+                }}
+              >
+                <div style={{ position: 'relative' }}>
+                  <Thumbnail />
+                  <span
+                    className="font-ui font-bold"
                     style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      paddingTop: '12px',
-                      borderTop: '1px solid #ecebea',
+                      position: 'absolute', top: '10px', right: '10px',
+                      padding: '5px 11px',
+                      borderRadius: '7px',
+                      fontSize: '11px',
+                      letterSpacing: '.03em',
+                      ...(tmpl.tier === 'Premium'
+                        ? { background: '#7B2FBE', color: '#FFFFFF' }
+                        : { background: 'rgba(123,47,190,0.10)', border: '0.5px solid rgba(123,47,190,0.25)', color: '#1A1A2E' }),
                     }}
                   >
-                    <a
-                      href="#contact"
-                      className="font-body font-bold inline-flex items-center gap-1.5"
-                      style={{ fontSize: '14.5px', color: accent.color, textDecoration: 'none' }}
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {isFa ? 'دریافت قالب' : 'Get template'}
-                      <ArrowRight size={14} className={isFa ? 'rotate-180' : ''} />
-                    </a>
-                    <button
-                      className="font-body cursor-pointer transition-colors duration-200"
-                      style={{
-                        fontSize: '13.5px', fontWeight: 500, color: '#6d6c6b',
-                        background: 'none', border: '1px solid #ecebea',
-                        padding: '6px 14px', borderRadius: '8px',
-                      }}
-                      onMouseEnter={(e) => {
-                        const el = e.currentTarget as HTMLButtonElement
-                        el.style.color = '#272625'
-                        el.style.borderColor = '#272625'
-                      }}
-                      onMouseLeave={(e) => {
-                        const el = e.currentTarget as HTMLButtonElement
-                        el.style.color = '#6d6c6b'
-                        el.style.borderColor = '#ecebea'
-                      }}
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        setPreviewId(tmpl.id)
-                      }}
-                    >
-                      {isFa ? 'پیش‌نمایش' : 'Preview'}
-                    </button>
-                  </div>
+                    {tierLabel(tmpl.tier)}
+                  </span>
                 </div>
-              )
-            })}
+
+                <h3
+                  className={`${isFa ? 'font-fa' : 'font-en'}`}
+                  style={{ fontSize: '18px', fontWeight: 700, color: '#1A1A2E', letterSpacing: '-.01em', lineHeight: 1.25, margin: 0 }}
+                >
+                  {tmpl.name}
+                </h3>
+
+                <p
+                  className={`${isFa ? 'font-fa' : 'font-ui'}`}
+                  style={{ fontSize: '14px', color: 'rgba(26,26,46,0.60)', lineHeight: 1.5, margin: 0, flexGrow: 1 }}
+                >
+                  {tmpl.desc}
+                </p>
+
+                <div style={{ display: 'flex', gap: '7px', flexWrap: 'wrap' }}>
+                  {tmpl.tools.map((tool) => (
+                    <span
+                      key={tool}
+                      className="font-ui"
+                      style={{
+                        padding: '5px 10px',
+                        borderRadius: '7px',
+                        fontSize: '12px',
+                        fontWeight: 500,
+                        color: 'rgba(26,26,46,0.60)',
+                        background: 'rgba(123,47,190,0.08)',
+                        border: '0.5px solid rgba(123,47,190,0.20)',
+                      }}
+                    >
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    paddingTop: '12px',
+                    borderTop: '0.5px solid rgba(123,47,190,0.15)',
+                  }}
+                >
+                  <a
+                    href="#contact"
+                    className={`${isFa ? 'font-fa' : 'font-ui'} font-bold inline-flex items-center gap-1.5`}
+                    style={{ fontSize: '14.5px', color: '#7B2FBE', textDecoration: 'none' }}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {isFa ? 'دریافت قالب' : 'Get template'}
+                    <ArrowRight size={14} className={isFa ? 'rotate-180' : ''} />
+                  </a>
+                  <button
+                    className={`${isFa ? 'font-fa' : 'font-ui'} cursor-pointer transition-colors duration-200`}
+                    style={{
+                      fontSize: '13.5px', fontWeight: 500, color: 'rgba(26,26,46,0.60)',
+                      background: 'none',
+                      border: '0.5px solid rgba(123,47,190,0.25)',
+                      padding: '6px 14px', borderRadius: '8px',
+                    }}
+                    onMouseEnter={(e) => {
+                      const el = e.currentTarget as HTMLButtonElement
+                      el.style.color = '#1A1A2E'
+                      el.style.borderColor = 'rgba(123,47,190,0.55)'
+                    }}
+                    onMouseLeave={(e) => {
+                      const el = e.currentTarget as HTMLButtonElement
+                      el.style.color = 'rgba(26,26,46,0.60)'
+                      el.style.borderColor = 'rgba(123,47,190,0.25)'
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setPreviewId(tmpl.id)
+                    }}
+                  >
+                    {isFa ? 'پیش‌نمایش' : 'Preview'}
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
 
-          {/* ── Custom template CTA ────────────────────── */}
+          {/* Custom template CTA block */}
           <div
             className="relative overflow-hidden text-center"
             style={{
               padding: 'clamp(40px, 5vw, 64px) 32px',
-              borderRadius: '24px',
-              border: '1px solid #ecebea',
-              background: [
-                'radial-gradient(700px 320px at 50% 0%, rgba(177,177,175,.07), transparent 65%)',
-                '#f4f3ef',
-              ].join(', '),
+              borderRadius: '16px',
+              border: '0.5px solid rgba(123,47,190,0.25)',
+              background: '#FFFFFF',
             }}
           >
-            <div
-              aria-hidden
-              style={{
-                position: 'absolute', inset: 0,
-                backgroundImage: 'radial-gradient(rgba(177,177,175,.04) 1px, transparent 1px)',
-                backgroundSize: '34px 34px',
-                opacity: 0.5,
-                pointerEvents: 'none',
-              }}
-            />
             <div className="relative z-10">
               <p
-                className="font-body font-bold mb-4"
-                style={{ fontSize: '13px', letterSpacing: '.20em', color: '#272625', textTransform: 'uppercase' }}
+                className={`${isFa ? 'font-fa' : 'font-ui'} font-bold mb-4`}
+                style={{ fontSize: '13px', letterSpacing: '.20em', color: 'rgba(26,26,46,0.50)', textTransform: 'uppercase' }}
               >
                 {isFa ? 'گردش‌کار دقیق خودت را پیدا نکردی؟' : "Can't find your exact workflow?"}
               </p>
               <h2
-                className="font-heading font-extrabold mx-auto mb-4"
+                className={`${isFa ? 'font-fa' : 'font-en'} font-extrabold mx-auto mb-4`}
                 style={{
                   fontSize: 'clamp(26px, 3.4vw, 42px)',
-                  color: '#272625',
+                  color: '#1A1A2E',
                   maxWidth: '20ch',
                   letterSpacing: '-.02em',
                   lineHeight: 1.1,
@@ -687,8 +586,8 @@ export default function ResourcesSection() {
                   : <>Tell me how you work<br />I&apos;ll build the system for it</>}
               </h2>
               <p
-                className="font-body mx-auto mb-8"
-                style={{ fontSize: '16.5px', color: '#6d6c6b', maxWidth: '480px', lineHeight: 1.6 }}
+                className={`${isFa ? 'font-fa' : 'font-ui'} mx-auto mb-8`}
+                style={{ fontSize: '16.5px', color: 'rgba(26,26,46,0.60)', maxWidth: '480px', lineHeight: 1.6 }}
               >
                 {isFa
                   ? 'یک قالب برای کارهای واقعی روزمره‌ات، با زبان ساده و بدون کد و اصطلاحات پیچیده. تو گردش‌کار را بگو، ساختنش با من.'
@@ -696,14 +595,13 @@ export default function ResourcesSection() {
               </p>
               <a
                 href="#contact"
-                className="font-body font-bold inline-flex items-center gap-2 cursor-pointer"
+                className={`${isFa ? 'font-fa' : 'font-ui'} font-bold inline-flex items-center gap-2 cursor-pointer`}
                 style={{
-                  padding: '15px 28px',
-                  borderRadius: '13px',
+                  padding: '14px 28px',
+                  borderRadius: '8px',
                   fontSize: '15.5px',
                   color: '#FFFFFF',
-                  background: 'linear-gradient(135deg, #272625, #272625)',
-                  boxShadow: '0 12px 32px -10px rgba(177,177,175,.45), inset 0 1px 0 rgba(255,255,255,.25)',
+                  background: '#7B2FBE',
                   textDecoration: 'none',
                 }}
               >
@@ -714,11 +612,8 @@ export default function ResourcesSection() {
           </div>
 
         </div>
-
-        <div className="section-divider absolute bottom-0 left-0 right-0" />
       </section>
 
-      {/* Preview modal */}
       {previewTmpl && (
         <PreviewModal
           tmpl={previewTmpl}

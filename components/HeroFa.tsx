@@ -3,11 +3,17 @@ import { Link } from '@/i18n/navigation'
 import { ArrowRight } from 'lucide-react'
 
 const stageNodes = [
-  { title: 'جمع‌آوری',  sub: 'اطلاعات',                  top: '236px', delay: '0s',   accent: { bg: '#E9DFFF', border: '#D8CFF0', dot: '#8B5CF6' } },
-  { title: 'سازماندهی', sub: 'مرتب‌سازی با هوش مصنوعی',  top: '340px', delay: '.6s',  accent: { bg: '#E9DFFF', border: '#D8CFF0', dot: '#8B5CF6' } },
-  { title: 'اتوماسیون', sub: 'اجرای خودکار',              top: '444px', delay: '1.2s', accent: { bg: '#E9DFFF', border: '#D8CFF0', dot: '#8B5CF6' } },
-  { title: 'تحویل',     sub: 'نتیجه آماده',               top: '548px', delay: '1.8s', accent: { bg: '#E9DFFF', border: '#D8CFF0', dot: '#8B5CF6' } },
+  { title: 'جمع‌آوری',  sub: 'اطلاعات',                  top: '236px', delay: '0s' },
+  { title: 'سازماندهی', sub: 'مرتب‌سازی با هوش مصنوعی',  top: '340px', delay: '.6s' },
+  { title: 'اتوماسیون', sub: 'اجرای خودکار',              top: '444px', delay: '1.2s' },
+  { title: 'تحویل',     sub: 'نتیجه آماده',               top: '548px', delay: '1.8s' },
 ]
+
+const cardStyle = {
+  background: 'rgba(123,47,190,0.12)',
+  border: '0.5px solid rgba(123,47,190,0.3)',
+  borderRadius: '12px',
+} as const
 
 export default async function HeroFa() {
   const t = await getTranslations('hero')
@@ -16,79 +22,42 @@ export default async function HeroFa() {
     <section
       id="home"
       className="relative min-h-screen overflow-hidden flex flex-col justify-center"
-      style={{ background: '#F5F0FF' }}
+      style={{ background: '#1A1A2E' }}
     >
-      {/* Dot grid */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(rgba(139,92,246,.06) 1px, transparent 1px)',
-          backgroundSize: '34px 34px',
-          opacity: 0.8,
-        }}
-      />
-      {/* Vignette */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(120% 120% at 50% 0%, transparent 55%, rgba(240,233,255,.70) 100%)' }}
-      />
-
       {/* Two-column layout */}
       <div className="relative z-10 w-full max-w-[1480px] mx-auto px-6 lg:px-14 pt-28 pb-20">
         <div className="flex items-center gap-10">
 
-          {/* ── Left column: copy ─────────────────────────── */}
+          {/* ── Copy column ─────────────────────────────── */}
           <div style={{ flex: '1 1 0', minWidth: 0, maxWidth: '600px' }}>
 
-            {/* Eyebrow pill */}
-            <div
-              className="inline-flex items-center gap-2.5 mb-8"
-              style={{
-                padding: '7px 14px',
-                border: '1px solid #D8CFF0',
-                borderRadius: '9999px',
-                background: '#E9DFFF',
-              }}
-            >
-              <span
-                aria-hidden
-                style={{
-                  width: '6px', height: '6px', borderRadius: '50%',
-                  background: '#8B5CF6',
-                  boxShadow: '0 0 8px rgba(47,128,250,0.45)',
-                  flexShrink: 0, display: 'inline-block',
-                }}
-              />
-              <span
-                className="font-body"
-                style={{ fontSize: '12px', letterSpacing: '.16em', fontWeight: 600, color: '#5B536A' }}
-              >
-                {t('badge')}
-              </span>
+            {/* Badge */}
+            <div className="badge mb-8" style={{ display: 'inline-flex' }}>
+              <span className="badge-dot" aria-hidden />
+              {t('badge')}
             </div>
 
-            {/* H1 */}
+            {/* H1 — one word in champagne */}
             <h1
-              className="font-heading font-bold mb-5"
+              className="font-fa mb-5"
               style={{
-                fontSize: 'clamp(36px, 3.2vw, 54px)',
-                lineHeight: 1.1,
-                letterSpacing: '-.025em',
-                color: '#171321',
+                fontSize: 'clamp(32px, 3.2vw, 50px)',
+                lineHeight: 1.4,
+                fontWeight: 700,
+                color: '#F5F0E8',
               }}
             >
               {t('title')}
             </h1>
 
-            {/* Subtitle line */}
+            {/* Subtitle */}
             <p
-              className="font-heading font-semibold mb-6"
+              className="font-fa mb-6"
               style={{
-                fontSize: 'clamp(17px, 1.8vw, 24px)',
-                lineHeight: 1.3,
-                color: '#171321',
+                fontSize: 'clamp(16px, 1.8vw, 22px)',
+                lineHeight: 1.55,
+                fontWeight: 600,
+                color: '#F5F0E8',
               }}
             >
               {t('titleLine2')}
@@ -96,44 +65,42 @@ export default async function HeroFa() {
 
             {/* Body copy */}
             <p
-              className="font-body mb-10"
-              style={{ fontSize: '18px', lineHeight: 1.6, color: '#5B536A', maxWidth: '440px' }}
+              className="font-fa mb-10"
+              style={{ fontSize: '17px', lineHeight: 1.9, color: 'rgba(245,240,232,0.60)', maxWidth: '440px' }}
             >
               {t('subtitle')}
             </p>
 
-            {/* CTA row */}
+            {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3.5 mb-9">
               <Link
                 href="/services"
-                className="font-body inline-flex items-center gap-2.5"
+                className="font-fa inline-flex items-center gap-2 transition-opacity duration-150 hover:opacity-88"
                 style={{
-                  padding: '13px 28px',
-                  borderRadius: '4px',
-                  fontSize: '15px',
+                  padding: '10px 22px',
+                  borderRadius: '8px',
+                  fontSize: '14px',
                   fontWeight: 500,
-                  color: '#000000',
-                  background: '#8B5CF6',
-                  border: '1px solid #6D28D9',
+                  color: '#ffffff',
+                  background: '#7B2FBE',
+                  border: 'none',
                   textDecoration: 'none',
-                  boxShadow: '0 4px 12px rgba(109,40,217,0.20)',
                 }}
               >
                 {t('ctaPrimary')}
-                <ArrowRight size={16} className="rotate-180" />
+                <ArrowRight size={15} className="rotate-180" />
               </Link>
-
               <Link
                 href="/services"
-                className="font-body inline-flex items-center gap-2.5"
+                className="font-fa inline-flex items-center gap-2 transition-opacity duration-150 hover:opacity-80"
                 style={{
-                  padding: '13px 22px',
-                  borderRadius: '4px',
-                  fontSize: '15px',
+                  padding: '10px 22px',
+                  borderRadius: '8px',
+                  fontSize: '14px',
                   fontWeight: 500,
-                  color: '#5B536A',
-                  border: '1px solid #D8CFF0',
-                  background: '#E9DFFF',
+                  color: 'rgba(245,240,232,0.80)',
+                  background: 'transparent',
+                  border: '0.5px solid rgba(245,240,232,0.25)',
                   textDecoration: 'none',
                 }}
               >
@@ -142,106 +109,146 @@ export default async function HeroFa() {
             </div>
 
             {/* Byline */}
-            <div className="flex items-center gap-3" style={{ color: '#5B536A', fontSize: '13.5px' }}>
+            <div className="flex items-center gap-3" style={{ fontSize: '13.5px', color: 'rgba(245,240,232,0.55)' }}>
               <div
                 aria-hidden
-                className="flex-shrink-0 flex items-center justify-center font-body font-semibold"
+                className="flex-shrink-0 flex items-center justify-center font-fa font-semibold"
                 style={{
                   width: '36px', height: '36px', borderRadius: '50%',
-                  background: '#E9DFFF',
-                  border: '1px solid #D8CFF0',
-                  fontSize: '14px', color: '#171321',
+                  background: 'rgba(123,47,190,0.12)',
+                  border: '0.5px solid rgba(123,47,190,0.3)',
+                  fontSize: '14px', color: '#F5F0E8',
                 }}
               >
-                M
+                م
               </div>
-              <span className="font-body" style={{ lineHeight: 1.6 }}>
+              <span className="font-fa" style={{ lineHeight: 1.9 }}>
                 {t('byline')}
               </span>
             </div>
           </div>
 
-          {/* ── Right column: stage visual ─── */}
+          {/* ── Visual column ────────────────────────────── */}
           <div className="hidden xl:flex flex-shrink-0 justify-center items-center">
             <div style={{ position: 'relative', width: '680px', height: '700px' }}>
 
-              {/* Glow blobs */}
-              <div
-                aria-hidden
-                style={{
-                  position: 'absolute', top: '-60px', left: '90px',
-                  width: '380px', height: '380px', borderRadius: '50%',
-                  background: 'radial-gradient(circle, rgba(139,92,246,.10), transparent 65%)',
-                  filter: 'blur(70px)',
-                  animation: 'mhGlow 7s ease-in-out infinite',
-                }}
-              />
-              <div
-                aria-hidden
-                style={{
-                  position: 'absolute', bottom: '-40px', right: '30px',
-                  width: '340px', height: '340px', borderRadius: '50%',
-                  background: 'radial-gradient(circle, rgba(109,40,217,.08), transparent 65%)',
-                  filter: 'blur(75px)',
-                  animation: 'mhGlow 9s ease-in-out infinite .8s',
-                }}
-              />
-
-              {/* SVG connector */}
+              {/* SVG connector — solid stroke, no gradient */}
               <svg
                 aria-hidden
-                width="680"
-                height="700"
-                viewBox="0 0 680 700"
+                width="680" height="700" viewBox="0 0 680 700"
                 style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
               >
-                <defs>
-                  <linearGradient id="mhConnLineFa" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0"   stopColor="#8B5CF6" stopOpacity="0" />
-                    <stop offset="0.5" stopColor="#8B5CF6" stopOpacity=".35" />
-                    <stop offset="1"   stopColor="#8B5CF6" stopOpacity=".5" />
-                  </linearGradient>
-                </defs>
                 <path
                   d="M 200 200 C 300 250, 300 210, 360 258"
                   fill="none"
-                  stroke="url(#mhConnLineFa)"
+                  stroke="rgba(123,47,190,0.40)"
                   strokeWidth="1.5"
                   strokeDasharray="5 7"
                   style={{ animation: 'mhDash 6s linear infinite' }}
                 />
               </svg>
 
-              {/* Messy "before" cards */}
-              <div aria-hidden style={{ '--rot': '-6deg', position: 'absolute', top: '24px', left: '24px', width: '148px', padding: '13px 15px', borderRadius: '4px', background: '#F5F0FF', border: '1px dashed #D8CFF0', backdropFilter: 'blur(3px)', transform: 'rotate(-6deg)', color: '#5B536A', fontSize: '13px', filter: 'blur(.2px)', animation: 'mhDrift 8s ease-in-out infinite' } as React.CSSProperties}>
-                <div style={{ height: '6px', width: '60%', background: '#D8CFF0', borderRadius: '2px', marginBottom: '8px' }} />
-                re: invoices?
-              </div>
-              <div aria-hidden style={{ '--rot': '5deg', position: 'absolute', top: '62px', left: '196px', width: '138px', padding: '13px 15px', borderRadius: '4px', background: '#F5F0FF', border: '1px dashed #D8CFF0', backdropFilter: 'blur(3px)', transform: 'rotate(5deg)', color: '#5B536A', fontSize: '13px', filter: 'blur(.3px)', animation: 'mhDrift 9s ease-in-out infinite .6s' } as React.CSSProperties}>
-                call client back
-              </div>
-              <div aria-hidden style={{ '--rot': '-3deg', position: 'absolute', top: '150px', left: '62px', width: '156px', padding: '13px 15px', borderRadius: '4px', background: '#F5F0FF', border: '1px dashed #D8CFF0', backdropFilter: 'blur(3px)', transform: 'rotate(-3deg)', color: '#5B536A', fontSize: '13px', filter: 'blur(.2px)', animation: 'mhDrift 7.5s ease-in-out infinite 1.1s' } as React.CSSProperties}>
-                <div style={{ height: '6px', width: '75%', background: '#D8CFF0', borderRadius: '2px', marginBottom: '8px' }} />
-                where&rsquo;s that file&hellip;
-              </div>
-              <div aria-hidden style={{ '--rot': '9deg', position: 'absolute', top: '118px', left: '248px', width: '120px', padding: '11px 14px', borderRadius: '4px', background: '#F5F0FF', border: '1px dashed #D8CFF0', backdropFilter: 'blur(2px)', transform: 'rotate(9deg)', color: '#5B536A', fontSize: '12.5px', filter: 'blur(.4px)', animation: 'mhDrift 8.5s ease-in-out infinite .3s' } as React.CSSProperties}>
-                follow up Mon
+              {/* "Before" messy cards — Persian */}
+              {([
+                { rot: '-6deg', top: '24px',  left: '24px',  w: '148px', text: 'پیام ایمیل',        bar: true,  delay: '0s',   blur: '.2px', pad: '13px 15px', fs: '13px' },
+                { rot:  '5deg', top: '62px',  left: '196px', w: '138px', text: 'تماس با مشتری',     bar: false, delay: '.6s',  blur: '.3px', pad: '13px 15px', fs: '13px' },
+                { rot: '-3deg', top: '150px', left: '62px',  w: '156px', text: 'کجا بود آن فایل',   bar: true,  delay: '1.1s', blur: '.2px', pad: '13px 15px', fs: '13px' },
+                { rot:  '9deg', top: '118px', left: '248px', w: '120px', text: 'پیگیری دوشنبه',    bar: false, delay: '.3s',  blur: '.4px', pad: '11px 14px', fs: '12.5px' },
+              ] as const).map((c, i) => (
+                <div
+                  key={i}
+                  aria-hidden
+                  style={{
+                    '--rot': c.rot,
+                    position: 'absolute', top: c.top, left: c.left, width: c.w,
+                    padding: c.pad, borderRadius: '8px',
+                    background: 'rgba(26,26,46,0.80)',
+                    border: '0.5px dashed rgba(123,47,190,0.35)',
+                    backdropFilter: 'blur(3px)',
+                    transform: `rotate(${c.rot})`,
+                    color: 'rgba(245,240,232,0.50)', fontSize: c.fs,
+                    filter: `blur(${c.blur})`,
+                    animation: `mhDrift ${7.5 + i * 0.5}s ease-in-out infinite ${c.delay}`,
+                  } as React.CSSProperties}
+                >
+                  {c.bar && (
+                    <div style={{ height: '5px', width: '60%', background: 'rgba(123,47,190,0.35)', borderRadius: '3px', marginBottom: '7px' }} />
+                  )}
+                  {c.text}
+                </div>
+              ))}
+
+              {/* Workflow spine — solid */}
+              <div
+                aria-hidden
+                style={{
+                  position: 'absolute', left: '359px', top: '252px',
+                  width: '1.5px', height: '340px',
+                  background: '#7B2FBE',
+                  borderRadius: '2px', opacity: 0.45,
+                }}
+              />
+
+              {/* Traveling pulse dot — no shadow */}
+              <div
+                aria-hidden
+                style={{
+                  position: 'absolute', left: '351px',
+                  width: '18px', height: '18px', borderRadius: '50%',
+                  background: '#7B2FBE',
+                  animation: 'mhTravel 5s ease-in-out infinite',
+                }}
+              />
+
+              {/* Accent card — tasks sorted */}
+              <div
+                aria-hidden
+                style={{
+                  position: 'absolute', top: '356px', left: '128px',
+                  padding: '10px 14px',
+                  ...cardStyle,
+                  display: 'flex', alignItems: 'center', gap: '9px',
+                  animation: 'mhFloatA 6s ease-in-out infinite',
+                }}
+              >
+                <span
+                  aria-hidden
+                  style={{
+                    width: '18px', height: '18px', borderRadius: '6px',
+                    background: '#7B2FBE',
+                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                    color: '#fff', fontSize: '11px', fontWeight: 700, flexShrink: 0,
+                  }}
+                >✓</span>
+                <span className="font-fa whitespace-nowrap" style={{ fontSize: '13px', color: '#F5F0E8', fontWeight: 600 }}>
+                  ۱۲ کار مرتب‌شده
+                </span>
               </div>
 
-              {/* Workflow spine */}
-              <div aria-hidden style={{ position: 'absolute', left: '359px', top: '252px', width: '2px', height: '340px', background: '#A78BFA', borderRadius: '2px', opacity: 0.7 }} />
-
-              {/* Traveling pulse dot */}
-              <div aria-hidden style={{ position: 'absolute', left: '351px', width: '18px', height: '18px', borderRadius: '50%', background: '#8B5CF6', boxShadow: '0 0 22px 6px rgba(139,92,246,.45)', animation: 'mhTravel 5s ease-in-out infinite' }} />
-
-              {/* Accent cards */}
-              <div aria-hidden style={{ position: 'absolute', top: '356px', left: '128px', padding: '10px 14px', borderRadius: '4px', background: '#ffffff', border: '1px solid #6D28D9', backdropFilter: 'blur(6px)', display: 'flex', alignItems: 'center', gap: '9px', boxShadow: '0 4px 16px rgba(109,40,217,0.12)', animation: 'mhFloatA 6s ease-in-out infinite' }}>
-                <span aria-hidden style={{ width: '18px', height: '18px', borderRadius: '4px', background: '#8B5CF6', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#ffffff', fontSize: '11px', fontWeight: 700, flexShrink: 0 }}>✓</span>
-                <span className="font-body whitespace-nowrap" style={{ fontSize: '13px', color: '#171321', fontWeight: 600 }}>۱۲ کار مرتب‌شده</span>
-              </div>
-              <div aria-hidden style={{ position: 'absolute', top: '498px', left: '104px', padding: '10px 14px', borderRadius: '4px', background: '#ffffff', border: '1px solid #D8CFF0', backdropFilter: 'blur(6px)', display: 'flex', alignItems: 'center', gap: '9px', boxShadow: '0 4px 16px rgba(139,92,246,0.10)', animation: 'mhFloatB 7s ease-in-out infinite .9s' }}>
-                <span aria-hidden style={{ width: '18px', height: '18px', borderRadius: '4px', background: '#E9DFFF', border: '1px solid #D8CFF0', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: '#5B536A', fontSize: '11px', fontWeight: 700, flexShrink: 0 }}>↗</span>
-                <span className="font-body whitespace-nowrap" style={{ fontSize: '13px', color: '#171321', fontWeight: 600 }}>پیش‌نویس آماده‌ی ارسال</span>
+              {/* Accent card — draft ready */}
+              <div
+                aria-hidden
+                style={{
+                  position: 'absolute', top: '498px', left: '104px',
+                  padding: '10px 14px',
+                  ...cardStyle,
+                  display: 'flex', alignItems: 'center', gap: '9px',
+                  animation: 'mhFloatB 7s ease-in-out infinite .9s',
+                }}
+              >
+                <span
+                  aria-hidden
+                  style={{
+                    width: '18px', height: '18px', borderRadius: '6px',
+                    background: 'rgba(232,184,109,0.15)',
+                    border: '0.5px solid rgba(232,184,109,0.40)',
+                    display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                    color: '#E8B86D', fontSize: '11px', fontWeight: 700, flexShrink: 0,
+                  }}
+                >↗</span>
+                <span className="font-fa whitespace-nowrap" style={{ fontSize: '13px', color: '#F5F0E8', fontWeight: 600 }}>
+                  پیش‌نویس آماده‌ی ارسال
+                </span>
               </div>
 
               {/* Stage nodes */}
@@ -250,14 +257,30 @@ export default async function HeroFa() {
                   {/* Spine badge */}
                   <div
                     aria-hidden
-                    style={{ position: 'absolute', left: '-41px', top: '18px', width: '34px', height: '34px', borderRadius: '4px', background: node.accent.bg, border: `1px solid ${node.accent.border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'mhRing 4s ease-in-out infinite' }}
+                    style={{
+                      position: 'absolute', left: '-41px', top: '18px',
+                      width: '34px', height: '34px',
+                      ...cardStyle,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      animation: 'mhRing 4s ease-in-out infinite',
+                    }}
                   >
-                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: node.accent.dot, display: 'inline-block' }} />
+                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#7B2FBE', display: 'inline-block' }} />
                   </div>
                   {/* Card */}
-                  <div style={{ padding: '16px 18px', borderRadius: '4px', background: '#ffffff', border: `1px solid ${node.accent.border}`, boxShadow: '0 2px 12px rgba(139,92,246,0.08)', animation: `mhFloatA 7s ease-in-out infinite ${node.delay}` }}>
-                    <div className="font-body" style={{ fontSize: '15.5px', fontWeight: 700, color: '#171321', letterSpacing: '-.025em', marginBottom: '3px' }}>{node.title}</div>
-                    <div className="font-body" style={{ fontSize: '13px', color: '#5B536A', lineHeight: 1.35 }}>{node.sub}</div>
+                  <div
+                    style={{
+                      padding: '16px 18px',
+                      ...cardStyle,
+                      animation: `mhFloatA 7s ease-in-out infinite ${node.delay}`,
+                    }}
+                  >
+                    <div className="font-fa" style={{ fontSize: '15.5px', fontWeight: 700, color: '#F5F0E8', marginBottom: '3px' }}>
+                      {node.title}
+                    </div>
+                    <div className="font-fa" style={{ fontSize: '13px', color: 'rgba(245,240,232,0.55)', lineHeight: 1.6 }}>
+                      {node.sub}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -267,13 +290,6 @@ export default async function HeroFa() {
 
         </div>
       </div>
-
-      {/* Bottom fade */}
-      <div
-        aria-hidden
-        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-        style={{ background: 'linear-gradient(to top, #E9DFFF, transparent)' }}
-      />
     </section>
   )
 }
