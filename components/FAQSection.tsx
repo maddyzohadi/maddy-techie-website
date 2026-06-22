@@ -89,7 +89,7 @@ export default function FAQSection() {
                   key={i}
                   style={{
                     background: '#FFFFFF',
-                    border: `0.5px solid ${isOpen ? 'rgba(123,47,190,0.30)' : 'rgba(123,47,190,0.15)'}`,
+                    border: `0.5px solid ${isOpen ? 'rgba(26,26,46,0.20)' : 'rgba(26,26,46,0.12)'}`,
                     borderRadius: '12px',
                     overflow: 'hidden',
                     transition: 'border-color 0.2s',

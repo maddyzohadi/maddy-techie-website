@@ -60,7 +60,7 @@ export default function CurriculumSection() {
                 className="overflow-hidden transition-all duration-300"
                 style={{
                   background: '#FFFFFF',
-                  border: `0.5px solid ${isOpen ? 'rgba(123,47,190,0.40)' : 'rgba(123,47,190,0.20)'}`,
+                  border: `0.5px solid ${isOpen ? 'rgba(26,26,46,0.20)' : 'rgba(26,26,46,0.12)'}`,
                   borderRadius: '12px',
                 }}
               >

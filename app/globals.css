@@ -248,7 +248,7 @@ h3 { font-size: var(--text-h3); }
 }
 
 .template-card:hover {
-  border-color: rgba(123, 47, 190, 0.45);
+  border-color: rgba(26, 26, 46, 0.25);
 }
 
 /* --- Divider ---------------------------------------------- */

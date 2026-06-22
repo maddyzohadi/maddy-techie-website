@@ -75,7 +75,7 @@ export default async function WhoItsFor() {
                 key={audience.number}
                 style={{
                   background: '#FFFFFF',
-                  border: '0.5px solid rgba(123,47,190,0.25)',
+                  border: '0.5px solid rgba(26,26,46,0.12)',
                   borderRadius: '12px',
                   padding: '28px 30px',
                 }}
@@ -136,7 +136,7 @@ export default async function WhoItsFor() {
           style={{
             borderRadius: '12px',
             background: '#FFFFFF',
-            border: '0.5px solid rgba(123,47,190,0.25)',
+            border: '0.5px solid rgba(26,26,46,0.12)',
           }}
         >
           <div className="text-center mb-8">

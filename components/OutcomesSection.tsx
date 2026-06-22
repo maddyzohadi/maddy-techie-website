@@ -60,7 +60,7 @@ export default function OutcomesSection() {
               key={i}
               style={{
                 background: '#FFFFFF',
-                border: '0.5px solid rgba(123,47,190,0.25)',
+                border: '0.5px solid rgba(26,26,46,0.12)',
                 borderRadius: '12px',
                 padding: '24px 26px',
                 display: 'flex',

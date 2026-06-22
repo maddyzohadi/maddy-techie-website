@@ -9,23 +9,24 @@ export default async function MethodSection() {
   const part1Items = [t('part1item0'), t('part1item1'), t('part1item2'), t('part1item3')]
   const part2Items = [t('part2item0'), t('part2item1'), t('part2item2'), t('part2item3')]
 
-  const headingColor = isFa ? '#F5F0E8'               : '#1A1A2E'
-  const bodyColor    = isFa ? 'rgba(245,240,232,0.60)' : 'rgba(26,26,46,0.60)'
-  const badgeColor   = isFa ? 'rgba(245,240,232,0.50)' : 'rgba(26,26,46,0.50)'
-  const iconBg       = isFa ? 'rgba(123,47,190,0.15)'  : 'rgba(123,47,190,0.08)'
-  const iconBorder   = isFa ? 'rgba(123,47,190,0.35)'  : 'rgba(123,47,190,0.20)'
-  const sepColor     = isFa ? 'rgba(245,240,232,0.12)' : 'rgba(123,47,190,0.20)'
-  const sectionBg    = isFa ? '#1A1A2E'               : '#F5F0E8'
-  const cardBg       = isFa ? 'rgba(123,47,190,0.12)' : '#FFFFFF'
-  const cardBorder   = isFa ? 'rgba(123,47,190,0.30)' : 'rgba(123,47,190,0.25)'
-  const bulletColor  = isFa ? '#F5F0E8'               : '#1A1A2E'
+  // Always dark — "How it works" sits between the light Problem and light Curriculum sections
+  const headingColor = '#F5F0E8'
+  const bodyColor    = 'rgba(245,240,232,0.60)'
+  const badgeColor   = 'rgba(245,240,232,0.50)'
+  const iconBg       = 'rgba(123,47,190,0.15)'
+  const iconBorder   = 'rgba(123,47,190,0.35)'
+  const sepColor     = 'rgba(245,240,232,0.12)'
+  const sectionBg    = '#1A1A2E'
+  const cardBg       = 'rgba(123,47,190,0.15)'
+  const cardBorder   = 'rgba(123,47,190,0.35)'
+  const bulletColor  = '#F5F0E8'
 
   return (
     <section
       className="py-24 md:py-32 relative"
       style={{
         background: sectionBg,
-        borderTop: isFa ? '0.5px solid rgba(245,240,232,0.08)' : '0.5px solid rgba(123,47,190,0.15)',
+        borderTop: '0.5px solid rgba(245,240,232,0.08)',
       }}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

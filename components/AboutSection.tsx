@@ -24,7 +24,7 @@ export default async function AboutSection() {
                 className="rounded-3xl overflow-hidden relative max-w-sm mx-auto"
                 style={{
                   background: '#FFFFFF',
-                  border: '0.5px solid rgba(123,47,190,0.25)',
+                  border: '0.5px solid rgba(26,26,46,0.12)',
                 }}
               >
                 <div className="relative z-10 p-10 flex flex-col items-center text-center">
