@@ -9,15 +9,25 @@ export default async function MethodSection() {
   const part1Items = [t('part1item0'), t('part1item1'), t('part1item2'), t('part1item3')]
   const part2Items = [t('part2item0'), t('part2item1'), t('part2item2'), t('part2item3')]
 
-  const headingColor = '#1A1A2E'
-  const bodyColor    = 'rgba(26,26,46,0.60)'
-  const badgeColor   = 'rgba(26,26,46,0.50)'
-  const iconBg       = 'rgba(123,47,190,0.08)'
-  const iconBorder   = 'rgba(123,47,190,0.20)'
-  const sepColor     = 'rgba(123,47,190,0.20)'
+  const headingColor = isFa ? '#F5F0E8'               : '#1A1A2E'
+  const bodyColor    = isFa ? 'rgba(245,240,232,0.60)' : 'rgba(26,26,46,0.60)'
+  const badgeColor   = isFa ? 'rgba(245,240,232,0.50)' : 'rgba(26,26,46,0.50)'
+  const iconBg       = isFa ? 'rgba(123,47,190,0.15)'  : 'rgba(123,47,190,0.08)'
+  const iconBorder   = isFa ? 'rgba(123,47,190,0.35)'  : 'rgba(123,47,190,0.20)'
+  const sepColor     = isFa ? 'rgba(245,240,232,0.12)' : 'rgba(123,47,190,0.20)'
+  const sectionBg    = isFa ? '#1A1A2E'               : '#F5F0E8'
+  const cardBg       = isFa ? 'rgba(123,47,190,0.12)' : '#FFFFFF'
+  const cardBorder   = isFa ? 'rgba(123,47,190,0.30)' : 'rgba(123,47,190,0.25)'
+  const bulletColor  = isFa ? '#F5F0E8'               : '#1A1A2E'
 
   return (
-    <section className="py-24 md:py-32 relative" style={{ background: '#F5F0E8' }}>
+    <section
+      className="py-24 md:py-32 relative"
+      style={{
+        background: sectionBg,
+        borderTop: isFa ? '0.5px solid rgba(245,240,232,0.08)' : '0.5px solid rgba(123,47,190,0.15)',
+      }}
+    >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}
@@ -51,8 +61,8 @@ export default async function MethodSection() {
           <div
             className="flex-1 p-8 md:p-10"
             style={{
-              background: '#FFFFFF',
-              border: '0.5px solid rgba(123,47,190,0.25)',
+              background: cardBg,
+              border: `0.5px solid ${cardBorder}`,
               borderRadius: '12px',
             }}
           >
@@ -85,7 +95,7 @@ export default async function MethodSection() {
                     className="mt-1.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
                     style={{ background: iconBg, border: `0.5px solid ${iconBorder}` }}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full block" style={{ background: '#1A1A2E' }} />
+                    <span className="w-1.5 h-1.5 rounded-full block" style={{ background: bulletColor }} />
                   </span>
                   {item}
                 </li>
@@ -111,8 +121,8 @@ export default async function MethodSection() {
           <div
             className="flex-1 p-8 md:p-10"
             style={{
-              background: '#FFFFFF',
-              border: '0.5px solid rgba(123,47,190,0.25)',
+              background: cardBg,
+              border: `0.5px solid ${cardBorder}`,
               borderRadius: '12px',
             }}
           >
@@ -145,7 +155,7 @@ export default async function MethodSection() {
                     className="mt-1.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
                     style={{ background: iconBg, border: `0.5px solid ${iconBorder}` }}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full block" style={{ background: '#1A1A2E' }} />
+                    <span className="w-1.5 h-1.5 rounded-full block" style={{ background: bulletColor }} />
                   </span>
                   {item}
                 </li>
