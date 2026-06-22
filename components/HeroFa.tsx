@@ -21,8 +21,8 @@ export default async function HeroFa() {
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden flex flex-col justify-center"
-      style={{ background: '#1A1A2E' }}
+      className="relative min-h-screen flex flex-col justify-center"
+      style={{ background: '#1A1A2E', minHeight: '100svh', overflow: 'clip' }}
     >
       {/* Two-column layout */}
       <div className="relative z-10 w-full max-w-[1480px] mx-auto px-6 lg:px-14 pt-28 pb-20">
