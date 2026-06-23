@@ -4,6 +4,9 @@ import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
 import ProblemSection from '@/components/ProblemSection'
 import MethodSection from '@/components/MethodSection'
+import ProcessSection from '@/components/ProcessSection'
+import ServicesListSection from '@/components/ServicesListSection'
+import GradientCTASection from '@/components/GradientCTASection'
 import CurriculumSection from '@/components/CurriculumSection'
 import ResourcesSection from '@/components/ResourcesSection'
 import OutcomesSection from '@/components/OutcomesSection'
@@ -59,6 +62,9 @@ export default async function Home() {
       <Hero />
       <ProblemSection />
       <MethodSection />
+      <ProcessSection />
+      <ServicesListSection />
+      <GradientCTASection />
       <CurriculumSection />
       {!isFa && <ResourcesSection />}
       {!isFa && <OutcomesSection />}
