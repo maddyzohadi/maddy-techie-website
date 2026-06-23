@@ -14,7 +14,6 @@ import ServicesSection from '@/components/ServicesSection'
 import FAQSection from '@/components/FAQSection'
 import AboutSection from '@/components/AboutSection'
 import CTASection from '@/components/CTASection'
-import FaHomeCta from '@/components/FaHomeCta'
 import Footer from '@/components/Footer'
 import AIAssistant from '@/components/AIAssistant'
 import { routing } from '@/i18n/routing'
@@ -69,7 +68,6 @@ export default async function Home() {
       {!isFa && <FAQSection />}
       {!isFa && <AboutSection />}
       {!isFa && <CTASection />}
-      {isFa && <FaHomeCta />}
       <Footer />
       <AIAssistant />
     </main>
