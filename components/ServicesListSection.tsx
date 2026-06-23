@@ -47,6 +47,7 @@ export default function ServicesListSection() {
             textTransform: 'uppercase',
             color: '#999',
             marginBottom: '48px',
+            textAlign: isFa ? 'center' : 'left',
           }}
         >
           {isFa ? 'خدمات' : 'SERVICES'}
