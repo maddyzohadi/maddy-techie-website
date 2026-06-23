@@ -21,7 +21,7 @@ export default async function Footer() {
   return (
     <footer
       className="relative"
-      style={{ background: '#1A1A2E', borderTop: '0.5px solid rgba(245,240,232,0.10)' }}
+      style={{ background: '#F5F0EB', borderTop: '0.5px solid #E8E3DA' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
@@ -30,10 +30,10 @@ export default async function Footer() {
 
           {/* Brand */}
           <div className="max-w-xs">
-            <div className="font-ui font-bold text-xl mb-2" style={{ color: '#F5F0E8' }}>
+            <div className="font-ui font-bold text-xl mb-2" style={{ color: '#1A1A1A' }}>
               Maddy the Techie
             </div>
-            <p className="font-ui text-sm leading-relaxed" style={{ color: 'rgba(245,240,232,0.60)' }}>
+            <p className="font-ui text-sm leading-relaxed" style={{ color: '#888' }}>
               {t('brand')}
             </p>
           </div>
@@ -54,7 +54,7 @@ export default async function Footer() {
             <Link
               href="/services#contact-form"
               className="inline-flex items-center gap-1.5 font-ui font-semibold text-sm self-start transition-opacity duration-200 hover:opacity-80"
-              style={{ color: '#F5F0E8' }}
+              style={{ color: '#1A1A1A' }}
             >
               {t('startProject')}
               <ArrowRight size={13} />
@@ -64,16 +64,16 @@ export default async function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="mb-6" style={{ height: '1px', background: 'rgba(245,240,232,0.10)' }} />
+        <div className="mb-6" style={{ height: '1px', background: '#E8E3DA' }} />
 
         {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
 
           <div className="flex flex-col gap-1.5">
-            <p className="font-ui text-xs" style={{ color: 'rgba(245,240,232,0.40)' }}>
+            <p className="font-ui text-xs" style={{ color: '#888' }}>
               © <span dir="ltr">2026</span> Maddy the Techie
             </p>
-            <p className="font-ui text-xs" style={{ color: 'rgba(245,240,232,0.40)' }}>
+            <p className="font-ui text-xs" style={{ color: '#888' }}>
               {t('disclaimer')}
             </p>
           </div>
@@ -82,15 +82,15 @@ export default async function Footer() {
             {/* Language switcher */}
             <div
               className="flex items-center gap-1 px-1 py-1 rounded-full"
-              style={{ background: 'rgba(123,47,190,0.15)', border: '0.5px solid rgba(123,47,190,0.30)' }}
+              style={{ background: 'rgba(0,0,0,0.05)', border: '0.5px solid #E8E3DA' }}
             >
               <Link
                 href="/"
                 locale="en"
                 className="px-3 py-1 text-xs font-ui font-semibold transition-all duration-200 rounded-full"
                 style={locale === 'en'
-                  ? { background: '#7B2FBE', color: '#ffffff' }
-                  : { color: 'rgba(245,240,232,0.60)' }}
+                  ? { background: '#1A1A1A', color: '#ffffff' }
+                  : { color: '#888' }}
               >
                 EN
               </Link>
@@ -99,8 +99,8 @@ export default async function Footer() {
                 locale="fa"
                 className="px-3 py-1 text-xs font-ui font-semibold transition-all duration-200 rounded-full"
                 style={locale === 'fa'
-                  ? { background: '#7B2FBE', color: '#ffffff' }
-                  : { color: 'rgba(245,240,232,0.60)' }}
+                  ? { background: '#1A1A1A', color: '#ffffff' }
+                  : { color: '#888' }}
               >
                 FA
               </Link>
@@ -113,7 +113,7 @@ export default async function Footer() {
                   key={link.labelKey}
                   href={link.href}
                   className="font-ui text-xs transition-opacity duration-200 hover:opacity-70"
-                  style={{ color: 'rgba(245,240,232,0.40)' }}
+                  style={{ color: '#888' }}
                 >
                   {t(link.labelKey)}
                 </a>

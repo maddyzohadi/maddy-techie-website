@@ -234,13 +234,13 @@ h3 { font-size: var(--text-h3); }
 }
 
 .footer-nav-link {
-  color: rgba(245, 240, 232, 0.60);
+  color: #888;
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .footer-nav-link:hover {
-  color: var(--text-primary-dark);
+  color: #1A1A1A;
 }
 
 .template-card {
