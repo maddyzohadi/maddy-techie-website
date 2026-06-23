@@ -78,12 +78,12 @@ export default function Navigation() {
                     fontFamily: navFont,
                     fontSize: '14px',
                     fontWeight: 500,
-                    color: isActive(link.href) ? '#1A1A1A' : '#666',
+                    color: isActive(link.href) ? '#1A1A1A' : '#333',
                     textDecoration: 'none',
                     transition: 'color 0.15s',
                   }}
                   onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#1A1A1A' }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = isActive(link.href) ? '#1A1A1A' : '#666' }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = isActive(link.href) ? '#1A1A1A' : '#333' }}
                 >
                   {t(link.key)}
                 </Link>
@@ -119,7 +119,7 @@ export default function Navigation() {
                       transition: 'all 0.15s',
                       ...(locale === loc
                         ? { background: '#1A1A1A', color: '#fff' }
-                        : { background: 'transparent', color: '#666' }),
+                        : { background: 'transparent', color: '#333' }),
                     }}
                   >
                     {loc.toUpperCase()}
@@ -211,7 +211,7 @@ export default function Navigation() {
                   fontFamily: navFont,
                   fontSize: '15px',
                   fontWeight: 500,
-                  color: isActive(link.href) ? '#1A1A1A' : '#666',
+                  color: isActive(link.href) ? '#1A1A1A' : '#333',
                   background: isActive(link.href) ? 'rgba(0,0,0,0.05)' : 'transparent',
                   textDecoration: 'none',
                 }}
@@ -247,7 +247,7 @@ export default function Navigation() {
                     textDecoration: 'none',
                     ...(locale === 'en'
                       ? { background: '#1A1A1A', color: '#fff' }
-                      : { background: 'rgba(0,0,0,0.05)', color: '#666' }),
+                      : { background: 'rgba(0,0,0,0.05)', color: '#333' }),
                   }}
                 >
                   English
@@ -267,7 +267,7 @@ export default function Navigation() {
                     textDecoration: 'none',
                     ...(locale === 'fa'
                       ? { background: '#1A1A1A', color: '#fff' }
-                      : { background: 'rgba(0,0,0,0.05)', color: '#666' }),
+                      : { background: 'rgba(0,0,0,0.05)', color: '#333' }),
                   }}
                 >
                   فارسی
