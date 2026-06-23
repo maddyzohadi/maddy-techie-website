@@ -19,7 +19,7 @@ export default function CTASection() {
   return (
     <section
       id="contact"
-      className="py-24 md:py-32 relative overflow-hidden scroll-mt-24"
+      className="pt-24 md:pt-32 pb-0 relative overflow-hidden scroll-mt-24"
       style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
     >
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
