@@ -1,128 +1,144 @@
-import { RefreshCw, AlertCircle, MessageSquare, TrendingUp } from 'lucide-react'
-import { getTranslations, getLocale } from 'next-intl/server'
+import { getLocale } from 'next-intl/server'
+
+const FA_CARDS = [
+  { number: '01', title: 'کارهای تکراری', desc: 'کارهایی که هر روز تکرار می‌شن و وقت زیادی می‌گیرن' },
+  { number: '02', title: 'گم شدن توی ابزارها', desc: 'ابزارهای زیاد، بدون یک سیستم مشخص برای استفاده از اون‌ها' },
+  { number: '03', title: 'AI رو درست استفاده نمیکنی', desc: 'ChatGPT و ابزارهای دیگه داری اما بیشتر ازشون سوال می‌پرسی' },
+  { number: '04', title: 'نگران عقب موندن هستی', desc: 'می‌بینی بقیه از AI استفاده می‌کنن ولی نمی‌دونی از کجا شروع کنی' },
+]
+
+const EN_CARDS = [
+  { number: '01', title: 'Repetitive manual tasks', desc: 'The same tasks every day taking up hours that should go elsewhere' },
+  { number: '02', title: 'AI overwhelm', desc: 'Too many tools, too many options, and no clear system to tie them together' },
+  { number: '03', title: 'Using AI like a search bar', desc: "You have ChatGPT but you're mostly just asking it questions" },
+  { number: '04', title: 'Afraid of falling behind', desc: "Everyone talks about AI but you're not sure where to start or what actually works" },
+]
 
 export default async function ProblemSection() {
   const locale = await getLocale()
-  const t = await getTranslations('problem')
   const isFa = locale === 'fa'
 
-  const accent = { text: '#1A1A2E', bg: 'rgba(123,47,190,0.12)', border: 'rgba(123,47,190,0.30)' }
-
-  const headingColor = '#1A1A2E'
-  const bodyColor    = '#1A1A2E'
-  const badgeColor   = '#1A1A2E'
-
-  const allProblems = [
-    { icon: RefreshCw,     title: t('item0title'), description: t('item0desc'), number: '01' },
-    { icon: AlertCircle,   title: t('item1title'), description: t('item1desc'), number: '02' },
-    { icon: MessageSquare, title: t('item2title'), description: t('item2desc'), number: '03' },
-    { icon: TrendingUp,    title: t('item3title'), description: t('item3desc'), number: '04' },
-  ]
-
-  const problems = isFa ? [] : allProblems
+  const cards      = isFa ? FA_CARDS : EN_CARDS
+  const headingFont = isFa ? "'Noto Naskh Arabic', serif" : "'DM Serif Display', serif"
+  const bodyFont    = isFa ? "'Noto Naskh Arabic', serif" : 'system-ui, sans-serif'
 
   return (
-    <section className="py-24 md:py-32 relative" style={{ background: '#F5F0E8' }}>
+    <section
+      style={{
+        background: '#F5F0EB',
+        padding: '96px 24px',
+        borderTop: '0.5px solid rgba(0,0,0,0.06)',
+        direction: isFa ? 'rtl' : 'ltr',
+      }}
+    >
+      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Section header */}
-        <div className="text-center mb-16">
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
           <span
-            className="inline-block font-ui text-sm md:text-base font-semibold uppercase tracking-[0.22em] mb-4"
-            style={{ color: badgeColor }}
+            style={{
+              display: 'inline-block',
+              fontFamily: 'system-ui, sans-serif',
+              fontSize: '11px',
+              fontWeight: 600,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              color: '#999',
+              marginBottom: '16px',
+            }}
           >
-            {t('badge')}
+            {isFa ? 'مسئله اصلی' : 'SOUND FAMILIAR?'}
           </span>
           <h2
-            className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight`}
-            style={{ color: headingColor }}
+            style={{
+              fontFamily: headingFont,
+              fontSize: 'clamp(28px, 4vw, 46px)',
+              fontWeight: 700,
+              color: '#1A1A1A',
+              lineHeight: 1.2,
+              letterSpacing: '-0.02em',
+              marginBottom: '16px',
+            }}
           >
-            {t('title')}
+            {isFa
+              ? 'هوش مصنوعی که کارهای سخت رو ساده میکنه'
+              : 'AI should feel useful, not overwhelming'}
           </h2>
           <p
-            className="font-ui text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
-            style={{ color: bodyColor }}
+            style={{
+              fontFamily: bodyFont,
+              fontSize: '17px',
+              color: '#666',
+              lineHeight: 1.7,
+              maxWidth: '500px',
+              margin: '0 auto',
+            }}
           >
-            {t('subtitle')}
+            {isFa
+              ? 'وقتی ابزارها درست کنار هم باشن کارها سریعتر پیش میرن'
+              : "You don't have a technical problem. You have a starting-point problem."}
           </p>
         </div>
 
-        {/* Problem cards */}
-        <div className={`grid grid-cols-1 sm:grid-cols-2 gap-5 ${isFa ? 'lg:grid-cols-3' : 'lg:grid-cols-4'}`}>
-          {problems.map((problem) => {
-            const Icon = problem.icon
-            return (
-              <div
-                key={problem.number}
-                className="p-7 group flex flex-col"
+        {/* Cards */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+            gap: '16px',
+          }}
+        >
+          {cards.map((card) => (
+            <div
+              key={card.number}
+              style={{
+                background: '#fff',
+                border: '0.5px solid rgba(0,0,0,0.08)',
+                borderRadius: '16px',
+                padding: '28px',
+              }}
+            >
+              <span
                 style={{
-                  background: '#FFFFFF',
-                  border: '0.5px solid rgba(26,26,46,0.12)',
-                  borderRadius: '12px',
+                  display: 'inline-block',
+                  fontFamily: 'system-ui, sans-serif',
+                  fontSize: '11px',
+                  fontWeight: 700,
+                  color: '#bbb',
+                  letterSpacing: '0.08em',
+                  marginBottom: '14px',
                 }}
               >
-                <div className="flex items-start justify-between mb-5">
-                  <span
-                    className="font-ui text-[10px] font-bold tracking-widest px-2 py-1 rounded-md leading-none"
-                    style={{ background: accent.bg, color: accent.text, border: `0.5px solid ${accent.border}` }}
-                  >
-                    <span dir="ltr">{problem.number}</span>
-                  </span>
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: accent.bg, border: `0.5px solid ${accent.border}` }}
-                  >
-                    <Icon size={20} style={{ color: accent.text }} />
-                  </div>
-                </div>
-
-                <h3
-                  className={`${isFa ? 'font-fa' : 'font-en'} font-semibold text-xl md:text-2xl mb-3 leading-snug`}
-                  style={{ color: headingColor }}
-                >
-                  {problem.title}
-                </h3>
-                <p
-                  className="font-ui text-base md:text-lg leading-relaxed flex-1"
-                  style={{ color: bodyColor }}
-                >
-                  {problem.description}
-                </p>
-
-                <div
-                  className="mt-5 h-px w-0 group-hover:w-full transition-all duration-500 rounded-full"
-                  style={{ background: 'rgba(123,47,190,0.20)' }}
-                />
-              </div>
-            )
-          })}
-        </div>
-
-        {/* Bottom hint */}
-        <div className="mt-14 flex justify-center">
-          <div
-            className="px-8 py-5 text-center"
-            style={{
-              borderRadius: '12px',
-              background: 'rgba(123,47,190,0.08)',
-              border: '0.5px solid rgba(123,47,190,0.20)',
-            }}
-          >
-            <p className="font-ui text-base" style={{ color: bodyColor }}>
-              {t('hint')}
-            </p>
-            <p
-              className={`${isFa ? 'font-fa' : 'font-en'} font-semibold text-base mt-1.5`}
-              style={{ color: headingColor }}
-            >
-              {t('hintHighlight')}
-            </p>
-          </div>
+                {card.number}
+              </span>
+              <h3
+                style={{
+                  fontFamily: headingFont,
+                  fontSize: '18px',
+                  fontWeight: 700,
+                  color: '#1A1A1A',
+                  lineHeight: 1.3,
+                  marginBottom: '8px',
+                }}
+              >
+                {card.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: bodyFont,
+                  fontSize: '14px',
+                  color: '#666',
+                  lineHeight: 1.65,
+                  margin: 0,
+                }}
+              >
+                {card.desc}
+              </p>
+            </div>
+          ))}
         </div>
 
       </div>
-
     </section>
   )
 }

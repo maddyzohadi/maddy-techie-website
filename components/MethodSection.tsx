@@ -1,167 +1,195 @@
-import { Zap, Brain, Plus } from 'lucide-react'
-import { getTranslations, getLocale } from 'next-intl/server'
+import { Zap, Brain } from 'lucide-react'
+import { getLocale } from 'next-intl/server'
 
 export default async function MethodSection() {
-  const locale = await getLocale()
-  const t = await getTranslations('method')
-  const isFa = locale === 'fa'
+  const locale   = await getLocale()
+  const isFa     = locale === 'fa'
 
-  const part1Items = [t('part1item0'), t('part1item1'), t('part1item2'), t('part1item3')]
-  const part2Items = [t('part2item0'), t('part2item1'), t('part2item2'), t('part2item3')]
+  const headingFont = isFa ? "'Noto Naskh Arabic', serif" : "'DM Serif Display', serif"
+  const bodyFont    = isFa ? "'Noto Naskh Arabic', serif" : 'system-ui, sans-serif'
 
-  // Always dark — "How it works" sits between the light Problem and light Curriculum sections
-  const headingColor = '#F5F0E8'
-  const bodyColor    = '#F5F0E8'
-  const badgeColor   = '#F5F0E8'
-  const iconBg       = 'rgba(123,47,190,0.15)'
-  const iconBorder   = 'rgba(123,47,190,0.35)'
-  const sepColor     = 'rgba(245,240,232,0.12)'
-  const sectionBg    = '#1A1A2E'
-  const cardBg       = 'rgba(123,47,190,0.12)'
-  const cardBorder   = 'rgba(123,47,190,0.3)'
-  const bulletColor  = '#F5F0E8'
+  const card1 = {
+    badge: isFa ? 'اتوماسیون'       : 'NO-CODE AUTOMATION',
+    title: isFa ? 'ابزارها رو به هم وصل کن'  : 'Connect your tools together',
+    desc:  isFa
+      ? 'یاد می‌گیری چطور Make، Zapier و ChatGPT رو کنار هم بذاری تا کارها خودشون انجام بشن'
+      : 'Link Make, Zapier, and ChatGPT so tasks complete themselves — no developer required',
+  }
+
+  const card2 = {
+    badge: isFa ? 'هوش مصنوعی'     : 'AI IN DAILY WORK',
+    title: isFa ? 'هوش مصنوعی رو وارد کارت کن' : 'Put AI inside your workflow',
+    desc:  isFa
+      ? 'با ابزارهای AI مثل ChatGPT و Claude کارهای تکراری رو حذف کن و سریع‌تر خروجی بده'
+      : 'Use ChatGPT and Claude to cut repetitive work and deliver faster, without sacrificing quality',
+  }
+
+  const iconBox: React.CSSProperties = {
+    width: '40px',
+    height: '40px',
+    borderRadius: '10px',
+    background: 'rgba(0,0,0,0.05)',
+    border: '0.5px solid rgba(0,0,0,0.08)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: '20px',
+    flexShrink: 0,
+  }
 
   return (
     <section
-      className="py-24 md:py-32 relative"
       style={{
-        background: sectionBg,
-        borderTop: '0.5px solid rgba(245,240,232,0.08)',
+        background: '#F5F0EB',
+        padding: '96px 24px',
+        borderTop: '0.5px solid rgba(0,0,0,0.06)',
+        direction: isFa ? 'rtl' : 'ltr',
       }}
     >
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
 
-        {/* Section header */}
-        <div className="text-center mb-16">
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
           <span
-            className="inline-block font-ui text-sm md:text-base font-semibold uppercase tracking-[0.22em] mb-4"
-            style={{ color: badgeColor }}
+            style={{
+              display: 'inline-block',
+              fontFamily: 'system-ui, sans-serif',
+              fontSize: '11px',
+              fontWeight: 600,
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              color: '#999',
+              marginBottom: '16px',
+            }}
           >
-            {t('badge')}
+            {isFa ? 'روش کار' : 'HOW IT WORKS'}
           </span>
           <h2
-            className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight`}
-            style={{ color: headingColor }}
+            style={{
+              fontFamily: headingFont,
+              fontSize: 'clamp(28px, 4vw, 46px)',
+              fontWeight: 700,
+              color: '#1A1A1A',
+              lineHeight: 1.2,
+              letterSpacing: '-0.02em',
+            }}
           >
-            {t('title')}{' '}
-            <br className="hidden md:block" />
-            <span style={{ color: '#E8B86D' }}>{t('titleHighlight')}</span>
+            {isFa
+              ? 'از ایده تا اجرا، بدون کدنویسی'
+              : 'From idea to execution, without writing code'}
           </h2>
-          <p
-            className="font-ui text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
-            style={{ color: bodyColor }}
-          >
-            {t('subtitle')}
-          </p>
         </div>
 
-        {/* Two-panel layout */}
-        <div className="flex flex-col lg:flex-row items-stretch gap-6 max-w-5xl mx-auto">
-
-          {/* Part 1 */}
+        {/* Two cards */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '20px',
+            maxWidth: '900px',
+            margin: '0 auto',
+          }}
+        >
+          {/* Card 1 */}
           <div
-            className="flex-1 p-8 md:p-10"
             style={{
-              background: cardBg,
-              border: `0.5px solid ${cardBorder}`,
-              borderRadius: '12px',
+              background: '#fff',
+              border: '0.5px solid rgba(0,0,0,0.08)',
+              borderRadius: '16px',
+              padding: '32px',
             }}
           >
-            <div
-              className="w-14 h-14 flex items-center justify-center mb-5"
-              style={{ background: iconBg, border: `0.5px solid ${iconBorder}`, borderRadius: '8px' }}
+            <div style={iconBox}>
+              <Zap size={20} style={{ color: '#1A1A1A' }} />
+            </div>
+            <span
+              style={{
+                fontFamily: 'system-ui, sans-serif',
+                fontSize: '11px',
+                fontWeight: 600,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: '#999',
+                display: 'block',
+                marginBottom: '10px',
+              }}
             >
-              <Zap size={26} style={{ color: headingColor }} />
-            </div>
-
-            <div className="font-ui text-xs font-semibold uppercase tracking-[0.22em] mb-3" style={{ color: badgeColor }}>
-              {t('part1badge')}
-            </div>
-
+              {card1.badge}
+            </span>
             <h3
-              className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-xl md:text-2xl mb-4`}
-              style={{ color: headingColor }}
+              style={{
+                fontFamily: headingFont,
+                fontSize: '22px',
+                fontWeight: 700,
+                color: '#1A1A1A',
+                lineHeight: 1.3,
+                marginBottom: '12px',
+              }}
             >
-              {t('part1title')}
+              {card1.title}
             </h3>
-
-            <p className="font-ui text-base md:text-lg leading-relaxed mb-7" style={{ color: bodyColor }}>
-              {t('part1desc')}
-            </p>
-
-            <ul className="space-y-3.5">
-              {part1Items.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 font-ui text-base md:text-lg" style={{ color: bodyColor }}>
-                  <span
-                    className="mt-1.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ background: iconBg, border: `0.5px solid ${iconBorder}` }}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full block" style={{ background: bulletColor }} />
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Plus separator */}
-          <div className="flex items-center justify-center lg:flex-col gap-4 py-4 lg:py-0">
-            <div className="hidden lg:block w-px flex-1" style={{ background: sepColor }} />
-            <div
-              className="w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0"
-              style={{ background: iconBg, border: `0.5px solid ${iconBorder}` }}
+            <p
+              style={{
+                fontFamily: bodyFont,
+                fontSize: '15px',
+                color: '#666',
+                lineHeight: 1.7,
+                margin: 0,
+              }}
             >
-              <Plus size={18} style={{ color: bodyColor }} />
-            </div>
-            <div className="hidden lg:block w-px flex-1" style={{ background: sepColor }} />
-            <div className="lg:hidden h-px flex-1" style={{ background: sepColor }} />
-            <div className="lg:hidden h-px flex-1" style={{ background: sepColor }} />
+              {card1.desc}
+            </p>
           </div>
 
-          {/* Part 2 */}
+          {/* Card 2 */}
           <div
-            className="flex-1 p-8 md:p-10"
             style={{
-              background: cardBg,
-              border: `0.5px solid ${cardBorder}`,
-              borderRadius: '12px',
+              background: '#fff',
+              border: '0.5px solid rgba(0,0,0,0.08)',
+              borderRadius: '16px',
+              padding: '32px',
             }}
           >
-            <div
-              className="w-14 h-14 flex items-center justify-center mb-5"
-              style={{ background: iconBg, border: `0.5px solid ${iconBorder}`, borderRadius: '8px' }}
+            <div style={iconBox}>
+              <Brain size={20} style={{ color: '#1A1A1A' }} />
+            </div>
+            <span
+              style={{
+                fontFamily: 'system-ui, sans-serif',
+                fontSize: '11px',
+                fontWeight: 600,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: '#999',
+                display: 'block',
+                marginBottom: '10px',
+              }}
             >
-              <Brain size={26} style={{ color: headingColor }} />
-            </div>
-
-            <div className="font-ui text-xs font-semibold uppercase tracking-[0.22em] mb-3" style={{ color: badgeColor }}>
-              {t('part2badge')}
-            </div>
-
+              {card2.badge}
+            </span>
             <h3
-              className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-xl md:text-2xl mb-4`}
-              style={{ color: headingColor }}
+              style={{
+                fontFamily: headingFont,
+                fontSize: '22px',
+                fontWeight: 700,
+                color: '#1A1A1A',
+                lineHeight: 1.3,
+                marginBottom: '12px',
+              }}
             >
-              {t('part2title')}
+              {card2.title}
             </h3>
-
-            <p className="font-ui text-base md:text-lg leading-relaxed mb-7" style={{ color: bodyColor }}>
-              {t('part2desc')}
+            <p
+              style={{
+                fontFamily: bodyFont,
+                fontSize: '15px',
+                color: '#666',
+                lineHeight: 1.7,
+                margin: 0,
+              }}
+            >
+              {card2.desc}
             </p>
-
-            <ul className="space-y-3.5">
-              {part2Items.map((item, i) => (
-                <li key={i} className="flex items-start gap-3 font-ui text-base md:text-lg" style={{ color: bodyColor }}>
-                  <span
-                    className="mt-1.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ background: iconBg, border: `0.5px solid ${iconBorder}` }}
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full block" style={{ background: bulletColor }} />
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
 

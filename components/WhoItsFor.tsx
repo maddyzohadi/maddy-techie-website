@@ -7,8 +7,8 @@ export default async function WhoItsFor() {
   const isFa = locale === 'fa'
 
   const cardAccent = {
-    bg: 'rgba(123,47,190,0.12)',
-    border: 'rgba(123,47,190,0.30)',
+    bg: 'rgba(0,0,0,0.05)',
+    border: 'rgba(0,0,0,0.08)',
     icon: '#1A1A2E',
   }
 
@@ -41,7 +41,7 @@ export default async function WhoItsFor() {
   return (
     <section
       className="py-24 md:py-32 relative"
-      style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
+      style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -117,7 +117,7 @@ export default async function WhoItsFor() {
                       className={`${isFa ? 'font-fa' : 'font-ui'} text-xs px-2.5 py-1`}
                       style={{
                         background: '#FFFFFF',
-                        border: '0.5px solid rgba(123,47,190,0.25)',
+                        border: '0.5px solid rgba(0,0,0,0.08)',
                         color: 'rgba(26,26,46,0.60)',
                         borderRadius: '6px',
                       }}

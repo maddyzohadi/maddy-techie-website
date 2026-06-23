@@ -13,7 +13,7 @@ export default async function AboutSection() {
 
   return (
     <>
-      <section id="about" className="py-24 md:py-32 relative scroll-mt-[88px]" style={{ background: '#F5F0E8' }}>
+      <section id="about" className="py-24 md:py-32 relative scroll-mt-[88px]" style={{ background: '#F5F0EB' }}>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -32,8 +32,8 @@ export default async function AboutSection() {
                     <div
                       className="w-24 h-24 rounded-full flex items-center justify-center"
                       style={{
-                        background: 'rgba(123,47,190,0.12)',
-                        border: '0.5px solid rgba(123,47,190,0.30)',
+                        background: 'rgba(0,0,0,0.05)',
+                        border: '0.5px solid rgba(0,0,0,0.08)',
                       }}
                     >
                       <span
@@ -46,8 +46,8 @@ export default async function AboutSection() {
                     <div
                       className="absolute -top-1 -right-1 w-7 h-7 rounded-full flex items-center justify-center"
                       style={{
-                        background: 'rgba(123,47,190,0.12)',
-                        border: '0.5px solid rgba(123,47,190,0.30)',
+                        background: 'rgba(0,0,0,0.05)',
+                        border: '0.5px solid rgba(0,0,0,0.08)',
                       }}
                     >
                       <Sparkles size={13} style={{ color: '#1A1A2E' }} />
@@ -93,7 +93,7 @@ export default async function AboutSection() {
               {/* Stat strip */}
               <div
                 className="flex flex-wrap gap-x-6 gap-y-2 mb-8"
-                style={{ borderTop: '0.5px solid rgba(123,47,190,0.20)', paddingTop: '20px' }}
+                style={{ borderTop: '0.5px solid rgba(0,0,0,0.08)', paddingTop: '20px' }}
               >
                 {([t('stat0'), t('stat1'), t('stat2')] as string[]).map((stat, i) => (
                   <span key={i} className="font-ui font-semibold text-sm" style={{ color: headingColor }}>
@@ -106,9 +106,9 @@ export default async function AboutSection() {
                 href="/about"
                 className="inline-flex items-center gap-2.5 font-ui font-semibold text-base px-9 py-4"
                 style={{
-                  background: '#7B2FBE',
+                  background: '#1A1A1A',
                   color: '#ffffff',
-                  borderRadius: '8px',
+                  borderRadius: '100px',
                   border: 'none',
                   textDecoration: 'none',
                 }}
@@ -132,18 +132,18 @@ async function FaFinalCTA() {
   return (
     <section
       className="py-20 md:py-24 relative overflow-hidden"
-      style={{ background: '#1A1A2E', borderTop: '0.5px solid rgba(245,240,232,0.10)' }}
+      style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
     >
       <div className="relative z-10 max-w-xl mx-auto px-4 sm:px-6 text-center">
         <h2
           className="font-fa font-bold text-2xl md:text-3xl mb-4 leading-snug"
-          style={{ color: '#F5F0E8' }}
+          style={{ color: '#1A1A1A' }}
         >
           {t('title')}
         </h2>
         <p
           className="font-fa text-base md:text-lg leading-relaxed mb-8"
-          style={{ color: 'rgba(245,240,232,0.60)' }}
+          style={{ color: '#666' }}
         >
           {t('subtitle')}
         </p>
@@ -151,9 +151,9 @@ async function FaFinalCTA() {
           href="/services#contact-form"
           className="inline-flex items-center gap-2.5 font-fa font-semibold text-base px-9 py-4"
           style={{
-            background: '#7B2FBE',
+            background: '#1A1A1A',
             color: '#ffffff',
-            borderRadius: '8px',
+            borderRadius: '100px',
             border: 'none',
             textDecoration: 'none',
           }}

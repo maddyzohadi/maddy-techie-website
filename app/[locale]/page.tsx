@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { getLocale } from 'next-intl/server'
 import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
-import CaptureStrip from '@/components/CaptureStrip'
 import ProblemSection from '@/components/ProblemSection'
 import MethodSection from '@/components/MethodSection'
 import CurriculumSection from '@/components/CurriculumSection'
@@ -58,7 +57,6 @@ export default async function Home() {
     <main className="min-h-screen overflow-x-hidden">
       <Navigation />
       <Hero />
-      <CaptureStrip />
       <ProblemSection />
       <MethodSection />
       <CurriculumSection />

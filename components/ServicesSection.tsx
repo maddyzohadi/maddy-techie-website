@@ -17,7 +17,7 @@ export default async function ServicesSection() {
     <section
       id="services"
       className="py-24 md:py-32 relative scroll-mt-24"
-      style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
+      style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -60,8 +60,8 @@ export default async function ServicesSection() {
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
                   style={{
-                    background: 'rgba(123,47,190,0.12)',
-                    border: '0.5px solid rgba(123,47,190,0.30)',
+                    background: 'rgba(0,0,0,0.05)',
+                    border: '0.5px solid rgba(0,0,0,0.08)',
                   }}
                 >
                   <Icon size={22} style={{ color: '#1A1A2E' }} />
@@ -88,9 +88,9 @@ export default async function ServicesSection() {
             href="/services"
             className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4`}
             style={{
-              background: '#7B2FBE',
+              background: '#1A1A1A',
               color: '#ffffff',
-              borderRadius: '8px',
+              borderRadius: '100px',
               textDecoration: 'none',
             }}
           >

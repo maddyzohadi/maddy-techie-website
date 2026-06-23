@@ -10,7 +10,7 @@ export default function CurriculumSection() {
   const isFa = locale === 'fa'
   const [openPart, setOpenPart] = useState<number | null>(0)
 
-  const accent = { text: '#1A1A2E', bg: 'rgba(123,47,190,0.12)', border: 'rgba(123,47,190,0.30)' }
+  const accent = { text: '#1A1A2E', bg: 'rgba(0,0,0,0.05)', border: 'rgba(0,0,0,0.08)' }
 
   const parts = [
     { number: '01', icon: Zap,    title: t('part0title'), tagline: t('part0tagline'), items: [t('part0item0'), t('part0item1'), t('part0item2'), t('part0item3')] },
@@ -24,7 +24,7 @@ export default function CurriculumSection() {
   const badgeColor   = '#1A1A2E'
 
   return (
-    <section id="training" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#F5F0E8' }}>
+    <section id="training" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#F5F0EB' }}>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -107,7 +107,7 @@ export default function CurriculumSection() {
                 <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
                   <div
                     className="px-6 md:px-7 pb-7 pt-5"
-                    style={{ borderTop: '0.5px solid rgba(123,47,190,0.12)' }}
+                    style={{ borderTop: '0.5px solid rgba(0,0,0,0.08)' }}
                   >
                     <p
                       className="font-ui text-base md:text-lg mb-5 sm:hidden"

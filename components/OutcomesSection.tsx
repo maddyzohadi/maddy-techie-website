@@ -25,7 +25,7 @@ export default function OutcomesSection() {
   return (
     <section
       className="py-20 md:py-28 relative"
-      style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
+      style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
     >
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -72,8 +72,8 @@ export default function OutcomesSection() {
                 style={{
                   width: '36px', height: '36px',
                   borderRadius: '10px',
-                  background: 'rgba(123,47,190,0.12)',
-                  border: '0.5px solid rgba(123,47,190,0.30)',
+                  background: 'rgba(0,0,0,0.05)',
+                  border: '0.5px solid rgba(0,0,0,0.08)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   flexShrink: 0, marginTop: '2px',
                 }}
