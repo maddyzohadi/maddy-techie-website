@@ -583,7 +583,7 @@ export default function ResourcesSection() {
               >
                 {isFa
                   ? 'بگو چطور کار می‌کنی، سیستمش را برات می‌سازم'
-                  : <>Tell me how you work<br />I&apos;ll build the system for it</>}
+                  : <>Tell me how you work &mdash; I&apos;ll build the system for it</>}
               </h2>
               <p
                 className={`${isFa ? 'font-fa' : 'font-ui'} mx-auto mb-8`}

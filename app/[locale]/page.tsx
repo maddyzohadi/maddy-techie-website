@@ -11,9 +11,7 @@ import ServicesListSection from '@/components/ServicesListSection'
 import GradientCTASection from '@/components/GradientCTASection'
 import CurriculumSection from '@/components/CurriculumSection'
 import ResourcesSection from '@/components/ResourcesSection'
-import OutcomesSection from '@/components/OutcomesSection'
 import ServicesSection from '@/components/ServicesSection'
-import WhoItsFor from '@/components/WhoItsFor'
 import FAQSection from '@/components/FAQSection'
 import AboutSection from '@/components/AboutSection'
 import CTASection from '@/components/CTASection'
@@ -69,9 +67,7 @@ export default async function Home() {
       <GradientCTASection />
       <CurriculumSection />
       {!isFa && <ResourcesSection />}
-      {!isFa && <OutcomesSection />}
       {!isFa && <ServicesSection />}
-      {!isFa && <WhoItsFor />}
       {!isFa && <FAQSection />}
       {!isFa && <AboutSection />}
       {!isFa && <CTASection />}
