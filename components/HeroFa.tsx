@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 const floatingItems = [
   { icon: "https://cdn.worldvectorlogo.com/logos/chatgpt-6.svg",           label: "ChatGPT",      x: 8,  y: 18, delay: 0,   rotation: -8, color: "#10A37F" },
   { icon: "https://cdn.worldvectorlogo.com/logos/claude-1.svg",            label: "Claude",       x: 72, y: 12, delay: 0.4, rotation:  6, color: "#CC785C" },
-  { icon: "https://cdn.worldvectorlogo.com/logos/zapier-1.svg",            label: "اتوماسیون",    x: 82, y: 55, delay: 0.8, rotation: -5, color: "#FF4A00" },
+  { icon: "https://cdn.worldvectorlogo.com/logos/zapier-1.svg",            label: "Zapier",       x: 82, y: 55, delay: 0.8, rotation: -5, color: "#FF4A00" },
   { icon: "https://cdn.worldvectorlogo.com/logos/google-sheets-logo-1.svg",label: "Google Sheets",x: 6,  y: 62, delay: 1.2, rotation:  7, color: "#34A853" },
   { icon: "https://cdn.worldvectorlogo.com/logos/notion-logo-1.svg",       label: "Notion",       x: 60, y: 78, delay: 0.6, rotation: -6, color: "#1A1A1A" },
   { icon: "https://cdn.worldvectorlogo.com/logos/make-1.svg",              label: "Make",         x: 22, y: 80, delay: 1.0, rotation:  5, color: "#6D00CC" },
@@ -51,7 +51,7 @@ export default function HeroFa() {
 
       {/* Floating AI tool cards */}
       {floatingItems.map((item, i) => (
-        <FloatingCard key={i} item={item} mounted={mounted} />
+        <FloatingCard key={i} item={item} mounted={mounted} index={i} />
       ))}
 
       {/* Center content */}
@@ -207,14 +207,21 @@ export default function HeroFa() {
   );
 }
 
+const FLOAT_AMOUNTS = [8, 6, 10, 7, 9, 6, 8];
+
 function FloatingCard({
   item,
   mounted,
+  index,
 }: {
   item: (typeof floatingItems)[0];
   mounted: boolean;
+  index: number;
 }) {
   const [imgError, setImgError] = useState(false);
+  const animName = `floatCard${index}`;
+  const floatY = FLOAT_AMOUNTS[index % FLOAT_AMOUNTS.length];
+
   return (
     <div
       style={{
@@ -223,27 +230,16 @@ function FloatingCard({
         top: `${item.y}%`,
         zIndex: 1,
         opacity: mounted ? 1 : 0,
-        transform: mounted
-          ? `rotate(${item.rotation}deg) translateY(0px)`
-          : `rotate(${item.rotation}deg) translateY(20px)`,
-        transition: `opacity 0.6s ease ${item.delay}s, transform 0.6s ease ${item.delay}s`,
+        transition: `opacity 0.6s ease ${item.delay}s`,
         animation: mounted
-          ? `float${Math.abs(item.rotation) % 3} 4s ease-in-out ${item.delay}s infinite`
+          ? `${animName} 4s ease-in-out ${item.delay}s infinite`
           : "none",
       }}
     >
       <style>{`
-        @keyframes float0 {
+        @keyframes ${animName} {
           0%, 100% { transform: rotate(${item.rotation}deg) translateY(0px); }
-          50% { transform: rotate(${item.rotation}deg) translateY(-8px); }
-        }
-        @keyframes float1 {
-          0%, 100% { transform: rotate(${item.rotation}deg) translateY(0px); }
-          50% { transform: rotate(${item.rotation}deg) translateY(-6px); }
-        }
-        @keyframes float2 {
-          0%, 100% { transform: rotate(${item.rotation}deg) translateY(0px); }
-          50% { transform: rotate(${item.rotation}deg) translateY(-10px); }
+          50%       { transform: rotate(${item.rotation}deg) translateY(-${floatY}px); }
         }
       `}</style>
       <div
