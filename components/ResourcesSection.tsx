@@ -554,63 +554,6 @@ export default function ResourcesSection() {
             ))}
           </div>
 
-          {/* Custom template CTA block */}
-          <div
-            className="relative overflow-hidden text-center"
-            style={{
-              padding: 'clamp(40px, 5vw, 64px) 32px',
-              borderRadius: '16px',
-              border: '0.5px solid rgba(123,47,190,0.25)',
-              background: '#FFFFFF',
-            }}
-          >
-            <div className="relative z-10">
-              <p
-                className={`${isFa ? 'font-fa' : 'font-ui'} font-bold mb-4`}
-                style={{ fontSize: '13px', letterSpacing: '.20em', color: 'rgba(26,26,46,0.50)', textTransform: 'uppercase' }}
-              >
-                {isFa ? 'گردش‌کار دقیق خودت را پیدا نکردی؟' : "Can't find your exact workflow?"}
-              </p>
-              <h2
-                className={`${isFa ? 'font-fa' : 'font-en'} font-extrabold mx-auto mb-4`}
-                style={{
-                  fontSize: 'clamp(26px, 3.4vw, 42px)',
-                  color: '#1A1A2E',
-                  maxWidth: '20ch',
-                  letterSpacing: '-.02em',
-                  lineHeight: 1.1,
-                }}
-              >
-                {isFa
-                  ? 'بگو چطور کار می‌کنی، سیستمش را برات می‌سازم'
-                  : <>Tell me how you work &mdash; I&apos;ll build the system for it</>}
-              </h2>
-              <p
-                className={`${isFa ? 'font-fa' : 'font-ui'} mx-auto mb-8`}
-                style={{ fontSize: '16.5px', color: 'rgba(26,26,46,0.60)', maxWidth: '480px', lineHeight: 1.6 }}
-              >
-                {isFa
-                  ? 'یک قالب برای کارهای واقعی روزمره‌ات، با زبان ساده و بدون کد و اصطلاحات پیچیده. تو گردش‌کار را بگو، ساختنش با من.'
-                  : <>A template made for your real day-to-day tasks, set up in plain English with no code and no jargon<br />You bring the workflow, I&apos;ll do the building</>}
-              </p>
-              <a
-                href="#contact"
-                className={`${isFa ? 'font-fa' : 'font-ui'} font-bold inline-flex items-center gap-2 cursor-pointer`}
-                style={{
-                  padding: '14px 28px',
-                  borderRadius: '8px',
-                  fontSize: '15.5px',
-                  color: '#FFFFFF',
-                  background: '#7B2FBE',
-                  textDecoration: 'none',
-                }}
-              >
-                {isFa ? 'قالب اختصاصی‌ام را بساز' : 'Get my custom template'}
-                <ArrowRight size={16} className={isFa ? 'rotate-180' : ''} />
-              </a>
-            </div>
-          </div>
-
         </div>
       </section>
 
