@@ -22,14 +22,14 @@ export default async function HeroFa() {
     <section
       id="home"
       className="relative min-h-screen flex flex-col justify-center"
-      style={{ background: '#1A1A2E', minHeight: '100svh', overflow: 'clip' }}
+      style={{ background: '#1A1A2E' }}
     >
       {/* Two-column layout */}
       <div className="relative z-10 w-full max-w-[1480px] mx-auto px-6 lg:px-14 pt-28 pb-20">
         <div className="flex items-center gap-10">
 
           {/* ── Copy column ─────────────────────────────── */}
-          <div style={{ flex: '1 1 auto', minWidth: 0, maxWidth: '600px', width: 0 }}>
+          <div style={{ flex: '1 1 0', minWidth: 0, maxWidth: '600px' }}>
 
             {/* Badge */}
             <div className="badge mb-8" style={{ display: 'inline-flex' }}>
