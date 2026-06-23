@@ -47,7 +47,9 @@ export default async function HeroFa() {
                 color: '#F5F0E8',
               }}
             >
-              {t('title')}
+              کارهای روزمره‌ات را{' '}
+              <span style={{ color: '#E8B86D' }}>ساده‌تر</span>
+              {' '}کن
             </h1>
 
             {/* Subtitle */}

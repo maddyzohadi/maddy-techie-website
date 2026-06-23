@@ -45,7 +45,7 @@ export default async function MethodSection() {
           >
             {t('title')}{' '}
             <br className="hidden md:block" />
-            <span style={{ color: bodyColor }}>{t('titleHighlight')}</span>
+            <span style={{ color: '#E8B86D' }}>{t('titleHighlight')}</span>
           </h2>
           <p
             className="font-ui text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"

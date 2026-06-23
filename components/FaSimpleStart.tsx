@@ -24,7 +24,7 @@ export default function FaSimpleStart() {
           className="font-fa font-bold text-3xl md:text-4xl leading-tight mb-4"
           style={{ color: '#F5F0E8', letterSpacing: '-0.025em' }}
         >
-          مسیر ساده برای شروع
+          مسیر <span style={{ color: '#E8B86D' }}>ساده</span> برای شروع
         </h2>
         <p
           className="font-fa text-lg md:text-xl leading-relaxed mb-10"
