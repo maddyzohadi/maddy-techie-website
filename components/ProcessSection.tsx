@@ -1,10 +1,10 @@
 import { getLocale } from 'next-intl/server'
 
 const FA_STEPS = [
-  { week: 'هفته ۱', title: 'آشنایی با نیاز',    desc: 'با هم بررسی می‌کنیم چی لازم داری و کجا وقت هدر می‌ره' },
-  { week: 'هفته ۲', title: 'طراحی سیستم',       desc: 'یه نقشه راه ساده و اجرایی برات می‌سازیم' },
-  { week: 'هفته ۳', title: 'اجرا و آموزش',      desc: 'سیستم رو راه می‌ندازیم و یاد می‌گیری چطور ازش استفاده کنی' },
-  { week: 'هفته ۴', title: 'تحویل و پشتیبانی', desc: 'همه چیز آماده‌ست، تو فقط کار می‌کنی' },
+  { week: 'هفته ۱', title: 'آشنایی با نیاز',    body: 'با هم بررسی می‌کنیم چی لازم داری و کجا وقت هدر می‌ره' },
+  { week: 'هفته ۲', title: 'طراحی سیستم',       body: 'یه نقشه راه ساده و اجرایی برات می‌سازیم' },
+  { week: 'هفته ۳', title: 'اجرا و آموزش',      body: 'سیستم رو راه می‌ندازیم و یاد می‌گیری چطور ازش استفاده کنی' },
+  { week: 'هفته ۴', title: 'تحویل و پشتیبانی', body: 'همه چیز آماده‌ست، تو فقط کار می‌کنی' },
 ]
 
 const EN_STEPS = [
@@ -15,20 +15,52 @@ const EN_STEPS = [
 ]
 
 export default async function ProcessSection() {
-  const locale      = await getLocale()
-  const isFa        = locale === 'fa'
-  const steps       = isFa ? FA_STEPS : EN_STEPS
-  const headingFont = isFa ? "'Noto Naskh Arabic', serif" : "'DM Serif Display', serif"
-  const bodyFont    = isFa ? "'Noto Naskh Arabic', serif" : 'system-ui, sans-serif'
+  const locale = await getLocale()
+  const isFa   = locale === 'fa'
+
+  if (isFa) {
+    return (
+      <section className="py-24 px-6 bg-[#FDF0EE]" dir="rtl">
+        <div className="max-w-3xl mx-auto">
+
+          <div className="text-center mb-16">
+            <p className="text-sm text-[#888] tracking-widest mb-4 font-['Noto_Naskh_Arabic']">
+              روش کار
+            </p>
+            <h2 className="font-['Noto_Naskh_Arabic'] text-4xl text-[#1A1A1A] leading-relaxed">
+              از اولین پیام تا سیستم آماده
+            </h2>
+          </div>
+
+          <div className="flex flex-col divide-y divide-[#E8E3DA]">
+            {FA_STEPS.map(({ week, title, body }) => (
+              <div key={week} className="flex items-start gap-6 py-8">
+                <div className="flex-1 text-right">
+                  <h3 className="font-['Noto_Naskh_Arabic'] text-lg font-medium text-[#1A1A1A] mb-2">
+                    {title}
+                  </h3>
+                  <p className="font-['Noto_Naskh_Arabic'] text-sm text-[#666] leading-loose">
+                    {body}
+                  </p>
+                </div>
+                <div className="shrink-0 bg-white border border-[#E8E3DA] rounded-full px-4 py-1.5 text-sm text-[#888] font-['Noto_Naskh_Arabic']">
+                  {week}
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section
-      dir={isFa ? 'rtl' : 'ltr'}
       style={{
         background: '#F5F0EB',
         padding: '96px 24px',
         borderTop: '0.5px solid rgba(0,0,0,0.06)',
-        direction: isFa ? 'rtl' : 'ltr',
       }}
     >
       <div
@@ -55,11 +87,11 @@ export default async function ProcessSection() {
               marginBottom: '16px',
             }}
           >
-            {isFa ? 'روش کار' : 'THE PROCESS'}
+            THE PROCESS
           </span>
           <h2
             style={{
-              fontFamily: headingFont,
+              fontFamily: "'DM Serif Display', serif",
               fontSize: 'clamp(26px, 3.5vw, 42px)',
               fontWeight: 700,
               color: '#1A1A1A',
@@ -67,15 +99,13 @@ export default async function ProcessSection() {
               letterSpacing: '-0.02em',
             }}
           >
-            {isFa
-              ? 'از اولین پیام تا سیستم آماده'
-              : 'From first message to working system'}
+            From first message to working system
           </h2>
         </div>
 
         {/* Right: timeline */}
         <div style={{ flex: '2 1 360px' }}>
-          {steps.map((step, i) => (
+          {EN_STEPS.map((step, i) => (
             <div key={i}>
               {i > 0 && (
                 <div style={{ height: '0.5px', background: 'rgba(0,0,0,0.08)' }} />
@@ -83,7 +113,6 @@ export default async function ProcessSection() {
               <div
                 style={{
                   display: 'flex',
-                  flexDirection: isFa ? 'row-reverse' : 'row',
                   gap: '24px',
                   alignItems: 'flex-start',
                   padding: '28px 0',
@@ -110,7 +139,7 @@ export default async function ProcessSection() {
                 <div>
                   <p
                     style={{
-                      fontFamily: headingFont,
+                      fontFamily: "'DM Serif Display', serif",
                       fontSize: '17px',
                       fontWeight: 700,
                       color: '#1A1A1A',
@@ -122,7 +151,7 @@ export default async function ProcessSection() {
                   </p>
                   <p
                     style={{
-                      fontFamily: bodyFont,
+                      fontFamily: 'system-ui, sans-serif',
                       fontSize: '14px',
                       color: '#666',
                       lineHeight: 1.65,
