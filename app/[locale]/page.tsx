@@ -3,7 +3,6 @@ import { getLocale } from 'next-intl/server'
 import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
 import PainPointsSection from '@/components/PainPointsSection.en'
-import PainPointsSectionFA from '@/components/PainPointsSection.fa'
 import ProblemSection from '@/components/ProblemSection'
 import MethodSection from '@/components/MethodSection'
 import ProcessSection from '@/components/ProcessSection'
@@ -57,7 +56,7 @@ export default async function Home() {
     <main className="min-h-screen overflow-x-hidden">
       <Navigation />
       <Hero />
-      {isFa ? <PainPointsSectionFA /> : <PainPointsSection />}
+      {!isFa && <PainPointsSection />}
       {!isFa && <ProblemSection />}
       <MethodSection />
       <ProcessSection />
