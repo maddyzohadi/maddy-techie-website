@@ -17,7 +17,6 @@ import WhoItsFor from '@/components/WhoItsFor'
 import FAQSection from '@/components/FAQSection'
 import AboutSection from '@/components/AboutSection'
 import CTASection from '@/components/CTASection'
-import FaSimpleStart from '@/components/FaSimpleStart'
 import FaHomeCta from '@/components/FaHomeCta'
 import Footer from '@/components/Footer'
 import AIAssistant from '@/components/AIAssistant'
@@ -63,7 +62,7 @@ export default async function Home() {
       <Navigation />
       <Hero />
       {isFa ? <PainPointsSectionFA /> : <PainPointsSection />}
-      <ProblemSection />
+      {!isFa && <ProblemSection />}
       <MethodSection />
       <ProcessSection />
       <ServicesListSection />
@@ -76,7 +75,6 @@ export default async function Home() {
       {!isFa && <FAQSection />}
       {!isFa && <AboutSection />}
       {!isFa && <CTASection />}
-      {isFa && <FaSimpleStart />}
       {isFa && <FaHomeCta />}
       <Footer />
       <AIAssistant />

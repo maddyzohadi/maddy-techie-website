@@ -5,7 +5,7 @@ export default function FaHomeCta() {
   return (
     <section
       className="py-20 md:py-24 relative"
-      style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+      style={{ background: 'linear-gradient(135deg, #f5c6d0 0%, #f9d4c0 50%, #f5c6d0 100%)', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
     >
       <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 text-center">
         <h2
