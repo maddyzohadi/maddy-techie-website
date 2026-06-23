@@ -3,13 +3,13 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const floatingItems = [
-  { icon: "/icons/chatgpt.svg", label: "ChatGPT", x: 8, y: 18, delay: 0, rotation: -8 },
-  { icon: "/icons/claude.svg", label: "Claude", x: 72, y: 12, delay: 0.4, rotation: 6 },
-  { icon: "/icons/zapier.svg", label: "اتوماسیون", x: 82, y: 55, delay: 0.8, rotation: -5 },
-  { icon: "/icons/sheets.svg", label: "Google Sheets", x: 6, y: 62, delay: 1.2, rotation: 7 },
-  { icon: "/icons/notion.svg", label: "Notion", x: 60, y: 78, delay: 0.6, rotation: -6 },
-  { icon: "/icons/make.svg", label: "Make", x: 22, y: 80, delay: 1.0, rotation: 5 },
-  { icon: "/icons/gemini.svg", label: "Gemini", x: 75, y: 30, delay: 1.4, rotation: -4 },
+  { icon: "https://cdn.worldvectorlogo.com/logos/chatgpt-6.svg",           label: "ChatGPT",      x: 8,  y: 18, delay: 0,   rotation: -8, color: "#10A37F" },
+  { icon: "https://cdn.worldvectorlogo.com/logos/claude-1.svg",            label: "Claude",       x: 72, y: 12, delay: 0.4, rotation:  6, color: "#CC785C" },
+  { icon: "https://cdn.worldvectorlogo.com/logos/zapier-1.svg",            label: "اتوماسیون",    x: 82, y: 55, delay: 0.8, rotation: -5, color: "#FF4A00" },
+  { icon: "https://cdn.worldvectorlogo.com/logos/google-sheets-logo-1.svg",label: "Google Sheets",x: 6,  y: 62, delay: 1.2, rotation:  7, color: "#34A853" },
+  { icon: "https://cdn.worldvectorlogo.com/logos/notion-logo-1.svg",       label: "Notion",       x: 60, y: 78, delay: 0.6, rotation: -6, color: "#1A1A1A" },
+  { icon: "https://cdn.worldvectorlogo.com/logos/make-1.svg",              label: "Make",         x: 22, y: 80, delay: 1.0, rotation:  5, color: "#6D00CC" },
+  { icon: "https://cdn.worldvectorlogo.com/logos/google-gemini.svg",       label: "Gemini",       x: 75, y: 30, delay: 1.4, rotation: -4, color: "#4285F4" },
 ];
 
 export default function HeroFa() {
@@ -214,6 +214,7 @@ function FloatingCard({
   item: (typeof floatingItems)[0];
   mounted: boolean;
 }) {
+  const [imgError, setImgError] = useState(false);
   return (
     <div
       style={{
@@ -260,7 +261,33 @@ function FloatingCard({
           whiteSpace: "nowrap",
         }}
       >
-        <img src={item.icon} alt={item.label} style={{ width: "20px", height: "20px", objectFit: "contain", flexShrink: 0 }} />
+        {imgError ? (
+          <div
+            style={{
+              width: "28px",
+              height: "28px",
+              borderRadius: "50%",
+              background: item.color,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
+              fontSize: "12px",
+              fontWeight: 700,
+              color: "#fff",
+              fontFamily: "system-ui, sans-serif",
+            }}
+          >
+            {item.label[0]}
+          </div>
+        ) : (
+          <img
+            src={item.icon}
+            alt={item.label}
+            onError={() => setImgError(true)}
+            style={{ width: "28px", height: "28px", objectFit: "contain", flexShrink: 0 }}
+          />
+        )}
         <span
           style={{
             fontSize: "12px",
