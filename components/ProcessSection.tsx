@@ -23,6 +23,7 @@ export default async function ProcessSection() {
 
   return (
     <section
+      dir={isFa ? 'rtl' : 'ltr'}
       style={{
         background: '#F5F0EB',
         padding: '96px 24px',
@@ -82,6 +83,7 @@ export default async function ProcessSection() {
               <div
                 style={{
                   display: 'flex',
+                  flexDirection: isFa ? 'row-reverse' : 'row',
                   gap: '24px',
                   alignItems: 'flex-start',
                   padding: '28px 0',
