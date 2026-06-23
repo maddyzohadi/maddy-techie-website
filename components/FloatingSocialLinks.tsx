@@ -11,12 +11,14 @@ const btnBase: React.CSSProperties = {
   justifyContent: 'center',
   width: '40px',
   height: '40px',
-  borderRadius: '50%',
-  background: '#FFFFFF',
-  border: '0.5px solid rgba(123,47,190,0.25)',
-  color: 'rgba(26,26,46,0.60)',
+  borderRadius: '100px',
+  background: 'rgba(255,255,255,0.85)',
+  backdropFilter: 'blur(8px)',
+  WebkitBackdropFilter: 'blur(8px)',
+  border: '0.5px solid rgba(0,0,0,0.08)',
+  color: '#1A1A1A',
   cursor: 'pointer',
-  transition: 'transform 200ms ease, border-color 200ms ease, color 200ms ease',
+  transition: 'background 200ms ease, color 200ms ease, transform 200ms ease',
   textDecoration: 'none',
   flexShrink: 0,
 }
@@ -31,15 +33,15 @@ function SocialLink({ href, label, children }: { href: string; label: string; ch
       style={btnBase}
       onMouseEnter={(e) => {
         const el = e.currentTarget as HTMLAnchorElement
-        el.style.transform = 'scale(1.13) translateY(-1px)'
-        el.style.borderColor = 'rgba(123,47,190,0.55)'
-        el.style.color = '#1A1A2E'
+        el.style.background = '#1A1A1A'
+        el.style.color = '#fff'
+        el.style.transform = 'scale(1.08) translateY(-1px)'
       }}
       onMouseLeave={(e) => {
         const el = e.currentTarget as HTMLAnchorElement
+        el.style.background = 'rgba(255,255,255,0.85)'
+        el.style.color = '#1A1A1A'
         el.style.transform = 'scale(1) translateY(0)'
-        el.style.borderColor = 'rgba(123,47,190,0.25)'
-        el.style.color = 'rgba(26,26,46,0.60)'
       }}
     >
       {children}
