@@ -10,7 +10,6 @@ import ProcessSection from '@/components/ProcessSection'
 import ServicesListSection from '@/components/ServicesListSection'
 import GradientCTASection from '@/components/GradientCTASection'
 import CurriculumSection from '@/components/CurriculumSection'
-import ResourcesSection from '@/components/ResourcesSection'
 import ServicesSection from '@/components/ServicesSection'
 import FAQSection from '@/components/FAQSection'
 import AboutSection from '@/components/AboutSection'
@@ -66,7 +65,6 @@ export default async function Home() {
       <ServicesListSection />
       <GradientCTASection />
       <CurriculumSection />
-      {!isFa && <ResourcesSection />}
       {!isFa && <ServicesSection />}
       {!isFa && <FAQSection />}
       {!isFa && <AboutSection />}
