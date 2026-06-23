@@ -3,13 +3,13 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const floatingItems = [
-  { icon: "✉️", label: "ایمیل آماده ارسال", x: 8, y: 18, delay: 0, rotation: -8 },
-  { icon: "📊", label: "گزارش هفتگی", x: 72, y: 12, delay: 0.4, rotation: 6 },
-  { icon: "🤖", label: "خلاصه جلسه", x: 82, y: 55, delay: 0.8, rotation: -5 },
-  { icon: "✓", label: "۱۲ کار مرتب‌شده", x: 6, y: 62, delay: 1.2, rotation: 7 },
-  { icon: "⚡", label: "اتوماسیون فعال", x: 60, y: 78, delay: 0.6, rotation: -6 },
-  { icon: "📝", label: "پیش‌نویس آماده", x: 22, y: 80, delay: 1.0, rotation: 5 },
-  { icon: "🔗", label: "ابزارها متصل شده", x: 75, y: 30, delay: 1.4, rotation: -4 },
+  { icon: "/icons/chatgpt.svg", label: "ChatGPT", x: 8, y: 18, delay: 0, rotation: -8 },
+  { icon: "/icons/claude.svg", label: "Claude", x: 72, y: 12, delay: 0.4, rotation: 6 },
+  { icon: "/icons/zapier.svg", label: "اتوماسیون", x: 82, y: 55, delay: 0.8, rotation: -5 },
+  { icon: "/icons/sheets.svg", label: "Google Sheets", x: 6, y: 62, delay: 1.2, rotation: 7 },
+  { icon: "/icons/notion.svg", label: "Notion", x: 60, y: 78, delay: 0.6, rotation: -6 },
+  { icon: "/icons/make.svg", label: "Make", x: 22, y: 80, delay: 1.0, rotation: 5 },
+  { icon: "/icons/gemini.svg", label: "Gemini", x: 75, y: 30, delay: 1.4, rotation: -4 },
 ];
 
 export default function HeroFa() {
@@ -260,7 +260,7 @@ function FloatingCard({
           whiteSpace: "nowrap",
         }}
       >
-        <span style={{ fontSize: "16px" }}>{item.icon}</span>
+        <img src={item.icon} alt={item.label} style={{ width: "20px", height: "20px", objectFit: "contain", flexShrink: 0 }} />
         <span
           style={{
             fontSize: "12px",
