@@ -20,8 +20,8 @@ export default function CurriculumSection() {
   ]
 
   const headingColor = '#1A1A2E'
-  const bodyColor    = 'rgba(26,26,46,0.60)'
-  const badgeColor   = 'rgba(26,26,46,0.50)'
+  const bodyColor    = '#1A1A2E'
+  const badgeColor   = '#1A1A2E'
 
   return (
     <section id="training" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#F5F0E8' }}>
