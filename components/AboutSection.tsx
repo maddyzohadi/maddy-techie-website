@@ -29,7 +29,7 @@ export default async function AboutSection() {
                 </p>
 
                 <p className="text-sm text-[#666] leading-relaxed italic border-l-2 border-[#C85A2A] pl-3 mb-6">
-                  &ldquo;Making AI practical for everyone who doesn&apos;t code.&rdquo;
+                  Making AI practical for everyone who doesn&apos;t code
                 </p>
 
                 <div className="grid grid-cols-3 gap-3 mb-5">
