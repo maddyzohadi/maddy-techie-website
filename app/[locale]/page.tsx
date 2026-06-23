@@ -61,7 +61,7 @@ export default async function Home() {
       <MethodSection />
       <ProcessSection />
       <ServicesListSection />
-      <GradientCTASection />
+      {!isFa && <GradientCTASection />}
       <CurriculumSection />
       {!isFa && <ServicesSection />}
       {!isFa && <FAQSection />}
