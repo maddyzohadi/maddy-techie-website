@@ -28,7 +28,7 @@ export default function FaSimpleStart() {
         </h2>
         <p
           className="font-fa text-lg md:text-xl leading-relaxed mb-10"
-          style={{ color: 'rgba(245,240,232,0.60)' }}
+          style={{ color: '#F5F0E8' }}
         >
           با چند قدم ساده می‌توانی اولین سیستم کاری خودت را بسازی
         </p>
@@ -37,9 +37,9 @@ export default function FaSimpleStart() {
             <li
               key={item}
               className="flex items-center gap-3 font-fa text-base md:text-lg"
-              style={{ color: 'rgba(245,240,232,0.80)' }}
+              style={{ color: '#F5F0E8' }}
             >
-              <CheckCircle2 size={20} style={{ color: '#F5F0E8', flexShrink: 0 }} />
+              <CheckCircle2 size={20} style={{ color: '#E8B86D', flexShrink: 0 }} />
               {item}
             </li>
           ))}

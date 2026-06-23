@@ -11,14 +11,14 @@ export default async function MethodSection() {
 
   // Always dark — "How it works" sits between the light Problem and light Curriculum sections
   const headingColor = '#F5F0E8'
-  const bodyColor    = 'rgba(245,240,232,0.60)'
-  const badgeColor   = 'rgba(245,240,232,0.50)'
+  const bodyColor    = '#F5F0E8'
+  const badgeColor   = '#F5F0E8'
   const iconBg       = 'rgba(123,47,190,0.15)'
   const iconBorder   = 'rgba(123,47,190,0.35)'
   const sepColor     = 'rgba(245,240,232,0.12)'
   const sectionBg    = '#1A1A2E'
-  const cardBg       = 'rgba(123,47,190,0.15)'
-  const cardBorder   = 'rgba(123,47,190,0.35)'
+  const cardBg       = 'rgba(123,47,190,0.12)'
+  const cardBorder   = 'rgba(123,47,190,0.3)'
   const bulletColor  = '#F5F0E8'
 
   return (

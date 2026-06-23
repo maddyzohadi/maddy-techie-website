@@ -9,8 +9,8 @@ export default async function ProblemSection() {
   const accent = { text: '#1A1A2E', bg: 'rgba(123,47,190,0.12)', border: 'rgba(123,47,190,0.30)' }
 
   const headingColor = '#1A1A2E'
-  const bodyColor    = 'rgba(26,26,46,0.60)'
-  const badgeColor   = 'rgba(26,26,46,0.50)'
+  const bodyColor    = '#1A1A2E'
+  const badgeColor   = '#1A1A2E'
 
   const allProblems = [
     { icon: RefreshCw,     title: t('item0title'), description: t('item0desc'), number: '01' },

@@ -16,7 +16,7 @@ export default function FaHomeCta() {
         </h2>
         <p
           className="font-fa text-lg md:text-xl leading-relaxed mb-10"
-          style={{ color: 'rgba(245,240,232,0.60)' }}
+          style={{ color: '#F5F0E8' }}
         >
           اگر می‌خواهی کارهای روزمره‌ات را با هوش مصنوعی و اتوماسیون ساده‌تر کنی از همین جا شروع کن
         </p>
