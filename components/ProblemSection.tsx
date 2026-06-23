@@ -25,7 +25,7 @@ export default async function ProblemSection() {
   return (
     <section
       style={{
-        background: '#F5F0EB',
+        background: 'linear-gradient(135deg, #E8D5F0 0%, #F5C5D0 50%, #F0D5C0 100%)',
         padding: '96px 24px',
         borderTop: '0.5px solid rgba(0,0,0,0.06)',
         direction: isFa ? 'rtl' : 'ltr',
@@ -68,7 +68,7 @@ export default async function ProblemSection() {
             style={{
               fontFamily: bodyFont,
               fontSize: '17px',
-              color: '#666',
+              color: '#555',
               lineHeight: 1.7,
               maxWidth: '500px',
               margin: '0 auto',
