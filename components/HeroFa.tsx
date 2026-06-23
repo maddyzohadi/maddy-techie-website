@@ -29,7 +29,7 @@ export default async function HeroFa() {
         <div className="flex items-center gap-10">
 
           {/* ── Copy column ─────────────────────────────── */}
-          <div style={{ flex: '1 1 0', minWidth: 0, maxWidth: '600px' }}>
+          <div style={{ flex: '1 1 auto', minWidth: 0, maxWidth: '600px', width: 0 }}>
 
             {/* Badge */}
             <div className="badge mb-8" style={{ display: 'inline-flex' }}>
