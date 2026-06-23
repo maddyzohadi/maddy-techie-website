@@ -1,4 +1,4 @@
-import { Sparkles, ArrowRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { getTranslations, getLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 
@@ -20,51 +20,40 @@ export default async function AboutSection() {
 
             {/* Left — avatar card */}
             <div className="order-2 lg:order-1">
-              <div
-                className="rounded-3xl overflow-hidden relative max-w-sm mx-auto"
-                style={{
-                  background: '#FFFFFF',
-                  border: '0.5px solid rgba(26,26,46,0.12)',
-                }}
-              >
-                <div className="relative z-10 p-10 flex flex-col items-center text-center">
-                  <div className="relative mb-5">
-                    <div
-                      className="w-24 h-24 rounded-full flex items-center justify-center"
-                      style={{
-                        background: 'rgba(0,0,0,0.05)',
-                        border: '0.5px solid rgba(0,0,0,0.08)',
-                      }}
-                    >
-                      <span
-                        className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-4xl`}
-                        style={{ color: headingColor }}
-                      >
-                        M
-                      </span>
-                    </div>
-                    <div
-                      className="absolute -top-1 -right-1 w-7 h-7 rounded-full flex items-center justify-center"
-                      style={{
-                        background: 'rgba(0,0,0,0.05)',
-                        border: '0.5px solid rgba(0,0,0,0.08)',
-                      }}
-                    >
-                      <Sparkles size={13} style={{ color: '#1A1A2E' }} />
-                    </div>
-                  </div>
+              <div className="bg-white border border-[#E8E3DA] rounded-2xl p-8 max-w-sm mx-auto">
+                <p className="font-['DM_Serif_Display'] text-lg text-[#1A1A1A] mb-1">
+                  Maddy the Techie
+                </p>
+                <p className="text-sm text-[#888] mb-6">
+                  AI &amp; Automation Educator · Silicon Valley
+                </p>
 
-                  <div
-                    className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-xl mb-1`}
-                    style={{ color: headingColor }}
-                  >
-                    Maddy the Techie
-                  </div>
-                  <div className="font-ui text-sm mb-4" style={{ color: bodyColor }}>{t('subtitle')}</div>
+                <p className="text-sm text-[#666] leading-relaxed italic border-l-2 border-[#C85A2A] pl-3 mb-6">
+                  &ldquo;Making AI practical for everyone who doesn&apos;t code.&rdquo;
+                </p>
 
-                  <p className="font-ui text-sm italic max-w-xs leading-relaxed" style={{ color: bodyColor }}>
-                    {t('tagline')}
-                  </p>
+                <div className="grid grid-cols-3 gap-3 mb-5">
+                  {[
+                    { num: '4', label: 'Modules' },
+                    { num: '12+', label: 'Projects' },
+                    { num: '100%', label: 'No-code' },
+                  ].map(({ num, label }) => (
+                    <div key={label} className="bg-[#F5F0EB] rounded-xl p-3 text-center">
+                      <span className="block text-xl font-medium text-[#1A1A1A]">{num}</span>
+                      <span className="block text-[11px] text-[#888] mt-0.5">{label}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-1.5">
+                  {['ChatGPT', 'Claude', 'n8n', 'Google Sheets', 'Make'].map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[11px] text-[#888] border border-[#E8E3DA] rounded-full px-2.5 py-0.5"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
             </div>
