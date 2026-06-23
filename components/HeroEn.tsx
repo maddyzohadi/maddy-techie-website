@@ -3,13 +3,13 @@
 import React, { useEffect, useState } from "react";
 
 const floatingItems = [
-  { icon: "https://cdn.worldvectorlogo.com/logos/chatgpt-6.svg",            label: "ChatGPT",      x: 8,  y: 18, delay: 0,   rotation: -8, color: "#10A37F" },
-  { icon: "https://cdn.worldvectorlogo.com/logos/claude-1.svg",             label: "Claude",       x: 72, y: 12, delay: 0.4, rotation:  6, color: "#CC785C" },
-  { icon: "https://cdn.worldvectorlogo.com/logos/zapier-1.svg",             label: "Zapier",       x: 82, y: 55, delay: 0.8, rotation: -5, color: "#FF4A00" },
-  { icon: "https://cdn.worldvectorlogo.com/logos/google-sheets-logo-1.svg", label: "Google Sheets",x: 6,  y: 62, delay: 1.2, rotation:  7, color: "#34A853" },
-  { icon: "https://cdn.worldvectorlogo.com/logos/notion-logo-1.svg",        label: "Notion",       x: 60, y: 78, delay: 0.6, rotation: -6, color: "#1A1A1A" },
-  { icon: "https://cdn.worldvectorlogo.com/logos/make-1.svg",               label: "Make",         x: 22, y: 80, delay: 1.0, rotation:  5, color: "#6D00CC" },
-  { icon: "https://cdn.worldvectorlogo.com/logos/google-gemini.svg",        label: "Gemini",       x: 75, y: 30, delay: 1.4, rotation: -4, color: "#4285F4" },
+  { icon: "https://cdn.worldvectorlogo.com/logos/chatgpt-6.svg",            label: "ChatGPT",       x: 88.0, y: 50.0, delay: 0,   rotation: -8, color: "#10A37F" },
+  { icon: "https://cdn.worldvectorlogo.com/logos/claude-1.svg",             label: "Claude",        x: 73.9, y: 79.5, delay: 0.4, rotation:  6, color: "#CC785C" },
+  { icon: "https://cdn.worldvectorlogo.com/logos/zapier-1.svg",             label: "Zapier",        x: 42.1, y: 87.2, delay: 0.8, rotation: -5, color: "#FF4A00" },
+  { icon: "https://cdn.worldvectorlogo.com/logos/google-sheets-logo-1.svg", label: "Google Sheets", x: 16.1, y: 67.3, delay: 1.2, rotation:  7, color: "#34A853" },
+  { icon: "https://cdn.worldvectorlogo.com/logos/notion-logo-1.svg",        label: "Notion",        x: 15.3, y: 34.5, delay: 0.6, rotation: -6, color: "#1A1A1A" },
+  { icon: "https://cdn.worldvectorlogo.com/logos/make-1.svg",               label: "Make",          x: 40.2, y: 13.3, delay: 1.0, rotation:  5, color: "#6D00CC" },
+  { icon: "https://cdn.worldvectorlogo.com/logos/google-gemini.svg",        label: "Gemini",        x: 72.3, y: 19.3, delay: 1.4, rotation: -4, color: "#4285F4" },
 ];
 
 export default function HeroEn() {
@@ -228,14 +228,19 @@ function FloatingCard({
         position: "absolute",
         left: `${item.x}%`,
         top: `${item.y}%`,
+        transform: "translate(-50%, -50%)",
         zIndex: 1,
-        opacity: mounted ? 1 : 0,
-        transition: `opacity 0.6s ease ${item.delay}s`,
-        animation: mounted
-          ? `${animName} 4s ease-in-out ${item.delay}s infinite`
-          : "none",
       }}
     >
+      <div
+        style={{
+          opacity: mounted ? 1 : 0,
+          transition: `opacity 0.6s ease ${item.delay}s`,
+          animation: mounted
+            ? `${animName} 4s ease-in-out ${item.delay}s infinite`
+            : "none",
+        }}
+      >
       <style>{`
         @keyframes ${animName} {
           0%, 100% { transform: rotate(${item.rotation}deg) translateY(0px); }
@@ -294,6 +299,7 @@ function FloatingCard({
         >
           {item.label}
         </span>
+      </div>
       </div>
     </div>
   );
