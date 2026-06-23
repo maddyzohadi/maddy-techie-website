@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 const floatingItems = [
   { icon: "https://cdn.worldvectorlogo.com/logos/chatgpt-6.svg",           label: "ChatGPT",      x: 8,  y: 18, delay: 0,   rotation: -8, color: "#10A37F" },
   { icon: "https://cdn.worldvectorlogo.com/logos/claude-1.svg",            label: "Claude",       x: 72, y: 12, delay: 0.4, rotation:  6, color: "#CC785C" },
-  { icon: "https://cdn.worldvectorlogo.com/logos/zapier-1.svg",            label: "Zapier",       x: 82, y: 55, delay: 0.8, rotation: -5, color: "#FF4A00" },
+  { icon: "https://cdn.worldvectorlogo.com/logos/zapier-1.svg",            label: "Zapier",       x: 82, y: 55, delay: 0.8, rotation: -5, color: "#FF4A00", hideLabel: true },
   { icon: "https://cdn.worldvectorlogo.com/logos/google-sheets-logo-1.svg",label: "Google Sheets",x: 6,  y: 62, delay: 1.2, rotation:  7, color: "#34A853" },
   { icon: "https://cdn.worldvectorlogo.com/logos/notion-logo-1.svg",       label: "Notion",       x: 60, y: 78, delay: 0.6, rotation: -6, color: "#1A1A1A" },
   { icon: "https://cdn.worldvectorlogo.com/logos/make-1.svg",              label: "Make",         x: 22, y: 80, delay: 1.0, rotation:  5, color: "#6D00CC" },
@@ -284,17 +284,19 @@ function FloatingCard({
             style={{ width: "28px", height: "28px", objectFit: "contain", flexShrink: 0 }}
           />
         )}
-        <span
-          style={{
-            fontSize: "12px",
-            color: "#333",
-            fontFamily: "'Noto Naskh Arabic', serif",
-            fontWeight: 500,
-            direction: "rtl",
-          }}
-        >
-          {item.label}
-        </span>
+        {!item.hideLabel && (
+          <span
+            style={{
+              fontSize: "12px",
+              color: "#333",
+              fontFamily: "'Noto Naskh Arabic', serif",
+              fontWeight: 500,
+              direction: "rtl",
+            }}
+          >
+            {item.label}
+          </span>
+        )}
       </div>
     </div>
   );
