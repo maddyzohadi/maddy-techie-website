@@ -77,13 +77,15 @@ export default function Navigation() {
                   style={{
                     fontFamily: navFont,
                     fontSize: '14px',
-                    fontWeight: 500,
-                    color: isActive(link.href) ? '#1A1A1A' : '#333',
+                    fontWeight: isActive(link.href) ? 600 : 500,
+                    color: isActive(link.href) ? '#1A1A1A' : '#555',
                     textDecoration: 'none',
                     transition: 'color 0.15s',
+                    borderBottom: isActive(link.href) ? '1.5px solid #1A1A1A' : '1.5px solid transparent',
+                    paddingBottom: '2px',
                   }}
                   onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#1A1A1A' }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = isActive(link.href) ? '#1A1A1A' : '#333' }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = isActive(link.href) ? '#1A1A1A' : '#555' }}
                 >
                   {t(link.key)}
                 </Link>
@@ -199,7 +201,7 @@ export default function Navigation() {
             overflow: 'hidden',
           }}
         >
-          <nav style={{ display: 'flex', flexDirection: 'column', padding: '8px' }}>
+          <nav style={{ display: 'flex', flexDirection: 'column', padding: '8px', direction: isFa ? 'rtl' : 'ltr' }}>
             {navLinks.map((link) => (
               <Link
                 key={link.key}
@@ -210,8 +212,8 @@ export default function Navigation() {
                   borderRadius: '10px',
                   fontFamily: navFont,
                   fontSize: '15px',
-                  fontWeight: 500,
-                  color: isActive(link.href) ? '#1A1A1A' : '#333',
+                  fontWeight: isActive(link.href) ? 600 : 500,
+                  color: isActive(link.href) ? '#1A1A1A' : '#444',
                   background: isActive(link.href) ? 'rgba(0,0,0,0.05)' : 'transparent',
                   textDecoration: 'none',
                 }}

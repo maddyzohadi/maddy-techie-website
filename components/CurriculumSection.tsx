@@ -10,7 +10,7 @@ export default function CurriculumSection() {
   const isFa = locale === 'fa'
   const [openPart, setOpenPart] = useState<number | null>(0)
 
-  const accent = { text: '#1A1A2E', bg: 'rgba(0,0,0,0.05)', border: 'rgba(0,0,0,0.08)' }
+  const accent = { text: '#1A1A1A', bg: 'rgba(0,0,0,0.05)', border: 'rgba(0,0,0,0.08)' }
 
   const parts = [
     { number: '01', icon: Zap,    title: t('part0title'), tagline: t('part0tagline'), items: [t('part0item0'), t('part0item1'), t('part0item2'), t('part0item3')] },
@@ -19,9 +19,9 @@ export default function CurriculumSection() {
     { number: '04', icon: Layers, title: t('part3title'), tagline: t('part3tagline'), items: [t('part3item0'), t('part3item1'), t('part3item2'), t('part3item3')] },
   ]
 
-  const headingColor = '#1A1A2E'
-  const bodyColor    = '#1A1A2E'
-  const badgeColor   = '#1A1A2E'
+  const headingColor = '#1A1A1A'
+  const bodyColor    = '#666'
+  const badgeColor   = '#999'
 
   return (
     <section id="training" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#F5F0EB' }}>
@@ -30,7 +30,7 @@ export default function CurriculumSection() {
 
         <div className="text-center mb-16">
           <span
-            className="inline-block font-ui text-sm md:text-base font-semibold uppercase tracking-[0.22em] mb-4"
+            className="inline-block font-ui text-xs font-semibold uppercase tracking-[0.18em] mb-4"
             style={{ color: badgeColor }}
           >
             {t('badge')}
@@ -100,7 +100,7 @@ export default function CurriculumSection() {
                   <ChevronDown
                     size={18}
                     className={`flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-                    style={{ color: '#1A1A2E' }}
+                    style={{ color: '#888' }}
                   />
                 </button>
 
@@ -124,7 +124,7 @@ export default function CurriculumSection() {
                         >
                           <span
                             className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                            style={{ background: '#1A1A2E' }}
+                            style={{ background: '#C85A2A' }}
                           />
                           {item}
                         </li>
@@ -139,10 +139,10 @@ export default function CurriculumSection() {
 
         <p
           className="text-center font-ui text-sm mt-10"
-          style={{ color: bodyColor }}
+          style={{ color: '#888' }}
         >
           {t('bottomNote')}{' '}
-          <span className="font-medium" style={{ color: headingColor }}>{t('bottomNoteHighlight')}</span>
+          <span className="font-medium" style={{ color: '#1A1A1A' }}>{t('bottomNoteHighlight')}</span>
         </p>
 
       </div>

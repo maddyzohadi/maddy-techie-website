@@ -58,15 +58,15 @@ export default function ServiceInquiryForm() {
 
   const inputBase = `w-full ${isFa ? 'font-fa' : 'font-ui'} text-sm rounded-xl px-4 py-3 outline-none transition-colors duration-200 placeholder:opacity-40`
   const inputStyle: React.CSSProperties = {
-    background: 'rgba(123,47,190,0.06)',
-    border:     '0.5px solid rgba(123,47,190,0.25)',
-    color:      '#1A1A2E',
+    background: 'rgba(0,0,0,0.03)',
+    border:     '0.5px solid rgba(0,0,0,0.12)',
+    color:      '#1A1A1A',
   }
-  const inputFocusStyle: React.CSSProperties = { borderColor: 'rgba(123,47,190,0.55)' }
+  const inputFocusStyle: React.CSSProperties = { borderColor: 'rgba(200,90,42,0.50)' }
   const inputErrorStyle: React.CSSProperties = { borderColor: 'rgba(239,68,68,0.55)' }
 
-  const pillActive: React.CSSProperties   = { background: 'rgba(123,47,190,0.12)', border: '0.5px solid rgba(123,47,190,0.40)', color: '#1A1A2E' }
-  const pillInactive: React.CSSProperties = { background: '#FFFFFF', border: '0.5px solid rgba(123,47,190,0.20)', color: 'rgba(26,26,46,0.60)' }
+  const pillActive: React.CSSProperties   = { background: 'rgba(200,90,42,0.08)', border: '0.5px solid rgba(200,90,42,0.40)', color: '#1A1A1A' }
+  const pillInactive: React.CSSProperties = { background: '#FFFFFF', border: '0.5px solid rgba(0,0,0,0.10)', color: '#888' }
 
   const validate = (): boolean => {
     const e: FormErrors = {}
@@ -118,10 +118,10 @@ export default function ServiceInquiryForm() {
         <div
           className="flex items-center gap-3 px-5 py-4 rounded-xl"
           role="alert"
-          style={{ background: 'rgba(123,47,190,0.08)', border: '0.5px solid rgba(123,47,190,0.25)' }}
+          style={{ background: 'rgba(0,0,0,0.04)', border: '0.5px solid rgba(0,0,0,0.10)' }}
         >
-          <CheckCircle size={18} className="flex-shrink-0" style={{ color: '#1A1A2E' }} />
-          <p className={`${isFa ? 'font-fa' : 'font-ui'} text-sm font-medium`} style={{ color: '#1A1A2E' }}>
+          <CheckCircle size={18} className="flex-shrink-0" style={{ color: '#C85A2A' }} />
+          <p className={`${isFa ? 'font-fa' : 'font-ui'} text-sm font-medium`} style={{ color: '#1A1A1A' }}>
             {t('successMessage')}
           </p>
         </div>
@@ -267,9 +267,9 @@ export default function ServiceInquiryForm() {
         disabled={status === 'submitting'}
         className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center justify-center gap-2.5 font-semibold text-base px-9 py-4 transition-opacity duration-200 disabled:opacity-60 self-start`}
         style={{
-          background: '#7B2FBE',
+          background: '#1A1A1A',
           color: '#ffffff',
-          borderRadius: '8px',
+          borderRadius: '100px',
           border: 'none',
         }}
       >

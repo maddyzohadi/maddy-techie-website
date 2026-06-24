@@ -24,24 +24,25 @@ export default async function ServicesPageContentFa() {
       {/* Hero */}
       <section
         className="py-24 md:py-32 relative overflow-hidden"
-        style={{ background: '#F5F0E8' }}
+        style={{ background: '#F5F0EB' }}
+        dir="rtl"
       >
         <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <span
-            className="inline-block font-ui text-sm font-semibold uppercase tracking-[0.22em] mb-5"
-            style={{ color: 'rgba(26,26,46,0.50)' }}
+            className="inline-block font-ui text-xs font-semibold uppercase tracking-[0.18em] mb-5"
+            style={{ color: '#999' }}
           >
             {t('heroBadge')}
           </span>
           <h1
             className="font-fa font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6"
-            style={{ color: '#1A1A2E', letterSpacing: '-0.025em' }}
+            style={{ color: '#1A1A1A' }}
           >
             {t('heroTitle')}
           </h1>
           <p
             className="font-fa text-lg md:text-xl leading-relaxed mb-10"
-            style={{ color: 'rgba(26,26,46,0.60)' }}
+            style={{ color: '#666' }}
           >
             {t('heroSubtitle')}
           </p>
@@ -49,9 +50,9 @@ export default async function ServicesPageContentFa() {
             href="#contact-form"
             className="font-fa inline-flex items-center gap-2.5 font-medium text-base px-9 py-4"
             style={{
-              background: '#7B2FBE',
+              background: '#1A1A1A',
               color: '#ffffff',
-              borderRadius: '8px',
+              borderRadius: '100px',
               textDecoration: 'none',
             }}
           >
@@ -64,7 +65,8 @@ export default async function ServicesPageContentFa() {
       {/* Service Cards */}
       <section
         className="py-20 md:py-24 relative"
-        style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
+        style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+        dir="rtl"
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -75,8 +77,8 @@ export default async function ServicesPageContentFa() {
                   key={svc.titleKey}
                   style={{
                     background: '#FFFFFF',
-                    border: '0.5px solid rgba(123,47,190,0.25)',
-                    borderRadius: '12px',
+                    border: '0.5px solid rgba(0,0,0,0.08)',
+                    borderRadius: '16px',
                     padding: '28px',
                     display: 'flex',
                     flexDirection: 'column',
@@ -86,24 +88,24 @@ export default async function ServicesPageContentFa() {
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
                     style={{
-                      background: 'rgba(123,47,190,0.12)',
-                      border: '0.5px solid rgba(123,47,190,0.30)',
+                      background: 'rgba(0,0,0,0.05)',
+                      border: '0.5px solid rgba(0,0,0,0.08)',
                     }}
                   >
-                    <Icon size={20} style={{ color: '#1A1A2E' }} />
+                    <Icon size={20} style={{ color: '#1A1A1A' }} />
                   </div>
                   <div>
-                    <h2 className="font-fa font-semibold text-xl mb-2 leading-snug" style={{ color: '#1A1A2E' }}>
+                    <h2 className="font-fa font-semibold text-xl mb-2 leading-snug" style={{ color: '#1A1A1A' }}>
                       {t(svc.titleKey)}
                     </h2>
-                    <p className="font-fa text-sm leading-relaxed" style={{ color: 'rgba(26,26,46,0.60)' }}>
+                    <p className="font-fa text-sm leading-relaxed" style={{ color: '#666' }}>
                       {t(svc.descKey)}
                     </p>
                   </div>
                   <a
                     href="#contact-form"
                     className="mt-auto inline-flex items-center gap-1.5 font-fa font-semibold text-sm transition-opacity duration-200 hover:opacity-75 self-start"
-                    style={{ color: '#7B2FBE' }}
+                    style={{ color: '#C85A2A' }}
                   >
                     <ArrowRight size={13} className="rotate-180" />
                     {t(svc.ctaKey)}
@@ -118,19 +120,20 @@ export default async function ServicesPageContentFa() {
       {/* Why Maddy the Techie */}
       <section
         className="py-20 md:py-24 relative"
-        style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
+        style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+        dir="rtl"
       >
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span
-              className="inline-block font-ui text-sm font-semibold uppercase tracking-[0.22em] mb-4"
-              style={{ color: 'rgba(26,26,46,0.50)' }}
+              className="inline-block font-ui text-xs font-semibold uppercase tracking-[0.18em] mb-4"
+              style={{ color: '#999' }}
             >
               {t('whyBadge')}
             </span>
             <h2
               className="font-fa font-bold text-3xl md:text-4xl leading-tight"
-              style={{ color: '#1A1A2E', letterSpacing: '-0.025em' }}
+              style={{ color: '#1A1A1A' }}
             >
               {t('whyTitle')}
             </h2>
@@ -143,25 +146,25 @@ export default async function ServicesPageContentFa() {
                   key={card.titleKey}
                   className="flex items-start gap-4 p-6"
                   style={{
-                    borderRadius: '12px',
+                    borderRadius: '16px',
                     background: '#FFFFFF',
-                    border: '0.5px solid rgba(123,47,190,0.25)',
+                    border: '0.5px solid rgba(0,0,0,0.08)',
                   }}
                 >
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
                     style={{
-                      background: 'rgba(123,47,190,0.12)',
-                      border: '0.5px solid rgba(123,47,190,0.25)',
+                      background: 'rgba(0,0,0,0.05)',
+                      border: '0.5px solid rgba(0,0,0,0.08)',
                     }}
                   >
-                    <Icon size={18} style={{ color: '#1A1A2E' }} />
+                    <Icon size={18} style={{ color: '#1A1A1A' }} />
                   </div>
                   <div>
-                    <h3 className="font-fa font-semibold text-base mb-1" style={{ color: '#1A1A2E' }}>
+                    <h3 className="font-fa font-semibold text-base mb-1" style={{ color: '#1A1A1A' }}>
                       {t(card.titleKey)}
                     </h3>
-                    <p className="font-fa text-sm leading-relaxed" style={{ color: 'rgba(26,26,46,0.60)' }}>
+                    <p className="font-fa text-sm leading-relaxed" style={{ color: '#666' }}>
                       {t(card.descKey)}
                     </p>
                   </div>
@@ -176,24 +179,25 @@ export default async function ServicesPageContentFa() {
       <section
         id="contact-form"
         className="py-20 md:py-24 relative"
-        style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
+        style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+        dir="rtl"
       >
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span
-              className="inline-block font-ui text-sm font-semibold uppercase tracking-[0.22em] mb-4"
-              style={{ color: 'rgba(26,26,46,0.50)' }}
+              className="inline-block font-ui text-xs font-semibold uppercase tracking-[0.18em] mb-4"
+              style={{ color: '#999' }}
             >
               {t('formBadge')}
             </span>
             <h2
               className="font-fa font-bold text-3xl md:text-4xl leading-tight mb-4"
-              style={{ color: '#1A1A2E', letterSpacing: '-0.025em' }}
+              style={{ color: '#1A1A1A' }}
             >
               {t('formTitle')}
             </h2>
             {t('formSubtitle') && (
-              <p className="font-fa text-base leading-relaxed" style={{ color: 'rgba(26,26,46,0.60)' }}>
+              <p className="font-fa text-base leading-relaxed" style={{ color: '#666' }}>
                 {t('formSubtitle')}
               </p>
             )}

@@ -10,8 +10,9 @@ export default async function GradientCTASection() {
   return (
     <section
       style={{
-        background: 'linear-gradient(135deg, #E8D5F0 0%, #F5C5D0 50%, #F0D5C0 100%)',
+        background: '#EDE5DC',
         padding: '96px 24px',
+        borderTop: '0.5px solid rgba(0,0,0,0.06)',
         direction: isFa ? 'rtl' : 'ltr',
       }}
     >

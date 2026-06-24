@@ -58,31 +58,31 @@ export default async function ServicesPageContent() {
       {/* Hero */}
       <section
         className="py-24 md:py-32 relative overflow-hidden"
-        style={{ background: '#F5F0E8' }}
+        style={{ background: '#F5F0EB' }}
       >
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <span
-            className="inline-block font-ui text-sm font-semibold uppercase tracking-[0.22em] mb-5"
-            style={{ color: 'rgba(26,26,46,0.50)' }}
+            className="inline-block font-ui text-xs font-semibold uppercase tracking-[0.18em] mb-5"
+            style={{ color: '#999' }}
           >
             {t('heroBadge')}
           </span>
           <h1
             className="font-en font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6"
-            style={{ color: '#1A1A2E', letterSpacing: '-.025em' }}
+            style={{ color: '#1A1A1A', letterSpacing: '-.025em' }}
           >
             {t('heroTitle')}
           </h1>
           <p
             className="font-ui text-lg md:text-xl leading-relaxed mb-10 max-w-2xl mx-auto"
-            style={{ color: 'rgba(26,26,46,0.60)' }}
+            style={{ color: '#666' }}
           >
             {t('heroSubtitle')}
           </p>
           <a
             href="#contact-form"
             className="font-ui inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4"
-            style={{ background: '#7B2FBE', color: '#ffffff', borderRadius: '8px', textDecoration: 'none' }}
+            style={{ background: '#1A1A1A', color: '#ffffff', borderRadius: '100px', textDecoration: 'none' }}
           >
             {t('heroCta')}
             <ArrowRight size={16} />
@@ -93,7 +93,7 @@ export default async function ServicesPageContent() {
       {/* Service Cards */}
       <section
         className="py-20 md:py-24 relative"
-        style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
+        style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
       >
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -104,8 +104,8 @@ export default async function ServicesPageContent() {
                   key={svc.titleKey}
                   style={{
                     background: '#FFFFFF',
-                    border: '0.5px solid rgba(123,47,190,0.25)',
-                    borderRadius: '12px',
+                    border: '0.5px solid rgba(0,0,0,0.08)',
+                    borderRadius: '16px',
                     padding: '28px 30px',
                     display: 'flex',
                     flexDirection: 'column',
@@ -114,16 +114,16 @@ export default async function ServicesPageContent() {
                 >
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: 'rgba(123,47,190,0.12)', border: '0.5px solid rgba(123,47,190,0.30)' }}
+                    style={{ background: 'rgba(0,0,0,0.05)', border: '0.5px solid rgba(0,0,0,0.08)' }}
                   >
-                    <Icon size={20} style={{ color: '#1A1A2E' }} />
+                    <Icon size={20} style={{ color: '#1A1A1A' }} />
                   </div>
 
                   <div>
-                    <h2 className="font-en font-semibold text-xl md:text-2xl mb-2 leading-snug" style={{ color: '#1A1A2E' }}>
+                    <h2 className="font-en font-semibold text-xl md:text-2xl mb-2 leading-snug" style={{ color: '#1A1A1A' }}>
                       {t(svc.titleKey)}
                     </h2>
-                    <p className="font-ui text-base leading-relaxed" style={{ color: 'rgba(26,26,46,0.60)' }}>
+                    <p className="font-ui text-base leading-relaxed" style={{ color: '#666' }}>
                       {t(svc.descKey)}
                     </p>
                   </div>
@@ -131,11 +131,11 @@ export default async function ServicesPageContent() {
                   <div>
                     <span
                       className="font-ui text-xs font-semibold uppercase tracking-[0.14em] block mb-1"
-                      style={{ color: 'rgba(26,26,46,0.50)' }}
+                      style={{ color: '#999' }}
                     >
                       {t('bestForLabel')}
                     </span>
-                    <p className="font-ui text-sm" style={{ color: 'rgba(26,26,46,0.60)' }}>
+                    <p className="font-ui text-sm" style={{ color: '#666' }}>
                       {t(svc.bestForKey)}
                     </p>
                   </div>
@@ -143,7 +143,7 @@ export default async function ServicesPageContent() {
                   <div>
                     <span
                       className="font-ui text-xs font-semibold uppercase tracking-[0.14em] block mb-2"
-                      style={{ color: 'rgba(26,26,46,0.50)' }}
+                      style={{ color: '#999' }}
                     >
                       {t('toolsLabel')}
                     </span>
@@ -151,11 +151,11 @@ export default async function ServicesPageContent() {
                       {svc.tools.map((tool) => (
                         <span
                           key={tool}
-                          className="font-ui text-xs px-2.5 py-1 rounded-md"
+                          className="font-ui text-xs px-2.5 py-1 rounded-full"
                           style={{
-                            background: 'rgba(123,47,190,0.08)',
-                            border: '0.5px solid rgba(123,47,190,0.20)',
-                            color: 'rgba(26,26,46,0.60)',
+                            background: 'rgba(0,0,0,0.04)',
+                            border: '0.5px solid rgba(0,0,0,0.08)',
+                            color: '#888',
                           }}
                         >
                           {tool}
@@ -167,7 +167,7 @@ export default async function ServicesPageContent() {
                   <a
                     href="#contact-form"
                     className="mt-auto inline-flex items-center gap-1.5 font-ui font-semibold text-sm transition-opacity duration-200 hover:opacity-75 self-start"
-                    style={{ color: '#7B2FBE' }}
+                    style={{ color: '#C85A2A' }}
                   >
                     {t(svc.ctaKey)}
                     <ArrowRight size={13} />
@@ -182,19 +182,19 @@ export default async function ServicesPageContent() {
       {/* How It Works */}
       <section
         className="py-20 md:py-24 relative overflow-hidden"
-        style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
+        style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
       >
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span
-              className="inline-block font-ui text-sm font-semibold uppercase tracking-[0.22em] mb-4"
-              style={{ color: 'rgba(26,26,46,0.50)' }}
+              className="inline-block font-ui text-xs font-semibold uppercase tracking-[0.18em] mb-4"
+              style={{ color: '#999' }}
             >
               {t('howBadge')}
             </span>
             <h2
               className="font-en font-bold text-3xl md:text-4xl leading-tight"
-              style={{ color: '#1A1A2E', letterSpacing: '-.02em' }}
+              style={{ color: '#1A1A1A', letterSpacing: '-.02em' }}
             >
               {t('howTitle')}
             </h2>
@@ -207,19 +207,19 @@ export default async function ServicesPageContent() {
                 className="relative p-6 rounded-2xl"
                 style={{
                   background: '#FFFFFF',
-                  border: '0.5px solid rgba(123,47,190,0.25)',
+                  border: '0.5px solid rgba(0,0,0,0.08)',
                 }}
               >
                 <div
                   className="font-en font-bold text-4xl mb-4 leading-none"
-                  style={{ color: 'rgba(123,47,190,0.20)' }}
+                  style={{ color: 'rgba(0,0,0,0.08)' }}
                 >
                   {t(step.numKey)}
                 </div>
-                <h3 className="font-en font-semibold text-lg mb-2" style={{ color: '#1A1A2E' }}>
+                <h3 className="font-en font-semibold text-lg mb-2" style={{ color: '#1A1A1A' }}>
                   {t(step.titleKey)}
                 </h3>
-                <p className="font-ui text-sm leading-relaxed" style={{ color: 'rgba(26,26,46,0.60)' }}>
+                <p className="font-ui text-sm leading-relaxed" style={{ color: '#666' }}>
                   {t(step.descKey)}
                 </p>
               </div>
@@ -231,19 +231,19 @@ export default async function ServicesPageContent() {
       {/* Who This Is For */}
       <section
         className="py-20 md:py-24 relative"
-        style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
+        style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span
-              className="inline-block font-ui text-sm font-semibold uppercase tracking-[0.22em] mb-4"
-              style={{ color: 'rgba(26,26,46,0.50)' }}
+              className="inline-block font-ui text-xs font-semibold uppercase tracking-[0.18em] mb-4"
+              style={{ color: '#999' }}
             >
               {t('whoBadge')}
             </span>
             <h2
               className="font-en font-bold text-3xl md:text-4xl leading-tight"
-              style={{ color: '#1A1A2E', letterSpacing: '-.02em' }}
+              style={{ color: '#1A1A1A', letterSpacing: '-.02em' }}
             >
               {t('whoTitle')}
             </h2>
@@ -256,15 +256,15 @@ export default async function ServicesPageContent() {
                 className="flex items-start gap-3 p-5 rounded-xl"
                 style={{
                   background: '#FFFFFF',
-                  border: '0.5px solid rgba(123,47,190,0.25)',
+                  border: '0.5px solid rgba(0,0,0,0.08)',
                 }}
               >
                 <CheckCircle
                   size={18}
                   className="flex-shrink-0 mt-0.5"
-                  style={{ color: '#1A1A2E' }}
+                  style={{ color: '#C85A2A' }}
                 />
-                <p className="font-ui text-sm leading-relaxed" style={{ color: 'rgba(26,26,46,0.60)' }}>
+                <p className="font-ui text-sm leading-relaxed" style={{ color: '#555' }}>
                   {t(key)}
                 </p>
               </div>
@@ -277,23 +277,23 @@ export default async function ServicesPageContent() {
       <section
         id="contact-form"
         className="py-20 md:py-24 relative"
-        style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
+        style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
       >
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span
-              className="inline-block font-ui text-sm font-semibold uppercase tracking-[0.22em] mb-4"
-              style={{ color: 'rgba(26,26,46,0.50)' }}
+              className="inline-block font-ui text-xs font-semibold uppercase tracking-[0.18em] mb-4"
+              style={{ color: '#999' }}
             >
               {t('formBadge')}
             </span>
             <h2
               className="font-en font-bold text-3xl md:text-4xl leading-tight mb-4"
-              style={{ color: '#1A1A2E', letterSpacing: '-.02em' }}
+              style={{ color: '#1A1A1A', letterSpacing: '-.02em' }}
             >
               {t('formTitle')}
             </h2>
-            <p className="font-ui text-base leading-relaxed" style={{ color: 'rgba(26,26,46,0.60)' }}>
+            <p className="font-ui text-base leading-relaxed" style={{ color: '#666' }}>
               {t('formSubtitle')}
             </p>
           </div>
@@ -304,25 +304,25 @@ export default async function ServicesPageContent() {
       {/* Start CTA */}
       <section
         className="py-20 md:py-24 relative overflow-hidden"
-        style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
+        style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
       >
         <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <h2
             className="font-en font-bold text-2xl md:text-3xl mb-4 leading-snug"
-            style={{ color: '#1A1A2E', letterSpacing: '-.02em' }}
+            style={{ color: '#1A1A1A', letterSpacing: '-.02em' }}
           >
             {t('startTitle')}
           </h2>
           <p
             className="font-ui text-base md:text-lg leading-relaxed mb-8"
-            style={{ color: 'rgba(26,26,46,0.60)' }}
+            style={{ color: '#666' }}
           >
             {t('startDesc')}
           </p>
           <a
             href="#contact-form"
             className="font-ui inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4"
-            style={{ background: '#7B2FBE', color: '#ffffff', borderRadius: '8px', textDecoration: 'none' }}
+            style={{ background: '#1A1A1A', color: '#ffffff', borderRadius: '100px', textDecoration: 'none' }}
           >
             {t('startCta')}
             <ArrowRight size={16} />

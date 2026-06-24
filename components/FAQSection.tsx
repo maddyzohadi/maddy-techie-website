@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useLocale } from 'next-intl'
-import { Plus, Minus } from 'lucide-react'
+import { Plus } from 'lucide-react'
 
 interface FAQItem {
   q: string
@@ -64,19 +64,19 @@ export default function FAQSection() {
 
           <div className="text-center mb-14">
             <p
-              className="font-ui font-bold mb-4"
-              style={{ fontSize: '13px', letterSpacing: '.22em', color: 'rgba(26,26,46,0.50)', textTransform: 'uppercase' }}
+              className="font-ui font-semibold mb-4"
+              style={{ fontSize: '11px', letterSpacing: '.18em', color: '#999', textTransform: 'uppercase' }}
             >
               {isFa ? 'سوالات رایج' : 'FAQ'}
             </p>
             <h2
-              className={`${isFa ? 'font-fa' : 'font-en'} font-extrabold`}
-              style={{ fontSize: 'clamp(28px, 4.5vw, 44px)', lineHeight: 1.1, letterSpacing: '-.02em', color: '#1A1A2E' }}
+              className={`${isFa ? 'font-fa' : 'font-en'} font-bold`}
+              style={{ fontSize: 'clamp(28px, 4.5vw, 44px)', lineHeight: 1.1, letterSpacing: '-.02em', color: '#1A1A1A' }}
             >
               {isFa ? (
-                <>سوال داری؟{' '}<span style={{ color: 'rgba(26,26,46,0.60)' }}>جواب داریم.</span></>
+                <>سوال داری؟{' '}<span style={{ color: '#888' }}>جواب داریم.</span></>
               ) : (
-                <>Got questions?{' '}<span style={{ color: 'rgba(26,26,46,0.60)' }}>We have answers.</span></>
+                <>Got questions?{' '}<span style={{ color: '#888' }}>We have answers.</span></>
               )}
             </h2>
           </div>
@@ -108,7 +108,7 @@ export default function FAQSection() {
                       background: 'none',
                       border: 'none',
                       textAlign: isFa ? 'right' : 'left',
-                      color: '#1A1A2E',
+                      color: '#1A1A1A',
                       fontSize: '15.5px',
                       lineHeight: 1.4,
                     }}
@@ -120,28 +120,29 @@ export default function FAQSection() {
                         background: 'rgba(0,0,0,0.05)',
                         border: `0.5px solid ${isOpen ? 'rgba(0,0,0,0.12)' : 'rgba(0,0,0,0.08)'}`,
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        flexShrink: 0, color: '#1A1A2E',
+                        flexShrink: 0, color: '#1A1A1A',
                         transition: 'all 0.2s',
+                        transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
                       }}
                     >
-                      {isOpen ? <Minus size={13} /> : <Plus size={13} />}
+                      <Plus size={13} />
                     </span>
                   </button>
 
-                  {isOpen && (
+                  <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-48' : 'max-h-0'}`}>
                     <div
                       className={`${isFa ? 'font-fa' : 'font-ui'}`}
                       style={{
                         padding: '14px 22px 18px',
                         fontSize: '15px',
-                        color: 'rgba(26,26,46,0.60)',
+                        color: '#666',
                         lineHeight: 1.65,
                         borderTop: '0.5px solid rgba(0,0,0,0.08)',
                       }}
                     >
                       {item.a}
                     </div>
-                  )}
+                  </div>
                 </div>
               )
             })}

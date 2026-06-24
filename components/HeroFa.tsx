@@ -1,72 +1,63 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { motion } from "motion/react";
+import { Mail, Zap, FileText, CheckCircle, Bot, ArrowRight } from "lucide-react";
 
-const floatingItems = [
-  { icon: "https://cdn.worldvectorlogo.com/logos/chatgpt-6.svg",            label: "ChatGPT",       x: 88.0, y: 50.0, delay: 0,   rotation: -8, color: "#10A37F" },
-  { icon: "https://cdn.worldvectorlogo.com/logos/claude-1.svg",             label: "Claude",        x: 73.9, y: 79.5, delay: 0.4, rotation:  6, color: "#CC785C" },
-  { icon: "https://cdn.worldvectorlogo.com/logos/zapier-1.svg",             label: "Zapier",        x: 42.1, y: 87.2, delay: 0.8, rotation: -5, color: "#FF4A00", hideLabel: true },
-  { icon: "https://cdn.worldvectorlogo.com/logos/google-sheets-logo-1.svg", label: "Google Sheets", x: 16.1, y: 67.3, delay: 1.2, rotation:  7, color: "#34A853" },
-  { icon: "https://cdn.worldvectorlogo.com/logos/notion-logo-1.svg",        label: "Notion",        x: 15.3, y: 34.5, delay: 0.6, rotation: -6, color: "#1A1A1A" },
-  { icon: "https://cdn.worldvectorlogo.com/logos/make-1.svg",               label: "Make",          x: 40.2, y: 13.3, delay: 1.0, rotation:  5, color: "#6D00CC" },
-  { icon: "https://cdn.worldvectorlogo.com/logos/google-gemini.svg",        label: "Gemini",        x: 72.3, y: 19.3, delay: 1.4, rotation: -4, color: "#4285F4" },
+const STEPS = [
+  { Icon: Mail,        label: "Emails",  color: "#888",    bg: "#F5F0EB",               border: "none"                                    },
+  { Icon: Zap,         label: "Process", color: "#C85A2A", bg: "rgba(200,90,42,0.08)",  border: "0.5px solid rgba(200,90,42,0.20)"         },
+  { Icon: FileText,    label: "Draft",   color: "#888",    bg: "#F5F0EB",               border: "none"                                    },
+  { Icon: CheckCircle, label: "Done",    color: "#52C47A", bg: "rgba(82,196,122,0.08)", border: "0.5px solid rgba(82,196,122,0.20)"        },
 ];
 
 export default function HeroFa() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <section
       style={{
         position: "relative",
-        minHeight: "100vh",
+        minHeight: "100dvh",
         background: "#F5F0EB",
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "120px 24px 80px",
+        padding: "120px 24px 72px",
       }}
     >
-      {/* Radial gradient blob - center */}
+      {/* Soft radial glow */}
       <div
         style={{
           position: "absolute",
-          top: "50%",
+          top: "35%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: "600px",
-          height: "600px",
+          width: "700px",
+          height: "500px",
           background:
-            "radial-gradient(ellipse at center, rgba(251,180,150,0.45) 0%, rgba(220,170,210,0.35) 40%, transparent 70%)",
+            "radial-gradient(ellipse at center, rgba(251,180,150,0.38) 0%, rgba(220,170,210,0.18) 50%, transparent 70%)",
           pointerEvents: "none",
           borderRadius: "50%",
         }}
       />
 
-      {/* Floating AI tool cards */}
-      {floatingItems.map((item, i) => (
-        <FloatingCard key={i} item={item} mounted={mounted} index={i} />
-      ))}
-
-      {/* Center content */}
+      {/* Text content */}
       <div
         style={{
           position: "relative",
           zIndex: 2,
           textAlign: "center",
-          maxWidth: "680px",
+          maxWidth: "640px",
+          width: "100%",
           direction: "rtl",
         }}
       >
         {/* Eyebrow badge */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -92,32 +83,36 @@ export default function HeroFa() {
             style={{
               fontSize: "11px",
               color: "#666",
-              letterSpacing: "0.08em",
-              fontFamily: "system-ui, sans-serif",
+              fontFamily: "'Noto Naskh Arabic', serif",
               fontWeight: 500,
             }}
           >
             هوش مصنوعی برای کار و بهره‌وری
           </span>
-        </div>
+        </motion.div>
 
-        {/* Main heading */}
-        <h1
+        {/* Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           style={{
             fontFamily: "'Noto Naskh Arabic', serif",
             fontSize: "clamp(36px, 6vw, 56px)",
             fontWeight: 700,
             color: "#1A1A1A",
-            lineHeight: 1.25,
+            lineHeight: 1.35,
             margin: "0 0 20px",
-            letterSpacing: "-0.01em",
           }}
         >
           ساده‌سازی کارهای پیچیده با کمک هوش مصنوعی
-        </h1>
+        </motion.h1>
 
-        {/* Subheading */}
-        <p
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           style={{
             fontFamily: "'Noto Naskh Arabic', serif",
             fontSize: "17px",
@@ -129,10 +124,13 @@ export default function HeroFa() {
           }}
         >
           با ابزارهای هوشمند مسیر کارت را بدون کدنویسی ساده‌تر کن
-        </p>
+        </motion.p>
 
         {/* CTAs */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           style={{
             display: "flex",
             gap: "12px",
@@ -187,103 +185,216 @@ export default function HeroFa() {
           >
             مشاهده خدمات
           </a>
-        </div>
-
+        </motion.div>
       </div>
-    </section>
-  );
-}
 
-const FLOAT_AMOUNTS = [8, 6, 10, 7, 9, 6, 8];
-
-function FloatingCard({
-  item,
-  mounted,
-  index,
-}: {
-  item: (typeof floatingItems)[0];
-  mounted: boolean;
-  index: number;
-}) {
-  const [imgError, setImgError] = useState(false);
-  const floatY = FLOAT_AMOUNTS[index % FLOAT_AMOUNTS.length];
-
-  return (
-    <div
-      style={{
-        position: "absolute",
-        left: `${item.x}%`,
-        top: `${item.y}%`,
-        transform: "translate(-50%, -50%)",
-        zIndex: 1,
-      }}
-    >
+      {/* Workflow visual card — always LTR */}
       <motion.div
-        style={{ rotate: item.rotation }}
-        initial={{ opacity: 0 }}
-        animate={mounted ? { opacity: 1, y: [0, -floatY, 0] } : { opacity: 0 }}
-        transition={{
-          opacity: { duration: 0.6, delay: item.delay, ease: "easeOut" },
-          y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: item.delay },
-        }}
-      >
-      <div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
         style={{
-          background: "rgba(255,255,255,0.85)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
-          borderRadius: "14px",
-          padding: "10px 14px",
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
-          border: "0.5px solid rgba(255,255,255,0.9)",
-          whiteSpace: "nowrap",
+          position: "relative",
+          zIndex: 2,
+          marginTop: "48px",
+          width: "100%",
+          maxWidth: "600px",
+          direction: "ltr",
         }}
       >
-        {imgError ? (
+        <motion.div
+          animate={{ y: [0, -7, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.4 }}
+          style={{
+            background: "rgba(255,255,255,0.88)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            borderRadius: "20px",
+            padding: "22px 24px",
+            border: "0.5px solid rgba(255,255,255,0.95)",
+            boxShadow:
+              "0 24px 64px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.04), inset 0 0.5px 0 rgba(255,255,255,0.8)",
+          }}
+        >
+          {/* Title bar */}
           <div
             style={{
-              width: "28px",
-              height: "28px",
-              borderRadius: "50%",
-              background: item.color,
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
-              flexShrink: 0,
-              fontSize: "12px",
-              fontWeight: 700,
-              color: "#fff",
-              fontFamily: "system-ui, sans-serif",
+              justifyContent: "space-between",
+              marginBottom: "18px",
             }}
           >
-            {item.label[0]}
+            <div style={{ display: "flex", gap: "5px" }}>
+              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FFCAB4" }} />
+              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#FFE4C2" }} />
+              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#E8E3DA" }} />
+            </div>
+            <span
+              style={{
+                fontFamily: "system-ui, sans-serif",
+                fontSize: "11px",
+                color: "#bbb",
+                letterSpacing: "0.04em",
+              }}
+            >
+              Daily Report Workflow
+            </span>
+            <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+              <div
+                style={{ width: 6, height: 6, borderRadius: "50%", background: "#52C47A" }}
+              />
+              <span
+                style={{
+                  fontFamily: "system-ui, sans-serif",
+                  fontSize: "11px",
+                  color: "#888",
+                }}
+              >
+                Active
+              </span>
+            </div>
           </div>
-        ) : (
-          <img
-            src={item.icon}
-            alt={item.label}
-            onError={() => setImgError(true)}
-            style={{ width: "28px", height: "28px", objectFit: "contain", flexShrink: 0 }}
-          />
-        )}
-        {!item.hideLabel && (
-          <span
+
+          {/* Workflow steps */}
+          <div
             style={{
-              fontSize: "12px",
-              color: "#333",
-              fontFamily: "'Noto Naskh Arabic', serif",
-              fontWeight: 500,
-              direction: "rtl",
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              marginBottom: "16px",
             }}
           >
-            {item.label}
-          </span>
-        )}
-      </div>
+            {STEPS.map((step, i) => {
+              const Icon = step.Icon;
+              return (
+                <React.Fragment key={i}>
+                  <div
+                    style={{
+                      flex: 1,
+                      background: step.bg,
+                      border: step.border,
+                      borderRadius: "10px",
+                      padding: "10px 4px",
+                      textAlign: "center",
+                    }}
+                  >
+                    <Icon
+                      size={15}
+                      style={{
+                        color: step.color,
+                        margin: "0 auto 4px",
+                        display: "block",
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontFamily: "system-ui, sans-serif",
+                        fontSize: "10px",
+                        color: step.color === "#888" ? "#bbb" : step.color,
+                        display: "block",
+                      }}
+                    >
+                      {step.label}
+                    </span>
+                  </div>
+                  {i < STEPS.length - 1 && (
+                    <ArrowRight
+                      size={11}
+                      style={{ color: "#C85A2A", flexShrink: 0, opacity: 0.5 }}
+                    />
+                  )}
+                </React.Fragment>
+              );
+            })}
+          </div>
+
+          {/* AI response bubble */}
+          <div
+            style={{
+              background: "#F5F0EB",
+              borderRadius: "12px",
+              padding: "12px 14px",
+              marginBottom: "14px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+                marginBottom: "7px",
+              }}
+            >
+              <Bot size={12} style={{ color: "#C85A2A" }} />
+              <span
+                style={{
+                  fontFamily: "system-ui, sans-serif",
+                  fontSize: "11px",
+                  fontWeight: 600,
+                  color: "#888",
+                }}
+              >
+                Claude
+              </span>
+            </div>
+            <p
+              style={{
+                fontFamily: "system-ui, sans-serif",
+                fontSize: "13px",
+                color: "#555",
+                lineHeight: 1.6,
+                margin: 0,
+              }}
+            >
+              Processed{" "}
+              <strong style={{ color: "#1A1A1A" }}>14 emails</strong>, drafted 3
+              replies, and updated your tracker.{" "}
+              <strong style={{ color: "#C85A2A" }}>Saved 2.4 hrs</strong> of
+              manual work.
+            </p>
+          </div>
+
+          {/* Footer */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+              gap: "8px",
+            }}
+          >
+            <div style={{ display: "flex", gap: "5px", flexWrap: "wrap" }}>
+              {["ChatGPT", "Claude", "n8n", "Sheets"].map((tool) => (
+                <span
+                  key={tool}
+                  style={{
+                    fontFamily: "system-ui, sans-serif",
+                    fontSize: "10px",
+                    padding: "3px 8px",
+                    borderRadius: "100px",
+                    background: "rgba(0,0,0,0.04)",
+                    border: "0.5px solid rgba(0,0,0,0.08)",
+                    color: "#888",
+                  }}
+                >
+                  {tool}
+                </span>
+              ))}
+            </div>
+            <span
+              style={{
+                fontFamily: "system-ui, sans-serif",
+                fontSize: "10px",
+                color: "#bbb",
+              }}
+            >
+              Runs daily · 0 errors
+            </span>
+          </div>
+        </motion.div>
       </motion.div>
-    </div>
+    </section>
   );
 }

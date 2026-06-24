@@ -1,10 +1,13 @@
-import { Zap, MessageSquare, LayoutGrid, ArrowRight } from 'lucide-react'
-import { getTranslations, getLocale } from 'next-intl/server'
-import { Link } from '@/i18n/navigation'
+'use client'
 
-export default async function ServicesSection() {
-  const t = await getTranslations('services')
-  const locale = await getLocale()
+import { Zap, MessageSquare, LayoutGrid, ArrowRight } from 'lucide-react'
+import { useTranslations, useLocale } from 'next-intl'
+import { Link } from '@/i18n/navigation'
+import { motion } from 'motion/react'
+
+export default function ServicesSection() {
+  const t = useTranslations('services')
+  const locale = useLocale()
   const isFa = locale === 'fa'
 
   const services = [
@@ -23,20 +26,20 @@ export default async function ServicesSection() {
 
         <div className="text-center mb-16">
           <span
-            className="inline-block font-ui text-sm md:text-base font-semibold uppercase tracking-[0.22em] mb-4"
-            style={{ color: 'rgba(26,26,46,0.50)' }}
+            className="inline-block font-ui text-xs font-semibold uppercase tracking-[0.18em] mb-4"
+            style={{ color: '#999' }}
           >
             {t('badge')}
           </span>
           <h2
             className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight`}
-            style={{ color: '#1A1A2E', letterSpacing: '-.02em' }}
+            style={{ color: '#1A1A1A', letterSpacing: '-.02em' }}
           >
             {t('title')}
           </h2>
           <p
             className={`${isFa ? 'font-fa' : 'font-ui'} text-lg md:text-xl max-w-2xl mx-auto leading-relaxed`}
-            style={{ color: 'rgba(26,26,46,0.60)' }}
+            style={{ color: '#666' }}
           >
             {t('subtitle')}
           </p>
@@ -46,16 +49,18 @@ export default async function ServicesSection() {
           {services.map((service) => {
             const Icon = service.icon
             return (
-              <div
+              <motion.div
                 key={service.titleKey}
                 style={{
                   background: '#FFFFFF',
-                  border: '0.5px solid rgba(26,26,46,0.12)',
-                  borderRadius: '12px',
+                  border: '0.5px solid rgba(0,0,0,0.08)',
+                  borderRadius: '16px',
                   padding: '28px 30px',
                   display: 'flex',
                   flexDirection: 'column',
                 }}
+                whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
               >
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
@@ -64,21 +69,21 @@ export default async function ServicesSection() {
                     border: '0.5px solid rgba(0,0,0,0.08)',
                   }}
                 >
-                  <Icon size={22} style={{ color: '#1A1A2E' }} />
+                  <Icon size={22} style={{ color: '#1A1A1A' }} />
                 </div>
                 <h3
                   className={`${isFa ? 'font-fa' : 'font-en'} font-semibold text-xl md:text-2xl mb-3 leading-snug`}
-                  style={{ color: '#1A1A2E' }}
+                  style={{ color: '#1A1A1A' }}
                 >
                   {t(service.titleKey)}
                 </h3>
                 <p
                   className={`${isFa ? 'font-fa' : 'font-ui'} text-base md:text-lg leading-relaxed flex-1`}
-                  style={{ color: 'rgba(26,26,46,0.60)' }}
+                  style={{ color: '#666' }}
                 >
                   {t(service.descKey)}
                 </p>
-              </div>
+              </motion.div>
             )
           })}
         </div>

@@ -1,8 +1,11 @@
-import { Zap, Brain } from 'lucide-react'
-import { getLocale } from 'next-intl/server'
+'use client'
 
-export default async function MethodSection() {
-  const locale   = await getLocale()
+import { Zap, Brain } from 'lucide-react'
+import { useLocale } from 'next-intl'
+import { motion } from 'motion/react'
+
+export default function MethodSection() {
+  const locale   = useLocale()
   const isFa     = locale === 'fa'
 
   const headingFont = isFa ? "'Noto Naskh Arabic', serif" : "'DM Serif Display', serif"
@@ -35,6 +38,13 @@ export default async function MethodSection() {
     justifyContent: 'center',
     marginBottom: '20px',
     flexShrink: 0,
+  }
+
+  const cardStyle: React.CSSProperties = {
+    background: '#fff',
+    border: '0.5px solid rgba(0,0,0,0.08)',
+    borderRadius: '16px',
+    padding: '32px',
   }
 
   return (
@@ -90,14 +100,10 @@ export default async function MethodSection() {
             margin: '0 auto',
           }}
         >
-          {/* Card 1 */}
-          <div
-            style={{
-              background: '#fff',
-              border: '0.5px solid rgba(0,0,0,0.08)',
-              borderRadius: '16px',
-              padding: '32px',
-            }}
+          <motion.div
+            style={cardStyle}
+            whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
           >
             <div style={iconBox}>
               <Zap size={20} style={{ color: '#1A1A1A' }} />
@@ -139,16 +145,12 @@ export default async function MethodSection() {
             >
               {card1.desc}
             </p>
-          </div>
+          </motion.div>
 
-          {/* Card 2 */}
-          <div
-            style={{
-              background: '#fff',
-              border: '0.5px solid rgba(0,0,0,0.08)',
-              borderRadius: '16px',
-              padding: '32px',
-            }}
+          <motion.div
+            style={cardStyle}
+            whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
           >
             <div style={iconBox}>
               <Brain size={20} style={{ color: '#1A1A1A' }} />
@@ -190,7 +192,7 @@ export default async function MethodSection() {
             >
               {card2.desc}
             </p>
-          </div>
+          </motion.div>
         </div>
 
       </div>

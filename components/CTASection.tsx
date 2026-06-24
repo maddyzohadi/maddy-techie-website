@@ -20,7 +20,7 @@ export default function CTASection() {
     <section
       id="contact"
       className="pt-24 md:pt-32 pb-0 relative overflow-hidden scroll-mt-24"
-      style={{ background: 'linear-gradient(to right, #b8a4d4, #e8a0a0)' }}
+      style={{ background: '#EDE5DC', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
     >
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
