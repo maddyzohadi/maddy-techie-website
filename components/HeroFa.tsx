@@ -127,7 +127,7 @@ export default function HeroFa() {
             fontWeight: 400,
           }}
         >
-          ساده‌سازی کارهای پیچیده با کمک هوش مصنوعی
+          با ابزارهای هوشمند مسیر کارت را بدون کدنویسی ساده‌تر کن
         </p>
 
         {/* CTAs */}
@@ -188,18 +188,6 @@ export default function HeroFa() {
           </a>
         </div>
 
-        {/* Social proof */}
-        <p
-          style={{
-            marginTop: "32px",
-            fontSize: "12px",
-            color: "#999",
-            fontFamily: "system-ui, sans-serif",
-            letterSpacing: "0.04em",
-          }}
-        >
-          با ابزارهای هوشمند سریع‌تر و بهتر کار کن
-        </p>
       </div>
     </section>
   );
