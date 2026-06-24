@@ -466,6 +466,16 @@ export default function ResourcesSection() {
       >
         <div className="relative z-10 max-w-[1160px] mx-auto px-4 sm:px-6 lg:px-8">
 
+          <video
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_145119_f4ec4d9f-3ecd-4116-baa3-26e8cf2df976.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="max-w-2xl mx-auto rounded-2xl mt-8 mb-12"
+            style={{ display: 'block', width: '100%', height: 'auto', border: '1px solid #E7DED2' }}
+          />
+
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', marginBottom: '14px' }}>
             {CATEGORIES.map((cat) => {
               const active = filter === cat

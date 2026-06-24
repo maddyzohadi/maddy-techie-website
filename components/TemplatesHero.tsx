@@ -84,16 +84,6 @@ export default function TemplatesHero() {
           {isFa ? 'مشاهده قالب‌ها ↓' : 'Browse templates ↓'}
         </a>
 
-        {/* Demo video */}
-        <video
-          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_145119_f4ec4d9f-3ecd-4116-baa3-26e8cf2df976.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full max-w-4xl mx-auto rounded-2xl border border-[#E7DED2] mt-8"
-          style={{ display: 'block' }}
-        />
       </div>
     </section>
   )
