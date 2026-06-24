@@ -112,9 +112,7 @@ export default function HeroFa() {
             letterSpacing: "-0.01em",
           }}
         >
-          هوش مصنوعی که کارهای
-          <br />
-          <span style={{ color: "#C85A2A" }}>سخت رو ساده</span> میکنه
+          ساده‌سازی کارهای پیچیده با کمک هوش مصنوعی
         </h1>
 
         {/* Subheading */}
@@ -129,7 +127,7 @@ export default function HeroFa() {
             fontWeight: 400,
           }}
         >
-          با ابزارهای هوشمند مسیر کارت را بدون کدنویسی ساده‌تر کن
+          ساده‌سازی کارهای پیچیده با کمک هوش مصنوعی
         </p>
 
         {/* CTAs */}
