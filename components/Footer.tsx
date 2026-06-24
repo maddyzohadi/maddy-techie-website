@@ -1,126 +1,179 @@
 import { getTranslations, getLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { ArrowRight } from 'lucide-react'
+import FooterIconStrip from './FooterIconStrip'
+
+const NAV_LINKS = [
+  { labelKey: 'home'      as const, href: '/'                      },
+  { labelKey: 'learn'     as const, href: '/learn'                 },
+  { labelKey: 'templates' as const, href: '/templates'             },
+  { labelKey: 'services'  as const, href: '/services'              },
+  { labelKey: 'about'     as const, href: '/about'                 },
+  { labelKey: 'contact'   as const, href: '/services#contact-form' },
+] as const
+
+const LEGAL_LINKS = [
+  { labelKey: 'privacy' as const, href: '#' },
+  { labelKey: 'terms'   as const, href: '#' },
+] as const
+
+const BORDER = 'rgba(247,243,236,0.10)'
 
 export default async function Footer() {
-  const t = await getTranslations('footer')
+  const t      = await getTranslations('footer')
   const locale = await getLocale()
+  const isFa   = locale === 'fa'
 
-  const navLinks = [
-    { labelKey: 'learn'     as const, href: '/learn' },
-    { labelKey: 'templates' as const, href: '/templates' },
-    { labelKey: 'services'  as const, href: '/services' },
-    { labelKey: 'about'     as const, href: '/about' },
-  ]
-
-  const legalLinks = [
-    { labelKey: 'privacy' as const, href: '#' },
-    { labelKey: 'terms'   as const, href: '#' },
-  ]
+  const bodyFont    = isFa ? "'Noto Naskh Arabic', serif" : 'system-ui, sans-serif'
+  const headingFont = isFa ? "'Noto Naskh Arabic', serif" : "'DM Serif Display', serif"
 
   return (
     <footer
-      className="relative"
-      style={{ background: '#F7F3EC', borderTop: '0.5px solid #E7DED2' }}
+      className="relative overflow-hidden"
+      style={{ background: '#171717', borderTop: `0.5px solid ${BORDER}` }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
-        {/* Top: brand left, nav + CTA right */}
-        <div className="flex flex-col md:flex-row items-start justify-between gap-8 mb-7">
+      {/* Very subtle top accent line */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '120px',
+          height: '1.5px',
+          background: 'linear-gradient(90deg, transparent, #FF6A32, transparent)',
+          opacity: 0.6,
+        }}
+      />
 
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* ── Top: brand + icon strip ── */}
+        <div
+          className="pt-14 pb-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-10"
+          style={{
+            borderBottom: `0.5px solid ${BORDER}`,
+            direction: isFa ? 'rtl' : 'ltr',
+          }}
+        >
           {/* Brand */}
-          <div className="max-w-xs">
-            <div className="font-ui font-bold text-xl mb-2" style={{ color: '#111111' }}>
+          <div className="max-w-sm">
+            <div
+              className="font-bold text-xl mb-3"
+              style={{
+                fontFamily: headingFont,
+                color: '#F7F3EC',
+                letterSpacing: '-0.01em',
+              }}
+            >
               Maddy the Techie
             </div>
-            <p className="font-ui text-sm leading-relaxed" style={{ color: '#888' }}>
+
+            <p
+              className="text-sm leading-relaxed mb-2"
+              style={{ fontFamily: bodyFont, color: '#B8B0A7' }}
+            >
               {t('brand')}
             </p>
-          </div>
 
-          {/* Nav + CTA */}
-          <div className="flex flex-col gap-3">
-            <nav className="flex flex-wrap gap-x-6 gap-y-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="footer-nav-link font-ui text-sm"
-                >
-                  {t(link.labelKey)}
-                </Link>
-              ))}
-            </nav>
+            <p
+              className="text-xs mb-6 font-semibold uppercase tracking-[0.12em]"
+              style={{ color: 'rgba(247,243,236,0.35)', fontFamily: 'system-ui, sans-serif' }}
+            >
+              {t('motto')}
+            </p>
+
             <Link
               href="/services#contact-form"
-              className="inline-flex items-center gap-1.5 font-ui font-semibold text-sm self-start transition-opacity duration-200 hover:opacity-80"
-              style={{ color: '#111111' }}
+              className="footer-cta-link inline-flex items-center gap-1.5 text-sm font-semibold"
+              style={{ fontFamily: 'system-ui, sans-serif' }}
             >
               {t('startProject')}
-              <ArrowRight size={13} />
+              <ArrowRight size={13} className={isFa ? 'rotate-180' : ''} />
             </Link>
           </div>
 
+          {/* Animated icon cluster */}
+          <FooterIconStrip />
         </div>
 
-        {/* Divider */}
-        <div className="mb-6" style={{ height: '1px', background: '#E7DED2' }} />
+        {/* ── Nav links ── */}
+        <nav
+          className="py-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-3"
+          style={{
+            borderBottom: `0.5px solid ${BORDER}`,
+            direction: isFa ? 'rtl' : 'ltr',
+          }}
+        >
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="footer-nav-link-dark font-ui text-sm"
+            >
+              {t(link.labelKey)}
+            </Link>
+          ))}
+        </nav>
 
-        {/* Bottom */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        {/* ── Bottom bar ── */}
+        <div
+          className="py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+          style={{ direction: isFa ? 'rtl' : 'ltr' }}
+        >
 
-          <div className="flex flex-col gap-1.5">
-            <p className="font-ui text-xs" style={{ color: '#888' }}>
-              © <span dir="ltr">2026</span> Maddy the Techie
+          {/* Copyright + disclaimer */}
+          <div className="flex flex-col gap-1">
+            <p className="font-ui text-xs" style={{ color: '#B8B0A7' }}>
+              {'© '}
+              <span dir="ltr">2026</span>
+              {' Maddy the Techie'}
             </p>
-            <p className="font-ui text-xs" style={{ color: '#888' }}>
+            <p className="font-ui text-xs" style={{ color: 'rgba(247,243,236,0.28)' }}>
               {t('disclaimer')}
             </p>
           </div>
 
+          {/* Locale switcher + legal */}
           <div className="flex items-center gap-5">
-            {/* Language switcher */}
+
+            {/* Locale */}
             <div
-              className="flex items-center gap-1 px-1 py-1 rounded-full"
-              style={{ background: 'rgba(0,0,0,0.05)', border: '0.5px solid #E7DED2' }}
+              className="flex items-center gap-0.5 p-0.5 rounded-full"
+              style={{ background: 'rgba(247,243,236,0.08)', border: `0.5px solid ${BORDER}` }}
             >
-              <Link
-                href="/"
-                locale="en"
-                className="px-3 py-1 text-xs font-ui font-semibold transition-all duration-200 rounded-full"
-                style={locale === 'en'
-                  ? { background: '#111111', color: '#ffffff' }
-                  : { color: '#888' }}
-              >
-                EN
-              </Link>
-              <Link
-                href="/"
-                locale="fa"
-                className="px-3 py-1 text-xs font-ui font-semibold transition-all duration-200 rounded-full"
-                style={locale === 'fa'
-                  ? { background: '#111111', color: '#ffffff' }
-                  : { color: '#888' }}
-              >
-                FA
-              </Link>
+              {(['en', 'fa'] as const).map((loc) => (
+                <Link
+                  key={loc}
+                  href="/"
+                  locale={loc}
+                  className="px-3 py-1 text-xs font-ui font-semibold transition-all duration-200 rounded-full"
+                  style={
+                    locale === loc
+                      ? { background: '#FF6A32', color: '#fff' }
+                      : { color: '#B8B0A7' }
+                  }
+                >
+                  {loc.toUpperCase()}
+                </Link>
+              ))}
             </div>
 
-            {/* Legal links */}
+            {/* Legal */}
             <div className="flex gap-4">
-              {legalLinks.map((link) => (
+              {LEGAL_LINKS.map((link) => (
                 <a
                   key={link.labelKey}
                   href={link.href}
-                  className="font-ui text-xs transition-opacity duration-200 hover:opacity-70"
-                  style={{ color: '#888' }}
+                  className="footer-nav-link-dark font-ui text-xs"
                 >
                   {t(link.labelKey)}
                 </a>
               ))}
             </div>
-          </div>
 
+          </div>
         </div>
 
       </div>

@@ -243,6 +243,26 @@ h3 { font-size: var(--text-h3); }
   color: #111111;
 }
 
+.footer-nav-link-dark {
+  color: #B8B0A7;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-nav-link-dark:hover {
+  color: #FF6A32;
+}
+
+.footer-cta-link {
+  color: #FF6A32;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-cta-link:hover {
+  color: #F46A2E;
+}
+
 .template-card {
   transition: border-color 0.2s;
 }

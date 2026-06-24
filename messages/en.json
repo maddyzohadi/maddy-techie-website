@@ -299,7 +299,8 @@
     "training": "Training",
     "templates": "Templates",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "motto": "Learn AI. Automate work. No code."
   },
   "aiAssistant": {
     "welcome": "Hi, I'm Maddy AI Assistant\n\nTell me what you're trying to learn, simplify, or build\n\nI'll help you find a clear next step",
