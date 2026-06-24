@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useLocale } from 'next-intl'
 
 const FA_SERVICES = [
-  { number: '۰۱', title: 'آموزش AI',         desc: 'یاد بگیر ChatGPT و Claude رو مثل یه حرفه‌ای استفاده کنی' },
+  { number: '۰۱', title: 'آموزش هوش مصنوعی',         desc: 'یاد بگیر ChatGPT و Claude رو مثل یه حرفه‌ای استفاده کنی' },
   { number: '۰۲', title: 'ساخت اتوماسیون',   desc: 'کارهای تکراری رو به سیستم بده' },
   { number: '۰۳', title: 'قالب‌های آماده',   desc: 'از صفر شروع نکن' },
   { number: '۰۴', title: 'مشاوره',            desc: 'یه جلسه، یه نقشه راه' },

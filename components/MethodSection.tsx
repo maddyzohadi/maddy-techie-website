@@ -20,7 +20,7 @@ export default async function MethodSection() {
     badge: isFa ? 'هوش مصنوعی'     : 'AI IN DAILY WORK',
     title: isFa ? 'هوش مصنوعی رو وارد کارت کن' : 'Put AI inside your workflow',
     desc:  isFa
-      ? 'با ابزارهای AI مثل ChatGPT و Claude کارهای تکراری رو حذف کن و سریع‌تر خروجی بده'
+      ? 'با ابزارهای هوش مصنوعی مثل ChatGPT و Claude کارهای تکراری رو حذف کن و سریع‌تر خروجی بده'
       : 'Use ChatGPT and Claude to cut repetitive work and deliver faster, without sacrificing quality',
   }
 
