@@ -29,7 +29,7 @@ export default function ServicesListSection() {
   return (
     <section
       style={{
-        background: '#F5F0EB',
+        background: '#F7F3EC',
         padding: '96px 24px',
         borderTop: '0.5px solid rgba(0,0,0,0.06)',
         direction: isFa ? 'rtl' : 'ltr',
@@ -111,7 +111,7 @@ export default function ServicesListSection() {
                       fontFamily: headingFont,
                       fontSize: hovered === i ? '24px' : '20px',
                       fontWeight: hovered === i ? 800 : 700,
-                      color: '#1A1A1A',
+                      color: '#111111',
                       lineHeight: 1.2,
                       transition: 'font-size 0.18s ease, font-weight 0.18s ease',
                     }}

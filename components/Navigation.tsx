@@ -43,10 +43,11 @@ export default function Navigation() {
           position: 'fixed',
           top: 0, left: 0, right: 0,
           zIndex: 100,
-          background: scrolled ? 'rgba(245,240,235,0.85)' : '#F5F0EB',
+          background: scrolled ? 'rgba(247,243,236,0.85)' : '#F7F3EC',
           backdropFilter: scrolled ? 'blur(12px)' : 'none',
           WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
-          boxShadow: scrolled ? '0 1px 0 rgba(0,0,0,0.08)' : 'none',
+          borderBottom: '0.5px solid #E7DED2',
+          boxShadow: scrolled ? '0 1px 0 rgba(0,0,0,0.06)' : 'none',
           transition: 'box-shadow 0.25s, backdrop-filter 0.25s, background 0.25s',
         }}
       >
@@ -60,7 +61,7 @@ export default function Navigation() {
                   fontFamily: "'DM Serif Display', serif",
                   fontSize: '17px',
                   fontWeight: 700,
-                  color: '#1A1A1A',
+                  color: '#111111',
                   letterSpacing: '-0.01em',
                 }}
               >
@@ -78,14 +79,14 @@ export default function Navigation() {
                     fontFamily: navFont,
                     fontSize: '14px',
                     fontWeight: isActive(link.href) ? 600 : 500,
-                    color: isActive(link.href) ? '#1A1A1A' : '#555',
+                    color: isActive(link.href) ? '#111111' : '#555',
                     textDecoration: 'none',
                     transition: 'color 0.15s',
-                    borderBottom: isActive(link.href) ? '1.5px solid #1A1A1A' : '1.5px solid transparent',
+                    borderBottom: isActive(link.href) ? '1.5px solid #111111' : '1.5px solid transparent',
                     paddingBottom: '2px',
                   }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#1A1A1A' }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = isActive(link.href) ? '#1A1A1A' : '#555' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#111111' }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = isActive(link.href) ? '#111111' : '#555' }}
                 >
                   {t(link.key)}
                 </Link>
@@ -120,7 +121,7 @@ export default function Navigation() {
                       textDecoration: 'none',
                       transition: 'all 0.15s',
                       ...(locale === loc
-                        ? { background: '#1A1A1A', color: '#fff' }
+                        ? { background: '#111111', color: '#fff' }
                         : { background: 'transparent', color: '#333' }),
                     }}
                   >
@@ -132,22 +133,8 @@ export default function Navigation() {
               {/* CTA */}
               <Link
                 href="/services"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  padding: '10px 22px',
-                  borderRadius: '100px',
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  fontFamily: navFont,
-                  background: '#1A1A1A',
-                  color: '#fff',
-                  textDecoration: 'none',
-                  transition: 'opacity 0.15s',
-                }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.opacity = '0.85' }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.opacity = '1' }}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-white rounded-full no-underline bg-brand-orange hover:bg-brand-coral transition-colors duration-150"
+                style={{ padding: '10px 22px', fontFamily: navFont }}
               >
                 {isFa ? 'شروع پروژه ←' : 'Start a Project →'}
               </Link>
@@ -157,7 +144,7 @@ export default function Navigation() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="lg:hidden"
-              style={{ padding: '8px', background: 'none', border: 'none', cursor: 'pointer', color: '#1A1A1A' }}
+              style={{ padding: '8px', background: 'none', border: 'none', cursor: 'pointer', color: '#111111' }}
               aria-label="Toggle navigation"
             >
               {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -213,7 +200,7 @@ export default function Navigation() {
                   fontFamily: navFont,
                   fontSize: '15px',
                   fontWeight: isActive(link.href) ? 600 : 500,
-                  color: isActive(link.href) ? '#1A1A1A' : '#444',
+                  color: isActive(link.href) ? '#111111' : '#444',
                   background: isActive(link.href) ? 'rgba(0,0,0,0.05)' : 'transparent',
                   textDecoration: 'none',
                 }}
@@ -248,7 +235,7 @@ export default function Navigation() {
                     fontFamily: 'system-ui, sans-serif',
                     textDecoration: 'none',
                     ...(locale === 'en'
-                      ? { background: '#1A1A1A', color: '#fff' }
+                      ? { background: '#111111', color: '#fff' }
                       : { background: 'rgba(0,0,0,0.05)', color: '#333' }),
                   }}
                 >
@@ -268,7 +255,7 @@ export default function Navigation() {
                     fontFamily: "'Noto Naskh Arabic', serif",
                     textDecoration: 'none',
                     ...(locale === 'fa'
-                      ? { background: '#1A1A1A', color: '#fff' }
+                      ? { background: '#111111', color: '#fff' }
                       : { background: 'rgba(0,0,0,0.05)', color: '#333' }),
                   }}
                 >
@@ -280,20 +267,8 @@ export default function Navigation() {
               <Link
                 href="/services"
                 onClick={() => setIsOpen(false)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '6px',
-                  padding: '13px 20px',
-                  borderRadius: '100px',
-                  fontSize: '15px',
-                  fontWeight: 600,
-                  fontFamily: navFont,
-                  background: '#1A1A1A',
-                  color: '#fff',
-                  textDecoration: 'none',
-                }}
+                className="flex items-center justify-center gap-1.5 font-semibold text-white rounded-full no-underline bg-brand-orange hover:bg-brand-coral transition-colors duration-150"
+                style={{ padding: '13px 20px', fontSize: '15px', fontFamily: navFont }}
               >
                 {isFa ? 'شروع پروژه ←' : 'Start a Project →'}
               </Link>

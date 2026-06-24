@@ -54,7 +54,7 @@ export default async function ProblemSection() {
               fontFamily: headingFont,
               fontSize: 'clamp(28px, 4vw, 46px)',
               fontWeight: 700,
-              color: '#1A1A1A',
+              color: '#111111',
               lineHeight: 1.2,
               letterSpacing: '-0.02em',
               marginBottom: '16px',
@@ -116,7 +116,7 @@ export default async function ProblemSection() {
                   fontFamily: headingFont,
                   fontSize: '18px',
                   fontWeight: 700,
-                  color: '#1A1A1A',
+                  color: '#111111',
                   lineHeight: 1.3,
                   marginBottom: '8px',
                 }}

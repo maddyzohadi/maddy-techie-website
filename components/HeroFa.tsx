@@ -5,9 +5,9 @@ import { motion } from "motion/react";
 import { Mail, Zap, FileText, CheckCircle, Bot, ArrowRight } from "lucide-react";
 
 const STEPS = [
-  { Icon: Mail,        label: "Emails",  color: "#888",    bg: "#F5F0EB",               border: "none"                                    },
-  { Icon: Zap,         label: "Process", color: "#C85A2A", bg: "rgba(200,90,42,0.08)",  border: "0.5px solid rgba(200,90,42,0.20)"         },
-  { Icon: FileText,    label: "Draft",   color: "#888",    bg: "#F5F0EB",               border: "none"                                    },
+  { Icon: Mail,        label: "Emails",  color: "#888",    bg: "#F7F3EC",               border: "none"                                    },
+  { Icon: Zap,         label: "Process", color: "#FF6A32", bg: "rgba(255,106,50,0.08)", border: "0.5px solid rgba(255,106,50,0.20)"        },
+  { Icon: FileText,    label: "Draft",   color: "#888",    bg: "#F7F3EC",               border: "none"                                    },
   { Icon: CheckCircle, label: "Done",    color: "#52C47A", bg: "rgba(82,196,122,0.08)", border: "0.5px solid rgba(82,196,122,0.20)"        },
 ];
 
@@ -17,7 +17,7 @@ export default function HeroFa() {
       style={{
         position: "relative",
         minHeight: "100dvh",
-        background: "#F5F0EB",
+        background: "#F7F3EC",
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
@@ -100,7 +100,7 @@ export default function HeroFa() {
             fontFamily: "'Noto Naskh Arabic', serif",
             fontSize: "clamp(36px, 6vw, 56px)",
             fontWeight: 700,
-            color: "#1A1A1A",
+            color: "#111111",
             lineHeight: 1.35,
             margin: "0 0 20px",
           }}
@@ -140,22 +140,8 @@ export default function HeroFa() {
         >
           <a
             href="/fa/contact"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-              background: "#1A1A1A",
-              color: "#fff",
-              fontSize: "14px",
-              fontWeight: 600,
-              padding: "13px 28px",
-              borderRadius: "100px",
-              textDecoration: "none",
-              fontFamily: "'Noto Naskh Arabic', serif",
-              transition: "opacity 0.15s",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            className="inline-flex items-center gap-2 text-sm font-semibold text-white rounded-full no-underline bg-brand-orange hover:bg-brand-coral transition-colors duration-150"
+            style={{ padding: "13px 28px", fontFamily: "'Noto Naskh Arabic', serif" }}
           >
             شروع پروژه ←
           </a>
@@ -166,7 +152,7 @@ export default function HeroFa() {
               alignItems: "center",
               gap: "8px",
               background: "rgba(255,255,255,0.75)",
-              color: "#1A1A1A",
+              color: "#111111",
               fontSize: "14px",
               fontWeight: 500,
               padding: "13px 28px",
@@ -301,7 +287,7 @@ export default function HeroFa() {
                   {i < STEPS.length - 1 && (
                     <ArrowRight
                       size={11}
-                      style={{ color: "#C85A2A", flexShrink: 0, opacity: 0.5 }}
+                      style={{ color: "#FF6A32", flexShrink: 0, opacity: 0.5 }}
                     />
                   )}
                 </React.Fragment>
@@ -312,7 +298,7 @@ export default function HeroFa() {
           {/* AI response bubble */}
           <div
             style={{
-              background: "#F5F0EB",
+              background: "#F7F3EC",
               borderRadius: "12px",
               padding: "12px 14px",
               marginBottom: "14px",
@@ -326,7 +312,7 @@ export default function HeroFa() {
                 marginBottom: "7px",
               }}
             >
-              <Bot size={12} style={{ color: "#C85A2A" }} />
+              <Bot size={12} style={{ color: "#FF6A32" }} />
               <span
                 style={{
                   fontFamily: "system-ui, sans-serif",
@@ -348,9 +334,9 @@ export default function HeroFa() {
               }}
             >
               Processed{" "}
-              <strong style={{ color: "#1A1A1A" }}>14 emails</strong>, drafted 3
+              <strong style={{ color: "#111111" }}>14 emails</strong>, drafted 3
               replies, and updated your tracker.{" "}
-              <strong style={{ color: "#C85A2A" }}>Saved 2.4 hrs</strong> of
+              <strong style={{ color: "#FF6A32" }}>Saved 2.4 hrs</strong> of
               manual work.
             </p>
           </div>

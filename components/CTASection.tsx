@@ -20,27 +20,22 @@ export default function CTASection() {
     <section
       id="contact"
       className="pt-24 md:pt-32 pb-0 relative overflow-hidden scroll-mt-24"
-      style={{ background: '#EDE5DC', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+      style={{ background: 'linear-gradient(135deg, #F7F3EC 0%, #F6D2BF 60%, #FFF8F1 100%)', borderTop: '0.5px solid #E7DED2' }}
     >
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
         <div className="flex justify-center mb-8">
           <span
-            className="inline-flex items-center gap-2 font-ui text-sm font-semibold uppercase tracking-[0.22em] px-5 py-2 rounded-full"
-            style={{
-              background: 'rgba(0,0,0,0.05)',
-              border: '0.5px solid rgba(0,0,0,0.08)',
-              color: '#666',
-            }}
+            className="inline-flex items-center gap-2 font-ui text-sm font-semibold uppercase tracking-[0.22em] px-5 py-2 rounded-full bg-brand-peach text-brand-charcoal"
           >
-            <Zap size={11} style={{ color: '#1A1A1A' }} />
+            <Zap size={11} style={{ color: '#FF6A32' }} />
             {t('badge')}
           </span>
         </div>
 
         <h2
           className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight`}
-          style={{ color: '#1A1A1A' }}
+          style={{ color: '#111111' }}
         >
           {t('title')}{' '}
           <span style={{ color: '#999' }}>{t('titleHighlight')}</span>
@@ -81,7 +76,7 @@ export default function CTASection() {
               className={`flex items-center gap-2 ${isFa ? 'font-fa' : 'font-ui'} text-sm`}
               style={{ color: '#666' }}
             >
-              <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: '#bbb' }} />
+              <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-brand-orange opacity-60" />
               {t(pill.textKey)}
             </div>
           ))}

@@ -19,7 +19,7 @@ export default async function GradientCTASection() {
       <div style={{ maxWidth: '620px', margin: '0 auto' }}>
         <div
           style={{
-            background: '#fff',
+            background: '#FFF8F1',
             borderRadius: '24px',
             padding: '48px',
             textAlign: 'center',
@@ -31,7 +31,7 @@ export default async function GradientCTASection() {
               fontFamily: headingFont,
               fontSize: 'clamp(26px, 4vw, 40px)',
               fontWeight: 700,
-              color: '#1A1A1A',
+              color: '#111111',
               lineHeight: 1.2,
               letterSpacing: '-0.02em',
               marginBottom: '16px',
@@ -57,19 +57,8 @@ export default async function GradientCTASection() {
 
           <Link
             href="/services"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              background: '#1A1A1A',
-              color: '#fff',
-              fontFamily: bodyFont,
-              fontSize: '15px',
-              fontWeight: 600,
-              padding: '14px 32px',
-              borderRadius: '100px',
-              textDecoration: 'none',
-            }}
+            className="inline-flex items-center gap-2 font-semibold rounded-full no-underline text-white bg-brand-orange hover:bg-brand-coral transition-colors duration-150"
+            style={{ fontFamily: bodyFont, fontSize: '15px', padding: '14px 32px' }}
           >
             {isFa ? 'شروع پروژه ←' : 'Start a Project →'}
           </Link>

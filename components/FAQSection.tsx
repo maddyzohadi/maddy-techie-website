@@ -58,20 +58,19 @@ export default function FAQSection() {
       <section
         id="faq"
         className="py-24 md:py-32 relative scroll-mt-24"
-        style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+        style={{ background: '#F7F3EC', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
       >
         <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="text-center mb-14">
-            <p
-              className="font-ui font-semibold mb-4"
-              style={{ fontSize: '11px', letterSpacing: '.18em', color: '#999', textTransform: 'uppercase' }}
-            >
-              {isFa ? 'سوالات رایج' : 'FAQ'}
-            </p>
+            <div className="flex justify-center mb-4">
+              <span className="inline-flex items-center font-ui text-[11px] font-semibold uppercase tracking-[0.18em] bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full">
+                {isFa ? 'سوالات رایج' : 'FAQ'}
+              </span>
+            </div>
             <h2
               className={`${isFa ? 'font-fa' : 'font-en'} font-bold`}
-              style={{ fontSize: 'clamp(28px, 4.5vw, 44px)', lineHeight: 1.1, letterSpacing: '-.02em', color: '#1A1A1A' }}
+              style={{ fontSize: 'clamp(28px, 4.5vw, 44px)', lineHeight: 1.1, letterSpacing: '-.02em', color: '#111111' }}
             >
               {isFa ? (
                 <>سوال داری؟{' '}<span style={{ color: '#888' }}>جواب داریم.</span></>
@@ -88,7 +87,7 @@ export default function FAQSection() {
                 <div
                   key={i}
                   style={{
-                    background: '#FFFFFF',
+                    background: '#FFF8F1',
                     border: `0.5px solid ${isOpen ? 'rgba(26,26,46,0.20)' : 'rgba(26,26,46,0.12)'}`,
                     borderRadius: '12px',
                     overflow: 'hidden',
@@ -108,7 +107,7 @@ export default function FAQSection() {
                       background: 'none',
                       border: 'none',
                       textAlign: isFa ? 'right' : 'left',
-                      color: '#1A1A1A',
+                      color: '#111111',
                       fontSize: '15.5px',
                       lineHeight: 1.4,
                     }}
@@ -120,7 +119,7 @@ export default function FAQSection() {
                         background: 'rgba(0,0,0,0.05)',
                         border: `0.5px solid ${isOpen ? 'rgba(0,0,0,0.12)' : 'rgba(0,0,0,0.08)'}`,
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        flexShrink: 0, color: '#1A1A1A',
+                        flexShrink: 0, color: '#111111',
                         transition: 'all 0.2s',
                         transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
                       }}

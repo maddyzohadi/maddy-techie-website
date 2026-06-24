@@ -60,12 +60,12 @@ export default function ServiceInquiryForm() {
   const inputStyle: React.CSSProperties = {
     background: 'rgba(0,0,0,0.03)',
     border:     '0.5px solid rgba(0,0,0,0.12)',
-    color:      '#1A1A1A',
+    color:      '#111111',
   }
-  const inputFocusStyle: React.CSSProperties = { borderColor: 'rgba(200,90,42,0.50)' }
+  const inputFocusStyle: React.CSSProperties = { borderColor: 'rgba(255,106,50,0.50)' }
   const inputErrorStyle: React.CSSProperties = { borderColor: 'rgba(239,68,68,0.55)' }
 
-  const pillActive: React.CSSProperties   = { background: 'rgba(200,90,42,0.08)', border: '0.5px solid rgba(200,90,42,0.40)', color: '#1A1A1A' }
+  const pillActive: React.CSSProperties   = { background: 'rgba(255,106,50,0.08)', border: '0.5px solid rgba(255,106,50,0.40)', color: '#111111' }
   const pillInactive: React.CSSProperties = { background: '#FFFFFF', border: '0.5px solid rgba(0,0,0,0.10)', color: '#888' }
 
   const validate = (): boolean => {
@@ -120,8 +120,8 @@ export default function ServiceInquiryForm() {
           role="alert"
           style={{ background: 'rgba(0,0,0,0.04)', border: '0.5px solid rgba(0,0,0,0.10)' }}
         >
-          <CheckCircle size={18} className="flex-shrink-0" style={{ color: '#C85A2A' }} />
-          <p className={`${isFa ? 'font-fa' : 'font-ui'} text-sm font-medium`} style={{ color: '#1A1A1A' }}>
+          <CheckCircle size={18} className="flex-shrink-0" style={{ color: '#FF6A32' }} />
+          <p className={`${isFa ? 'font-fa' : 'font-ui'} text-sm font-medium`} style={{ color: '#111111' }}>
             {t('successMessage')}
           </p>
         </div>
@@ -265,13 +265,8 @@ export default function ServiceInquiryForm() {
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center justify-center gap-2.5 font-semibold text-base px-9 py-4 transition-opacity duration-200 disabled:opacity-60 self-start`}
-        style={{
-          background: '#1A1A1A',
-          color: '#ffffff',
-          borderRadius: '100px',
-          border: 'none',
-        }}
+        className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center justify-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white bg-brand-orange hover:bg-brand-coral disabled:opacity-60 transition duration-150 self-start`}
+        style={{ border: 'none' }}
       >
         {status === 'submitting' ? (
           t('submitting')

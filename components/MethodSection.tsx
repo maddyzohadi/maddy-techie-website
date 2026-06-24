@@ -31,8 +31,8 @@ export default function MethodSection() {
     width: '40px',
     height: '40px',
     borderRadius: '10px',
-    background: 'rgba(0,0,0,0.05)',
-    border: '0.5px solid rgba(0,0,0,0.08)',
+    background: 'rgba(255,106,50,0.08)',
+    border: '0.5px solid rgba(255,106,50,0.20)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -41,8 +41,8 @@ export default function MethodSection() {
   }
 
   const cardStyle: React.CSSProperties = {
-    background: '#fff',
-    border: '0.5px solid rgba(0,0,0,0.08)',
+    background: '#FFF8F1',
+    border: '0.5px solid #E7DED2',
     borderRadius: '16px',
     padding: '32px',
   }
@@ -50,7 +50,7 @@ export default function MethodSection() {
   return (
     <section
       style={{
-        background: '#F5F0EB',
+        background: '#F7F3EC',
         padding: '96px 24px',
         borderTop: '0.5px solid rgba(0,0,0,0.06)',
         direction: isFa ? 'rtl' : 'ltr',
@@ -61,16 +61,7 @@ export default function MethodSection() {
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '56px' }}>
           <span
-            style={{
-              display: 'inline-block',
-              fontFamily: 'system-ui, sans-serif',
-              fontSize: '11px',
-              fontWeight: 600,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: '#999',
-              marginBottom: '16px',
-            }}
+            className="inline-flex items-center font-ui text-[11px] font-semibold uppercase tracking-[0.12em] mb-4 bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full"
           >
             {isFa ? 'روش کار' : 'HOW IT WORKS'}
           </span>
@@ -79,7 +70,7 @@ export default function MethodSection() {
               fontFamily: headingFont,
               fontSize: 'clamp(28px, 4vw, 46px)',
               fontWeight: 700,
-              color: '#1A1A1A',
+              color: '#111111',
               lineHeight: 1.2,
               letterSpacing: '-0.02em',
             }}
@@ -106,7 +97,7 @@ export default function MethodSection() {
             transition={{ duration: 0.2, ease: 'easeOut' }}
           >
             <div style={iconBox}>
-              <Zap size={20} style={{ color: '#1A1A1A' }} />
+              <Zap size={20} style={{ color: '#FF6A32' }} />
             </div>
             <span
               style={{
@@ -127,7 +118,7 @@ export default function MethodSection() {
                 fontFamily: headingFont,
                 fontSize: '22px',
                 fontWeight: 700,
-                color: '#1A1A1A',
+                color: '#111111',
                 lineHeight: 1.3,
                 marginBottom: '12px',
               }}
@@ -153,7 +144,7 @@ export default function MethodSection() {
             transition={{ duration: 0.2, ease: 'easeOut' }}
           >
             <div style={iconBox}>
-              <Brain size={20} style={{ color: '#1A1A1A' }} />
+              <Brain size={20} style={{ color: '#FF6A32' }} />
             </div>
             <span
               style={{
@@ -174,7 +165,7 @@ export default function MethodSection() {
                 fontFamily: headingFont,
                 fontSize: '22px',
                 fontWeight: 700,
-                color: '#1A1A1A',
+                color: '#111111',
                 lineHeight: 1.3,
                 marginBottom: '12px',
               }}

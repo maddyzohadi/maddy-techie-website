@@ -25,7 +25,7 @@ export default function OutcomesSection() {
   return (
     <section
       className="py-20 md:py-28 relative"
-      style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+      style={{ background: '#F7F3EC', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
     >
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 

@@ -10,7 +10,7 @@ export default function CurriculumSection() {
   const isFa = locale === 'fa'
   const [openPart, setOpenPart] = useState<number | null>(0)
 
-  const accent = { text: '#1A1A1A', bg: 'rgba(0,0,0,0.05)', border: 'rgba(0,0,0,0.08)' }
+  const accent = { text: '#FF6A32', bg: 'rgba(255,106,50,0.08)', border: 'rgba(255,106,50,0.20)' }
 
   const parts = [
     { number: '01', icon: Zap,    title: t('part0title'), tagline: t('part0tagline'), items: [t('part0item0'), t('part0item1'), t('part0item2'), t('part0item3')] },
@@ -19,19 +19,18 @@ export default function CurriculumSection() {
     { number: '04', icon: Layers, title: t('part3title'), tagline: t('part3tagline'), items: [t('part3item0'), t('part3item1'), t('part3item2'), t('part3item3')] },
   ]
 
-  const headingColor = '#1A1A1A'
+  const headingColor = '#111111'
   const bodyColor    = '#666'
   const badgeColor   = '#999'
 
   return (
-    <section id="training" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#F5F0EB' }}>
+    <section id="training" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#F7F3EC' }}>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-16">
           <span
-            className="inline-block font-ui text-xs font-semibold uppercase tracking-[0.18em] mb-4"
-            style={{ color: badgeColor }}
+            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full"
           >
             {t('badge')}
           </span>
@@ -59,7 +58,7 @@ export default function CurriculumSection() {
                 key={part.number}
                 className="overflow-hidden transition-all duration-300"
                 style={{
-                  background: '#FFFFFF',
+                  background: '#FFF8F1',
                   border: `0.5px solid ${isOpen ? 'rgba(26,26,46,0.20)' : 'rgba(26,26,46,0.12)'}`,
                   borderRadius: '12px',
                 }}
@@ -123,8 +122,7 @@ export default function CurriculumSection() {
                           style={{ color: bodyColor }}
                         >
                           <span
-                            className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                            style={{ background: '#C85A2A' }}
+                            className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-brand-orange"
                           />
                           {item}
                         </li>
@@ -142,7 +140,7 @@ export default function CurriculumSection() {
           style={{ color: '#888' }}
         >
           {t('bottomNote')}{' '}
-          <span className="font-medium" style={{ color: '#1A1A1A' }}>{t('bottomNoteHighlight')}</span>
+          <span className="font-medium" style={{ color: '#111111' }}>{t('bottomNoteHighlight')}</span>
         </p>
 
       </div>

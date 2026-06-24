@@ -42,7 +42,7 @@ function SocialLink({
       style={{ ...btnBase, color }}
       onMouseEnter={(e) => {
         const el = e.currentTarget as HTMLAnchorElement
-        el.style.background = '#1A1A1A'
+        el.style.background = '#111111'
         el.style.color = '#fff'
         el.style.transform = 'scale(1.08) translateY(-1px)'
       }}

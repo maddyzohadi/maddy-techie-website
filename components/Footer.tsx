@@ -21,7 +21,7 @@ export default async function Footer() {
   return (
     <footer
       className="relative"
-      style={{ background: '#F5F0EB', borderTop: '0.5px solid #E8E3DA' }}
+      style={{ background: '#F7F3EC', borderTop: '0.5px solid #E7DED2' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
 
@@ -30,7 +30,7 @@ export default async function Footer() {
 
           {/* Brand */}
           <div className="max-w-xs">
-            <div className="font-ui font-bold text-xl mb-2" style={{ color: '#1A1A1A' }}>
+            <div className="font-ui font-bold text-xl mb-2" style={{ color: '#111111' }}>
               Maddy the Techie
             </div>
             <p className="font-ui text-sm leading-relaxed" style={{ color: '#888' }}>
@@ -54,7 +54,7 @@ export default async function Footer() {
             <Link
               href="/services#contact-form"
               className="inline-flex items-center gap-1.5 font-ui font-semibold text-sm self-start transition-opacity duration-200 hover:opacity-80"
-              style={{ color: '#1A1A1A' }}
+              style={{ color: '#111111' }}
             >
               {t('startProject')}
               <ArrowRight size={13} />
@@ -64,7 +64,7 @@ export default async function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="mb-6" style={{ height: '1px', background: '#E8E3DA' }} />
+        <div className="mb-6" style={{ height: '1px', background: '#E7DED2' }} />
 
         {/* Bottom */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -82,14 +82,14 @@ export default async function Footer() {
             {/* Language switcher */}
             <div
               className="flex items-center gap-1 px-1 py-1 rounded-full"
-              style={{ background: 'rgba(0,0,0,0.05)', border: '0.5px solid #E8E3DA' }}
+              style={{ background: 'rgba(0,0,0,0.05)', border: '0.5px solid #E7DED2' }}
             >
               <Link
                 href="/"
                 locale="en"
                 className="px-3 py-1 text-xs font-ui font-semibold transition-all duration-200 rounded-full"
                 style={locale === 'en'
-                  ? { background: '#1A1A1A', color: '#ffffff' }
+                  ? { background: '#111111', color: '#ffffff' }
                   : { color: '#888' }}
               >
                 EN
@@ -99,7 +99,7 @@ export default async function Footer() {
                 locale="fa"
                 className="px-3 py-1 text-xs font-ui font-semibold transition-all duration-200 rounded-full"
                 style={locale === 'fa'
-                  ? { background: '#1A1A1A', color: '#ffffff' }
+                  ? { background: '#111111', color: '#ffffff' }
                   : { color: '#888' }}
               >
                 FA

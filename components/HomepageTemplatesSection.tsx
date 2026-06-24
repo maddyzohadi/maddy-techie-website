@@ -16,26 +16,25 @@ export default async function HomepageTemplatesSection() {
   return (
     <section
       className="py-24 md:py-32 relative"
-      style={{ background: '#F5F0E8', borderTop: '0.5px solid rgba(123,47,190,0.15)' }}
+      style={{ background: '#F7F3EC', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-16">
           <span
-            className="inline-block font-ui text-sm md:text-base font-semibold uppercase tracking-[0.22em] mb-4"
-            style={{ color: 'rgba(26,26,46,0.50)' }}
+            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full"
           >
             {t('badge')}
           </span>
           <h2
             className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight`}
-            style={{ color: '#1A1A2E', letterSpacing: '-.02em' }}
+            style={{ color: '#111111', letterSpacing: '-.02em' }}
           >
             {t('title')}
           </h2>
           <p
             className={`${isFa ? 'font-fa' : 'font-ui'} text-lg md:text-xl max-w-xl mx-auto leading-relaxed`}
-            style={{ color: 'rgba(26,26,46,0.60)' }}
+            style={{ color: '#666' }}
           >
             {t('subtitle')}
           </p>
@@ -48,8 +47,8 @@ export default async function HomepageTemplatesSection() {
               <div
                 key={tmpl.titleKey}
                 style={{
-                  background: '#FFFFFF',
-                  border: '0.5px solid rgba(26,26,46,0.12)',
+                  background: '#FFF8F1',
+                  border: '0.5px solid #E7DED2',
                   borderRadius: '12px',
                   padding: '28px 30px',
                   display: 'flex',
@@ -61,19 +60,14 @@ export default async function HomepageTemplatesSection() {
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
                     style={{
-                      background: 'rgba(123,47,190,0.12)',
-                      border: '0.5px solid rgba(123,47,190,0.30)',
+                      background: 'rgba(255,106,50,0.08)',
+                      border: '0.5px solid rgba(255,106,50,0.20)',
                     }}
                   >
-                    <Icon size={20} style={{ color: '#1A1A2E' }} />
+                    <Icon size={20} style={{ color: '#FF6A32' }} />
                   </div>
                   <span
-                    className="font-ui text-xs font-semibold uppercase tracking-[0.14em] px-2.5 py-1 rounded-md"
-                    style={{
-                      background: 'rgba(123,47,190,0.10)',
-                      border: '0.5px solid rgba(123,47,190,0.25)',
-                      color: '#1A1A2E',
-                    }}
+                    className="font-ui text-xs font-semibold uppercase tracking-[0.14em] px-2.5 py-1 rounded-md bg-brand-peach text-brand-charcoal"
                   >
                     {t(tmpl.badgeKey)}
                   </span>
@@ -82,13 +76,13 @@ export default async function HomepageTemplatesSection() {
                 <div className="flex-1">
                   <h3
                     className={`${isFa ? 'font-fa' : 'font-en'} font-semibold text-xl md:text-2xl mb-2 leading-snug`}
-                    style={{ color: '#1A1A2E' }}
+                    style={{ color: '#111111' }}
                   >
                     {t(tmpl.titleKey)}
                   </h3>
                   <p
                     className={`${isFa ? 'font-fa' : 'font-ui'} text-base leading-relaxed`}
-                    style={{ color: 'rgba(26,26,46,0.60)' }}
+                    style={{ color: '#666' }}
                   >
                     {t(tmpl.descKey)}
                   </p>
@@ -97,7 +91,7 @@ export default async function HomepageTemplatesSection() {
                 <Link
                   href="/templates"
                   className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center gap-1.5 font-semibold text-sm transition-opacity duration-200 hover:opacity-75 self-start`}
-                  style={{ color: '#7B2FBE', textDecoration: 'none' }}
+                  style={{ color: '#FF6A32', textDecoration: 'none' }}
                 >
                   {t(tmpl.ctaKey)}
                   <ArrowRight size={13} className={isFa ? 'rotate-180' : ''} />
@@ -110,13 +104,7 @@ export default async function HomepageTemplatesSection() {
         <div className="text-center">
           <Link
             href="/templates"
-            className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4`}
-            style={{
-              background: '#7B2FBE',
-              color: '#ffffff',
-              borderRadius: '8px',
-              textDecoration: 'none',
-            }}
+            className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-orange hover:bg-brand-coral transition-colors duration-150`}
           >
             {t('allCta')}
             <ArrowRight size={16} className={isFa ? 'rotate-180' : ''} />

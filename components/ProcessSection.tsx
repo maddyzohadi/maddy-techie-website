@@ -37,7 +37,7 @@ export default function ProcessSection() {
               <p className="text-sm text-[#888] tracking-widest mb-4 font-['Noto_Naskh_Arabic']">
                 روش کار
               </p>
-              <h2 className="font-['Noto_Naskh_Arabic'] text-4xl text-[#1A1A1A] leading-relaxed">
+              <h2 className="font-['Noto_Naskh_Arabic'] text-4xl text-[#111111] leading-relaxed">
                 از اولین پیام تا سیستم آماده
               </h2>
             </div>
@@ -51,7 +51,7 @@ export default function ProcessSection() {
                   transition={{ duration: 0.2, ease: 'easeOut' }}
                 >
                   <div className="flex-1 text-right">
-                    <h3 className="font-['Noto_Naskh_Arabic'] text-lg font-medium text-[#1A1A1A] mb-2">
+                    <h3 className="font-['Noto_Naskh_Arabic'] text-lg font-medium text-[#111111] mb-2">
                       {title}
                     </h3>
                     <p className="font-['Noto_Naskh_Arabic'] text-sm text-[#666] leading-loose">
@@ -73,7 +73,7 @@ export default function ProcessSection() {
   return (
     <section
       style={{
-        background: '#F5F0EB',
+        background: '#F7F3EC',
         padding: '96px 24px',
         borderTop: '0.5px solid rgba(0,0,0,0.06)',
       }}
@@ -103,7 +103,7 @@ export default function ProcessSection() {
               fontFamily: "'DM Serif Display', serif",
               fontSize: 'clamp(26px, 3.5vw, 42px)',
               fontWeight: 700,
-              color: '#1A1A1A',
+              color: '#111111',
               lineHeight: 1.2,
               letterSpacing: '-0.02em',
             }}
@@ -153,7 +153,7 @@ export default function ProcessSection() {
                       fontFamily: "'DM Serif Display', serif",
                       fontSize: '17px',
                       fontWeight: 700,
-                      color: '#1A1A1A',
+                      color: '#111111',
                       lineHeight: 1.3,
                       marginBottom: '6px',
                     }}

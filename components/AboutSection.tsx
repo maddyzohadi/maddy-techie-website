@@ -14,7 +14,7 @@ export default async function AboutSection() {
 
   return (
     <>
-      <section id="about" className="py-24 md:py-32 relative scroll-mt-[88px]" style={{ background: '#F5F0EB' }}>
+      <section id="about" className="py-24 md:py-32 relative scroll-mt-[88px]" style={{ background: '#F7F3EC' }}>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <MotionFadeIn>
@@ -23,14 +23,14 @@ export default async function AboutSection() {
             {/* Left — avatar card */}
             <div className="order-2 lg:order-1">
               <div className="bg-white border border-[#E8E3DA] rounded-2xl p-8 max-w-sm mx-auto">
-                <p className="font-['DM_Serif_Display'] text-lg text-[#1A1A1A] mb-1">
+                <p className="font-['DM_Serif_Display'] text-lg text-[#111111] mb-1">
                   Maddy the Techie
                 </p>
                 <p className="text-sm text-[#888] mb-6">
                   AI &amp; Automation Educator · Silicon Valley
                 </p>
 
-                <p className="text-sm text-[#666] leading-relaxed italic border-l-2 border-[#C85A2A] pl-3 mb-6">
+                <p className="text-sm text-[#666] leading-relaxed italic border-l-2 border-[#FF6A32] pl-3 mb-6">
                   Making AI practical for everyone who doesn&apos;t code
                 </p>
 
@@ -40,8 +40,8 @@ export default async function AboutSection() {
                     { num: '12+', label: 'Projects' },
                     { num: '100%', label: 'No-code' },
                   ].map(({ num, label }) => (
-                    <div key={label} className="bg-[#F5F0EB] rounded-xl p-3 text-center">
-                      <span className="block text-xl font-medium text-[#1A1A1A]">{num}</span>
+                    <div key={label} className="bg-[#F7F3EC] rounded-xl p-3 text-center">
+                      <span className="block text-xl font-medium text-[#111111]">{num}</span>
                       <span className="block text-[11px] text-[#888] mt-0.5">{label}</span>
                     </div>
                   ))}
@@ -63,8 +63,7 @@ export default async function AboutSection() {
             {/* Right — intro */}
             <div className="order-1 lg:order-2">
               <span
-                className="inline-block font-ui text-sm md:text-base font-semibold uppercase tracking-[0.22em] mb-4"
-                style={{ color: badgeColor }}
+                className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full"
               >
                 {t('badge')}
               </span>
@@ -95,14 +94,7 @@ export default async function AboutSection() {
 
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2.5 font-ui font-semibold text-base px-9 py-4"
-                style={{
-                  background: '#1A1A1A',
-                  color: '#ffffff',
-                  borderRadius: '100px',
-                  border: 'none',
-                  textDecoration: 'none',
-                }}
+                className="inline-flex items-center gap-2.5 font-ui font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-orange hover:bg-brand-coral transition-colors duration-150"
               >
                 {t('ctaLabel')}
                 <ArrowRight size={16} className={locale === 'fa' ? 'rotate-180' : ''} />
@@ -124,12 +116,12 @@ async function FaFinalCTA() {
   return (
     <section
       className="py-20 md:py-24 relative overflow-hidden"
-      style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+      style={{ background: '#F7F3EC', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
     >
       <div className="relative z-10 max-w-xl mx-auto px-4 sm:px-6 text-center">
         <h2
           className="font-fa font-bold text-2xl md:text-3xl mb-4 leading-snug"
-          style={{ color: '#1A1A1A' }}
+          style={{ color: '#111111' }}
         >
           {t('title')}
         </h2>
@@ -143,7 +135,7 @@ async function FaFinalCTA() {
           href="/services#contact-form"
           className="inline-flex items-center gap-2.5 font-fa font-semibold text-base px-9 py-4"
           style={{
-            background: '#1A1A1A',
+            background: '#111111',
             color: '#ffffff',
             borderRadius: '100px',
             border: 'none',

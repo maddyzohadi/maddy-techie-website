@@ -5,12 +5,12 @@ export default function FaHomeCta() {
   return (
     <section
       className="pt-20 md:pt-24 pb-0 relative"
-      style={{ background: 'linear-gradient(to right, #b8a4d4, #e8a0a0)' }}
+      style={{ background: 'linear-gradient(135deg, #F7F3EC 0%, #F6D2BF 60%, #FFF8F1 100%)', borderTop: '0.5px solid #E7DED2' }}
     >
       <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 text-center">
         <h2
           className="font-fa font-bold text-3xl md:text-4xl leading-tight mb-5"
-          style={{ color: '#1A1A1A', letterSpacing: '-0.025em' }}
+          style={{ color: '#111111', letterSpacing: '-0.025em' }}
         >
           شروع ساده با یک سیستم کاربردی
         </h2>
@@ -22,13 +22,7 @@ export default function FaHomeCta() {
         </p>
         <Link
           href="/services"
-          className="inline-flex items-center gap-2.5 font-fa font-semibold text-base px-9 py-4"
-          style={{
-            borderRadius: '100px',
-            background: '#1A1A1A',
-            color: '#ffffff',
-            textDecoration: 'none',
-          }}
+          className="inline-flex items-center gap-2.5 font-fa font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-orange hover:bg-brand-coral transition-colors duration-150"
         >
           شروع پروژه
           <ArrowRight size={16} className="rotate-180" />

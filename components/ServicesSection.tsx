@@ -20,20 +20,19 @@ export default function ServicesSection() {
     <section
       id="services"
       className="py-24 md:py-32 relative scroll-mt-24"
-      style={{ background: '#F5F0EB', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+      style={{ background: '#F7F3EC', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-16">
           <span
-            className="inline-block font-ui text-xs font-semibold uppercase tracking-[0.18em] mb-4"
-            style={{ color: '#999' }}
+            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full"
           >
             {t('badge')}
           </span>
           <h2
             className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight`}
-            style={{ color: '#1A1A1A', letterSpacing: '-.02em' }}
+            style={{ color: '#111111', letterSpacing: '-.02em' }}
           >
             {t('title')}
           </h2>
@@ -52,8 +51,8 @@ export default function ServicesSection() {
               <motion.div
                 key={service.titleKey}
                 style={{
-                  background: '#FFFFFF',
-                  border: '0.5px solid rgba(0,0,0,0.08)',
+                  background: '#FFF8F1',
+                  border: '0.5px solid #E7DED2',
                   borderRadius: '16px',
                   padding: '28px 30px',
                   display: 'flex',
@@ -65,15 +64,15 @@ export default function ServicesSection() {
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
                   style={{
-                    background: 'rgba(0,0,0,0.05)',
-                    border: '0.5px solid rgba(0,0,0,0.08)',
+                    background: 'rgba(255,106,50,0.08)',
+                    border: '0.5px solid rgba(255,106,50,0.20)',
                   }}
                 >
-                  <Icon size={22} style={{ color: '#1A1A1A' }} />
+                  <Icon size={22} style={{ color: '#FF6A32' }} />
                 </div>
                 <h3
                   className={`${isFa ? 'font-fa' : 'font-en'} font-semibold text-xl md:text-2xl mb-3 leading-snug`}
-                  style={{ color: '#1A1A1A' }}
+                  style={{ color: '#111111' }}
                 >
                   {t(service.titleKey)}
                 </h3>
@@ -91,13 +90,7 @@ export default function ServicesSection() {
         <div className="text-center">
           <Link
             href="/services"
-            className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4`}
-            style={{
-              background: '#1A1A1A',
-              color: '#ffffff',
-              borderRadius: '100px',
-              textDecoration: 'none',
-            }}
+            className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-orange hover:bg-brand-coral transition-colors duration-150`}
           >
             {t('cta')}
             <ArrowRight size={16} className={isFa ? 'rotate-180' : ''} />
