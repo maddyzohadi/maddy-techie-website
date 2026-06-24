@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Navigation from '@/components/Navigation'
 import TemplatesHero from '@/components/TemplatesHero'
 import ResourcesSection from '@/components/ResourcesSection'
-import CTASection from '@/components/CTASection'
 import Footer from '@/components/Footer'
 import AIAssistant from '@/components/AIAssistant'
 import { routing } from '@/i18n/routing'
@@ -55,7 +54,6 @@ export default async function TemplatesPage({
       <Navigation />
       <TemplatesHero />
       <ResourcesSection />
-      <CTASection />
       <Footer />
       <AIAssistant />
     </main>
