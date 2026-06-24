@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useEffect } from "react"
+import { useRef, useEffect } from "react"
 import { motion } from "motion/react"
 
 const VIDEO_SRC =
@@ -155,11 +155,10 @@ export default function HeroEn() {
               textShadow: "0 2px 24px rgba(0,0,0,0.45)",
             }}
           >
-            AI that turns hard work
+            Work Smarter. Move Faster.
             <br />
-            into{" "}
-            <span style={{ color: "#FF6A32" }}>easy</span>{" "}
-            work
+            <span style={{ color: "#FF6A32" }}>AI Powers</span>{" "}
+            <span style={{ color: "#5F5A54" }}>You Up.</span>
           </motion.h1>
 
           {/* Subtitle */}
