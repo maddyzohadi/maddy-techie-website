@@ -22,7 +22,7 @@ const TEMPLATES: Template[] = [
     id: 1,
     name: 'AI Email Reply Kit',
     cat: 'AI Prompts',
-    desc: 'Write, reply, and clear your inbox in minutes — never from a blank page.',
+    desc: 'Write and reply to emails in minutes — never start from a blank page.',
     preview: '3 ready-made prompt templates for writing new emails, replying to messages, and following up. Copy, paste, and adapt — works in Gmail, Outlook, or any email client.',
     tools: ['ChatGPT', 'Claude'],
     tier: 'Free',
@@ -31,7 +31,7 @@ const TEMPLATES: Template[] = [
     id: 2,
     name: 'Weekly Report Summary',
     cat: 'Reports',
-    desc: 'Paste your notes or data, get a clean summary ready to send.',
+    desc: 'Paste your notes, get a clean formatted summary ready to send.',
     preview: 'A structured prompt that takes your raw weekly notes and outputs a formatted summary with highlights, decisions made, and next steps. Paste in, copy out.',
     tools: ['Google Sheets', 'Claude'],
     tier: 'Free',
@@ -40,7 +40,7 @@ const TEMPLATES: Template[] = [
     id: 3,
     name: 'Content Planner',
     cat: 'Content',
-    desc: 'Plan a full month of content with topics, post formats, and captions — all in one organized sheet.',
+    desc: 'Plan a full month of posts — topics, captions, and status in one sheet.',
     preview: 'A Google Sheets file with columns for topic, post format, caption, status, and scheduled date. Includes integrated ChatGPT prompt suggestions for each content type.',
     tools: ['Google Sheets', 'ChatGPT'],
     tier: 'Premium',
@@ -49,7 +49,7 @@ const TEMPLATES: Template[] = [
     id: 4,
     name: 'Prompt Library Tracker',
     cat: 'Google Sheets',
-    desc: 'Save and organize your best prompts so you always have them ready when you need them.',
+    desc: 'Organize your best prompts so they\'re always ready when you need them.',
     preview: 'A Google Sheets tracker with columns for prompt name, category, use case, and effectiveness rating. Never recreate a good prompt from scratch again.',
     tools: ['Google Sheets', 'ChatGPT'],
     tier: 'Free',
@@ -58,7 +58,7 @@ const TEMPLATES: Template[] = [
     id: 5,
     name: 'Client Lead Tracker',
     cat: 'Client Work',
-    desc: 'Track every lead and follow-up in one place — no spreadsheet chaos.',
+    desc: 'Track every lead and follow-up in one place — no chaos.',
     preview: 'A Google Sheets CRM with columns for name, contact, status (cold/warm/hot), last follow-up, and notes. Simple enough to use daily, detailed enough to actually be useful.',
     tools: ['Google Sheets'],
     tier: 'Free',
@@ -67,7 +67,7 @@ const TEMPLATES: Template[] = [
     id: 6,
     name: 'Meeting Notes Summary',
     cat: 'Reports',
-    desc: 'Turn raw meeting notes into a clean summary and action list in seconds.',
+    desc: 'Turn meeting notes into a clean summary and action list.',
     preview: 'Two prompt templates: one for summarizing meeting notes into bullet-point highlights, and one for turning those notes into a ready-to-send follow-up email draft.',
     tools: ['Claude', 'ChatGPT'],
     tier: 'Premium',
@@ -79,7 +79,7 @@ const FA_TEMPLATES: Template[] = [
     id: 1,
     name: 'کیت پاسخ ایمیل با هوش مصنوعی',
     cat: 'AI Prompts',
-    desc: 'ایمیل بنویس، پاسخ بده و صندوق ورودی‌ات را در چند دقیقه خالی کن — هیچ‌وقت از صفحه‌ی خالی شروع نکن.',
+    desc: 'ایمیل بنویس و پاسخ بده — هیچ‌وقت از صفحه‌ی خالی شروع نکن.',
     preview: '۳ قالب پرامپت آماده برای نوشتن ایمیل جدید، پاسخ به پیام‌ها و پیگیری. کپی کن، جای‌گذاری کن، تنظیم کن — در Gmail، Outlook یا هر کلاینت ایمیل کار می‌کند.',
     tools: ['ChatGPT', 'Claude'],
     tier: 'Free',
@@ -88,7 +88,7 @@ const FA_TEMPLATES: Template[] = [
     id: 2,
     name: 'خلاصه‌ی گزارش هفتگی',
     cat: 'Reports',
-    desc: 'یادداشت یا داده‌هایت را paste کن، یک خلاصه‌ی تمیز آماده‌ی ارسال بگیر.',
+    desc: 'یادداشت‌هایت را paste کن، یک خلاصه‌ی تمیز آماده‌ی ارسال بگیر.',
     preview: 'یک پرامپت ساختارمند که یادداشت‌های خام هفتگی‌ات را دریافت می‌کند و خلاصه‌ای با برجسته‌سازی‌ها، تصمیمات و قدم‌های بعدی تولید می‌کند.',
     tools: ['Google Sheets', 'Claude'],
     tier: 'Free',
@@ -97,7 +97,7 @@ const FA_TEMPLATES: Template[] = [
     id: 3,
     name: 'برنامه‌ریزی محتوا',
     cat: 'Content',
-    desc: 'یک ماه کامل محتوا را با موضوع، قالب پست و کپشن برنامه‌ریزی کن — همه در یک شیت منظم.',
+    desc: 'یک ماه محتوا — موضوع، کپشن و وضعیت در یک شیت.',
     preview: 'یک فایل Google Sheets با ستون‌هایی برای موضوع، قالب پست، کپشن، وضعیت و تاریخ انتشار. شامل پیشنهاد پرامپت ChatGPT برای هر نوع محتوا.',
     tools: ['Google Sheets', 'ChatGPT'],
     tier: 'Premium',
@@ -106,7 +106,7 @@ const FA_TEMPLATES: Template[] = [
     id: 4,
     name: 'ردیاب کتابخانه‌ی پرامپت',
     cat: 'Google Sheets',
-    desc: 'بهترین پرامپت‌هایت را ذخیره و سازماندهی کن تا هر وقت لازم داشتی آماده باشند.',
+    desc: 'پرامپت‌هایت را ذخیره کن تا همیشه آماده باشند.',
     preview: 'یک ردیاب Google Sheets با ستون‌هایی برای نام پرامپت، دسته‌بندی، موارد استفاده و امتیاز اثربخشی. دیگر هیچ‌وقت پرامپت خوب را از صفر نساز.',
     tools: ['Google Sheets', 'ChatGPT'],
     tier: 'Free',
@@ -115,7 +115,7 @@ const FA_TEMPLATES: Template[] = [
     id: 5,
     name: 'ردیاب مشتری و سرنخ',
     cat: 'Client Work',
-    desc: 'هر سرنخ و پیگیری را در یک جا دنبال کن — بدون سردرگمی در شیت‌های مختلف.',
+    desc: 'سرنخ‌ها و پیگیری‌ها را در یک جا دنبال کن.',
     preview: 'یک CRM ساده در Google Sheets با ستون‌هایی برای نام، تماس، وضعیت (سرد/گرم/داغ)، آخرین پیگیری و یادداشت‌ها. به اندازه‌ی کافی ساده برای استفاده‌ی روزانه.',
     tools: ['Google Sheets'],
     tier: 'Free',
@@ -124,7 +124,7 @@ const FA_TEMPLATES: Template[] = [
     id: 6,
     name: 'خلاصه‌ی یادداشت‌های جلسه',
     cat: 'Reports',
-    desc: 'یادداشت‌های خام جلسه را در چند ثانیه به خلاصه‌ی تمیز و فهرست اقدامات تبدیل کن.',
+    desc: 'یادداشت‌های جلسه را به خلاصه‌ی تمیز و فهرست اقدامات تبدیل کن.',
     preview: 'دو قالب پرامپت: یکی برای خلاصه‌سازی یادداشت‌های جلسه به نکات کلیدی، دیگری برای تبدیل همان یادداشت‌ها به پیش‌نویس ایمیل پیگیری آماده‌ی ارسال.',
     tools: ['Claude', 'ChatGPT'],
     tier: 'Premium',
@@ -461,43 +461,10 @@ export default function ResourcesSection() {
     <>
       <section
         id="templates"
-        className="py-24 md:py-32 relative scroll-mt-24"
-        style={{ background: '#F7F3EC', borderTop: '0.5px solid #E7DED2' }}
+        className="pt-12 pb-24 md:pt-16 md:pb-32 relative scroll-mt-24"
+        style={{ background: '#F7F3EC' }}
       >
         <div className="relative z-10 max-w-[1160px] mx-auto px-4 sm:px-6 lg:px-8">
-
-          <div className="text-center mb-12">
-            <p
-              className="font-ui font-bold mb-5"
-              style={{ fontSize: '12px', letterSpacing: '.20em', color: '#FF6A32', textTransform: 'uppercase' }}
-            >
-              {isFa ? 'قالب‌ها' : 'Ready-to-use systems'}
-            </p>
-            <h2
-              className={`${isFa ? 'font-fa' : 'font-en'} font-extrabold mx-auto mb-5`}
-              style={{
-                fontSize: 'clamp(36px, 5.4vw, 62px)',
-                lineHeight: 1.04,
-                letterSpacing: '-.025em',
-                color: '#1A1A2E',
-                maxWidth: isFa ? '20ch' : '18ch',
-              }}
-            >
-              {isFa ? (
-                <>با یک سیستم شروع کن، <span style={{ color: 'rgba(26,26,46,0.45)' }}>نه یک صفحه‌ی خالی</span></>
-              ) : (
-                <>Ready-to-use AI systems <span style={{ color: 'rgba(26,26,46,0.45)' }}>for everyday work</span></>
-              )}
-            </h2>
-            <p
-              className={`${isFa ? 'font-fa' : 'font-ui'} mx-auto`}
-              style={{ fontSize: '18px', lineHeight: 1.6, color: 'rgba(26,26,46,0.58)', maxWidth: '600px' }}
-            >
-              {isFa
-                ? 'گردش‌کارهای هوش مصنوعی و بدون‌کد آماده که می‌توانی همین امروز بگیری، تنظیم کنی و اجرا کنی. ساخته‌شده برای کار واقعی.'
-                : 'Grab practical AI templates for emails, reports, content planning, and client workflows — built to save time without starting from scratch.'}
-            </p>
-          </div>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', marginBottom: '14px' }}>
             {CATEGORIES.map((cat) => {
@@ -553,16 +520,17 @@ export default function ResourcesSection() {
                   border: '0.5px solid #E7DED2',
                 }}
               >
-                <div style={{ position: 'relative' }}>
-                  <Thumbnail cat={tmpl.cat} />
+                <Thumbnail cat={tmpl.cat} />
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
                   <span
                     className="font-ui font-bold"
                     style={{
-                      position: 'absolute', top: '10px', right: '10px',
-                      padding: '5px 11px',
-                      borderRadius: '7px',
-                      fontSize: '11px',
-                      letterSpacing: '.03em',
+                      alignSelf: 'flex-start',
+                      padding: '3px 9px',
+                      borderRadius: '5px',
+                      fontSize: '10px',
+                      letterSpacing: '.06em',
                       ...(tmpl.tier === 'Premium'
                         ? { background: '#171717', color: '#F7F3EC' }
                         : { background: 'rgba(0,0,0,0.05)', border: '0.5px solid #E7DED2', color: '#5F5A54' }),
@@ -570,14 +538,13 @@ export default function ResourcesSection() {
                   >
                     {tierLabel(tmpl.tier)}
                   </span>
+                  <h3
+                    className={`${isFa ? 'font-fa' : 'font-en'}`}
+                    style={{ fontSize: '18px', fontWeight: 700, color: '#1A1A2E', letterSpacing: '-.01em', lineHeight: 1.25, margin: 0 }}
+                  >
+                    {tmpl.name}
+                  </h3>
                 </div>
-
-                <h3
-                  className={`${isFa ? 'font-fa' : 'font-en'}`}
-                  style={{ fontSize: '18px', fontWeight: 700, color: '#1A1A2E', letterSpacing: '-.01em', lineHeight: 1.25, margin: 0 }}
-                >
-                  {tmpl.name}
-                </h3>
 
                 <p
                   className={`${isFa ? 'font-fa' : 'font-ui'}`}

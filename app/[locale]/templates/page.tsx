@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Navigation from '@/components/Navigation'
+import TemplatesHero from '@/components/TemplatesHero'
 import ResourcesSection from '@/components/ResourcesSection'
 import CTASection from '@/components/CTASection'
 import Footer from '@/components/Footer'
@@ -52,9 +53,8 @@ export default async function TemplatesPage({
         {isFa ? 'قالب‌های آماده‌ی هوش مصنوعی و بدون‌کد' : 'AI & No-Code Templates for Work'}
       </h1>
       <Navigation />
-      <div className="pt-[72px]">
-        <ResourcesSection />
-      </div>
+      <TemplatesHero />
+      <ResourcesSection />
       <CTASection />
       <Footer />
       <AIAssistant />
