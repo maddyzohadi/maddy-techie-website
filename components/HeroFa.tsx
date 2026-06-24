@@ -104,9 +104,9 @@ export default function HeroFa() {
       <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
       {/* Content — RTL */}
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-6">
+      <div className="relative z-10 flex min-h-screen items-center justify-center px-6 pt-[68px]">
         <div
-          className="text-center -translate-y-[20%] w-full max-w-2xl mx-auto"
+          className="text-center w-full max-w-2xl mx-auto"
           dir="rtl"
         >
 

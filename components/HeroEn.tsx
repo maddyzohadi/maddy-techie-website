@@ -104,8 +104,8 @@ export default function HeroEn() {
       <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
       {/* Content */}
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-6">
-        <div className="text-center -translate-y-[20%] w-full max-w-2xl mx-auto">
+      <div className="relative z-10 flex min-h-screen items-center justify-center px-6 pt-[68px]">
+        <div className="text-center w-full max-w-2xl mx-auto">
 
           {/* Eyebrow badge */}
           <motion.div
