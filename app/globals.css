@@ -268,7 +268,7 @@ h3 { font-size: var(--text-h3); }
 }
 
 .template-card:hover {
-  border-color: rgba(26, 26, 46, 0.25);
+  border-color: rgba(255, 106, 50, 0.38);
 }
 
 /* --- Liquid Glass ----------------------------------------- */
