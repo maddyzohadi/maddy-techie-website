@@ -1,4 +1,7 @@
-import { getLocale } from 'next-intl/server'
+'use client'
+
+import { useLocale } from 'next-intl'
+import { motion } from 'motion/react'
 
 const FA_STEPS = [
   { week: 'هفته ۱', title: 'آشنایی با نیاز',    body: 'با هم بررسی می‌کنیم چی لازم داری و کجا وقت هدر می‌ره' },
@@ -14,42 +17,54 @@ const EN_STEPS = [
   { week: 'Week 4', title: 'Delivery & support',       desc: "Everything is ready — you just do the work" },
 ]
 
-export default async function ProcessSection() {
-  const locale = await getLocale()
+const fadeIn = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 0.6, ease: 'easeOut' },
+} as const
+
+export default function ProcessSection() {
+  const locale = useLocale()
   const isFa   = locale === 'fa'
 
   if (isFa) {
     return (
       <section className="py-24 px-6 bg-[#FDF0EE]" dir="rtl">
         <div className="max-w-3xl mx-auto">
+          <motion.div {...fadeIn}>
+            <div className="text-center mb-16">
+              <p className="text-sm text-[#888] tracking-widest mb-4 font-['Noto_Naskh_Arabic']">
+                روش کار
+              </p>
+              <h2 className="font-['Noto_Naskh_Arabic'] text-4xl text-[#1A1A1A] leading-relaxed">
+                از اولین پیام تا سیستم آماده
+              </h2>
+            </div>
 
-          <div className="text-center mb-16">
-            <p className="text-sm text-[#888] tracking-widest mb-4 font-['Noto_Naskh_Arabic']">
-              روش کار
-            </p>
-            <h2 className="font-['Noto_Naskh_Arabic'] text-4xl text-[#1A1A1A] leading-relaxed">
-              از اولین پیام تا سیستم آماده
-            </h2>
-          </div>
-
-          <div className="flex flex-col divide-y divide-[#E8E3DA]">
-            {FA_STEPS.map(({ week, title, body }) => (
-              <div key={week} className="flex items-start gap-6 py-8">
-                <div className="flex-1 text-right">
-                  <h3 className="font-['Noto_Naskh_Arabic'] text-lg font-medium text-[#1A1A1A] mb-2">
-                    {title}
-                  </h3>
-                  <p className="font-['Noto_Naskh_Arabic'] text-sm text-[#666] leading-loose">
-                    {body}
-                  </p>
-                </div>
-                <div className="shrink-0 bg-white border border-[#E8E3DA] rounded-full px-4 py-1.5 text-sm text-[#888] font-['Noto_Naskh_Arabic']">
-                  {week}
-                </div>
-              </div>
-            ))}
-          </div>
-
+            <div className="flex flex-col divide-y divide-[#E8E3DA]">
+              {FA_STEPS.map(({ week, title, body }) => (
+                <motion.div
+                  key={week}
+                  className="flex items-start gap-6 py-8"
+                  whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                >
+                  <div className="flex-1 text-right">
+                    <h3 className="font-['Noto_Naskh_Arabic'] text-lg font-medium text-[#1A1A1A] mb-2">
+                      {title}
+                    </h3>
+                    <p className="font-['Noto_Naskh_Arabic'] text-sm text-[#666] leading-loose">
+                      {body}
+                    </p>
+                  </div>
+                  <div className="shrink-0 bg-white border border-[#E8E3DA] rounded-full px-4 py-1.5 text-sm text-[#888] font-['Noto_Naskh_Arabic']">
+                    {week}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
     )
@@ -63,15 +78,9 @@ export default async function ProcessSection() {
         borderTop: '0.5px solid rgba(0,0,0,0.06)',
       }}
     >
-      <div
-        style={{
-          maxWidth: '1280px',
-          margin: '0 auto',
-          display: 'flex',
-          gap: '80px',
-          alignItems: 'flex-start',
-          flexWrap: 'wrap',
-        }}
+      <motion.div
+        style={{ maxWidth: '1280px', margin: '0 auto', display: 'flex', gap: '80px', alignItems: 'flex-start', flexWrap: 'wrap' }}
+        {...fadeIn}
       >
         {/* Left: eyebrow + heading */}
         <div style={{ flex: '1 1 260px', maxWidth: '340px' }}>
@@ -110,13 +119,15 @@ export default async function ProcessSection() {
               {i > 0 && (
                 <div style={{ height: '0.5px', background: 'rgba(0,0,0,0.08)' }} />
               )}
-              <div
+              <motion.div
                 style={{
                   display: 'flex',
                   gap: '24px',
                   alignItems: 'flex-start',
                   padding: '28px 0',
                 }}
+                whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
               >
                 <span
                   style={{
@@ -161,11 +172,11 @@ export default async function ProcessSection() {
                     {step.desc}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

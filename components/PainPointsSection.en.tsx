@@ -1,4 +1,7 @@
+'use client'
+
 import { RefreshCw, BrainCircuit, MessageCircle, AlertTriangle } from "lucide-react";
+import { motion } from "motion/react";
 
 const cards = [
   {
@@ -37,9 +40,11 @@ export default function PainPointsSection() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {cards.map(({ icon: Icon, title, body }) => (
-            <div
+            <motion.div
               key={title}
               className="relative bg-white border border-[#E8E3DA] rounded-2xl p-7 overflow-hidden"
+              whileHover={{ y: -4, boxShadow: "0 8px 24px rgba(0,0,0,0.08)" }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
             >
               <div className="absolute top-0 left-0 w-[3px] h-full bg-[#C85A2A] rounded-l-2xl" />
               <Icon size={22} strokeWidth={1.5} className="text-[#C85A2A] mb-4" />
@@ -47,7 +52,7 @@ export default function PainPointsSection() {
                 {title}
               </h3>
               <p className="text-[#666] text-sm leading-relaxed">{body}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

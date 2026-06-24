@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useLocale } from 'next-intl'
+import { motion } from 'motion/react'
 
 const FA_SERVICES = [
   { number: '۰۱', title: 'آموزش هوش مصنوعی',         desc: 'یاد بگیر ChatGPT و Claude رو مثل یه حرفه‌ای استفاده کنی' },
@@ -34,7 +35,13 @@ export default function ServicesListSection() {
         direction: isFa ? 'rtl' : 'ltr',
       }}
     >
-      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+      <motion.div
+        style={{ maxWidth: '1280px', margin: '0 auto' }}
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
 
         {/* Eyebrow */}
         <span
@@ -60,7 +67,7 @@ export default function ServicesListSection() {
               {i > 0 && (
                 <div style={{ height: '0.5px', background: 'rgba(0,0,0,0.08)' }} />
               )}
-              <div
+              <motion.div
                 onMouseEnter={() => setHovered(i)}
                 onMouseLeave={() => setHovered(null)}
                 style={{
@@ -73,6 +80,8 @@ export default function ServicesListSection() {
                   transition: 'background 0.2s',
                   cursor: 'default',
                 }}
+                whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
               >
                 <span
                   style={{
@@ -120,12 +129,12 @@ export default function ServicesListSection() {
                     {svc.desc}
                   </span>
                 </div>
-              </div>
+              </motion.div>
             </div>
           ))}
         </div>
 
-      </div>
+      </motion.div>
     </section>
   )
 }

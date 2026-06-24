@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { motion } from "motion/react";
 
 const floatingItems = [
   { icon: "https://cdn.worldvectorlogo.com/logos/chatgpt-6.svg",            label: "ChatGPT",       x: 88.0, y: 50.0, delay: 0,   rotation: -8, color: "#10A37F" },
@@ -219,7 +220,6 @@ function FloatingCard({
   index: number;
 }) {
   const [imgError, setImgError] = useState(false);
-  const animName = `floatCardEn${index}`;
   const floatY = FLOAT_AMOUNTS[index % FLOAT_AMOUNTS.length];
 
   return (
@@ -232,21 +232,15 @@ function FloatingCard({
         zIndex: 1,
       }}
     >
-      <div
-        style={{
-          opacity: mounted ? 1 : 0,
-          transition: `opacity 0.6s ease ${item.delay}s`,
-          animation: mounted
-            ? `${animName} 4s ease-in-out ${item.delay}s infinite`
-            : "none",
+      <motion.div
+        style={{ rotate: item.rotation }}
+        initial={{ opacity: 0 }}
+        animate={mounted ? { opacity: 1, y: [0, -floatY, 0] } : { opacity: 0 }}
+        transition={{
+          opacity: { duration: 0.6, delay: item.delay, ease: "easeOut" },
+          y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: item.delay },
         }}
       >
-      <style>{`
-        @keyframes ${animName} {
-          0%, 100% { transform: rotate(${item.rotation}deg) translateY(0px); }
-          50%       { transform: rotate(${item.rotation}deg) translateY(-${floatY}px); }
-        }
-      `}</style>
       <div
         style={{
           background: "rgba(255,255,255,0.85)",
@@ -300,7 +294,7 @@ function FloatingCard({
           {item.label}
         </span>
       </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

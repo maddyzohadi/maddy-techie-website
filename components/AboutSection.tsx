@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react'
+import MotionFadeIn from './MotionFadeIn'
 import { getTranslations, getLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 
@@ -16,6 +17,7 @@ export default async function AboutSection() {
       <section id="about" className="py-24 md:py-32 relative scroll-mt-[88px]" style={{ background: '#F5F0EB' }}>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <MotionFadeIn>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
             {/* Left — avatar card */}
@@ -108,6 +110,7 @@ export default async function AboutSection() {
             </div>
 
           </div>
+          </MotionFadeIn>
         </div>
       </section>
 
