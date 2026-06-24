@@ -27,7 +27,7 @@ export async function generateMetadata({
       ? 'یادگیری هوش مصنوعی و اتوماسیون بدون کدنویسی | مدی'
       : 'Learn AI & Automation Without Coding | Maddy',
     description: isFa
-      ? 'یک آموزشی عملی و پروژه‌محور که از «از کجا شروع کنم» می‌رساندت به ساختن workflowهای واقعی روزمره.'
+      ? 'یک آموزشی عملی و پروژه‌محور که از «از کجا شروع کنم» می‌رساندت به ساختن گردش‌کارهای واقعی روزمره.'
       : 'A practical, project-based training that takes you from "where do I start" to real AI workflows you use daily.',
     alternates: {
       canonical: `${BASE}/${locale}${PATH}`,

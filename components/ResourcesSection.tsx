@@ -394,7 +394,7 @@ export default function ResourcesSection() {
               style={{ fontSize: '18.5px', lineHeight: 1.55, color: 'rgba(26,26,46,0.60)', maxWidth: '600px' }}
             >
               {isFa
-                ? 'گردش‌کارهای AI و بدون‌کد آماده که می‌توانی همین امروز بگیری، تنظیم کنی و اجرا کنی. ساخته‌شده برای کار واقعی.'
+                ? 'گردش‌کارهای هوش مصنوعی و بدون‌کد آماده که می‌توانی همین امروز بگیری، تنظیم کنی و اجرا کنی. ساخته‌شده برای کار واقعی.'
                 : 'Plug-and-play AI and no-code workflows you can grab, tweak, and run today. Built for real work, no building from scratch.'}
             </p>
           </div>
