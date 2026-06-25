@@ -49,7 +49,7 @@ export default function CurriculumSection() {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-2.5">
+        <div className="max-w-4xl mx-auto space-y-2.5" dir={isFa ? 'rtl' : 'ltr'}>
           {parts.map((part, index) => {
             const Icon = part.icon
             const isOpen = openPart === index
@@ -65,7 +65,7 @@ export default function CurriculumSection() {
               >
                 <button
                   onClick={() => setOpenPart(isOpen ? null : index)}
-                  className="w-full flex items-center gap-4 p-6 md:p-7 text-left group cursor-pointer"
+                  className={`w-full flex items-center gap-4 p-6 md:p-7 ${isFa ? 'flex-row-reverse text-right' : 'text-left'} group cursor-pointer`}
                   aria-expanded={isOpen}
                 >
                   {!isFa && (
@@ -90,7 +90,7 @@ export default function CurriculumSection() {
                       {isFa ? part.title : `${t('partLabel')} ${part.number} · ${part.title}`}
                     </div>
                     <div
-                      className="font-ui text-base md:text-lg mt-0.5 hidden sm:block"
+                      className={`${isFa ? 'font-fa' : 'font-ui'} text-base md:text-lg mt-0.5 hidden sm:block`}
                       style={{ color: bodyColor }}
                     >
                       {part.tagline}
@@ -109,7 +109,7 @@ export default function CurriculumSection() {
                     style={{ borderTop: '0.5px solid rgba(0,0,0,0.08)' }}
                   >
                     <p
-                      className="font-ui text-base md:text-lg mb-5 sm:hidden"
+                      className={`${isFa ? 'font-fa' : 'font-ui'} text-base md:text-lg mb-5 sm:hidden`}
                       style={{ color: bodyColor }}
                     >
                       {part.tagline}
@@ -118,13 +118,11 @@ export default function CurriculumSection() {
                       {part.items.map((item, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-3 font-ui text-base md:text-lg"
+                          className={`flex items-start gap-3 ${isFa ? 'flex-row-reverse' : ''} text-base md:text-lg`}
                           style={{ color: bodyColor }}
                         >
-                          <span
-                            className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-brand-orange"
-                          />
-                          {item}
+                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-brand-orange" />
+                          <span className={isFa ? 'font-fa flex-1 text-right' : 'font-ui'}>{item}</span>
                         </li>
                       ))}
                     </ul>

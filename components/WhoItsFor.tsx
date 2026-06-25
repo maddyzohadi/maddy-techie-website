@@ -42,6 +42,7 @@ export default async function WhoItsFor() {
     <section
       className="py-24 md:py-32 relative"
       style={{ background: '#F7F3EC', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+      dir={isFa ? 'rtl' : 'ltr'}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -79,7 +80,7 @@ export default async function WhoItsFor() {
                   padding: '28px 30px',
                 }}
               >
-                <div className="flex items-center gap-3 mb-6">
+                <div className={`flex items-center gap-3 mb-6 ${isFa ? 'flex-row-reverse' : ''}`}>
                   <span
                     className="w-9 h-9 rounded-full flex items-center justify-center font-ui font-bold text-sm flex-shrink-0"
                     style={{
@@ -156,7 +157,7 @@ export default async function WhoItsFor() {
             {notKeys.map((key) => (
               <div
                 key={key}
-                className={`flex items-center gap-2.5 ${isFa ? 'font-fa' : 'font-ui'} text-sm`}
+                className={`flex items-center gap-2.5 ${isFa ? 'font-fa flex-row-reverse' : 'font-ui'} text-sm`}
                 style={{ color: '#666' }}
               >
                 <CheckCircle size={15} style={{ color: '#FF6A32', flexShrink: 0 }} />
