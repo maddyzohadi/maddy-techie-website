@@ -77,8 +77,8 @@ export default function TemplatesHero() {
           >
             {isFa ? (
               <>
-                با یک سیستم شروع کن،{' '}
-                <span style={{ color: 'rgba(17,17,17,0.38)' }}>نه یک صفحه‌ی خالی</span>
+                هوش مصنوعی را به یک سیستم ساده{' '}
+                <span style={{ color: 'rgba(17,17,17,0.38)' }}>تبدیل کن</span>
               </>
             ) : (
               <>
@@ -98,7 +98,7 @@ export default function TemplatesHero() {
             }}
           >
             {isFa
-              ? 'گردش‌کارهای هوش مصنوعی آماده که می‌توانی همین امروز بگیری، تنظیم کنی و اجرا کنی.'
+              ? 'با یک قالب رایگان شروع کن، اصول را یاد بگیر، یا در ساختن اولین گردش‌کارت کمک بگیر.'
               : 'Grab practical AI templates for emails, reports, content planning, and client workflows — built to save time without starting from scratch.'}
           </p>
 
