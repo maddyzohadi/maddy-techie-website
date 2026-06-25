@@ -23,7 +23,7 @@ export default async function ServicesPageContentFa() {
     <>
       {/* Hero */}
       <section
-        className="py-24 md:py-32 relative overflow-hidden"
+        className="pt-20 pb-8 md:pt-28 md:pb-10 relative overflow-hidden"
         style={{ background: '#F7F3EC' }}
         dir="rtl"
       >
@@ -57,7 +57,7 @@ export default async function ServicesPageContentFa() {
 
       {/* Service Cards */}
       <section
-        className="py-20 md:py-24 relative"
+        className="pt-8 pb-20 md:pt-10 md:pb-24 relative"
         style={{ background: '#F7F3EC', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
         dir="rtl"
       >
