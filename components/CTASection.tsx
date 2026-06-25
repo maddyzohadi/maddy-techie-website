@@ -19,7 +19,7 @@ export default function CTASection() {
   return (
     <section
       id="contact"
-      className="pt-14 pb-10 md:pt-20 md:pb-14 relative overflow-hidden scroll-mt-24"
+      className="pt-14 pb-14 md:pt-20 md:pb-20 relative overflow-hidden scroll-mt-24"
       style={{ background: 'linear-gradient(135deg, #F7F3EC 0%, #F6D2BF 60%, #FFF8F1 100%)', borderTop: '0.5px solid #E7DED2' }}
     >
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -34,7 +34,7 @@ export default function CTASection() {
         </div>
 
         <h2
-          className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight max-w-2xl mx-auto`}
+          className={`${isFa ? 'font-fa text-2xl md:text-3xl lg:text-4xl max-w-xl' : 'font-en text-3xl md:text-4xl lg:text-5xl max-w-2xl'} font-bold mb-5 leading-tight mx-auto`}
           style={{ color: '#111111' }}
         >
           {t('title')}{' '}
