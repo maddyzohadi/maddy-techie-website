@@ -19,12 +19,12 @@ export default function CTASection() {
   return (
     <section
       id="contact"
-      className="pt-24 md:pt-32 pb-0 relative overflow-hidden scroll-mt-24"
+      className="pt-14 pb-10 md:pt-20 md:pb-14 relative overflow-hidden scroll-mt-24"
       style={{ background: 'linear-gradient(135deg, #F7F3EC 0%, #F6D2BF 60%, #FFF8F1 100%)', borderTop: '0.5px solid #E7DED2' }}
     >
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-5">
           <span
             className="inline-flex items-center gap-2 font-ui text-sm font-semibold uppercase tracking-[0.22em] px-5 py-2 rounded-full bg-brand-peach text-brand-charcoal"
           >
@@ -34,7 +34,7 @@ export default function CTASection() {
         </div>
 
         <h2
-          className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight`}
+          className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight max-w-2xl mx-auto`}
           style={{ color: '#111111' }}
         >
           {t('title')}{' '}
@@ -42,17 +42,17 @@ export default function CTASection() {
         </h2>
 
         <p
-          className={`${isFa ? 'font-fa' : 'font-ui'} text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10`}
+          className={`${isFa ? 'font-fa' : 'font-ui'} text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8`}
           style={{ color: '#666' }}
         >
           {t('subtitle')}
         </p>
 
-        <div className="mb-5">
+        <div className="mb-4">
           <StarterKitCTA label={t('starterKitLabel')} className="w-full sm:w-auto justify-center" />
         </div>
 
-        <div className="mb-16">
+        <div className="mb-10">
           <Link
             href="/services"
             className={`${isFa ? 'font-fa' : 'font-ui'} text-base transition-opacity hover:opacity-80`}
@@ -63,7 +63,7 @@ export default function CTASection() {
         </div>
 
         <div
-          className="flex flex-wrap items-center justify-center gap-3 md:gap-5 py-5 px-6"
+          className="flex flex-wrap items-center justify-center gap-2 md:gap-4 py-3.5 px-5 max-w-sm mx-auto"
           style={{
             borderRadius: '12px',
             background: 'rgba(0,0,0,0.04)',
