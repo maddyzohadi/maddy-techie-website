@@ -12,16 +12,16 @@ export default function MethodSection() {
   const bodyFont    = isFa ? "'Noto Naskh Arabic', serif" : 'system-ui, sans-serif'
 
   const card1 = {
-    badge: isFa ? 'اتوماسیون'       : 'NO-CODE AUTOMATION',
-    title: isFa ? 'ابزارها رو به هم وصل کن'  : 'Connect your tools together',
+    badge: isFa ? 'اتوماسیون بدون کدنویسی' : 'NO-CODE AUTOMATION',
+    title: isFa ? 'ابزارهایت را به هم متصل کن'  : 'Connect your tools together',
     desc:  isFa
       ? 'یاد می‌گیری چطور Make، Zapier و ChatGPT رو کنار هم بذاری تا کارها خودشون انجام بشن'
       : 'Link Make, Zapier, and ChatGPT so tasks complete themselves — no developer required',
   }
 
   const card2 = {
-    badge: isFa ? 'هوش مصنوعی'     : 'AI IN DAILY WORK',
-    title: isFa ? 'هوش مصنوعی رو وارد کارت کن' : 'Put AI inside your workflow',
+    badge: isFa ? 'کاربرد عملی هوش مصنوعی' : 'AI IN DAILY WORK',
+    title: isFa ? 'هوش مصنوعی را وارد کارهای روزمره‌ات کن' : 'Put AI inside your workflow',
     desc:  isFa
       ? 'با ابزارهای هوش مصنوعی مثل ChatGPT و Claude کارهای تکراری رو حذف کن و سریع‌تر خروجی بده'
       : 'Use ChatGPT and Claude to cut repetitive work and deliver faster, without sacrificing quality',
@@ -78,7 +78,7 @@ export default function MethodSection() {
             }}
           >
             {isFa
-              ? 'از ایده تا اجرا، بدون کدنویسی'
+              ? 'از ایده تا اجرای عملی، بدون نیاز به کدنویسی'
               : 'From idea to execution, without writing code'}
           </h2>
         </div>
