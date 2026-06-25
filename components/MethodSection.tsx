@@ -68,11 +68,13 @@ export default function MethodSection() {
           <h2
             style={{
               fontFamily: headingFont,
-              fontSize: 'clamp(28px, 4vw, 46px)',
+              fontSize: 'clamp(24px, 2.8vw, 36px)',
               fontWeight: 700,
               color: '#111111',
               lineHeight: 1.2,
               letterSpacing: '-0.02em',
+              maxWidth: '26ch',
+              margin: '0 auto',
             }}
           >
             {isFa

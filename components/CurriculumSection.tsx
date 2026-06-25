@@ -35,7 +35,7 @@ export default function CurriculumSection() {
             {t('badge')}
           </span>
           <h2
-            className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight`}
+            className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-2xl md:text-3xl lg:text-4xl mb-5 leading-tight max-w-xl mx-auto`}
             style={{ color: headingColor }}
           >
             {t('title')}{' '}
