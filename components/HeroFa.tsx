@@ -1,102 +1,21 @@
 "use client"
 
-import React, { useRef, useEffect } from "react"
 import { motion } from "motion/react"
 
 const VIDEO_SRC = "/videos/Hero-design.mp4"
 
 export default function HeroFa() {
-  const videoRef       = useRef<HTMLVideoElement>(null)
-  const rafRef         = useRef<number | null>(null)
-  const fadingOutRef   = useRef(false)
-  const hasStartedRef  = useRef(false)
-
-  useEffect(() => {
-    const v = videoRef.current
-    if (!v) return
-
-    function cancelRaf() {
-      if (rafRef.current !== null) {
-        cancelAnimationFrame(rafRef.current)
-        rafRef.current = null
-      }
-    }
-
-    function fadeIn(video: HTMLVideoElement) {
-      cancelRaf()
-      const start = parseFloat(video.style.opacity || "0")
-      const t0    = performance.now()
-      const tick  = (now: number) => {
-        const p = Math.min((now - t0) / 500, 1)
-        video.style.opacity = String(start + (1 - start) * p)
-        if (p < 1) rafRef.current = requestAnimationFrame(tick)
-        else rafRef.current = null
-      }
-      rafRef.current = requestAnimationFrame(tick)
-    }
-
-    function fadeOut(video: HTMLVideoElement) {
-      cancelRaf()
-      const start = parseFloat(video.style.opacity || "1")
-      const t0    = performance.now()
-      const tick  = (now: number) => {
-        const p = Math.min((now - t0) / 500, 1)
-        video.style.opacity = String(start * (1 - p))
-        if (p < 1) rafRef.current = requestAnimationFrame(tick)
-        else rafRef.current = null
-      }
-      rafRef.current = requestAnimationFrame(tick)
-    }
-
-    const onPlaying = () => {
-      if (!hasStartedRef.current) {
-        hasStartedRef.current = true
-        fadeIn(v)
-      }
-    }
-
-    const onTimeUpdate = () => {
-      if (!v.duration) return
-      const remaining = v.duration - v.currentTime
-      if (remaining <= 0.55 && !fadingOutRef.current) {
-        fadingOutRef.current = true
-        fadeOut(v)
-      }
-    }
-
-    const onEnded = () => {
-      v.style.opacity = "0"
-      setTimeout(() => {
-        v.currentTime        = 0
-        fadingOutRef.current = false
-        v.play().then(() => fadeIn(v)).catch(() => {})
-      }, 100)
-    }
-
-    v.addEventListener("playing",    onPlaying)
-    v.addEventListener("timeupdate", onTimeUpdate)
-    v.addEventListener("ended",      onEnded)
-
-    return () => {
-      cancelRaf()
-      v.removeEventListener("playing",    onPlaying)
-      v.removeEventListener("timeupdate", onTimeUpdate)
-      v.removeEventListener("ended",      onEnded)
-    }
-  }, [])
-
   return (
     <section className="relative min-h-screen bg-black overflow-hidden">
 
       {/* Background video */}
       <video
-        ref={videoRef}
         src={VIDEO_SRC}
-        muted
         autoPlay
+        muted
+        loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover translate-y-[17%]"
-        style={{ opacity: 0 }}
+        className="absolute inset-0 w-full h-full object-cover"
       />
 
       {/* Dark overlay for text readability */}
