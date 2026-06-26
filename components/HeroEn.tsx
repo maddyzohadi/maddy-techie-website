@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react"
 
-const VIDEO_SRC = "/videos/Hero-design.mp4"
+const VIDEO_SRC = "/videos/hero.mp4"
 
 export default function HeroEn() {
   return (
@@ -11,14 +11,22 @@ export default function HeroEn() {
       style={{ background: '#F7F3EC' }}
     >
 
-      {/* Background video — will display once uploaded */}
+      {/* Atmospheric background video */}
       <video
         src={VIDEO_SRC}
         autoPlay
         muted
         loop
         playsInline
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
+        style={{ opacity: 0.28 }}
+      />
+
+      {/* Cream overlay — keeps the hero bright and text readable */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'rgba(247,243,236,0.72)' }}
       />
 
       {/* Content */}
