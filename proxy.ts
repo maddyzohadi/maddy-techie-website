@@ -48,7 +48,11 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Exclude /api, /auth, Next.js internals, and static assets
-    '/((?!api|auth|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    // Redirect root to default locale
+    '/',
+    // Handle locale-prefixed routes
+    '/(fa|en)/:path*',
+    // Handle all other routes EXCEPT static asset paths and Next.js internals
+    '/((?!_next|api|auth|videos|images|icons|fonts|favicon\\.ico|robots\\.txt|sitemap\\.xml|.*\\.[^/]+$).*)',
   ],
 }
