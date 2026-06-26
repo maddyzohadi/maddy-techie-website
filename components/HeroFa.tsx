@@ -3,7 +3,7 @@
 import React, { useRef, useEffect } from "react"
 import { motion } from "motion/react"
 
-const VIDEO_SRC = "/videos/hero.mp4"
+const VIDEO_SRC = "/videos/Hero-design.mp4"
 
 export default function HeroFa() {
   const videoRef       = useRef<HTMLVideoElement>(null)
