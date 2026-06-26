@@ -121,7 +121,7 @@ export default function AIAssistant() {
         aria-label={t('ariaLabel')}
         aria-modal="true"
         aria-hidden={!isOpen}
-        className={`fixed bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[400px] flex flex-col transition-all duration-300 origin-bottom-right ${
+        className={`fixed bottom-24 right-4 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[384px] flex flex-col transition-all duration-300 origin-bottom-right ${
           isOpen
             ? 'opacity-100 scale-100 pointer-events-auto'
             : 'opacity-0 scale-95 pointer-events-none'
@@ -132,29 +132,29 @@ export default function AIAssistant() {
           style={{
             background: '#F7F3EC',
             border: '0.5px solid #E7DED2',
-            maxHeight: 'min(600px, 82vh)',
+            maxHeight: 'min(500px, 82vh)',
           }}
         >
           {/* Header */}
           <div
-            className="flex items-center gap-3 px-5 py-4 flex-shrink-0"
+            className="flex items-center gap-3 px-4 py-3 flex-shrink-0"
             style={{
               background: '#171717',
               borderBottom: '0.5px solid rgba(0,0,0,0.10)',
             }}
           >
             <div
-              className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
+              className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
               style={{
                 background: 'rgba(255,106,50,0.15)',
                 border: '0.5px solid rgba(255,106,50,0.35)',
               }}
             >
-              <Bot size={17} style={{ color: '#FFFFFF' }} />
+              <Bot size={15} style={{ color: '#FFFFFF' }} />
             </div>
 
             <div className="flex-1 min-w-0">
-              <p className="font-en font-semibold text-sm leading-tight" style={{ color: '#FFFFFF' }}>
+              <p className="font-en font-semibold text-xs leading-tight" style={{ color: '#FFFFFF' }}>
                 Maddy AI Assistant
               </p>
               <p className="font-ui text-xs flex items-center gap-1.5 mt-0.5" style={{ color: 'rgba(255,255,255,0.60)' }}>
@@ -192,16 +192,16 @@ export default function AIAssistant() {
 
           {/* Messages */}
           <div
-            className="flex-1 overflow-y-auto chat-scroll p-4 space-y-4"
+            className="flex-1 overflow-y-auto chat-scroll p-3 space-y-3"
             style={{ minHeight: 0, background: '#F7F3EC' }}
           >
             {messages.map((msg) => (
               <div
                 key={msg.id}
-                className={`flex gap-2.5 animate-fade-in ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
+                className={`flex gap-2 animate-fade-in ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
               >
                 <div
-                  className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center mt-0.5"
+                  className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5"
                   style={
                     msg.role === 'assistant'
                       ? { background: 'rgba(255,106,50,0.12)', border: '0.5px solid rgba(255,106,50,0.30)' }
@@ -209,14 +209,14 @@ export default function AIAssistant() {
                   }
                 >
                   {msg.role === 'assistant'
-                    ? <Bot  size={13} style={{ color: '#FF6A32' }} />
-                    : <User size={13} style={{ color: '#FF6A32' }} />}
+                    ? <Bot  size={11} style={{ color: '#FF6A32' }} />
+                    : <User size={11} style={{ color: '#FF6A32' }} />}
                 </div>
 
                 <div
-                  className="max-w-[80%] font-ui text-sm leading-relaxed whitespace-pre-line"
+                  className="max-w-[80%] font-ui text-xs leading-relaxed whitespace-pre-line"
                   style={{
-                    padding: '10px 14px',
+                    padding: '8px 12px',
                     color: msg.role === 'assistant' ? '#111111' : '#FFFFFF',
                     background: msg.role === 'assistant' ? '#FFF8F1' : '#FF6A32',
                     border: `0.5px solid ${msg.role === 'assistant' ? '#E7DED2' : '#FF6A32'}`,
@@ -231,17 +231,17 @@ export default function AIAssistant() {
             ))}
 
             {isLoading && (
-              <div className="flex gap-2.5 animate-fade-in">
+              <div className="flex gap-2 animate-fade-in">
                 <div
-                  className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center mt-0.5"
+                  className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5"
                   style={{ background: 'rgba(255,106,50,0.12)', border: '0.5px solid rgba(255,106,50,0.30)' }}
                 >
-                  <Bot size={13} style={{ color: '#FF6A32' }} />
+                  <Bot size={12} style={{ color: '#FF6A32' }} />
                 </div>
                 <div
                   className="flex items-center gap-1.5"
                   style={{
-                    padding: '12px 16px',
+                    padding: '8px 12px',
                     background: '#FFF8F1',
                     border: '0.5px solid #E7DED2',
                     borderRadius: '18px 18px 18px 4px',
@@ -264,7 +264,7 @@ export default function AIAssistant() {
           {/* Quick question pills */}
           {messages.length === 1 && !isLoading && (
             <div
-              className="px-4 pb-3 pt-2.5 flex-shrink-0"
+              className="px-3 pb-2 pt-2 flex-shrink-0"
               style={{ borderTop: '0.5px solid #E7DED2', background: '#F7F3EC' }}
             >
               <p className="font-ui text-xs mb-2.5 px-0.5" style={{ color: 'rgba(17,17,17,0.45)' }}>
@@ -281,7 +281,7 @@ export default function AIAssistant() {
           {/* Input bar */}
           <form
             onSubmit={(e) => { e.preventDefault(); sendMessage(input) }}
-            className="flex items-center gap-2 px-3 py-3 flex-shrink-0"
+            className="flex items-center gap-2 px-2 py-2 flex-shrink-0"
             style={{
               background: 'rgba(0,0,0,0.03)',
               borderTop: '0.5px solid #E7DED2',
@@ -295,7 +295,7 @@ export default function AIAssistant() {
               placeholder={t('placeholder')}
               disabled={isLoading}
               aria-label={t('placeholder')}
-              className="flex-1 font-ui text-sm rounded-xl px-4 py-2.5 transition-all disabled:opacity-50 placeholder:opacity-40"
+              className="flex-1 font-ui text-xs rounded-xl px-3 py-2 transition-all disabled:opacity-50 placeholder:opacity-40"
               style={{
                 background: '#FFFFFF',
                 border: '0.5px solid #E7DED2',
@@ -308,7 +308,7 @@ export default function AIAssistant() {
               type="submit"
               disabled={!input.trim() || isLoading}
               aria-label="Send message"
-              className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed"
+              className="flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed"
               style={{ background: '#FF6A32' }}
             >
               {isLoading
