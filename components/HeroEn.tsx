@@ -20,13 +20,21 @@ export default function HeroEn() {
         playsInline
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ opacity: 0.42 }}
+        style={{ opacity: 0.80 }}
       />
 
-      {/* Cream overlay — keeps the hero bright and text readable */}
+      {/* Light cream wash — barely there, keeps warmth without washing out the video */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'rgba(247,243,236,0.60)' }}
+        style={{ background: 'rgba(247,243,236,0.22)' }}
+      />
+
+      {/* Soft radial glow behind text for readability */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 80% 55% at 50% 50%, rgba(247,243,236,0.55) 0%, transparent 100%)',
+        }}
       />
 
       {/* Content */}
