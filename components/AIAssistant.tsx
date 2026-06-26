@@ -35,9 +35,9 @@ function QuickPill({ label, onSelect }: { label: string; onSelect: (t: string) =
       onMouseLeave={() => setHovered(false)}
       className="text-left font-ui text-xs rounded-xl px-3 py-2 transition-all duration-150 cursor-pointer"
       style={{
-        background: hovered ? 'rgba(123,47,190,0.20)' : 'rgba(123,47,190,0.12)',
-        border: `0.5px solid ${hovered ? 'rgba(123,47,190,0.50)' : 'rgba(123,47,190,0.30)'}`,
-        color: hovered ? '#F5F0E8' : 'rgba(245,240,232,0.70)',
+        background: hovered ? '#FFF8F1' : '#FFFFFF',
+        border: '0.5px solid #E7DED2',
+        color: '#111111',
       }}
     >
       {label}
@@ -130,8 +130,8 @@ export default function AIAssistant() {
         <div
           className="flex flex-col rounded-2xl overflow-hidden"
           style={{
-            background: '#1A1A2E',
-            border: '0.5px solid rgba(245,240,232,0.12)',
+            background: '#F7F3EC',
+            border: '0.5px solid #E7DED2',
             maxHeight: 'min(600px, 82vh)',
           }}
         >
@@ -139,25 +139,25 @@ export default function AIAssistant() {
           <div
             className="flex items-center gap-3 px-5 py-4 flex-shrink-0"
             style={{
-              background: 'rgba(123,47,190,0.15)',
-              borderBottom: '0.5px solid rgba(245,240,232,0.10)',
+              background: '#171717',
+              borderBottom: '0.5px solid rgba(0,0,0,0.10)',
             }}
           >
             <div
               className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
               style={{
-                background: 'rgba(123,47,190,0.20)',
-                border: '0.5px solid rgba(123,47,190,0.40)',
+                background: 'rgba(255,106,50,0.15)',
+                border: '0.5px solid rgba(255,106,50,0.35)',
               }}
             >
-              <Bot size={17} style={{ color: '#F5F0E8' }} />
+              <Bot size={17} style={{ color: '#FFFFFF' }} />
             </div>
 
             <div className="flex-1 min-w-0">
-              <p className="font-en font-semibold text-sm leading-tight" style={{ color: '#F5F0E8' }}>
+              <p className="font-en font-semibold text-sm leading-tight" style={{ color: '#FFFFFF' }}>
                 Maddy AI Assistant
               </p>
-              <p className="font-ui text-xs flex items-center gap-1.5 mt-0.5" style={{ color: 'rgba(245,240,232,0.60)' }}>
+              <p className="font-ui text-xs flex items-center gap-1.5 mt-0.5" style={{ color: 'rgba(255,255,255,0.60)' }}>
                 <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: '#34D399' }} />
                 {t('online')}
               </p>
@@ -168,9 +168,9 @@ export default function AIAssistant() {
               onClick={close}
               aria-label={t('ariaClose')}
               className="p-1.5 rounded-lg transition-colors"
-              style={{ color: 'rgba(245,240,232,0.60)' }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#F5F0E8')}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(245,240,232,0.60)')}
+              style={{ color: 'rgba(255,255,255,0.60)' }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#FFFFFF')}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.60)')}
             >
               <X size={16} />
             </button>
@@ -180,20 +180,20 @@ export default function AIAssistant() {
           <div
             className="px-4 py-2.5 flex-shrink-0"
             style={{
-              background: 'rgba(123,47,190,0.08)',
-              borderBottom: '0.5px solid rgba(245,240,232,0.08)',
+              background: 'rgba(0,0,0,0.03)',
+              borderBottom: '0.5px solid #E7DED2',
             }}
           >
-            <p className="font-ui text-xs text-center" style={{ color: 'rgba(245,240,232,0.50)' }}>
+            <p className="font-ui text-xs text-center" style={{ color: 'rgba(17,17,17,0.45)' }}>
               {t('disclaimer')}{' '}
-              <span style={{ color: 'rgba(245,240,232,0.40)' }}>{t('disclaimerNote')}</span>
+              <span style={{ color: 'rgba(17,17,17,0.35)' }}>{t('disclaimerNote')}</span>
             </p>
           </div>
 
           {/* Messages */}
           <div
             className="flex-1 overflow-y-auto chat-scroll p-4 space-y-4"
-            style={{ minHeight: 0, background: '#1A1A2E' }}
+            style={{ minHeight: 0, background: '#F7F3EC' }}
           >
             {messages.map((msg) => (
               <div
@@ -204,28 +204,22 @@ export default function AIAssistant() {
                   className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center mt-0.5"
                   style={
                     msg.role === 'assistant'
-                      ? { background: 'rgba(123,47,190,0.20)', border: '0.5px solid rgba(123,47,190,0.40)' }
-                      : { background: 'rgba(245,240,232,0.08)', border: '0.5px solid rgba(245,240,232,0.15)' }
+                      ? { background: 'rgba(255,106,50,0.12)', border: '0.5px solid rgba(255,106,50,0.30)' }
+                      : { background: 'rgba(255,106,50,0.10)', border: '0.5px solid rgba(255,106,50,0.25)' }
                   }
                 >
                   {msg.role === 'assistant'
-                    ? <Bot  size={13} style={{ color: '#F5F0E8' }} />
-                    : <User size={13} style={{ color: 'rgba(245,240,232,0.80)' }} />}
+                    ? <Bot  size={13} style={{ color: '#FF6A32' }} />
+                    : <User size={13} style={{ color: '#FF6A32' }} />}
                 </div>
 
                 <div
                   className="max-w-[80%] font-ui text-sm leading-relaxed whitespace-pre-line"
                   style={{
                     padding: '10px 14px',
-                    color: '#F5F0E8',
-                    background: msg.role === 'assistant'
-                      ? 'rgba(123,47,190,0.12)'
-                      : 'rgba(245,240,232,0.08)',
-                    border: `0.5px solid ${
-                      msg.role === 'assistant'
-                        ? 'rgba(123,47,190,0.30)'
-                        : 'rgba(245,240,232,0.15)'
-                    }`,
+                    color: msg.role === 'assistant' ? '#111111' : '#FFFFFF',
+                    background: msg.role === 'assistant' ? '#FFF8F1' : '#FF6A32',
+                    border: `0.5px solid ${msg.role === 'assistant' ? '#E7DED2' : '#FF6A32'}`,
                     borderRadius: msg.role === 'assistant'
                       ? '18px 18px 18px 4px'
                       : '18px 18px 4px 18px',
@@ -240,16 +234,16 @@ export default function AIAssistant() {
               <div className="flex gap-2.5 animate-fade-in">
                 <div
                   className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center mt-0.5"
-                  style={{ background: 'rgba(123,47,190,0.20)', border: '0.5px solid rgba(123,47,190,0.40)' }}
+                  style={{ background: 'rgba(255,106,50,0.12)', border: '0.5px solid rgba(255,106,50,0.30)' }}
                 >
-                  <Bot size={13} style={{ color: '#F5F0E8' }} />
+                  <Bot size={13} style={{ color: '#FF6A32' }} />
                 </div>
                 <div
                   className="flex items-center gap-1.5"
                   style={{
                     padding: '12px 16px',
-                    background: 'rgba(123,47,190,0.12)',
-                    border: '0.5px solid rgba(123,47,190,0.30)',
+                    background: '#FFF8F1',
+                    border: '0.5px solid #E7DED2',
                     borderRadius: '18px 18px 18px 4px',
                   }}
                 >
@@ -257,7 +251,7 @@ export default function AIAssistant() {
                     <span
                       key={delay}
                       className="w-1.5 h-1.5 rounded-full motion-safe:animate-bounce"
-                      style={{ background: 'rgba(245,240,232,0.60)', animationDelay: `${delay}ms` }}
+                      style={{ background: 'rgba(17,17,17,0.35)', animationDelay: `${delay}ms` }}
                     />
                   ))}
                 </div>
@@ -271,9 +265,9 @@ export default function AIAssistant() {
           {messages.length === 1 && !isLoading && (
             <div
               className="px-4 pb-3 pt-2.5 flex-shrink-0"
-              style={{ borderTop: '0.5px solid rgba(245,240,232,0.08)', background: '#1A1A2E' }}
+              style={{ borderTop: '0.5px solid #E7DED2', background: '#F7F3EC' }}
             >
-              <p className="font-ui text-xs mb-2.5 px-0.5" style={{ color: 'rgba(245,240,232,0.50)' }}>
+              <p className="font-ui text-xs mb-2.5 px-0.5" style={{ color: 'rgba(17,17,17,0.45)' }}>
                 {t('quickStart')}
               </p>
               <div className="flex flex-col gap-1.5">
@@ -289,8 +283,8 @@ export default function AIAssistant() {
             onSubmit={(e) => { e.preventDefault(); sendMessage(input) }}
             className="flex items-center gap-2 px-3 py-3 flex-shrink-0"
             style={{
-              background: 'rgba(123,47,190,0.08)',
-              borderTop: '0.5px solid rgba(245,240,232,0.08)',
+              background: 'rgba(0,0,0,0.03)',
+              borderTop: '0.5px solid #E7DED2',
             }}
           >
             <input
@@ -303,10 +297,10 @@ export default function AIAssistant() {
               aria-label={t('placeholder')}
               className="flex-1 font-ui text-sm rounded-xl px-4 py-2.5 transition-all disabled:opacity-50 placeholder:opacity-40"
               style={{
-                background: 'rgba(245,240,232,0.06)',
-                border: '0.5px solid rgba(245,240,232,0.15)',
-                color: '#F5F0E8',
-                caretColor: '#F5F0E8',
+                background: '#FFFFFF',
+                border: '0.5px solid #E7DED2',
+                color: '#111111',
+                caretColor: '#111111',
                 outline: 'none',
               }}
             />
@@ -315,7 +309,7 @@ export default function AIAssistant() {
               disabled={!input.trim() || isLoading}
               aria-label="Send message"
               className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed"
-              style={{ background: '#7B2FBE' }}
+              style={{ background: '#FF6A32' }}
             >
               {isLoading
                 ? <Loader2 size={16} className="text-white animate-spin" />
@@ -333,18 +327,18 @@ export default function AIAssistant() {
         aria-expanded={isOpen}
         className="fixed bottom-5 right-4 sm:right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300"
         style={{
-          background: isOpen ? 'rgba(123,47,190,0.15)' : '#7B2FBE',
-          border: isOpen ? '0.5px solid rgba(123,47,190,0.40)' : 'none',
+          background: isOpen ? 'rgba(255,106,50,0.10)' : '#FF6A32',
+          border: isOpen ? '0.5px solid rgba(255,106,50,0.40)' : 'none',
         }}
       >
         {hasNew && !isOpen && (
           <span
             className="absolute -top-1 -right-1 w-4 h-4 rounded-full border-2 motion-safe:animate-bounce"
-            style={{ background: '#7B2FBE', borderColor: '#1A1A2E' }}
+            style={{ background: '#FF6A32', borderColor: '#F7F3EC' }}
           />
         )}
         {isOpen
-          ? <X size={22} style={{ color: 'rgba(245,240,232,0.70)' }} />
+          ? <X size={22} style={{ color: 'rgba(255,106,50,0.80)' }} />
           : <MessageCircle size={24} className="text-white" />}
       </button>
 
@@ -354,11 +348,11 @@ export default function AIAssistant() {
           <div
             className="rounded-full px-3 py-1.5"
             style={{
-              background: '#1A1A2E',
-              border: '0.5px solid rgba(245,240,232,0.15)',
+              background: '#171717',
+              border: '0.5px solid rgba(0,0,0,0.10)',
             }}
           >
-            <span className="font-ui text-xs whitespace-nowrap" style={{ color: 'rgba(245,240,232,0.60)' }}>
+            <span className="font-ui text-xs whitespace-nowrap" style={{ color: 'rgba(255,255,255,0.80)' }}>
               {t('askMaddy')}
             </span>
           </div>
