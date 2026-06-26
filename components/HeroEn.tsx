@@ -6,9 +6,12 @@ const VIDEO_SRC = "/videos/Hero-design.mp4"
 
 export default function HeroEn() {
   return (
-    <section className="relative min-h-screen bg-black overflow-hidden">
+    <section
+      className="relative min-h-screen overflow-hidden"
+      style={{ background: '#F7F3EC' }}
+    >
 
-      {/* Background video */}
+      {/* Background video — will display once uploaded */}
       <video
         src={VIDEO_SRC}
         autoPlay
@@ -18,11 +21,11 @@ export default function HeroEn() {
         className="absolute inset-0 w-full h-full object-cover"
       />
 
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-black/40 pointer-events-none" />
-
       {/* Content */}
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-6 pt-[68px]">
+      <div
+        className="relative z-10 flex min-h-screen items-center justify-center px-6 pt-[68px]"
+        dir="ltr"
+      >
         <div className="text-center w-full max-w-2xl mx-auto">
 
           {/* Eyebrow badge */}
@@ -32,7 +35,13 @@ export default function HeroEn() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="flex justify-center mb-8"
           >
-            <span className="liquid-glass inline-flex items-center gap-2 rounded-full px-4 py-2">
+            <span
+              className="inline-flex items-center gap-2 rounded-full px-4 py-2"
+              style={{
+                background: 'rgba(255,106,50,0.08)',
+                border: '0.5px solid rgba(255,106,50,0.20)',
+              }}
+            >
               <span
                 style={{
                   width: 6,
@@ -47,7 +56,7 @@ export default function HeroEn() {
                 style={{
                   fontFamily: "system-ui, sans-serif",
                   fontSize: "11px",
-                  color: "rgba(255,255,255,0.75)",
+                  color: "rgba(17,17,17,0.55)",
                   letterSpacing: "0.08em",
                   fontWeight: 500,
                 }}
@@ -62,15 +71,15 @@ export default function HeroEn() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+            dir="ltr"
             style={{
               fontFamily: "'DM Serif Display', serif",
               fontSize: "clamp(40px, 6.5vw, 72px)",
               fontWeight: 700,
-              color: "#FFFFFF",
+              color: "#111111",
               lineHeight: 1.15,
               letterSpacing: "-0.025em",
               margin: "0 0 24px",
-              textShadow: "0 2px 24px rgba(0,0,0,0.45)",
             }}
           >
             Work Smarter. Move Faster.
@@ -87,11 +96,10 @@ export default function HeroEn() {
             style={{
               fontFamily: "system-ui, sans-serif",
               fontSize: "17px",
-              color: "rgba(255,255,255,0.65)",
+              color: "rgba(17,17,17,0.55)",
               lineHeight: 1.75,
               maxWidth: "460px",
               margin: "0 auto 40px",
-              textShadow: "0 1px 10px rgba(0,0,0,0.4)",
             }}
           >
             Automate your daily tasks without writing a single line of code
@@ -113,11 +121,13 @@ export default function HeroEn() {
             </a>
             <a
               href="/services"
-              className="liquid-glass inline-flex items-center gap-2 rounded-full no-underline text-sm font-medium"
+              className="inline-flex items-center gap-2 rounded-full no-underline text-sm font-medium transition-opacity hover:opacity-70"
               style={{
                 padding: "13px 28px",
                 fontFamily: "system-ui, sans-serif",
-                color: "rgba(255,255,255,0.85)",
+                color: "rgba(17,17,17,0.55)",
+                background: 'rgba(0,0,0,0.06)',
+                border: '0.5px solid rgba(0,0,0,0.10)',
               }}
             >
               View Services
