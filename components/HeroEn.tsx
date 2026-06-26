@@ -20,13 +20,13 @@ export default function HeroEn() {
         playsInline
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ opacity: 0.28 }}
+        style={{ opacity: 0.42 }}
       />
 
       {/* Cream overlay — keeps the hero bright and text readable */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'rgba(247,243,236,0.72)' }}
+        style={{ background: 'rgba(247,243,236,0.60)' }}
       />
 
       {/* Content */}
