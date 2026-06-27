@@ -4,12 +4,9 @@ import { motion } from "motion/react"
 
 export default function HeroEn() {
   return (
-    <section
-      className="relative min-h-screen overflow-hidden"
-      style={{ background: "#F7F3EC" }}
-    >
+    <section className="relative min-h-screen overflow-hidden">
 
-      {/* Video background */}
+      {/* Full-bleed video */}
       <video
         src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260506_031045_0e1165dd-ab48-46e3-ad3d-5fe77f217647.mp4"
         autoPlay
@@ -17,14 +14,14 @@ export default function HeroEn() {
         loop
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ opacity: 0.55 }}
+        style={{ opacity: 1 }}
       />
 
-      {/* Cream overlay — keeps text readable over video */}
+      {/* Subtle dark overlay for text contrast */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
-        style={{ background: "rgba(247,243,236,0.55)" }}
+        style={{ background: "rgba(0,0,0,0.2)" }}
       />
 
       {/* Content */}
@@ -45,8 +42,8 @@ export default function HeroEn() {
             <span
               className="inline-flex items-center gap-2 rounded-full px-4 py-2"
               style={{
-                background: "rgba(255,106,50,0.08)",
-                border: "0.5px solid rgba(255,106,50,0.20)",
+                background: "rgba(255,106,50,0.18)",
+                border: "0.5px solid rgba(255,106,50,0.45)",
               }}
             >
               <span
@@ -58,7 +55,7 @@ export default function HeroEn() {
               <span
                 style={{
                   fontFamily: "system-ui, sans-serif", fontSize: "11px",
-                  color: "rgba(17,17,17,0.55)", letterSpacing: "0.08em", fontWeight: 500,
+                  color: "rgba(255,255,255,0.80)", letterSpacing: "0.08em", fontWeight: 500,
                 }}
               >
                 AI for work &amp; productivity
@@ -76,7 +73,7 @@ export default function HeroEn() {
               fontFamily: "'DM Serif Display', serif",
               fontSize: "clamp(40px, 6.5vw, 72px)",
               fontWeight: 700,
-              color: "#111111",
+              color: "#FFFFFF",
               lineHeight: 1.15,
               letterSpacing: "-0.025em",
               margin: "0 0 24px",
@@ -85,7 +82,7 @@ export default function HeroEn() {
             Work Smarter. Move Faster.
             <br />
             <span style={{ color: "#FF6A32" }}>AI Powers</span>{" "}
-            <span style={{ color: "#5F5A54" }}>You Up.</span>
+            <span style={{ color: "rgba(255,255,255,0.75)" }}>You Up.</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -96,7 +93,7 @@ export default function HeroEn() {
             style={{
               fontFamily: "system-ui, sans-serif",
               fontSize: "17px",
-              color: "rgba(17,17,17,0.55)",
+              color: "rgba(255,255,255,0.70)",
               lineHeight: 1.75,
               maxWidth: "460px",
               margin: "0 auto 40px",
@@ -125,9 +122,9 @@ export default function HeroEn() {
               style={{
                 padding: "13px 28px",
                 fontFamily: "system-ui, sans-serif",
-                color: "rgba(17,17,17,0.55)",
-                background: "rgba(0,0,0,0.06)",
-                border: "0.5px solid rgba(0,0,0,0.10)",
+                color: "rgba(255,255,255,0.80)",
+                background: "rgba(255,255,255,0.12)",
+                border: "0.5px solid rgba(255,255,255,0.25)",
               }}
             >
               View Services
