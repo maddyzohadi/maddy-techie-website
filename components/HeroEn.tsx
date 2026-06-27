@@ -43,7 +43,6 @@ function useDitherCanvas() {
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    // Keep pixel dimensions in sync with CSS layout size
     const syncSize = () => {
       canvas.width  = canvas.offsetWidth
       canvas.height = canvas.offsetHeight
@@ -52,12 +51,13 @@ function useDitherCanvas() {
     const ro = new ResizeObserver(syncSize)
     ro.observe(canvas)
 
-    const STEP = 8      // px between dot centres
-    const R    = 1.15   // dot radius px
-    const MAX  = 0.22   // max dot opacity
+    const STEP  = 9      // dot grid spacing (px)
+    const R     = 3.5    // dot radius — large enough to see clearly
+    const MIN_A = 0.25   // minimum alpha for any visible dot
+    const MAX_A = 0.52   // maximum alpha at blob core
 
     let raf: number
-    let drift = 0       // slowly increments each frame
+    let drift = 0
 
     const frame = () => {
       const W = canvas.width
@@ -65,42 +65,42 @@ function useDitherCanvas() {
       if (!W || !H) { raf = requestAnimationFrame(frame); return }
 
       ctx.clearRect(0, 0, W, H)
-      drift += 0.00025   // ~0.015 units/sec at 60fps → very slow drift
+      drift += 0.00012   // very slow drift for organic float
 
-      // Collect dots into alpha buckets to minimise fillStyle changes
+      // Batch dots by alpha bucket
       const buckets = new Map<number, number[]>()
 
       for (let px = 0; px <= W; px += STEP) {
         for (let py = 0; py <= H; py += STEP) {
-          const nx = px / W   // [0, 1]
+          const nx = px / W
           const ny = py / H
 
-          // Per-corner influence: 1.0 at corner, 0.0 at the cutoff radius
-          const tl = Math.max(0, 1 - Math.sqrt(nx*nx + ny*ny)                   / 0.70)
-          const br = Math.max(0, 1 - Math.sqrt((1-nx)*(1-nx) + (1-ny)*(1-ny))   / 0.58)
-          const tr = Math.max(0, 1 - Math.sqrt((1-nx)*(1-nx) + ny*ny)           / 0.36)
+          // Corner influence — larger radii = bigger blobs extending from corners
+          const tl = Math.max(0, 1 - Math.sqrt(nx*nx + ny*ny)                 / 0.76)
+          const br = Math.max(0, 1 - Math.sqrt((1-nx)*(1-nx) + (1-ny)*(1-ny)) / 0.64)
+          const tr = Math.max(0, 1 - Math.sqrt((1-nx)*(1-nx) + ny*ny)         / 0.42)
 
           const corner = Math.max(tl, br, tr)
-          if (corner <= 0) continue   // outside all corner zones — skip
+          if (corner <= 0) continue
 
-          // Slowly drifting organic noise
-          const n = fbm(nx * 5 + drift, ny * 5, 0)
+          // Low-frequency fBm (2.8×) → large organic blob shapes, not tiny ripples
+          const n = fbm(nx * 2.8 + drift, ny * 2.8, 0)
 
-          // Combine noise × corner weight; threshold low values
-          const v = n * corner * 1.45
-          if (v < 0.40) continue
+          // Multiply noise by corner strength; hard threshold creates clear blob edges
+          const v = n * corner * 1.65
+          if (v < 0.47) continue
 
-          // Map remainder to [0, MAX] opacity
-          const alpha = Math.min(MAX, (v - 0.40) * 0.72)
+          // Remap [0.47, 0.75] → [MIN_A, MAX_A]
+          const t = Math.min(1, (v - 0.47) / 0.28)
+          const alpha = MIN_A + t * (MAX_A - MIN_A)
 
-          // Snap to 5% steps → only ~5 unique buckets per frame
-          const key = Math.round(alpha * 20) / 20
+          // 4 alpha buckets (0.25 / 0.34 / 0.43 / 0.52)
+          const key = Math.round(alpha / 0.09) * 0.09
           if (!buckets.has(key)) buckets.set(key, [])
-          buckets.get(key)!.push(px, py)   // flat interleaved x,y pairs
+          buckets.get(key)!.push(px, py)
         }
       }
 
-      // One fillStyle + one batched path per bucket
       for (const [key, coords] of buckets) {
         ctx.fillStyle = `rgba(255,106,50,${key.toFixed(2)})`
         ctx.beginPath()
