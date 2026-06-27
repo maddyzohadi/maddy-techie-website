@@ -17,7 +17,7 @@ export default function HeroEn() {
         loop
         playsInline
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ opacity: 0.35 }}
+        style={{ opacity: 0.55 }}
       />
 
       {/* Cream overlay — keeps text readable over video */}
