@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Menu, X } from 'lucide-react'
 import { useTranslations, useLocale } from 'next-intl'
 import { Link, usePathname } from '@/i18n/navigation'
@@ -14,13 +14,15 @@ const navLinks: { key: 'home' | 'learn' | 'templates' | 'services' | 'about'; hr
 ]
 
 export default function Navigation() {
-  const t         = useTranslations('nav')
-  const locale    = useLocale()
-  const pathname  = usePathname()
-  const isFa      = locale === 'fa'
+  const t        = useTranslations('nav')
+  const locale   = useLocale()
+  const pathname = usePathname()
+  const isFa     = locale === 'fa'
 
   const [isOpen,   setIsOpen]   = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [langOpen, setLangOpen] = useState(false)
+  const langRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -32,6 +34,18 @@ export default function Navigation() {
     document.body.style.overflow = isOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [isOpen])
+
+  // Close language dropdown on outside click
+  useEffect(() => {
+    if (!langOpen) return
+    const handler = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setLangOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handler)
+    return () => document.removeEventListener('mousedown', handler)
+  }, [langOpen])
 
   const isActive = (href: string) => pathname === href
   const navFont  = isFa ? "'Noto Naskh Arabic', serif" : "system-ui, sans-serif"
@@ -93,41 +107,100 @@ export default function Navigation() {
               ))}
             </nav>
 
-            {/* Desktop right: locale switcher + CTA */}
+            {/* Desktop right: language dropdown + CTA */}
             <div className="hidden lg:flex" style={{ alignItems: 'center', gap: '12px', flexShrink: 0 }}>
 
-              {/* Locale pill switcher */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '2px',
-                  background: 'rgba(0,0,0,0.06)',
-                  borderRadius: '100px',
-                  padding: '3px',
-                }}
-              >
-                {(['en', 'fa'] as const).map((loc) => (
-                  <Link
-                    key={loc}
-                    href={pathname}
-                    locale={loc}
+              {/* Language dropdown */}
+              <div ref={langRef} style={{ position: 'relative' }}>
+                <button
+                  onClick={() => setLangOpen(!langOpen)}
+                  aria-haspopup="listbox"
+                  aria-expanded={langOpen}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    padding: '5px 11px',
+                    background: 'transparent',
+                    border: '0.5px solid rgba(0,0,0,0.18)',
+                    borderRadius: '100px',
+                    cursor: 'pointer',
+                    fontFamily: 'system-ui, sans-serif',
+                    fontSize: '12px',
+                    fontWeight: 600,
+                    color: '#333',
+                    transition: 'border-color 0.15s',
+                  }}
+                >
+                  <span aria-hidden>🌐</span>
+                  <span>{locale.toUpperCase()}</span>
+                  <span style={{ fontSize: '8px', opacity: 0.55, marginLeft: '1px' }}>▾</span>
+                </button>
+
+                {/* Dropdown panel */}
+                {langOpen && (
+                  <div
+                    role="listbox"
                     style={{
-                      padding: '4px 12px',
-                      borderRadius: '100px',
-                      fontSize: '12px',
-                      fontWeight: 600,
-                      fontFamily: 'system-ui, sans-serif',
-                      textDecoration: 'none',
-                      transition: 'all 0.15s',
-                      ...(locale === loc
-                        ? { background: '#111111', color: '#fff' }
-                        : { background: 'transparent', color: '#333' }),
+                      position: 'absolute',
+                      top: 'calc(100% + 8px)',
+                      right: 0,
+                      background: '#fff',
+                      border: '0.5px solid rgba(0,0,0,0.10)',
+                      borderRadius: '12px',
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.09)',
+                      overflow: 'hidden',
+                      minWidth: '136px',
+                      zIndex: 200,
                     }}
                   >
-                    {loc.toUpperCase()}
-                  </Link>
-                ))}
+                    <Link
+                      href={pathname}
+                      locale="en"
+                      onClick={() => setLangOpen(false)}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        padding: '10px 14px',
+                        fontFamily: 'system-ui, sans-serif',
+                        fontSize: '13px',
+                        fontWeight: locale === 'en' ? 600 : 500,
+                        color: locale === 'en' ? '#111' : '#555',
+                        textDecoration: 'none',
+                        background: locale === 'en' ? 'rgba(0,0,0,0.04)' : 'transparent',
+                      }}
+                    >
+                      English
+                      {locale === 'en' && (
+                        <span style={{ color: '#FF6A32', fontSize: '11px' }}>✓</span>
+                      )}
+                    </Link>
+                    <Link
+                      href={pathname}
+                      locale="fa"
+                      onClick={() => setLangOpen(false)}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        padding: '10px 14px',
+                        fontFamily: "'Noto Naskh Arabic', serif",
+                        fontSize: '13px',
+                        fontWeight: locale === 'fa' ? 600 : 500,
+                        color: locale === 'fa' ? '#111' : '#555',
+                        textDecoration: 'none',
+                        background: locale === 'fa' ? 'rgba(0,0,0,0.04)' : 'transparent',
+                        borderTop: '0.5px solid rgba(0,0,0,0.06)',
+                      }}
+                    >
+                      فارسی
+                      {locale === 'fa' && (
+                        <span style={{ color: '#FF6A32', fontSize: '11px', fontFamily: 'system-ui' }}>✓</span>
+                      )}
+                    </Link>
+                  </div>
+                )}
               </div>
 
               {/* CTA */}
@@ -219,7 +292,22 @@ export default function Navigation() {
                 gap: '8px',
               }}
             >
-              {/* Locale switcher mobile */}
+              {/* Language section label */}
+              <span
+                style={{
+                  padding: '0 8px',
+                  fontFamily: 'system-ui, sans-serif',
+                  fontSize: '10px',
+                  fontWeight: 600,
+                  color: '#999',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                }}
+              >
+                Language
+              </span>
+
+              {/* Locale buttons */}
               <div style={{ display: 'flex', gap: '8px' }}>
                 <Link
                   href={pathname}

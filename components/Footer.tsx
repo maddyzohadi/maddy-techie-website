@@ -138,26 +138,44 @@ export default async function Footer() {
           {/* Locale switcher + legal */}
           <div className="flex items-center gap-5">
 
-            {/* Locale */}
-            <div
-              className="flex items-center gap-0.5 p-0.5 rounded-full"
-              style={{ background: 'rgba(247,243,236,0.08)', border: `0.5px solid ${BORDER}` }}
-            >
-              {(['en', 'fa'] as const).map((loc) => (
-                <Link
-                  key={loc}
-                  href="/"
-                  locale={loc}
-                  className="px-3 py-1 text-xs font-ui font-semibold transition-all duration-200 rounded-full"
-                  style={
-                    locale === loc
-                      ? { background: '#FF6A32', color: '#fff' }
-                      : { color: '#B8B0A7' }
-                  }
-                >
-                  {loc.toUpperCase()}
-                </Link>
-              ))}
+            {/* Language */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span
+                style={{
+                  fontFamily: 'system-ui, sans-serif',
+                  fontSize: '11px',
+                  color: 'rgba(247,243,236,0.35)',
+                }}
+              >
+                Language:
+              </span>
+              <Link
+                href="/"
+                locale="en"
+                style={{
+                  fontFamily: 'system-ui, sans-serif',
+                  fontSize: '11px',
+                  fontWeight: locale === 'en' ? 600 : 400,
+                  color: locale === 'en' ? '#FF6A32' : '#B8B0A7',
+                  textDecoration: 'none',
+                }}
+              >
+                English
+              </Link>
+              <span style={{ color: 'rgba(247,243,236,0.20)', fontSize: '11px' }}>|</span>
+              <Link
+                href="/"
+                locale="fa"
+                style={{
+                  fontFamily: "'Noto Naskh Arabic', serif",
+                  fontSize: '12px',
+                  fontWeight: locale === 'fa' ? 600 : 400,
+                  color: locale === 'fa' ? '#FF6A32' : '#B8B0A7',
+                  textDecoration: 'none',
+                }}
+              >
+                فارسی
+              </Link>
             </div>
 
             {/* Legal */}
