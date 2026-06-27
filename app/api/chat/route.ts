@@ -1,48 +1,49 @@
 import { NextRequest, NextResponse } from 'next/server'
-import Anthropic from '@anthropic-ai/sdk'
+import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai'
+import type { FunctionDeclaration } from '@google/generative-ai'
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-// ── Anthropic client ──────────────────────────────────────────────────────
+// ── Gemini client ─────────────────────────────────────────────────────────
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY ?? '' })
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY ?? '')
 
 // ── Supabase admin client (service role bypasses RLS) ─────────────────────
 
 function getSupabase(): SupabaseClient | null {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY
-    || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY   // fallback while service key isn't set
+    || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
   if (!url || !key) return null
   return createClient(url, key, { auth: { persistSession: false } })
 }
 
-// ── Tool definitions ──────────────────────────────────────────────────────
+// ── Tool definitions (Gemini function declarations) ───────────────────────
 
-const TOOLS: Anthropic.Tool[] = [
+const FUNCTION_DECLARATIONS = [
   {
     name: 'capture_lead',
     description:
-      "Save a visitor's name and email when they genuinely want to work together, book a service, or get personal help. " +
-      'Always ask for their name and email naturally in the conversation first. ' +
+      "Save a visitor's name and email when they genuinely want to work together, book a service, " +
+      'or get personal help. Always ask for their name and email naturally in the conversation first. ' +
       'Do NOT call this tool unless you already have both from the conversation.',
-    input_schema: {
-      type: 'object' as const,
+    parameters: {
+      type: SchemaType.OBJECT,
       properties: {
         name: {
-          type: 'string',
+          type: SchemaType.STRING,
           description: 'Full name of the visitor',
         },
         email: {
-          type: 'string',
+          type: SchemaType.STRING,
           description: 'Email address',
         },
         project_type: {
-          type: 'string',
-          description: 'What they want help with — e.g. "AI workflow setup", "automation training", "custom project"',
+          type: SchemaType.STRING,
+          description: 'What they want help with — e.g. "AI workflow setup", "automation training"',
         },
         notes: {
-          type: 'string',
-          description: 'One-sentence summary of their goal or situation from the conversation',
+          type: SchemaType.STRING,
+          description: 'One-sentence summary of their goal from the conversation',
         },
       },
       required: ['name', 'email'],
@@ -51,13 +52,13 @@ const TOOLS: Anthropic.Tool[] = [
   {
     name: 'check_enrollment_status',
     description:
-      "Check whether someone has previously been in touch or registered. " +
+      'Check whether someone has previously been in touch or registered. ' +
       'Use only when the user explicitly asks if their details are on file.',
-    input_schema: {
-      type: 'object' as const,
+    parameters: {
+      type: SchemaType.OBJECT,
       properties: {
         email: {
-          type: 'string',
+          type: SchemaType.STRING,
           description: 'Email address to look up',
         },
       },
@@ -126,17 +127,10 @@ const SYSTEM_FA = `تو دستیار هوش مصنوعی مددی هستی در 
 ۳. عوامل هوش مصنوعی — حافظه، گردش‌کارهای چندمرحله‌ای
 ۴. پروژه‌های گردش‌کار — سیستم پیگیری مشتری، برنامه‌ریز محتوا، خلاصه‌ساز ایمیل
 
-گردش‌کارهایی که می‌توانی پیشنهاد دهی:
-- فرم ← گوگل شیت ← ایمیل خودکار (بهترین گردش‌کار اول برای مبتدیان)
-- دستیار مرتب‌سازی ایمیل و پیش‌نویس پاسخ
-- سیستم پیگیری مشتری برای کسب‌وکارهای کوچک
-- برنامه‌ریز محتوا با هوش مصنوعی
-- ابزار خلاصه‌سازی اسناد
-
 وقتی از ابزار capture_lead استفاده کن:
 - کاربر می‌خواهد پروژه شروع کند، جلسه رزرو کند یا کمک شخصی بگیرد
 - ابتدا نام و ایمیل را به صورت طبیعی در مکالمه بپرس — تا هر دو را نداری ابزار را صدا نزن
-- بعد از ثبت: تأیید گرم ("ممنون [نام]! مددی به زودی با تو در تماس خواهد بود.") و بپرس آیا چیز دیگری هست
+- بعد از ثبت: تأیید گرم ("ممنون [نام]! مددی به زودی با تو در تماس خواهد بود.")
 
 لحن برند:
 - جملات کوتاه و روشن. بدون اصطلاحات فنی پیچیده.
@@ -163,25 +157,26 @@ interface ChatRequest {
 
 async function executeTool(
   toolName:  string,
-  input:     Record<string, string>,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  args:      Record<string, any>,
   sessionId: string,
   locale:    string,
-): Promise<string> {
+): Promise<Record<string, unknown>> {
   const supabase = getSupabase()
 
   if (toolName === 'capture_lead') {
     if (supabase) {
       const { error } = await supabase.from('leads').insert({
         session_id:   sessionId,
-        name:         input.name,
-        email:        input.email,
-        project_type: input.project_type ?? null,
-        notes:        input.notes ?? null,
+        name:         args.name,
+        email:        args.email,
+        project_type: args.project_type ?? null,
+        notes:        args.notes ?? null,
         locale,
       })
-      if (error) console.error('[capture_lead] Supabase insert error:', error.message)
+      if (error) console.error('[capture_lead] insert error:', error.message)
     }
-    return JSON.stringify({ success: true, name: input.name })
+    return { success: true, name: args.name }
   }
 
   if (toolName === 'check_enrollment_status') {
@@ -189,17 +184,17 @@ async function executeTool(
       const { data } = await supabase
         .from('leads')
         .select('created_at, project_type')
-        .eq('email', input.email)
+        .eq('email', args.email)
         .order('created_at', { ascending: false })
         .limit(1)
       if (data && data.length > 0) {
-        return JSON.stringify({ found: true, project_type: data[0].project_type, since: data[0].created_at })
+        return { found: true, project_type: data[0].project_type, since: data[0].created_at }
       }
     }
-    return JSON.stringify({ found: false })
+    return { found: false }
   }
 
-  return JSON.stringify({ error: 'unknown_tool' })
+  return { error: 'unknown_tool' }
 }
 
 // ── Supabase memory helpers ───────────────────────────────────────────────
@@ -233,8 +228,8 @@ async function getOrCreateConversation(
 }
 
 async function loadHistory(
-  supabase:        SupabaseClient,
-  conversationId:  string,
+  supabase:       SupabaseClient,
+  conversationId: string,
 ): Promise<{ role: 'user' | 'assistant'; content: string }[]> {
   try {
     const { data } = await supabase
@@ -268,8 +263,8 @@ async function persistMessages(
 // ── Route handler ─────────────────────────────────────────────────────────
 
 export async function POST(req: NextRequest) {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    console.error('ANTHROPIC_API_KEY is not set')
+  if (!process.env.GEMINI_API_KEY) {
+    console.error('GEMINI_API_KEY is not set')
     return NextResponse.json({ error: 'AI service is not configured.' }, { status: 500 })
   }
 
@@ -292,7 +287,7 @@ export async function POST(req: NextRequest) {
   const systemPrompt = locale === 'fa' ? SYSTEM_FA : SYSTEM_EN
   const userText     = message.trim()
 
-  // ── Load history from Supabase (long-term memory) ──────────────
+  // ── Load history from Supabase ──────────────────────────────────
   const supabase = getSupabase()
   let conversationId: string | null = null
   let history: { role: 'user' | 'assistant'; content: string }[] = []
@@ -304,79 +299,63 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // Fall back to client-sent history if Supabase is unavailable
   if (history.length === 0 && clientHistory.length > 0) {
     history = clientHistory.slice(-12)
   }
 
-  // ── Call Claude with tool support ───────────────────────────────
+  // ── Call Gemini ───────────────────────────────────────────────────
   let reply        = ''
   let leadCaptured = false
 
   try {
-    const thread: Anthropic.MessageParam[] = [
-      ...history.map(m => ({ role: m.role as 'user' | 'assistant', content: m.content })),
-      { role: 'user', content: userText },
-    ]
+    // Gemini history uses 'model' instead of 'assistant'
+    const geminiHistory = history.map(m => ({
+      role:  m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: m.content }],
+    }))
 
-    let response = await anthropic.messages.create({
-      model:      'claude-sonnet-4-6',
-      max_tokens: 1024,
-      system:     systemPrompt,
-      tools:      TOOLS,
-      messages:   thread,
+    const model = genAI.getGenerativeModel({
+      model:             'gemini-1.5-flash',
+      systemInstruction: systemPrompt,
+      tools:             [{ functionDeclarations: FUNCTION_DECLARATIONS as unknown as FunctionDeclaration[] }],
     })
 
-    // Tool-use loop (single pass — chatbot tools rarely chain)
-    if (response.stop_reason === 'tool_use') {
-      const toolBlock = response.content.find(
-        (b): b is Anthropic.ToolUseBlock => b.type === 'tool_use',
-      )
+    const chat = model.startChat({ history: geminiHistory })
 
-      if (toolBlock) {
-        if (toolBlock.name === 'capture_lead') leadCaptured = true
+    // First turn
+    const result1   = await chat.sendMessage(userText)
+    const response1 = result1.response
+    const calls     = response1.functionCalls()
 
-        const toolResult = await executeTool(
-          toolBlock.name,
-          toolBlock.input as Record<string, string>,
-          sessionId,
-          locale,
-        )
+    if (calls && calls.length > 0) {
+      // Execute the first tool call
+      const call = calls[0]
+      if (call.name === 'capture_lead') leadCaptured = true
 
-        // Send tool result back to get the final text response
-        response = await anthropic.messages.create({
-          model:      'claude-sonnet-4-6',
-          max_tokens: 1024,
-          system:     systemPrompt,
-          tools:      TOOLS,
-          messages:   [
-            ...thread,
-            { role: 'assistant', content: response.content },
-            {
-              role: 'user',
-              content: [{
-                type:        'tool_result' as const,
-                tool_use_id: toolBlock.id,
-                content:     toolResult,
-              }],
-            },
-          ],
-        })
-      }
+      const toolResponse = await executeTool(call.name, call.args as Record<string, string>, sessionId, locale)
+
+      // Send tool result back — Gemini continues the conversation
+      const result2   = await chat.sendMessage([{
+        functionResponse: { name: call.name, response: toolResponse },
+      }])
+
+      reply = result2.response.text().trim()
+    } else {
+      reply = response1.text().trim()
     }
 
-    const textBlock = response.content.find(
-      (b): b is Anthropic.TextBlock => b.type === 'text',
-    )
-    reply = textBlock?.text?.trim()
-      ?? (locale === 'fa'
+    if (!reply) {
+      reply = locale === 'fa'
         ? 'مشکل موقتی پیش آمد. لطفاً دوباره امتحان کنید.'
-        : "I'm having trouble responding right now. Please try again shortly.")
+        : "I'm having trouble responding right now. Please try again shortly."
+    }
 
   } catch (err: unknown) {
-    console.error('[Claude API error]', err)
+    console.error('[Gemini error]', err)
 
-    const isRate = err instanceof Anthropic.APIError && err.status === 429
+    const msg = err instanceof Error ? err.message : ''
+    const isRate = msg.includes('429') || msg.toLowerCase().includes('quota')
+
     if (isRate) {
       return NextResponse.json(
         { error: locale === 'fa'
