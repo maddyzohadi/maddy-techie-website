@@ -303,7 +303,7 @@
     "motto": "Learn AI. Automate work. No code."
   },
   "aiAssistant": {
-    "welcome": "Hi, I'm Maddy AI Assistant\n\nTell me what you're trying to learn, simplify, or build\n\nI'll help you find a clear next step",
+    "welcome": "Hi! What would you like to simplify today?",
     "placeholder": "Ask about AI, automation, or the training…",
     "disclaimer": "AI assistant · For guidance & workflow suggestions only.",
     "disclaimerNote": "Not a substitute for professional advice.",

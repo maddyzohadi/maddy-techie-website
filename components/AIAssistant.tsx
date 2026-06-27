@@ -25,36 +25,8 @@ async function sendMessageToApi(
   return data.reply as string
 }
 
-function QuickPill({ label, onSelect }: { label: string; onSelect: (t: string) => void }) {
-  const [hovered, setHovered] = useState(false)
-  return (
-    <button
-      type="button"
-      onClick={() => onSelect(label)}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="text-left font-ui text-xs rounded-xl px-3 py-2 transition-all duration-150 cursor-pointer"
-      style={{
-        background: hovered ? '#FFF8F1' : '#FFFFFF',
-        border: '0.5px solid #E7DED2',
-        color: '#111111',
-      }}
-    >
-      {label}
-    </button>
-  )
-}
-
 export default function AIAssistant() {
   const t = useTranslations('aiAssistant')
-
-  const starters = [
-    t('starter0'),
-    t('starter1'),
-    t('starter2'),
-    t('starter3'),
-    t('starter4'),
-  ]
 
   const [isOpen, setIsOpen]       = useState(false)
   const [messages, setMessages]   = useState<Message[]>([
@@ -260,23 +232,6 @@ export default function AIAssistant() {
 
             <div ref={bottomRef} />
           </div>
-
-          {/* Quick question pills */}
-          {messages.length === 1 && !isLoading && (
-            <div
-              className="px-3 pb-2 pt-2 flex-shrink-0"
-              style={{ borderTop: '0.5px solid #E7DED2', background: '#F7F3EC' }}
-            >
-              <p className="font-ui text-xs mb-2.5 px-0.5" style={{ color: 'rgba(17,17,17,0.45)' }}>
-                {t('quickStart')}
-              </p>
-              <div className="flex flex-col gap-1.5">
-                {starters.map((q) => (
-                  <QuickPill key={q} label={q} onSelect={sendMessage} />
-                ))}
-              </div>
-            </div>
-          )}
 
           {/* Input bar */}
           <form
