@@ -1,142 +1,163 @@
 "use client"
 
+import { useEffect, useRef } from "react"
 import { motion } from "motion/react"
 
-// ── Dither blob ─────────────────────────────────────────────────────────────
-// SVG technique: feTurbulence generates organic noise → feColorMatrix thresholds
-// it into a binary alpha mask → that mask is applied to a dot-grid pattern fill.
-// Each blob gets a unique id so filter/mask/pattern refs don't collide on the page.
-interface DitherBlobProps {
-  id: string
-  seed: number
-  w: number
-  h: number
-  opacity?: number
-  baseFreq?: number
+// ── Smooth 2D value noise (sin-hash, no bitops) ───────────────────────────
+
+function h2(ix: number, iy: number, s: number): number {
+  const v = Math.sin(ix * 127.1 + iy * 311.7 + s * 74.3) * 43758.5453
+  return v - Math.floor(v)  // fractional part → [0, 1]
 }
 
-function DitherBlob({ id, seed, w, h, opacity = 0.20, baseFreq = 0.022 }: DitherBlobProps) {
-  const dotId      = `dot-${id}`
-  const filterId   = `flt-${id}`
-  const maskId     = `msk-${id}`
-
+function noise2(x: number, y: number, s: number = 0): number {
+  const ix = Math.floor(x), iy = Math.floor(y)
+  const fx = x - ix,        fy = y - iy
+  const ux = fx * fx * (3 - 2 * fx)   // smoothstep
+  const uy = fy * fy * (3 - 2 * fy)
   return (
-    <svg
-      width={w}
-      height={h}
-      viewBox={`0 0 ${w} ${h}`}
-      aria-hidden
-      focusable="false"
-      style={{ display: "block", overflow: "visible" }}
-    >
-      <defs>
-        {/* Dot grid — 7×7px cell, 1.1px radius dot */}
-        <pattern id={dotId} x="0" y="0" width="7" height="7" patternUnits="userSpaceOnUse">
-          <circle cx="3.5" cy="3.5" r="1.1" fill="#FF6A32" />
-        </pattern>
-
-        {/* Organic noise → binary alpha mask
-            A_out = 18 * R_noise − 10
-            Pixels where noise R > 0.555 become opaque; rest transparent.
-            Adjust seed for different shapes; baseFreq controls blob scale. */}
-        <filter id={filterId} colorInterpolationFilters="sRGB">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency={baseFreq}
-            numOctaves={4}
-            seed={seed}
-            result="noise"
-          />
-          <feColorMatrix
-            in="noise"
-            type="matrix"
-            values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  18 0 0 0 -10"
-          />
-        </filter>
-
-        <mask id={maskId}>
-          <rect width={w} height={h} fill="black" />
-          <rect width={w} height={h} fill="white" filter={`url(#${filterId})`} />
-        </mask>
-      </defs>
-
-      {/* Dot fill clipped to organic blob shape */}
-      <rect
-        width={w}
-        height={h}
-        fill={`url(#${dotId})`}
-        mask={`url(#${maskId})`}
-        fillOpacity={opacity}
-      />
-    </svg>
+    h2(ix,   iy,   s) * (1 - ux) * (1 - uy) +
+    h2(ix+1, iy,   s) * ux       * (1 - uy) +
+    h2(ix,   iy+1, s) * (1 - ux) * uy       +
+    h2(ix+1, iy+1, s) * ux       * uy
   )
 }
 
-// ── Hero ─────────────────────────────────────────────────────────────────────
+// 3-octave fractal brownian motion
+function fbm(x: number, y: number, s: number = 0): number {
+  return (
+    noise2(x,     y,     s      ) * 0.571 +
+    noise2(x * 2, y * 2, s + 100) * 0.286 +
+    noise2(x * 4, y * 4, s + 200) * 0.143
+  )
+}
+
+// ── Canvas hook ───────────────────────────────────────────────────────────
+
+function useDitherCanvas() {
+  const ref = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    const canvas = ref.current
+    if (!canvas) return
+    const ctx = canvas.getContext("2d")
+    if (!ctx) return
+
+    // Keep pixel dimensions in sync with CSS layout size
+    const syncSize = () => {
+      canvas.width  = canvas.offsetWidth
+      canvas.height = canvas.offsetHeight
+    }
+    syncSize()
+    const ro = new ResizeObserver(syncSize)
+    ro.observe(canvas)
+
+    const STEP = 8      // px between dot centres
+    const R    = 1.15   // dot radius px
+    const MAX  = 0.22   // max dot opacity
+
+    let raf: number
+    let drift = 0       // slowly increments each frame
+
+    const frame = () => {
+      const W = canvas.width
+      const H = canvas.height
+      if (!W || !H) { raf = requestAnimationFrame(frame); return }
+
+      ctx.clearRect(0, 0, W, H)
+      drift += 0.00025   // ~0.015 units/sec at 60fps → very slow drift
+
+      // Collect dots into alpha buckets to minimise fillStyle changes
+      const buckets = new Map<number, number[]>()
+
+      for (let px = 0; px <= W; px += STEP) {
+        for (let py = 0; py <= H; py += STEP) {
+          const nx = px / W   // [0, 1]
+          const ny = py / H
+
+          // Per-corner influence: 1.0 at corner, 0.0 at the cutoff radius
+          const tl = Math.max(0, 1 - Math.sqrt(nx*nx + ny*ny)                   / 0.70)
+          const br = Math.max(0, 1 - Math.sqrt((1-nx)*(1-nx) + (1-ny)*(1-ny))   / 0.58)
+          const tr = Math.max(0, 1 - Math.sqrt((1-nx)*(1-nx) + ny*ny)           / 0.36)
+
+          const corner = Math.max(tl, br, tr)
+          if (corner <= 0) continue   // outside all corner zones — skip
+
+          // Slowly drifting organic noise
+          const n = fbm(nx * 5 + drift, ny * 5, 0)
+
+          // Combine noise × corner weight; threshold low values
+          const v = n * corner * 1.45
+          if (v < 0.40) continue
+
+          // Map remainder to [0, MAX] opacity
+          const alpha = Math.min(MAX, (v - 0.40) * 0.72)
+
+          // Snap to 5% steps → only ~5 unique buckets per frame
+          const key = Math.round(alpha * 20) / 20
+          if (!buckets.has(key)) buckets.set(key, [])
+          buckets.get(key)!.push(px, py)   // flat interleaved x,y pairs
+        }
+      }
+
+      // One fillStyle + one batched path per bucket
+      for (const [key, coords] of buckets) {
+        ctx.fillStyle = `rgba(255,106,50,${key.toFixed(2)})`
+        ctx.beginPath()
+        for (let i = 0; i < coords.length; i += 2) {
+          ctx.moveTo(coords[i] + R, coords[i + 1])
+          ctx.arc(coords[i], coords[i + 1], R, 0, Math.PI * 2)
+        }
+        ctx.fill()
+      }
+
+      raf = requestAnimationFrame(frame)
+    }
+
+    raf = requestAnimationFrame(frame)
+    return () => {
+      cancelAnimationFrame(raf)
+      ro.disconnect()
+    }
+  }, [])
+
+  return ref
+}
+
+// ── Component ─────────────────────────────────────────────────────────────
+
 export default function HeroEn() {
+  const canvasRef = useDitherCanvas()
+
   return (
     <section
       className="relative min-h-screen overflow-hidden"
       style={{ background: "#F7F3EC" }}
     >
 
-      {/* ── Top-left blob — largest, anchored to corner ── */}
-      <motion.div
+      {/* Animated dither canvas — z-index 0 */}
+      <canvas
+        ref={canvasRef}
         aria-hidden
-        className="absolute -top-24 -left-24 pointer-events-none select-none"
-        style={{ willChange: "transform" }}
-        animate={{ y: [0, -22, 0], x: [0, 12, 0] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <DitherBlob id="tl" seed={3}  w={560} h={500} opacity={0.22} baseFreq={0.019} />
-      </motion.div>
+        className="absolute inset-0 w-full h-full"
+        style={{ zIndex: 0 }}
+      />
 
-      {/* ── Bottom-right blob ── */}
-      <motion.div
-        aria-hidden
-        className="absolute -bottom-24 -right-24 pointer-events-none select-none"
-        style={{ willChange: "transform" }}
-        animate={{ y: [0, 20, 0], x: [0, -14, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-      >
-        <DitherBlob id="br" seed={7}  w={480} h={440} opacity={0.18} baseFreq={0.023} />
-      </motion.div>
-
-      {/* ── Top-right accent — smaller, slower ── */}
-      <motion.div
-        aria-hidden
-        className="absolute -top-12 -right-12 pointer-events-none select-none"
-        style={{ willChange: "transform" }}
-        animate={{ y: [0, -16, 0] }}
-        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-      >
-        <DitherBlob id="tr" seed={11} w={320} h={300} opacity={0.14} baseFreq={0.028} />
-      </motion.div>
-
-      {/* ── Bottom-left whisper ── */}
-      <motion.div
-        aria-hidden
-        className="absolute -bottom-10 left-10 pointer-events-none select-none"
-        style={{ willChange: "transform" }}
-        animate={{ y: [0, 14, 0], x: [0, 8, 0] }}
-        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 6 }}
-      >
-        <DitherBlob id="bl" seed={19} w={260} h={240} opacity={0.12} baseFreq={0.031} />
-      </motion.div>
-
-      {/* ── Center glow — keeps text readable over the dot pattern ── */}
+      {/* Radial cream glow — keeps center text area clean — z-index 1 */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
+          zIndex: 1,
           background:
-            "radial-gradient(ellipse 68% 58% at 50% 50%, rgba(247,243,236,0.92) 0%, rgba(247,243,236,0.55) 55%, transparent 100%)",
+            "radial-gradient(ellipse 64% 56% at 50% 50%, rgba(247,243,236,0.96) 0%, rgba(247,243,236,0.48) 58%, transparent 100%)",
         }}
       />
 
-      {/* ── Content — unchanged ─────────────────────────────────────────── */}
+      {/* Content — z-index 10 */}
       <div
-        className="relative z-10 flex min-h-screen items-center justify-center px-6 pt-[68px]"
+        className="relative flex min-h-screen items-center justify-center px-6 pt-[68px]"
+        style={{ zIndex: 10 }}
         dir="ltr"
       >
         <div className="text-center w-full max-w-2xl mx-auto">
@@ -157,21 +178,14 @@ export default function HeroEn() {
             >
               <span
                 style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: "50%",
-                  background: "#FF6A32",
-                  display: "inline-block",
-                  flexShrink: 0,
+                  width: 6, height: 6, borderRadius: "50%",
+                  background: "#FF6A32", display: "inline-block", flexShrink: 0,
                 }}
               />
               <span
                 style={{
-                  fontFamily: "system-ui, sans-serif",
-                  fontSize: "11px",
-                  color: "rgba(17,17,17,0.55)",
-                  letterSpacing: "0.08em",
-                  fontWeight: 500,
+                  fontFamily: "system-ui, sans-serif", fontSize: "11px",
+                  color: "rgba(17,17,17,0.55)", letterSpacing: "0.08em", fontWeight: 500,
                 }}
               >
                 AI for work &amp; productivity
