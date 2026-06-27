@@ -1,71 +1,276 @@
 import { NextRequest, NextResponse } from 'next/server'
+import Anthropic from '@anthropic-ai/sdk'
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-// Change the model here — the frontend never sees this value
-const OPENROUTER_MODEL = 'qwen/qwen3-next-80b-a3b-instruct:free'
-const OPENROUTER_URL   = 'https://openrouter.ai/api/v1/chat/completions'
+// ── Anthropic client ──────────────────────────────────────────────────────
 
-const SYSTEM_PROMPT = `You are the Maddy AI Assistant for Maddy the Techie — an AI and no-code automation education brand. You help non-technical professionals, creators, and small business owners understand what AI and automation can do for their daily work.
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY ?? '' })
+
+// ── Supabase admin client (service role bypasses RLS) ─────────────────────
+
+function getSupabase(): SupabaseClient | null {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
+    || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY   // fallback while service key isn't set
+  if (!url || !key) return null
+  return createClient(url, key, { auth: { persistSession: false } })
+}
+
+// ── Tool definitions ──────────────────────────────────────────────────────
+
+const TOOLS: Anthropic.Tool[] = [
+  {
+    name: 'capture_lead',
+    description:
+      "Save a visitor's name and email when they genuinely want to work together, book a service, or get personal help. " +
+      'Always ask for their name and email naturally in the conversation first. ' +
+      'Do NOT call this tool unless you already have both from the conversation.',
+    input_schema: {
+      type: 'object' as const,
+      properties: {
+        name: {
+          type: 'string',
+          description: 'Full name of the visitor',
+        },
+        email: {
+          type: 'string',
+          description: 'Email address',
+        },
+        project_type: {
+          type: 'string',
+          description: 'What they want help with — e.g. "AI workflow setup", "automation training", "custom project"',
+        },
+        notes: {
+          type: 'string',
+          description: 'One-sentence summary of their goal or situation from the conversation',
+        },
+      },
+      required: ['name', 'email'],
+    },
+  },
+  {
+    name: 'check_enrollment_status',
+    description:
+      "Check whether someone has previously been in touch or registered. " +
+      'Use only when the user explicitly asks if their details are on file.',
+    input_schema: {
+      type: 'object' as const,
+      properties: {
+        email: {
+          type: 'string',
+          description: 'Email address to look up',
+        },
+      },
+      required: ['email'],
+    },
+  },
+]
+
+// ── Bilingual system prompts ──────────────────────────────────────────────
+
+const SYSTEM_EN = `You are the Maddy AI Assistant on maddythetechie.com — an AI education and no-code automation brand that helps non-technical professionals work smarter.
+
+LANGUAGE: Always respond in English.
 
 Your role:
-- Answer questions about AI, no-code automation, and the Maddy the Techie training
-- Recommend practical beginner workflows based on the user's role or task
-- Explain AI and automation concepts in plain, clear English
-- Guide users toward the Training, Templates, or Starter Kit sections when appropriate
+- Answer questions about AI, automation, and Maddy the Techie's training programs
+- Suggest practical, beginner-friendly workflows based on what the user describes
+- Guide users toward the right training module, template, or the free Starter Kit
+- Capture contact info with the capture_lead tool when someone wants personal help or to start a project
 
-The training has four parts:
-1. Automation Foundations — triggers, actions, workflow logic, no-code tools (Make, Zapier)
-2. AI for Work — prompting, emails, reports, research, limitations and safety
-3. AI Agents & Smart Systems — assistant vs. agent, memory, multi-step workflows
-4. Workflow Projects — lead follow-up system, content planning, email summary, report generator
+Training programs:
+1. Automation Foundations — triggers, actions, no-code tools (Make, Zapier)
+2. AI for Work — prompting, emails, reports, research, AI safety
+3. AI Agents & Smart Systems — memory, multi-step workflows, assistant vs. agent
+4. Workflow Projects — lead follow-up system, content planner, email summary, report generator
 
-Practical workflow examples you can recommend:
-- Form → Google Sheets → auto email (great first workflow)
-- Email assistant that drafts replies
+Practical workflows you can recommend:
+- Form → Google Sheets → auto email reply (ideal first workflow for beginners)
+- Email sorting and draft reply assistant
 - Lead follow-up automation for small businesses
-- Content planning system for creators
+- Content calendar and post planner with AI
 - Weekly report generator using AI + spreadsheet data
-- Document summary workflow
+- Document summary and Q&A workflow
 
-Brand voice rules:
-- Short, clear sentences. No buzzwords or tech jargon.
-- Friendly, direct, and practical — not hyped or salesy.
-- Use "you" directly. Speak like a knowledgeable, patient guide.
-- When you must use a technical term, explain it in one plain sentence.
-- Responses should be 2–4 short paragraphs at most. Be concise.
+When to use capture_lead:
+- User wants to start a project, book a session, or hire Maddy for custom work
+- User asks about pricing or how to get started with personal help
+- First ask for their name and email naturally — do not call the tool until you have both
+- After capturing: confirm warmly ("Thanks [name]! Maddy will be in touch soon.") then ask if there's anything else
+
+Brand voice:
+- Short, clear sentences. No buzzwords or jargon.
+- Friendly, direct, and practical — never hyped or salesy.
+- Responses: 2–4 short paragraphs max. Be concise.
+- Speak directly with "you". Think: knowledgeable, patient guide.
+- If you use a technical term, explain it immediately in plain language.
 
 Hard rules:
-- You are an AI assistant — do not claim to be human.
-- Do not give legal, medical, or financial advice.
-- Do not ask for personal or sensitive information.
-- Do not recommend tools outside the no-code / AI automation space unless directly asked.
-- If a user seems ready to start, point them to "Start Learning" or the free Starter Kit.`
+- You are an AI — never claim to be human
+- No legal, medical, or financial advice
+- Only collect name and email for lead capture — nothing else personal`
 
-interface HistoryMessage {
-  role: 'user' | 'assistant'
-  content: string
-}
+const SYSTEM_FA = `تو دستیار هوش مصنوعی مددی هستی در سایت maddythetechie.com — یک برند آموزشی هوش مصنوعی و اتوماسیون بدون کد برای متخصصان غیرفنی.
+
+زبان: همیشه به فارسی پاسخ بده. حتی اگر کاربر به زبان دیگری بنویسد، پاسخ تو باید فارسی باشد.
+
+نقش تو:
+- پاسخ به سوالات درباره هوش مصنوعی، اتوماسیون و برنامه‌های آموزشی مددی
+- پیشنهاد گردش‌کارهای عملی و مبتدی‌پسند بر اساس نیاز کاربر
+- راهنمایی کاربران به آموزش مناسب، قالب‌ها یا کیت شروع رایگان
+- ثبت اطلاعات تماس با ابزار capture_lead وقتی کاربر کمک شخصی یا شروع پروژه می‌خواهد
+
+برنامه‌های آموزشی:
+۱. پایه‌های اتوماسیون — تریگر، اکشن، ابزارهای بدون کد (Make، Zapier)
+۲. هوش مصنوعی برای کار — پرامپت‌نویسی، ایمیل، گزارش، تحقیق
+۳. عوامل هوش مصنوعی — حافظه، گردش‌کارهای چندمرحله‌ای
+۴. پروژه‌های گردش‌کار — سیستم پیگیری مشتری، برنامه‌ریز محتوا، خلاصه‌ساز ایمیل
+
+گردش‌کارهایی که می‌توانی پیشنهاد دهی:
+- فرم ← گوگل شیت ← ایمیل خودکار (بهترین گردش‌کار اول برای مبتدیان)
+- دستیار مرتب‌سازی ایمیل و پیش‌نویس پاسخ
+- سیستم پیگیری مشتری برای کسب‌وکارهای کوچک
+- برنامه‌ریز محتوا با هوش مصنوعی
+- ابزار خلاصه‌سازی اسناد
+
+وقتی از ابزار capture_lead استفاده کن:
+- کاربر می‌خواهد پروژه شروع کند، جلسه رزرو کند یا کمک شخصی بگیرد
+- ابتدا نام و ایمیل را به صورت طبیعی در مکالمه بپرس — تا هر دو را نداری ابزار را صدا نزن
+- بعد از ثبت: تأیید گرم ("ممنون [نام]! مددی به زودی با تو در تماس خواهد بود.") و بپرس آیا چیز دیگری هست
+
+لحن برند:
+- جملات کوتاه و روشن. بدون اصطلاحات فنی پیچیده.
+- دوستانه، مستقیم و کاربردی.
+- پاسخ‌ها حداکثر ۲-۴ پاراگراف کوتاه.
+- مستقیم با "تو" صحبت کن. مثل یک راهنمای صبور و دانا.
+- اگر اصطلاح فنی به‌کار بردی، بلافاصله توضیح ساده بده.
+
+قوانین سخت:
+- تو هوش مصنوعی هستی — هرگز ادعا نکن انسان هستی
+- مشاوره حقوقی، پزشکی یا مالی نده
+- فقط نام و ایمیل را برای ثبت اطلاعات درخواست کن`
+
+// ── Types ─────────────────────────────────────────────────────────────────
 
 interface ChatRequest {
-  message: string
-  history: HistoryMessage[]
+  message:   string
+  sessionId: string
+  locale?:   'en' | 'fa'
+  history?:  { role: 'user' | 'assistant'; content: string }[]
 }
 
-interface OpenRouterResponse {
-  choices: {
-    message: {
-      content: string
+// ── Tool executor ─────────────────────────────────────────────────────────
+
+async function executeTool(
+  toolName:  string,
+  input:     Record<string, string>,
+  sessionId: string,
+  locale:    string,
+): Promise<string> {
+  const supabase = getSupabase()
+
+  if (toolName === 'capture_lead') {
+    if (supabase) {
+      const { error } = await supabase.from('leads').insert({
+        session_id:   sessionId,
+        name:         input.name,
+        email:        input.email,
+        project_type: input.project_type ?? null,
+        notes:        input.notes ?? null,
+        locale,
+      })
+      if (error) console.error('[capture_lead] Supabase insert error:', error.message)
     }
-  }[]
+    return JSON.stringify({ success: true, name: input.name })
+  }
+
+  if (toolName === 'check_enrollment_status') {
+    if (supabase) {
+      const { data } = await supabase
+        .from('leads')
+        .select('created_at, project_type')
+        .eq('email', input.email)
+        .order('created_at', { ascending: false })
+        .limit(1)
+      if (data && data.length > 0) {
+        return JSON.stringify({ found: true, project_type: data[0].project_type, since: data[0].created_at })
+      }
+    }
+    return JSON.stringify({ found: false })
+  }
+
+  return JSON.stringify({ error: 'unknown_tool' })
 }
+
+// ── Supabase memory helpers ───────────────────────────────────────────────
+
+async function getOrCreateConversation(
+  supabase:  SupabaseClient,
+  sessionId: string,
+  locale:    string,
+): Promise<string | null> {
+  try {
+    const { data: existing } = await supabase
+      .from('conversations')
+      .select('id')
+      .eq('session_id', sessionId)
+      .maybeSingle()
+
+    if (existing) return existing.id as string
+
+    const { data: created, error } = await supabase
+      .from('conversations')
+      .insert({ session_id: sessionId, locale })
+      .select('id')
+      .single()
+
+    if (error) { console.error('[conversations] insert error:', error.message); return null }
+    return (created?.id as string) ?? null
+  } catch (e) {
+    console.error('[getOrCreateConversation]', e)
+    return null
+  }
+}
+
+async function loadHistory(
+  supabase:        SupabaseClient,
+  conversationId:  string,
+): Promise<{ role: 'user' | 'assistant'; content: string }[]> {
+  try {
+    const { data } = await supabase
+      .from('messages')
+      .select('role, content')
+      .eq('conversation_id', conversationId)
+      .order('created_at', { ascending: true })
+      .limit(20)
+    return (data ?? []) as { role: 'user' | 'assistant'; content: string }[]
+  } catch {
+    return []
+  }
+}
+
+async function persistMessages(
+  supabase:         SupabaseClient,
+  conversationId:   string,
+  userContent:      string,
+  assistantContent: string,
+): Promise<void> {
+  try {
+    await supabase.from('messages').insert([
+      { conversation_id: conversationId, role: 'user',      content: userContent },
+      { conversation_id: conversationId, role: 'assistant', content: assistantContent },
+    ])
+  } catch (e) {
+    console.error('[persistMessages]', e)
+  }
+}
+
+// ── Route handler ─────────────────────────────────────────────────────────
 
 export async function POST(req: NextRequest) {
-  const apiKey = process.env.OPENROUTER_API_KEY
-  if (!apiKey) {
-    console.error('OPENROUTER_API_KEY is not set')
-    return NextResponse.json(
-      { error: 'AI service is not configured.' },
-      { status: 500 }
-    )
+  if (!process.env.ANTHROPIC_API_KEY) {
+    console.error('ANTHROPIC_API_KEY is not set')
+    return NextResponse.json({ error: 'AI service is not configured.' }, { status: 500 })
   }
 
   let body: ChatRequest
@@ -75,82 +280,124 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid request body.' }, { status: 400 })
   }
 
-  const { message, history = [] } = body
+  const { message, sessionId, locale = 'en', history: clientHistory = [] } = body
 
-  if (!message || typeof message !== 'string' || !message.trim()) {
+  if (!message?.trim()) {
     return NextResponse.json({ error: 'Message is required.' }, { status: 400 })
   }
-
-  // Build the message array: system + capped history + current user message
-  const recentHistory = history.slice(-12) // keep last 6 turns (12 messages)
-  const messages = [
-    { role: 'system', content: SYSTEM_PROMPT },
-    ...recentHistory,
-    { role: 'user', content: message.trim() },
-  ]
-
-  let openRouterRes: Response
-  try {
-    openRouterRes = await fetch(OPENROUTER_URL, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-        'HTTP-Referer': 'https://maddythetechie.com',
-        'X-Title': 'Maddy the Techie',
-      },
-      body: JSON.stringify({
-        model: OPENROUTER_MODEL,
-        messages,
-      }),
-    })
-  } catch (err) {
-    console.error('OpenRouter fetch failed:', err)
-    return NextResponse.json(
-      { error: 'Could not reach AI service. Please try again.' },
-      { status: 502 }
-    )
+  if (!sessionId) {
+    return NextResponse.json({ error: 'sessionId is required.' }, { status: 400 })
   }
 
-  if (!openRouterRes.ok) {
-    const errBody = await openRouterRes.json().catch(() => ({}))
-    console.error(`OpenRouter error ${openRouterRes.status}:`, errBody)
+  const systemPrompt = locale === 'fa' ? SYSTEM_FA : SYSTEM_EN
+  const userText     = message.trim()
 
-    // Free-tier upstream rate limit — surface a friendly, actionable message
-    const isRateLimit =
-      openRouterRes.status === 429 ||
-      String(errBody?.error?.metadata?.raw ?? '').includes('rate-limited')
+  // ── Load history from Supabase (long-term memory) ──────────────
+  const supabase = getSupabase()
+  let conversationId: string | null = null
+  let history: { role: 'user' | 'assistant'; content: string }[] = []
 
-    if (isRateLimit) {
-      const retryAfter = errBody?.error?.metadata?.retry_after_seconds
-      const seconds = retryAfter ? Math.ceil(retryAfter) : 30
+  if (supabase) {
+    conversationId = await getOrCreateConversation(supabase, sessionId, locale)
+    if (conversationId) {
+      history = await loadHistory(supabase, conversationId)
+    }
+  }
+
+  // Fall back to client-sent history if Supabase is unavailable
+  if (history.length === 0 && clientHistory.length > 0) {
+    history = clientHistory.slice(-12)
+  }
+
+  // ── Call Claude with tool support ───────────────────────────────
+  let reply        = ''
+  let leadCaptured = false
+
+  try {
+    const thread: Anthropic.MessageParam[] = [
+      ...history.map(m => ({ role: m.role as 'user' | 'assistant', content: m.content })),
+      { role: 'user', content: userText },
+    ]
+
+    let response = await anthropic.messages.create({
+      model:      'claude-sonnet-4-6',
+      max_tokens: 1024,
+      system:     systemPrompt,
+      tools:      TOOLS,
+      messages:   thread,
+    })
+
+    // Tool-use loop (single pass — chatbot tools rarely chain)
+    if (response.stop_reason === 'tool_use') {
+      const toolBlock = response.content.find(
+        (b): b is Anthropic.ToolUseBlock => b.type === 'tool_use',
+      )
+
+      if (toolBlock) {
+        if (toolBlock.name === 'capture_lead') leadCaptured = true
+
+        const toolResult = await executeTool(
+          toolBlock.name,
+          toolBlock.input as Record<string, string>,
+          sessionId,
+          locale,
+        )
+
+        // Send tool result back to get the final text response
+        response = await anthropic.messages.create({
+          model:      'claude-sonnet-4-6',
+          max_tokens: 1024,
+          system:     systemPrompt,
+          tools:      TOOLS,
+          messages:   [
+            ...thread,
+            { role: 'assistant', content: response.content },
+            {
+              role: 'user',
+              content: [{
+                type:        'tool_result' as const,
+                tool_use_id: toolBlock.id,
+                content:     toolResult,
+              }],
+            },
+          ],
+        })
+      }
+    }
+
+    const textBlock = response.content.find(
+      (b): b is Anthropic.TextBlock => b.type === 'text',
+    )
+    reply = textBlock?.text?.trim()
+      ?? (locale === 'fa'
+        ? 'مشکل موقتی پیش آمد. لطفاً دوباره امتحان کنید.'
+        : "I'm having trouble responding right now. Please try again shortly.")
+
+  } catch (err: unknown) {
+    console.error('[Claude API error]', err)
+
+    const isRate = err instanceof Anthropic.APIError && err.status === 429
+    if (isRate) {
       return NextResponse.json(
-        {
-          error: `The free AI model is briefly busy. Please try again in ${seconds} seconds — no action needed on your end.`,
-        },
-        { status: 429 }
+        { error: locale === 'fa'
+            ? 'دستیار هوش مصنوعی موقتاً مشغول است. لطفاً یک لحظه دیگر امتحان کنید.'
+            : 'The AI assistant is temporarily busy. Please try again in a moment.' },
+        { status: 429 },
       )
     }
 
     return NextResponse.json(
-      { error: 'AI service returned an error. Please try again.' },
-      { status: 502 }
+      { error: locale === 'fa'
+          ? 'مشکل فنی موقتی. لطفاً دوباره امتحان کنید.'
+          : 'Could not reach AI service. Please try again.' },
+      { status: 502 },
     )
   }
 
-  let data: OpenRouterResponse
-  try {
-    data = await openRouterRes.json()
-  } catch {
-    return NextResponse.json(
-      { error: 'Unexpected response from AI service.' },
-      { status: 502 }
-    )
+  // ── Persist turn to Supabase ────────────────────────────────────
+  if (supabase && conversationId) {
+    await persistMessages(supabase, conversationId, userText, reply)
   }
 
-  const reply =
-    data.choices?.[0]?.message?.content?.trim() ??
-    "I'm having trouble responding right now. Please try again shortly."
-
-  return NextResponse.json({ reply })
+  return NextResponse.json({ reply, leadCaptured })
 }

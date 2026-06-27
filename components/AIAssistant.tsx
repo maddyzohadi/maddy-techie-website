@@ -2,42 +2,66 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { MessageCircle, X, Send, Bot, User, Loader2 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 
 interface Message {
-  id: string
-  role: 'user' | 'assistant'
-  content: string
+  id:            string
+  role:          'user' | 'assistant'
+  content:       string
+  leadCaptured?: boolean
+}
+
+// Generate a stable session ID, persisted in localStorage
+function getSessionId(): string {
+  const KEY = 'mdt_chat_session'
+  try {
+    const stored = localStorage.getItem(KEY)
+    if (stored) return stored
+    const id = crypto.randomUUID()
+    localStorage.setItem(KEY, id)
+    return id
+  } catch {
+    return crypto.randomUUID()  // SSR / private-mode fallback
+  }
 }
 
 async function sendMessageToApi(
-  text: string,
-  history: { role: 'user' | 'assistant'; content: string }[],
-): Promise<string> {
+  text:      string,
+  history:   { role: 'user' | 'assistant'; content: string }[],
+  sessionId: string,
+  locale:    string,
+): Promise<{ reply: string; leadCaptured?: boolean }> {
   const res = await fetch('/api/chat', {
-    method: 'POST',
+    method:  'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message: text, history }),
+    body:    JSON.stringify({ message: text, history, sessionId, locale }),
   })
+
   if (res.status === 429) throw Object.assign(new Error('rate_limit'), { code: 'rate_limit' })
   if (!res.ok) throw new Error(`API error ${res.status}`)
+
   const data = await res.json()
-  return data.reply as string
+  return { reply: data.reply as string, leadCaptured: data.leadCaptured as boolean }
 }
 
 export default function AIAssistant() {
-  const t = useTranslations('aiAssistant')
+  const t      = useTranslations('aiAssistant')
+  const locale = useLocale()
 
-  const [isOpen, setIsOpen]       = useState(false)
-  const [messages, setMessages]   = useState<Message[]>([
+  const [sessionId, setSessionId]   = useState('')
+  const [isOpen,    setIsOpen]      = useState(false)
+  const [messages,  setMessages]    = useState<Message[]>([
     { id: 'welcome', role: 'assistant', content: t('welcome') },
   ])
-  const [input, setInput]         = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const [hasNew, setHasNew]       = useState(false)
+  const [input,     setInput]       = useState('')
+  const [isLoading, setIsLoading]   = useState(false)
+  const [hasNew,    setHasNew]      = useState(false)
 
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef  = useRef<HTMLInputElement>(null)
+
+  // Initialise session ID on mount (client-only)
+  useEffect(() => { setSessionId(getSessionId()) }, [])
 
   useEffect(() => {
     if (isOpen) bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -54,27 +78,37 @@ export default function AIAssistant() {
   const sendMessage = async (text: string) => {
     if (!text.trim() || isLoading) return
 
+    // History for API context (exclude welcome message)
     const history = messages
-      .filter((m) => m.id !== 'welcome')
+      .filter(m => m.id !== 'welcome')
       .slice(-12)
-      .map((m) => ({ role: m.role, content: m.content }))
+      .map(m => ({ role: m.role, content: m.content }))
 
     const userMsg: Message = { id: `u-${Date.now()}`, role: 'user', content: text.trim() }
-    setMessages((prev) => [...prev, userMsg])
+    setMessages(prev => [...prev, userMsg])
     setInput('')
     setIsLoading(true)
 
     try {
-      const reply = await sendMessageToApi(text.trim(), history)
-      setMessages((prev) => [
+      const { reply, leadCaptured } = await sendMessageToApi(
+        text.trim(),
+        history,
+        sessionId,
+        locale,
+      )
+      setMessages(prev => [
         ...prev,
-        { id: `a-${Date.now()}`, role: 'assistant', content: reply },
+        { id: `a-${Date.now()}`, role: 'assistant', content: reply, leadCaptured },
       ])
     } catch (err) {
       const isRate = err instanceof Error && err.message === 'rate_limit'
-      setMessages((prev) => [
+      setMessages(prev => [
         ...prev,
-        { id: `e-${Date.now()}`, role: 'assistant', content: isRate ? t('rateLimitError') : t('techError') },
+        {
+          id:      `e-${Date.now()}`,
+          role:    'assistant',
+          content: isRate ? t('rateLimitError') : t('techError'),
+        },
       ])
     } finally {
       setIsLoading(false)
@@ -82,7 +116,7 @@ export default function AIAssistant() {
     }
   }
 
-  const toggle = () => setIsOpen((o) => !o)
+  const toggle = () => setIsOpen(o => !o)
   const close  = () => setIsOpen(false)
 
   return (
@@ -103,24 +137,18 @@ export default function AIAssistant() {
           className="flex flex-col rounded-2xl overflow-hidden"
           style={{
             background: '#F7F3EC',
-            border: '0.5px solid #E7DED2',
-            maxHeight: 'min(500px, 82vh)',
+            border:     '0.5px solid #E7DED2',
+            maxHeight:  'min(500px, 82vh)',
           }}
         >
           {/* Header */}
           <div
             className="flex items-center gap-3 px-4 py-3 flex-shrink-0"
-            style={{
-              background: '#171717',
-              borderBottom: '0.5px solid rgba(0,0,0,0.10)',
-            }}
+            style={{ background: '#171717', borderBottom: '0.5px solid rgba(0,0,0,0.10)' }}
           >
             <div
               className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-              style={{
-                background: 'rgba(255,106,50,0.15)',
-                border: '0.5px solid rgba(255,106,50,0.35)',
-              }}
+              style={{ background: 'rgba(255,106,50,0.15)', border: '0.5px solid rgba(255,106,50,0.35)' }}
             >
               <Bot size={15} style={{ color: '#FFFFFF' }} />
             </div>
@@ -141,8 +169,8 @@ export default function AIAssistant() {
               aria-label={t('ariaClose')}
               className="p-1.5 rounded-lg transition-colors"
               style={{ color: 'rgba(255,255,255,0.60)' }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#FFFFFF')}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.60)')}
+              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.color = '#FFFFFF')}
+              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.60)')}
             >
               <X size={16} />
             </button>
@@ -151,10 +179,7 @@ export default function AIAssistant() {
           {/* Disclaimer strip */}
           <div
             className="px-4 py-2.5 flex-shrink-0"
-            style={{
-              background: 'rgba(0,0,0,0.03)',
-              borderBottom: '0.5px solid #E7DED2',
-            }}
+            style={{ background: 'rgba(0,0,0,0.03)', borderBottom: '0.5px solid #E7DED2' }}
           >
             <p className="font-ui text-xs text-center" style={{ color: 'rgba(17,17,17,0.45)' }}>
               {t('disclaimer')}{' '}
@@ -167,38 +192,54 @@ export default function AIAssistant() {
             className="flex-1 overflow-y-auto chat-scroll p-3 space-y-3"
             style={{ minHeight: 0, background: '#F7F3EC' }}
           >
-            {messages.map((msg) => (
-              <div
-                key={msg.id}
-                className={`flex gap-2 animate-fade-in ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
-              >
-                <div
-                  className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5"
-                  style={
-                    msg.role === 'assistant'
-                      ? { background: 'rgba(255,106,50,0.12)', border: '0.5px solid rgba(255,106,50,0.30)' }
-                      : { background: 'rgba(255,106,50,0.10)', border: '0.5px solid rgba(255,106,50,0.25)' }
-                  }
-                >
-                  {msg.role === 'assistant'
-                    ? <Bot  size={11} style={{ color: '#FF6A32' }} />
-                    : <User size={11} style={{ color: '#FF6A32' }} />}
+            {messages.map(msg => (
+              <div key={msg.id} className="flex flex-col gap-1">
+                <div className={`flex gap-2 animate-fade-in ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
+                  <div
+                    className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5"
+                    style={
+                      msg.role === 'assistant'
+                        ? { background: 'rgba(255,106,50,0.12)', border: '0.5px solid rgba(255,106,50,0.30)' }
+                        : { background: 'rgba(255,106,50,0.10)', border: '0.5px solid rgba(255,106,50,0.25)' }
+                    }
+                  >
+                    {msg.role === 'assistant'
+                      ? <Bot  size={11} style={{ color: '#FF6A32' }} />
+                      : <User size={11} style={{ color: '#FF6A32' }} />}
+                  </div>
+
+                  <div
+                    className="max-w-[80%] font-ui text-xs leading-relaxed whitespace-pre-line"
+                    style={{
+                      padding:    '8px 12px',
+                      color:      msg.role === 'assistant' ? '#111111' : '#FFFFFF',
+                      background: msg.role === 'assistant' ? '#FFF8F1' : '#FF6A32',
+                      border:     `0.5px solid ${msg.role === 'assistant' ? '#E7DED2' : '#FF6A32'}`,
+                      borderRadius: msg.role === 'assistant'
+                        ? '18px 18px 18px 4px'
+                        : '18px 18px 4px 18px',
+                    }}
+                  >
+                    {msg.content}
+                  </div>
                 </div>
 
-                <div
-                  className="max-w-[80%] font-ui text-xs leading-relaxed whitespace-pre-line"
-                  style={{
-                    padding: '8px 12px',
-                    color: msg.role === 'assistant' ? '#111111' : '#FFFFFF',
-                    background: msg.role === 'assistant' ? '#FFF8F1' : '#FF6A32',
-                    border: `0.5px solid ${msg.role === 'assistant' ? '#E7DED2' : '#FF6A32'}`,
-                    borderRadius: msg.role === 'assistant'
-                      ? '18px 18px 18px 4px'
-                      : '18px 18px 4px 18px',
-                  }}
-                >
-                  {msg.content}
-                </div>
+                {/* Lead captured confirmation badge */}
+                {msg.leadCaptured && (
+                  <div className="flex items-center gap-1.5 pl-8">
+                    <span
+                      className="inline-flex items-center gap-1 text-xs font-ui rounded-full px-2.5 py-1"
+                      style={{
+                        background: 'rgba(52,211,153,0.10)',
+                        border:     '0.5px solid rgba(52,211,153,0.30)',
+                        color:      '#059669',
+                      }}
+                    >
+                      <span>✓</span>
+                      <span>{locale === 'fa' ? 'اطلاعات ذخیره شد' : 'Details saved'}</span>
+                    </span>
+                  </div>
+                )}
               </div>
             ))}
 
@@ -213,13 +254,13 @@ export default function AIAssistant() {
                 <div
                   className="flex items-center gap-1.5"
                   style={{
-                    padding: '8px 12px',
-                    background: '#FFF8F1',
-                    border: '0.5px solid #E7DED2',
+                    padding:      '8px 12px',
+                    background:   '#FFF8F1',
+                    border:       '0.5px solid #E7DED2',
                     borderRadius: '18px 18px 18px 4px',
                   }}
                 >
-                  {[0, 150, 300].map((delay) => (
+                  {[0, 150, 300].map(delay => (
                     <span
                       key={delay}
                       className="w-1.5 h-1.5 rounded-full motion-safe:animate-bounce"
@@ -235,28 +276,25 @@ export default function AIAssistant() {
 
           {/* Input bar */}
           <form
-            onSubmit={(e) => { e.preventDefault(); sendMessage(input) }}
+            onSubmit={e => { e.preventDefault(); sendMessage(input) }}
             className="flex items-center gap-2 px-2 py-2 flex-shrink-0"
-            style={{
-              background: 'rgba(0,0,0,0.03)',
-              borderTop: '0.5px solid #E7DED2',
-            }}
+            style={{ background: 'rgba(0,0,0,0.03)', borderTop: '0.5px solid #E7DED2' }}
           >
             <input
               ref={inputRef}
               type="text"
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={e => setInput(e.target.value)}
               placeholder={t('placeholder')}
               disabled={isLoading}
               aria-label={t('placeholder')}
               className="flex-1 font-ui text-xs rounded-xl px-3 py-2 transition-all disabled:opacity-50 placeholder:opacity-40"
               style={{
                 background: '#FFFFFF',
-                border: '0.5px solid #E7DED2',
-                color: '#111111',
+                border:     '0.5px solid #E7DED2',
+                color:      '#111111',
                 caretColor: '#111111',
-                outline: 'none',
+                outline:    'none',
               }}
             />
             <button
@@ -283,7 +321,7 @@ export default function AIAssistant() {
         className="fixed bottom-5 right-4 sm:right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300"
         style={{
           background: isOpen ? 'rgba(255,106,50,0.10)' : '#FF6A32',
-          border: isOpen ? '0.5px solid rgba(255,106,50,0.40)' : 'none',
+          border:     isOpen ? '0.5px solid rgba(255,106,50,0.40)' : 'none',
         }}
       >
         {hasNew && !isOpen && (
@@ -302,10 +340,7 @@ export default function AIAssistant() {
         <div className="fixed bottom-7 right-20 sm:right-24 z-50 pointer-events-none">
           <div
             className="rounded-full px-3 py-1.5"
-            style={{
-              background: '#171717',
-              border: '0.5px solid rgba(0,0,0,0.10)',
-            }}
+            style={{ background: '#171717', border: '0.5px solid rgba(0,0,0,0.10)' }}
           >
             <span className="font-ui text-xs whitespace-nowrap" style={{ color: 'rgba(255,255,255,0.80)' }}>
               {t('askMaddy')}
