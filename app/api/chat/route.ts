@@ -1,68 +1,67 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai'
-import type { FunctionDeclaration } from '@google/generative-ai'
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-// ── Gemini client ─────────────────────────────────────────────────────────
+// ── OpenRouter (OpenAI-compatible) ────────────────────────────────────────
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY ?? '')
+const OR_URL   = 'https://openrouter.ai/api/v1/chat/completions'
+const OR_MODEL = 'anthropic/claude-3.5-haiku'
 
-// ── Supabase admin client (service role bypasses RLS) ─────────────────────
-
-function getSupabase(): SupabaseClient | null {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
-    || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  if (!url || !key) return null
-  return createClient(url, key, { auth: { persistSession: false } })
+async function orFetch(messages: object[], tools?: object[]): Promise<Response> {
+  return fetch(OR_URL, {
+    method: 'POST',
+    headers: {
+      Authorization:  `Bearer ${process.env.OPENROUTER_API_KEY}`,
+      'Content-Type': 'application/json',
+      'HTTP-Referer': 'https://www.maddythetechie.com',
+      'X-Title':      'Maddy the Techie',
+    },
+    body: JSON.stringify({
+      model:       OR_MODEL,
+      messages,
+      temperature: 0.7,
+      max_tokens:  600,
+      ...(tools?.length ? { tools, tool_choice: 'auto' } : {}),
+    }),
+  })
 }
 
-// ── Tool definitions (Gemini function declarations) ───────────────────────
+// ── Tool definitions (OpenAI function-calling format) ─────────────────────
 
-const FUNCTION_DECLARATIONS = [
+const TOOLS = [
   {
-    name: 'capture_lead',
-    description:
-      "Save a visitor's name and email when they genuinely want to work together, book a service, " +
-      'or get personal help. Always ask for their name and email naturally in the conversation first. ' +
-      'Do NOT call this tool unless you already have both from the conversation.',
-    parameters: {
-      type: SchemaType.OBJECT,
-      properties: {
-        name: {
-          type: SchemaType.STRING,
-          description: 'Full name of the visitor',
+    type: 'function',
+    function: {
+      name: 'capture_lead',
+      description:
+        "Save a visitor's name and email when they genuinely want to work together, book a service, " +
+        'or get personal help. Always ask for their name and email naturally in the conversation first. ' +
+        'Do NOT call this tool unless you already have both from the conversation.',
+      parameters: {
+        type: 'object',
+        properties: {
+          name:         { type: 'string', description: 'Full name of the visitor' },
+          email:        { type: 'string', description: 'Email address' },
+          project_type: { type: 'string', description: 'What they want help with — e.g. "AI workflow setup", "automation training"' },
+          notes:        { type: 'string', description: 'One-sentence summary of their goal from the conversation' },
         },
-        email: {
-          type: SchemaType.STRING,
-          description: 'Email address',
-        },
-        project_type: {
-          type: SchemaType.STRING,
-          description: 'What they want help with — e.g. "AI workflow setup", "automation training"',
-        },
-        notes: {
-          type: SchemaType.STRING,
-          description: 'One-sentence summary of their goal from the conversation',
-        },
+        required: ['name', 'email'],
       },
-      required: ['name', 'email'],
     },
   },
   {
-    name: 'check_enrollment_status',
-    description:
-      'Check whether someone has previously been in touch or registered. ' +
-      'Use only when the user explicitly asks if their details are on file.',
-    parameters: {
-      type: SchemaType.OBJECT,
-      properties: {
-        email: {
-          type: SchemaType.STRING,
-          description: 'Email address to look up',
+    type: 'function',
+    function: {
+      name: 'check_enrollment_status',
+      description:
+        'Check whether someone has previously been in touch or registered. ' +
+        'Use only when the user explicitly asks if their details are on file.',
+      parameters: {
+        type: 'object',
+        properties: {
+          email: { type: 'string', description: 'Email address to look up' },
         },
+        required: ['email'],
       },
-      required: ['email'],
     },
   },
 ]
@@ -151,6 +150,16 @@ interface ChatRequest {
   sessionId: string
   locale?:   'en' | 'fa'
   history?:  { role: 'user' | 'assistant'; content: string }[]
+}
+
+// ── Supabase admin client ─────────────────────────────────────────────────
+
+function getSupabase(): SupabaseClient | null {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
+    || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  if (!url || !key) return null
+  return createClient(url, key, { auth: { persistSession: false } })
 }
 
 // ── Tool executor ─────────────────────────────────────────────────────────
@@ -263,8 +272,8 @@ async function persistMessages(
 // ── Route handler ─────────────────────────────────────────────────────────
 
 export async function POST(req: NextRequest) {
-  if (!process.env.GEMINI_API_KEY) {
-    console.error('GEMINI_API_KEY is not set')
+  if (!process.env.OPENROUTER_API_KEY) {
+    console.error('OPENROUTER_API_KEY is not set')
     return NextResponse.json({ error: 'AI service is not configured.' }, { status: 500 })
   }
 
@@ -284,8 +293,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'sessionId is required.' }, { status: 400 })
   }
 
-  const systemPrompt = locale === 'fa' ? SYSTEM_FA : SYSTEM_EN
   const userText     = message.trim()
+  const systemPrompt = locale === 'fa' ? SYSTEM_FA : SYSTEM_EN
 
   // ── Load history from Supabase ──────────────────────────────────
   const supabase = getSupabase()
@@ -303,45 +312,54 @@ export async function POST(req: NextRequest) {
     history = clientHistory.slice(-12)
   }
 
-  // ── Call Gemini ───────────────────────────────────────────────────
+  // ── Build messages array (OpenAI format) ─────────────────────────
+  const messages = [
+    { role: 'system', content: systemPrompt },
+    ...history.map(m => ({ role: m.role, content: m.content })),
+    { role: 'user', content: userText },
+  ]
+
+  // ── Call OpenRouter ───────────────────────────────────────────────
   let reply        = ''
   let leadCaptured = false
 
   try {
-    // Gemini history uses 'model' instead of 'assistant'
-    const geminiHistory = history.map(m => ({
-      role:  m.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: m.content }],
-    }))
+    const res1  = await orFetch(messages, TOOLS)
 
-    const model = genAI.getGenerativeModel({
-      model:             'gemini-1.5-flash',
-      systemInstruction: systemPrompt,
-      tools:             [{ functionDeclarations: FUNCTION_DECLARATIONS as unknown as FunctionDeclaration[] }],
-    })
+    if (!res1.ok) {
+      const errBody = await res1.text()
+      console.error('[OpenRouter] error:', res1.status, errBody)
+      throw new Error(`openrouter_${res1.status}`)
+    }
 
-    const chat = model.startChat({ history: geminiHistory })
+    const data1 = await res1.json()
+    const choice1 = data1.choices?.[0]
 
-    // First turn
-    const result1   = await chat.sendMessage(userText)
-    const response1 = result1.response
-    const calls     = response1.functionCalls()
+    if (choice1?.finish_reason === 'tool_calls' && choice1.message?.tool_calls?.length) {
+      const toolCall = choice1.message.tool_calls[0]
+      const toolName = toolCall.function.name
+      const toolArgs = JSON.parse(toolCall.function.arguments ?? '{}')
 
-    if (calls && calls.length > 0) {
-      // Execute the first tool call
-      const call = calls[0]
-      if (call.name === 'capture_lead') leadCaptured = true
+      if (toolName === 'capture_lead') leadCaptured = true
+      const toolResult = await executeTool(toolName, toolArgs, sessionId, locale)
 
-      const toolResponse = await executeTool(call.name, call.args as Record<string, string>, sessionId, locale)
+      // Second turn with the tool result
+      const messages2 = [
+        ...messages,
+        choice1.message,
+        {
+          role:         'tool',
+          tool_call_id: toolCall.id,
+          content:      JSON.stringify(toolResult),
+        },
+      ]
 
-      // Send tool result back — Gemini continues the conversation
-      const result2   = await chat.sendMessage([{
-        functionResponse: { name: call.name, response: toolResponse },
-      }])
-
-      reply = result2.response.text().trim()
+      const res2 = await orFetch(messages2)
+      if (!res2.ok) throw new Error(`openrouter_${res2.status}`)
+      const data2 = await res2.json()
+      reply = (data2.choices?.[0]?.message?.content ?? '').trim()
     } else {
-      reply = response1.text().trim()
+      reply = (choice1?.message?.content ?? '').trim()
     }
 
     if (!reply) {
@@ -351,10 +369,10 @@ export async function POST(req: NextRequest) {
     }
 
   } catch (err: unknown) {
-    console.error('[Gemini error]', err)
+    console.error('[chat error]', err)
 
-    const msg = err instanceof Error ? err.message : ''
-    const isRate = msg.includes('429') || msg.toLowerCase().includes('quota')
+    const msg    = err instanceof Error ? err.message : ''
+    const isRate = msg.includes('429') || msg.includes('openrouter_429')
 
     if (isRate) {
       return NextResponse.json(
