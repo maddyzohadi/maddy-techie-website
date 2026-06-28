@@ -31,8 +31,8 @@ export default function MethodSection() {
     width: '40px',
     height: '40px',
     borderRadius: '10px',
-    background: 'rgba(255,106,50,0.08)',
-    border: '0.5px solid rgba(255,106,50,0.20)',
+    background: 'rgba(213,11,31,0.06)',
+    border: '0.5px solid rgba(213,11,31,0.15)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -99,7 +99,7 @@ export default function MethodSection() {
             transition={{ duration: 0.2, ease: 'easeOut' }}
           >
             <div style={iconBox}>
-              <Zap size={20} style={{ color: '#FF6A32' }} />
+              <Zap size={20} style={{ color: '#D50B1F' }} />
             </div>
             <span
               style={{
@@ -146,7 +146,7 @@ export default function MethodSection() {
             transition={{ duration: 0.2, ease: 'easeOut' }}
           >
             <div style={iconBox}>
-              <Brain size={20} style={{ color: '#FF6A32' }} />
+              <Brain size={20} style={{ color: '#D50B1F' }} />
             </div>
             <span
               style={{

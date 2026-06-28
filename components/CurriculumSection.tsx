@@ -10,7 +10,7 @@ export default function CurriculumSection() {
   const isFa = locale === 'fa'
   const [openPart, setOpenPart] = useState<number | null>(0)
 
-  const accent = { text: '#FF6A32', bg: 'rgba(255,106,50,0.08)', border: 'rgba(255,106,50,0.20)' }
+  const accent = { text: '#D50B1F', bg: 'rgba(213,11,31,0.06)', border: 'rgba(213,11,31,0.15)' }
 
   const parts = [
     { number: '01', icon: Zap,    title: t('part0title'), tagline: t('part0tagline'), items: [t('part0item0'), t('part0item1'), t('part0item2'), t('part0item3')] },
@@ -121,7 +121,7 @@ export default function CurriculumSection() {
                           className={`flex items-start gap-3 ${isFa ? 'flex-row-reverse' : ''} text-base md:text-lg`}
                           style={{ color: bodyColor }}
                         >
-                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-brand-orange" />
+                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-brand-red" />
                           <span className={isFa ? 'font-fa flex-1 text-right' : 'font-ui'}>{item}</span>
                         </li>
                       ))}

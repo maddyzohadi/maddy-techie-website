@@ -30,7 +30,7 @@ export default async function AboutSection() {
                   AI &amp; Automation Educator · Silicon Valley
                 </p>
 
-                <p className="text-sm text-[#666] leading-relaxed italic border-l-2 border-[#FF6A32] pl-3 mb-6">
+                <p className="text-sm text-[#666] leading-relaxed italic border-l-2 border-[#D50B1F] pl-3 mb-6">
                   Making AI practical for everyone who doesn&apos;t code
                 </p>
 
@@ -94,7 +94,7 @@ export default async function AboutSection() {
 
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2.5 font-ui font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-orange hover:bg-brand-coral transition-colors duration-150"
+                className="inline-flex items-center gap-2.5 font-ui font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-red hover:bg-brand-red-dark transition-colors duration-150"
               >
                 {t('ctaLabel')}
                 <ArrowRight size={16} className={locale === 'fa' ? 'rotate-180' : ''} />

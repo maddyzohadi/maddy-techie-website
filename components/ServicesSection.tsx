@@ -64,11 +64,11 @@ export default function ServicesSection() {
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
                   style={{
-                    background: 'rgba(255,106,50,0.08)',
-                    border: '0.5px solid rgba(255,106,50,0.20)',
+                    background: 'rgba(213,11,31,0.06)',
+                    border: '0.5px solid rgba(213,11,31,0.15)',
                   }}
                 >
-                  <Icon size={22} style={{ color: '#FF6A32' }} />
+                  <Icon size={22} style={{ color: '#D50B1F' }} />
                 </div>
                 <h3
                   className={`${isFa ? 'font-fa' : 'font-en'} font-semibold text-xl md:text-2xl mb-3 leading-snug`}
@@ -90,7 +90,7 @@ export default function ServicesSection() {
         <div className="text-center">
           <Link
             href="/services"
-            className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-orange hover:bg-brand-coral transition-colors duration-150`}
+            className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-red hover:bg-brand-red-dark transition-colors duration-150`}
           >
             {t('cta')}
             <ArrowRight size={16} className={isFa ? 'rotate-180' : ''} />

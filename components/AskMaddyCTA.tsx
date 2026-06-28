@@ -17,7 +17,7 @@ export default function AskMaddyCTA() {
         fontFamily:    isFa ? "'Noto Naskh Arabic', serif" : 'system-ui, sans-serif',
         fontSize:      '14px',
         fontWeight:    500,
-        color:         '#FF6A32',
+        color:         '#D50B1F',
         display:       'inline-flex',
         alignItems:    'center',
         gap:           '5px',

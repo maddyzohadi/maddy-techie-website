@@ -180,7 +180,7 @@ export default function Navigation() {
                     >
                       English
                       {locale === 'en' && (
-                        <span style={{ color: '#FF6A32', fontSize: '11px' }}>✓</span>
+                        <span style={{ color: '#D50B1F', fontSize: '11px' }}>✓</span>
                       )}
                     </Link>
                     <Link
@@ -203,7 +203,7 @@ export default function Navigation() {
                     >
                       فارسی
                       {locale === 'fa' && (
-                        <span style={{ color: '#FF6A32', fontSize: '11px', fontFamily: 'system-ui' }}>✓</span>
+                        <span style={{ color: '#D50B1F', fontSize: '11px', fontFamily: 'system-ui' }}>✓</span>
                       )}
                     </Link>
                   </div>
@@ -213,7 +213,7 @@ export default function Navigation() {
               {/* CTA */}
               <Link
                 href="/services"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-white rounded-full no-underline bg-brand-orange hover:bg-brand-coral transition-colors duration-150"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-white rounded-full no-underline bg-brand-red hover:bg-brand-red-dark transition-colors duration-150"
                 style={{ padding: '10px 22px', fontFamily: navFont }}
               >
                 {isFa ? 'شروع پروژه ←' : 'Start a Project →'}
@@ -362,7 +362,7 @@ export default function Navigation() {
               <Link
                 href="/services"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center justify-center gap-1.5 font-semibold text-white rounded-full no-underline bg-brand-orange hover:bg-brand-coral transition-colors duration-150"
+                className="flex items-center justify-center gap-1.5 font-semibold text-white rounded-full no-underline bg-brand-red hover:bg-brand-red-dark transition-colors duration-150"
                 style={{ padding: '13px 20px', fontSize: '15px', fontFamily: navFont }}
               >
                 {isFa ? 'شروع پروژه ←' : 'Start a Project →'}
