@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
 
 // Shared card shell: entrance fade-up + continuous float
 function FloatCard({
@@ -16,16 +16,17 @@ function FloatCard({
   floatDelay: number
   children:   React.ReactNode
 }) {
+  const reduced = useReducedMotion()
   return (
     <motion.div
-      initial={{ opacity: 0, y: 18 }}
+      initial={{ opacity: 0, y: reduced ? 0 : 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.65, delay: inDelay, ease: "easeOut" }}
       className={`hidden xl:block absolute pointer-events-none select-none ${pos}`}
     >
       <motion.div
-        animate={{ y: [0, -8, 0] }}
-        transition={{ duration: floatDur, repeat: Infinity, ease: "easeInOut", delay: floatDelay }}
+        animate={{ y: reduced ? 0 : [0, -6, 0] }}
+        transition={{ duration: reduced ? 0 : floatDur, repeat: reduced ? 0 : Infinity, ease: "easeInOut", delay: floatDelay }}
         style={{
           background:           "rgba(255,255,255,0.82)",
           backdropFilter:       "blur(10px)",
@@ -81,10 +82,10 @@ export default function HeroEn() {
             style={{
               writingMode:   'vertical-rl',
               transform:     'rotate(180deg)',
-              fontSize:      '10px',
+              fontSize:      '11px',
               fontWeight:    500,
-              letterSpacing: '0.14em',
-              color:         'rgba(17,17,17,0.20)',
+              letterSpacing: '0.16em',
+              color:         'rgba(17,17,17,0.32)',
               fontFamily:    'system-ui, sans-serif',
               textTransform: 'uppercase',
             }}
@@ -98,7 +99,7 @@ export default function HeroEn() {
       <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none select-none">
 
         {/* Card A — left · "Email drafted" */}
-        <FloatCard pos="left-[10%] top-[32%]" inDelay={0.8} floatDur={5.2} floatDelay={1.6}>
+        <FloatCard pos="left-[10%] top-[32%]" inDelay={0.8} floatDur={7.0} floatDelay={1.6}>
           <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
             <span style={{
               width: 8, height: 8, borderRadius: "50%", background: "#FF6A32",
@@ -112,7 +113,7 @@ export default function HeroEn() {
         </FloatCard>
 
         {/* Card B — right top · "Automation active" */}
-        <FloatCard pos="right-[10%] top-[25%]" inDelay={1.0} floatDur={5.8} floatDelay={0.4}>
+        <FloatCard pos="right-[10%] top-[25%]" inDelay={1.0} floatDur={6.5} floatDelay={0.4}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
             <span style={{
               display: "inline-block", width: 8, height: 8, borderRadius: "50%",
@@ -125,7 +126,7 @@ export default function HeroEn() {
         </FloatCard>
 
         {/* Card C — right lower · "Report ready" */}
-        <FloatCard pos="right-[10%] top-[57%]" inDelay={1.2} floatDur={4.8} floatDelay={1.0}>
+        <FloatCard pos="right-[10%] top-[57%]" inDelay={1.2} floatDur={7.8} floatDelay={1.0}>
           <p style={{ fontSize: 11, color: "rgba(17,17,17,0.38)", margin: "0 0 4px",
                       fontFamily: "system-ui, sans-serif", textTransform: "uppercase",
                       letterSpacing: "0.06em" }}>
