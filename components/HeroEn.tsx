@@ -69,6 +69,31 @@ export default function HeroEn() {
         }}
       />
 
+      {/* Editorial side labels — xl+ only */}
+      <div
+        aria-hidden
+        className="hidden xl:flex absolute left-5 top-1/2 -translate-y-1/2 flex-col gap-12 pointer-events-none select-none"
+        style={{ zIndex: 5 }}
+      >
+        {['01 Learn', '02 Build', '03 Automate'].map((text) => (
+          <span
+            key={text}
+            style={{
+              writingMode:   'vertical-rl',
+              transform:     'rotate(180deg)',
+              fontSize:      '10px',
+              fontWeight:    500,
+              letterSpacing: '0.14em',
+              color:         'rgba(17,17,17,0.20)',
+              fontFamily:    'system-ui, sans-serif',
+              textTransform: 'uppercase',
+            }}
+          >
+            {text}
+          </span>
+        ))}
+      </div>
+
       {/* ── Decorative floating workflow cards (xl+, aria-hidden) ─────── */}
       <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none select-none">
 
@@ -235,6 +260,17 @@ export default function HeroEn() {
 
         </div>
       </div>
+
+      {/* Bottom fade — softens the edge into the next section */}
+      <div
+        aria-hidden
+        className="absolute bottom-0 inset-x-0 pointer-events-none"
+        style={{
+          height:     '160px',
+          background: 'linear-gradient(to bottom, transparent, rgba(247,243,236,0.95))',
+          zIndex:     15,
+        }}
+      />
     </section>
   )
 }
