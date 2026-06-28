@@ -2,8 +2,6 @@
 
 import { motion } from "motion/react"
 
-const VIDEO_SRC = "/videos/hero.mp4"
-
 export default function HeroFa() {
   return (
     <section
@@ -11,22 +9,14 @@ export default function HeroFa() {
       style={{ background: '#F7F3EC' }}
     >
 
-      {/* Atmospheric background video */}
-      <video
-        src={VIDEO_SRC}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ opacity: 0.42 }}
-      />
-
-      {/* Cream overlay — keeps hero bright and text readable */}
+      {/* Warm orange radial bloom — matches EN hero */}
       <div
+        aria-hidden
         className="absolute inset-0 pointer-events-none"
-        style={{ background: 'rgba(247,243,236,0.60)' }}
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255,106,50,0.07) 0%, transparent 70%)",
+        }}
       />
 
       {/* Content — RTL */}
