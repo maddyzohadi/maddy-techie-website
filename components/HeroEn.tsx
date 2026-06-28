@@ -207,35 +207,18 @@ export default function HeroEn() {
               margin: "0 0 24px",
             }}
           >
-            Work Smarter. Move Faster.
+            Too Many AI Tools?
             <br />
-            <span style={{ color: "#FF6A32" }}>AI Powers</span>{" "}
-            <span style={{ color: "#5F5A54" }}>You Up.</span>
+            <span style={{ color: "#5F5A54" }}>Start With the Right One.</span>
           </motion.h1>
 
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.2, ease: "easeOut" }}
-            style={{
-              fontFamily: "system-ui, sans-serif",
-              fontSize: "17px",
-              color: "rgba(17,17,17,0.55)",
-              lineHeight: 1.75,
-              maxWidth: "460px",
-              margin: "0 auto 40px",
-            }}
-          >
-            Automate daily tasks, organize ideas, and build simple workflows without writing code.
-          </motion.p>
-
-          {/* CTAs */}
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.3, ease: "easeOut" }}
-            className="flex gap-3 flex-wrap justify-center"
+            transition={{ duration: 0.65, delay: 0.2, ease: "easeOut" }}
+            className="flex justify-center"
+            style={{ marginTop: "40px" }}
           >
             <a
               href="/contact"
@@ -243,19 +226,6 @@ export default function HeroEn() {
               style={{ padding: "13px 28px", fontFamily: "system-ui, sans-serif" }}
             >
               Start a Project →
-            </a>
-            <a
-              href="/services"
-              className="inline-flex items-center gap-2 rounded-full no-underline text-sm font-medium transition-opacity hover:opacity-70"
-              style={{
-                padding: "13px 28px",
-                fontFamily: "system-ui, sans-serif",
-                color: "rgba(17,17,17,0.55)",
-                background: "rgba(0,0,0,0.06)",
-                border: "0.5px solid rgba(0,0,0,0.10)",
-              }}
-            >
-              View Services
             </a>
           </motion.div>
 
