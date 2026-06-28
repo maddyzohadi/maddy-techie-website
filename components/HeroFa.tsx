@@ -213,32 +213,18 @@ export default function HeroFa() {
               margin: "0 0 24px",
             }}
           >
-            ساده‌سازی کارهای پیچیده با کمک هوش مصنوعی
+            ابزارهای هوش مصنوعی زیادند؟
+            <br />
+            با مسیر درست شروع کن.
           </motion.h1>
 
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.2, ease: "easeOut" }}
-            style={{
-              fontFamily: faFont,
-              fontSize: "17px",
-              color: "rgba(17,17,17,0.55)",
-              lineHeight: 1.8,
-              maxWidth: "460px",
-              margin: "0 auto 40px",
-            }}
-          >
-            کارهای روزمره، ایده‌ها و جریان‌های کاری‌ات را بدون کدنویسی ساده‌تر کن.
-          </motion.p>
-
-          {/* CTAs */}
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.3, ease: "easeOut" }}
-            className="flex gap-3 flex-wrap justify-center"
+            transition={{ duration: 0.65, delay: 0.2, ease: "easeOut" }}
+            className="flex justify-center"
+            style={{ marginTop: "40px" }}
           >
             <a
               href="/fa/contact"
@@ -246,19 +232,6 @@ export default function HeroFa() {
               style={{ padding: "13px 28px", fontFamily: faFont }}
             >
               شروع پروژه ←
-            </a>
-            <a
-              href="/fa/services"
-              className="inline-flex items-center gap-2 rounded-full no-underline text-sm font-medium transition-opacity hover:opacity-70"
-              style={{
-                padding: "13px 28px",
-                fontFamily: faFont,
-                color: "rgba(17,17,17,0.55)",
-                background: 'rgba(0,0,0,0.06)',
-                border: '0.5px solid rgba(0,0,0,0.10)',
-              }}
-            >
-              مشاهده خدمات
             </a>
           </motion.div>
 
