@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { getLocale } from 'next-intl/server'
 import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
+import RedDivider from '@/components/RedDivider'
 import ProblemSection from '@/components/ProblemSection'
 import MethodSection from '@/components/MethodSection'
 import ProcessSection from '@/components/ProcessSection'
@@ -53,13 +54,33 @@ export default async function Home() {
     <main className="min-h-screen overflow-x-hidden">
       <Navigation />
       <Hero />
+
+      {/* Divider 1 — after hero (animated scroll) */}
+      <RedDivider id="hero" animated />
+
       {!isFa && <ProblemSection />}
+
+      {/* Divider 2 — EN: problem→method | FA: hero-divider already placed, this is method→process */}
+      {!isFa && <RedDivider id="problem" />}
+
       <MethodSection />
+
+      {/* Divider 2 — FA: after method, before process */}
+      {isFa && <RedDivider id="fa2" />}
+
       <ProcessSection />
       <ServicesListSection />
       <CurriculumSection />
+
+      {/* Divider 3 — FA: before footer (last content is curriculum) */}
+      {isFa && <RedDivider id="fa-final" />}
+
       {!isFa && <ServicesSection />}
       {!isFa && <FAQSection />}
+
+      {/* Divider 3 — EN: before final CTA / about section */}
+      {!isFa && <RedDivider id="final" />}
+
       {!isFa && <AboutSection />}
       <Footer />
       <AIAssistant />

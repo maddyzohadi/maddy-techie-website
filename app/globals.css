@@ -361,3 +361,13 @@ h3 { font-size: var(--text-h3); }
   0%, 100% { box-shadow: 0 0 0 1px rgba(123,47,190,0.30); }
   50%       { box-shadow: 0 0 0 1px rgba(123,47,190,0.60); }
 }
+
+/* --- Red divider (M-chevron) -------------------------------- */
+@keyframes slide-mc {
+  from { transform: translateX(0px); }
+  to   { transform: translateX(-88px); }
+}
+
+.rda-animated {
+  animation: slide-mc 14s linear infinite;
+}

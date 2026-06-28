@@ -68,44 +68,51 @@ export default function Navigation() {
         <div style={{ maxWidth: '1480px', margin: '0 auto', padding: '0 24px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '68px' }}>
 
-            {/* Logo */}
-            <Link href="/" onClick={() => setIsOpen(false)} style={{ textDecoration: 'none', flexShrink: 0 }}>
-              <span
-                style={{
-                  fontFamily: "'DM Serif Display', serif",
-                  fontSize: '17px',
-                  fontWeight: 700,
-                  color: '#111111',
-                  letterSpacing: '-0.01em',
-                }}
-              >
-                Maddy the Techie
-              </span>
-            </Link>
-
-            {/* Desktop nav */}
-            <nav className="hidden lg:flex" style={{ alignItems: 'center', gap: '28px' }}>
-              {navLinks.map((link) => (
-                <Link
-                  key={link.key}
-                  href={link.href}
+            {/* Logo + Desktop nav — grouped left */}
+            <div className="flex items-center" style={{ gap: '32px' }}>
+              <Link href="/" onClick={() => setIsOpen(false)} style={{ textDecoration: 'none', flexShrink: 0 }}>
+                <span
                   style={{
-                    fontFamily: navFont,
-                    fontSize: '14px',
-                    fontWeight: isActive(link.href) ? 600 : 500,
-                    color: isActive(link.href) ? '#111111' : '#555',
-                    textDecoration: 'none',
-                    transition: 'color 0.15s',
-                    borderBottom: isActive(link.href) ? '1.5px solid #111111' : '1.5px solid transparent',
-                    paddingBottom: '2px',
+                    fontFamily: "'DM Serif Display', serif",
+                    fontSize: '17px',
+                    fontWeight: 700,
+                    color: '#111111',
+                    letterSpacing: '-0.01em',
                   }}
-                  onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#111111' }}
-                  onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = isActive(link.href) ? '#111111' : '#555' }}
                 >
-                  {t(link.key)}
-                </Link>
-              ))}
-            </nav>
+                  Maddy the Techie
+                </span>
+              </Link>
+
+              <nav className="hidden lg:flex" style={{ alignItems: 'center', gap: '24px' }}>
+                {navLinks.map((link) => {
+                  const active = isActive(link.href)
+                  const activeColor = isFa ? '#111111' : '#D50B1F'
+                  return (
+                    <Link
+                      key={link.key}
+                      href={link.href}
+                      style={{
+                        fontFamily: navFont,
+                        fontSize: isFa ? '14px' : '12px',
+                        fontWeight: active ? 600 : 500,
+                        color: active ? activeColor : '#666',
+                        textDecoration: 'none',
+                        transition: 'color 0.15s',
+                        textTransform: isFa ? 'none' : 'uppercase',
+                        letterSpacing: isFa ? 'normal' : '0.07em',
+                        borderBottom: active ? `1.5px solid ${activeColor}` : '1.5px solid transparent',
+                        paddingBottom: '2px',
+                      }}
+                      onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = activeColor }}
+                      onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = active ? activeColor : '#666' }}
+                    >
+                      {t(link.key)}
+                    </Link>
+                  )
+                })}
+              </nav>
+            </div>
 
             {/* Desktop right: language dropdown + CTA */}
             <div className="hidden lg:flex" style={{ alignItems: 'center', gap: '12px', flexShrink: 0 }}>
