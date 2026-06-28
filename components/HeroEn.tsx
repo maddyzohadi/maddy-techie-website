@@ -2,7 +2,55 @@
 
 import { motion } from "motion/react"
 
-// ── Hero ──────────────────────────────────────────────────────────────────
+// Shared card shell: entrance fade-up + continuous float
+function FloatCard({
+  pos,
+  inDelay,
+  floatDur,
+  floatDelay,
+  children,
+}: {
+  pos:        string
+  inDelay:    number
+  floatDur:   number
+  floatDelay: number
+  children:   React.ReactNode
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.65, delay: inDelay, ease: "easeOut" }}
+      className={`hidden xl:block absolute pointer-events-none select-none ${pos}`}
+    >
+      <motion.div
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: floatDur, repeat: Infinity, ease: "easeInOut", delay: floatDelay }}
+        style={{
+          background:           "rgba(255,255,255,0.82)",
+          backdropFilter:       "blur(10px)",
+          WebkitBackdropFilter: "blur(10px)",
+          border:               "0.5px solid rgba(0,0,0,0.08)",
+          borderRadius:         "14px",
+          padding:              "14px 18px",
+          boxShadow:            "0 4px 20px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.04)",
+          minWidth:             "174px",
+        }}
+      >
+        {children}
+      </motion.div>
+    </motion.div>
+  )
+}
+
+const label: React.CSSProperties = {
+  fontSize: 12, fontWeight: 600, color: "#111111",
+  margin: 0, lineHeight: 1.4, fontFamily: "system-ui, sans-serif",
+}
+const sub: React.CSSProperties = {
+  fontSize: 11, color: "rgba(17,17,17,0.42)",
+  margin: "3px 0 0", fontFamily: "system-ui, sans-serif", lineHeight: 1.4,
+}
 
 export default function HeroEn() {
   return (
@@ -11,7 +59,7 @@ export default function HeroEn() {
       style={{ background: "#F7F3EC" }}
     >
 
-      {/* Warm orange radial bloom — very subtle, adds depth without weight */}
+      {/* Warm orange radial bloom */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -20,6 +68,60 @@ export default function HeroEn() {
             "radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255,106,50,0.07) 0%, transparent 70%)",
         }}
       />
+
+      {/* ── Decorative floating workflow cards (xl+, aria-hidden) ─────── */}
+      <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+
+        {/* Card A — left · "Email drafted" */}
+        <FloatCard pos="left-[5%] top-[32%]" inDelay={0.8} floatDur={5.2} floatDelay={1.6}>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+            <span style={{
+              width: 8, height: 8, borderRadius: "50%", background: "#FF6A32",
+              flexShrink: 0, marginTop: 3,
+            }} />
+            <div>
+              <p style={label}>Email drafted</p>
+              <p style={sub}>Prompt → Reply · 2 min</p>
+            </div>
+          </div>
+        </FloatCard>
+
+        {/* Card B — right top · "Automation active" */}
+        <FloatCard pos="right-[5%] top-[25%]" inDelay={1.0} floatDur={5.8} floatDelay={0.4}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+            <span style={{
+              display: "inline-block", width: 8, height: 8, borderRadius: "50%",
+              background: "#22C55E", boxShadow: "0 0 0 3px rgba(34,197,94,0.20)",
+              flexShrink: 0,
+            }} />
+            <p style={label}>Automation active</p>
+          </div>
+          <p style={sub}>3 workflows running</p>
+        </FloatCard>
+
+        {/* Card C — right lower · "Report ready" */}
+        <FloatCard pos="right-[6%] top-[57%]" inDelay={1.2} floatDur={4.8} floatDelay={1.0}>
+          <p style={{ fontSize: 11, color: "rgba(17,17,17,0.38)", margin: "0 0 4px",
+                      fontFamily: "system-ui, sans-serif", textTransform: "uppercase",
+                      letterSpacing: "0.06em" }}>
+            Report
+          </p>
+          <p style={{ ...label, margin: "0 0 10px" }}>Summary ready</p>
+          <div style={{ display: "flex", gap: 3 }}>
+            {[0,1,2,3].map(i => (
+              <span key={i} style={{
+                display: "block", height: 4, flex: 1, borderRadius: 2,
+                background: i < 3 ? "#FF6A32" : "rgba(0,0,0,0.09)",
+              }} />
+            ))}
+          </div>
+          <p style={{ fontSize: 10, color: "rgba(17,17,17,0.38)", margin: "6px 0 0",
+                      fontFamily: "system-ui, sans-serif" }}>
+            AI generated · 4 sec
+          </p>
+        </FloatCard>
+
+      </div>
 
       {/* Content */}
       <div
