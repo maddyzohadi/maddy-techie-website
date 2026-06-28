@@ -55,31 +55,31 @@ export default async function Home() {
       <Navigation />
       <Hero />
 
-      {/* Divider 1 — after hero (animated scroll) */}
-      <RedDivider id="hero" animated />
+      {/* Divider 1 — after hero */}
+      <RedDivider id="hero" direction="left" duration={14} />
 
       {!isFa && <ProblemSection />}
 
-      {/* Divider 2 — EN: problem→method | FA: hero-divider already placed, this is method→process */}
-      {!isFa && <RedDivider id="problem" />}
+      {/* Divider 2 — EN: problem→method */}
+      {!isFa && <RedDivider id="problem" direction="right" duration={16} />}
 
       <MethodSection />
 
       {/* Divider 2 — FA: after method, before process */}
-      {isFa && <RedDivider id="fa2" />}
+      {isFa && <RedDivider id="fa2" direction="right" duration={16} />}
 
       <ProcessSection />
       <ServicesListSection />
       <CurriculumSection />
 
-      {/* Divider 3 — FA: before footer (last content is curriculum) */}
-      {isFa && <RedDivider id="fa-final" />}
+      {/* Divider 3 — FA: before footer */}
+      {isFa && <RedDivider id="fa-final" direction="left" duration={18} />}
 
       {!isFa && <ServicesSection />}
       {!isFa && <FAQSection />}
 
       {/* Divider 3 — EN: before final CTA / about section */}
-      {!isFa && <RedDivider id="final" />}
+      {!isFa && <RedDivider id="final" direction="left" duration={18} />}
 
       {!isFa && <AboutSection />}
       <Footer />
