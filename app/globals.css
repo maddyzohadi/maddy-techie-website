@@ -370,7 +370,7 @@ h3 { font-size: var(--text-h3); }
   pointer-events: none;
   display: block;
   line-height: 0;
-  isolation: isolate;
+  background-color: transparent;
 }
 
 @media (min-width: 768px) {
@@ -395,7 +395,7 @@ h3 { font-size: var(--text-h3); }
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 56'%3E%3Cpath d='M20,54 C40,54 64,4 80,4 L160,42 Z' fill='%23D50B1F'/%3E%3Cpath d='M300,54 C280,54 256,4 240,4 L160,42 Z' fill='%23D50B1F'/%3E%3C/svg%3E");
   background-size: 320px 100%;
   background-repeat: repeat-x;
-  will-change: transform;
+  background-color: transparent;
 }
 
 .rda-left::before {
