@@ -73,9 +73,9 @@ export default function ProcessSection() {
   return (
     <section
       style={{
-        background: '#F7F3EC',
+        background: '#FAFAF7',
         padding: '96px 24px',
-        borderTop: '0.5px solid rgba(0,0,0,0.06)',
+        borderTop: '0.5px solid rgba(0,0,0,0.08)',
       }}
     >
       <motion.div

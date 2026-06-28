@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useLocale } from 'next-intl'
 import { motion } from 'motion/react'
+import AskMaddyCTA from './AskMaddyCTA'
 
 const FA_SERVICES = [
   { number: '۰۱', title: 'آموزش هوش مصنوعی',         desc: 'یاد بگیر ChatGPT و Claude رو مثل یه حرفه‌ای استفاده کنی' },
@@ -29,9 +30,9 @@ export default function ServicesListSection() {
   return (
     <section
       style={{
-        background: '#F7F3EC',
+        background: '#FFF8F1',
         padding: '96px 24px',
-        borderTop: '0.5px solid rgba(0,0,0,0.06)',
+        borderTop: '0.5px solid rgba(0,0,0,0.08)',
         direction: isFa ? 'rtl' : 'ltr',
       }}
     >
@@ -61,7 +62,7 @@ export default function ServicesListSection() {
         </span>
 
         {/* List */}
-        <div>
+        <div style={{ marginBottom: '36px' }}>
           {services.map((svc, i) => (
             <div key={i}>
               {i > 0 && (
@@ -133,6 +134,9 @@ export default function ServicesListSection() {
             </div>
           ))}
         </div>
+
+        {/* Soft CTA */}
+        <AskMaddyCTA />
 
       </motion.div>
     </section>

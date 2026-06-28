@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
+
 const INSTAGRAM_URL = 'https://instagram.com/maddythetechie'
 const TELEGRAM_URL  = 'https://t.me/maddythetechie_bot'
 const SPOTIFY_URL   = 'https://open.spotify.com/user/maddythetechie'
@@ -7,20 +9,20 @@ const X_URL         = 'https://x.com/maddythetechie'
 const LINKEDIN_URL  = 'https://www.linkedin.com/in/maddy-techie-08362b418/'
 
 const btnBase: React.CSSProperties = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '40px',
-  height: '40px',
-  borderRadius: '100px',
-  background: 'rgba(255,255,255,0.85)',
-  backdropFilter: 'blur(8px)',
+  display:              'flex',
+  alignItems:           'center',
+  justifyContent:       'center',
+  width:                '40px',
+  height:               '40px',
+  borderRadius:         '100px',
+  background:           'rgba(255,255,255,0.85)',
+  backdropFilter:       'blur(8px)',
   WebkitBackdropFilter: 'blur(8px)',
-  border: '0.5px solid rgba(0,0,0,0.08)',
-  cursor: 'pointer',
-  transition: 'background 200ms ease, color 200ms ease, transform 200ms ease',
-  textDecoration: 'none',
-  flexShrink: 0,
+  border:               '0.5px solid rgba(0,0,0,0.08)',
+  cursor:               'pointer',
+  transition:           'background 200ms ease, color 200ms ease, transform 200ms ease',
+  textDecoration:       'none',
+  flexShrink:           0,
 }
 
 function SocialLink({
@@ -29,9 +31,9 @@ function SocialLink({
   color,
   children,
 }: {
-  href: string
-  label: string
-  color: string
+  href:     string
+  label:    string
+  color:    string
   children: React.ReactNode
 }) {
   return (
@@ -43,15 +45,15 @@ function SocialLink({
       style={{ ...btnBase, color }}
       onMouseEnter={(e) => {
         const el = e.currentTarget as HTMLAnchorElement
-        el.style.background = '#111111'
-        el.style.color = '#fff'
-        el.style.transform = 'scale(1.08) translateY(-1px)'
+        el.style.background  = '#111111'
+        el.style.color       = '#fff'
+        el.style.transform   = 'scale(1.08) translateY(-1px)'
       }}
       onMouseLeave={(e) => {
         const el = e.currentTarget as HTMLAnchorElement
-        el.style.background = 'rgba(255,255,255,0.85)'
-        el.style.color = color
-        el.style.transform = 'scale(1) translateY(0)'
+        el.style.background  = 'rgba(255,255,255,0.85)'
+        el.style.color       = color
+        el.style.transform   = 'scale(1) translateY(0)'
       }}
     >
       {children}
@@ -60,18 +62,42 @@ function SocialLink({
 }
 
 export default function FloatingSocialLinks() {
+  const [visible, setVisible] = useState(true)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    // Respect prefers-reduced-motion — keep always visible
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const show = () => setVisible(true)
+    const hide = () => {
+      setVisible(false)
+      if (timerRef.current) clearTimeout(timerRef.current)
+      timerRef.current = setTimeout(show, 600)
+    }
+
+    window.addEventListener('scroll', hide, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', hide)
+      if (timerRef.current) clearTimeout(timerRef.current)
+    }
+  }, [])
+
   return (
     <div
+      aria-hidden="true"
       style={{
-        position: 'fixed',
-        right: '1rem',
-        top: '55%',
-        transform: 'translateY(-50%)',
-        zIndex: 40,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '10px',
-        pointerEvents: 'auto',
+        position:        'fixed',
+        right:           '1rem',
+        top:             '55%',
+        transform:       'translateY(-50%)',
+        zIndex:          40,
+        display:         'flex',
+        flexDirection:   'column',
+        gap:             '10px',
+        pointerEvents:   visible ? 'auto' : 'none',
+        opacity:         visible ? 1 : 0,
+        transition:      'opacity 0.35s ease',
       }}
     >
       <SocialLink href={INSTAGRAM_URL} label="Instagram" color="#E1306C">

@@ -1,4 +1,5 @@
 import { getLocale } from 'next-intl/server'
+import AskMaddyCTA from './AskMaddyCTA'
 
 const FA_CARDS = [
   { number: '01', title: 'کارهای تکراری', desc: 'کارهایی که هر روز تکرار می‌شن و وقت زیادی می‌گیرن' },
@@ -86,6 +87,7 @@ export default async function ProblemSection() {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
             gap: '16px',
+            marginBottom: '40px',
           }}
         >
           {cards.map((card) => (
@@ -136,6 +138,11 @@ export default async function ProblemSection() {
               </p>
             </div>
           ))}
+        </div>
+
+        {/* Soft CTA */}
+        <div style={{ textAlign: isFa ? 'right' : 'left' }}>
+          <AskMaddyCTA />
         </div>
 
       </div>

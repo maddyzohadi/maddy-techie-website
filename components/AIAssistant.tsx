@@ -63,6 +63,13 @@ export default function AIAssistant() {
   // Initialise session ID on mount (client-only)
   useEffect(() => { setSessionId(getSessionId()) }, [])
 
+  // Allow any page element to open the chat via a custom event
+  useEffect(() => {
+    const open = () => setIsOpen(true)
+    document.addEventListener('open-ai-chat', open)
+    return () => document.removeEventListener('open-ai-chat', open)
+  }, [])
+
   useEffect(() => {
     if (isOpen) bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, isOpen])

@@ -20,7 +20,7 @@ export default function ServicesSection() {
     <section
       id="services"
       className="py-24 md:py-32 relative scroll-mt-24"
-      style={{ background: '#F7F3EC', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+      style={{ background: '#FAFAF7', borderTop: '0.5px solid rgba(0,0,0,0.08)' }}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
