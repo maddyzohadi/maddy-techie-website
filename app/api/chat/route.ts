@@ -4,7 +4,7 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js'
 // ── OpenRouter (OpenAI-compatible) ────────────────────────────────────────
 
 const OR_URL   = 'https://openrouter.ai/api/v1/chat/completions'
-const OR_MODEL = 'anthropic/claude-3-5-haiku-20241022'
+const OR_MODEL = 'openai/gpt-4o-mini'
 
 async function orFetch(messages: object[], tools?: object[]): Promise<Response> {
   return fetch(OR_URL, {
