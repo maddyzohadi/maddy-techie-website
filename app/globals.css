@@ -362,11 +362,11 @@ h3 { font-size: var(--text-h3); }
   50%       { box-shadow: 0 0 0 1px rgba(123,47,190,0.60); }
 }
 
-/* --- Red M-chevron motion ribbon -------------------------------- */
+/* --- Red M-ribbon motion divider -------------------------------- */
 .rda-wrap {
   position: relative;
   overflow: hidden;
-  height: 40px;
+  height: 34px;
   pointer-events: none;
   display: block;
   line-height: 0;
@@ -374,19 +374,26 @@ h3 { font-size: var(--text-h3); }
 }
 
 @media (min-width: 768px) {
-  .rda-wrap { height: 64px; }
+  .rda-wrap { height: 48px; }
 }
 
-/* Two bold >> chevrons on charcoal base — reads as M + forward-motion arrows */
+/*
+  Two separate floating wing paths per 320px tile — no dark base, no arrows.
+  Transparent background so shapes sit directly on the cream section bg.
+  Left wing:  smooth S-curve outer arm → straight diagonal inner V edge (Z close)
+  Right wing: mirror of left.
+  20px transparent margin each side = 40px breathing gap between consecutive Ms.
+  Horizontal tangents at outer bases → seamless tiling across tile boundaries.
+*/
 .rda-wrap::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  width: calc(100% + 200px);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 64'%3E%3Crect width='200' height='64' fill='%2312131A'/%3E%3Cpolygon points='0,6 14,6 68,32 14,58 0,58 40,32' fill='%23D50B1F'/%3E%3Cpolygon points='100,6 114,6 168,32 114,58 100,58 140,32' fill='%23D50B1F'/%3E%3C/svg%3E");
-  background-size: 200px 100%;
+  width: calc(100% + 320px);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 56'%3E%3Cpath d='M20,54 C40,54 64,4 80,4 L160,42 Z' fill='%23D50B1F'/%3E%3Cpath d='M300,54 C280,54 256,4 240,4 L160,42 Z' fill='%23D50B1F'/%3E%3C/svg%3E");
+  background-size: 320px 100%;
   background-repeat: repeat-x;
   will-change: transform;
 }
@@ -396,17 +403,17 @@ h3 { font-size: var(--text-h3); }
 }
 
 .rda-right::before {
-  transform: translateX(-200px);
+  transform: translateX(-320px);
   animation: rda-right var(--rda-dur, 14s) linear infinite;
 }
 
 @keyframes rda-left {
   from { transform: translateX(0); }
-  to   { transform: translateX(-200px); }
+  to   { transform: translateX(-320px); }
 }
 
 @keyframes rda-right {
-  from { transform: translateX(-200px); }
+  from { transform: translateX(-320px); }
   to   { transform: translateX(0); }
 }
 
