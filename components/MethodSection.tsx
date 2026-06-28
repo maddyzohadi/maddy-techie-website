@@ -15,16 +15,16 @@ export default function MethodSection() {
     badge: isFa ? 'اتوماسیون بدون کدنویسی' : 'NO-CODE AUTOMATION',
     title: isFa ? 'ابزارهایت را به هم متصل کن'  : 'Connect your tools together',
     desc:  isFa
-      ? 'یاد می‌گیری چطور Make، Zapier و ChatGPT رو کنار هم بذاری تا کارها خودشون انجام بشن'
-      : 'Link Make, Zapier, and ChatGPT so tasks complete themselves — no developer required',
+      ? 'Make، Zapier و ChatGPT رو وصل کن — کارها خودشون انجام می‌شن.'
+      : 'Link Make, Zapier, and ChatGPT so tasks complete themselves — no developer required.',
   }
 
   const card2 = {
     badge: isFa ? 'کاربرد عملی هوش مصنوعی' : 'AI IN DAILY WORK',
     title: isFa ? 'هوش مصنوعی را وارد کارهای روزمره‌ات کن' : 'Put AI inside your workflow',
     desc:  isFa
-      ? 'با ابزارهای هوش مصنوعی مثل ChatGPT و Claude کارهای تکراری رو حذف کن و سریع‌تر خروجی بده'
-      : 'Use ChatGPT and Claude to cut repetitive work and deliver faster, without sacrificing quality',
+      ? 'ChatGPT و Claude رو برای کارهای فکری به کار بگیر — نوشتن، خلاصه و برنامه‌ریزی.'
+      : 'Use ChatGPT and Claude to handle thinking tasks — drafts, summaries, and plans.',
   }
 
   const iconBox: React.CSSProperties = {

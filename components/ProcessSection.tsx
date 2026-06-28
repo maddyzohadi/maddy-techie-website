@@ -4,17 +4,17 @@ import { useLocale } from 'next-intl'
 import { motion } from 'motion/react'
 
 const FA_STEPS = [
-  { week: 'هفته ۱', title: 'آشنایی با نیاز',    body: 'با هم بررسی می‌کنیم چی لازم داری و کجا وقت هدر می‌ره' },
-  { week: 'هفته ۲', title: 'طراحی سیستم',       body: 'یه نقشه راه ساده و اجرایی برات می‌سازیم' },
-  { week: 'هفته ۳', title: 'اجرا و آموزش',      body: 'سیستم رو راه می‌ندازیم و یاد می‌گیری چطور ازش استفاده کنی' },
-  { week: 'هفته ۴', title: 'تحویل و پشتیبانی', body: 'همه چیز آماده‌ست، تو فقط کار می‌کنی' },
+  { week: 'هفته ۱', title: 'آشنایی با نیاز',    body: 'می‌فهمیم کجا وقت هدر می‌ره و چه کاری واقعاً کمک می‌کنه.' },
+  { week: 'هفته ۲', title: 'طراحی سیستم',       body: 'یه مسیر ساده طراحی می‌کنیم.' },
+  { week: 'هفته ۳', title: 'اجرا و آموزش',      body: 'سیستم رو می‌سازیم. یاد می‌گیری چطور کار کنه.' },
+  { week: 'هفته ۴', title: 'تحویل و پشتیبانی', body: 'آماده‌ست. ادامه رو خودت می‌دی.' },
 ]
 
 const EN_STEPS = [
-  { week: 'Week 1', title: 'Understanding your needs', desc: 'We look at what you actually need and where your time is being wasted' },
-  { week: 'Week 2', title: 'System design',            desc: 'We build a simple, executable roadmap tailored to your work' },
-  { week: 'Week 3', title: 'Build & training',         desc: 'We set up the system and you learn exactly how to use it' },
-  { week: 'Week 4', title: 'Delivery & support',       desc: "Everything is ready — you just do the work" },
+  { week: 'Week 1', title: 'Understanding your needs', desc: "We find what's slowing you down and what would actually help." },
+  { week: 'Week 2', title: 'System design',            desc: 'A simple, clear plan built around your work.' },
+  { week: 'Week 3', title: 'Build & training',         desc: 'We build it together. You learn how it works.' },
+  { week: 'Week 4', title: 'Delivery & support',       desc: 'Ready to go. You take it from here.' },
 ]
 
 const fadeIn = {

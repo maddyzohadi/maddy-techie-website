@@ -2,17 +2,17 @@ import { getLocale } from 'next-intl/server'
 import AskMaddyCTA from './AskMaddyCTA'
 
 const FA_CARDS = [
-  { number: '01', title: 'کارهای تکراری', desc: 'کارهایی که هر روز تکرار می‌شن و وقت زیادی می‌گیرن' },
-  { number: '02', title: 'گم شدن توی ابزارها', desc: 'ابزارهای زیاد، بدون یک سیستم مشخص برای استفاده از اون‌ها' },
-  { number: '03', title: 'AI رو درست استفاده نمیکنی', desc: 'ChatGPT و ابزارهای دیگه داری اما بیشتر ازشون سوال می‌پرسی' },
-  { number: '04', title: 'نگران عقب موندن هستی', desc: 'می‌بینی بقیه از AI استفاده می‌کنن ولی نمی‌دونی از کجا شروع کنی' },
+  { number: '01', title: 'کارهای تکراری', desc: 'همان مراحل هر روز — ساعت‌هایی که می‌توانستند جای دیگری باشند.' },
+  { number: '02', title: 'گم شدن توی ابزارها', desc: 'ابزار زیاد، بدون یک سیستم مشخص.' },
+  { number: '03', title: 'AI رو درست استفاده نمیکنی', desc: 'ChatGPT داری اما بیشتر ازش سوال می‌پرسی.' },
+  { number: '04', title: 'نگران عقب موندن هستی', desc: 'می‌خوای جلوتر باشی ولی نمی‌دونی از کجا شروع کنی.' },
 ]
 
 const EN_CARDS = [
-  { number: '01', title: 'Repetitive manual tasks', desc: 'The same tasks every day taking up hours that should go elsewhere' },
-  { number: '02', title: 'AI overwhelm', desc: 'Too many tools, too many options, and no clear system to tie them together' },
-  { number: '03', title: 'Using AI like a search bar', desc: "You have ChatGPT but you're mostly just asking it questions" },
-  { number: '04', title: 'Afraid of falling behind', desc: "Everyone talks about AI but you're not sure where to start or what actually works" },
+  { number: '01', title: 'Repetitive manual tasks', desc: 'Same steps every day — hours spent on work that could run itself.' },
+  { number: '02', title: 'AI overwhelm', desc: 'Too many tools, no clear system to tie them together.' },
+  { number: '03', title: 'Using AI like a search bar', desc: "You have ChatGPT — but you're mostly just asking it questions." },
+  { number: '04', title: 'Afraid of falling behind', desc: "Everyone's using AI. You want to keep up — without a tech degree." },
 ]
 
 export default async function ProblemSection() {
@@ -63,7 +63,7 @@ export default async function ProblemSection() {
           >
             {isFa
               ? 'هوش مصنوعی که کارهای سخت رو ساده میکنه'
-              : 'AI should feel useful, not overwhelming'}
+              : 'AI should make work easier, not harder'}
           </h2>
           <p
             style={{
@@ -77,7 +77,7 @@ export default async function ProblemSection() {
           >
             {isFa
               ? 'وقتی ابزارها درست کنار هم باشن کارها سریعتر پیش میرن'
-              : "You don't have a technical problem. You have a starting-point problem."}
+              : "Once you have the right tools in the right order, everything clicks."}
           </p>
         </div>
 

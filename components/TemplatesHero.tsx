@@ -98,8 +98,8 @@ export default function TemplatesHero() {
             }}
           >
             {isFa
-              ? 'با یک قالب رایگان شروع کن، اصول را یاد بگیر، یا در ساختن اولین گردش‌کارت کمک بگیر.'
-              : 'Grab practical AI templates for emails, reports, content planning, and client workflows — built to save time without starting from scratch.'}
+              ? 'با یک قالب رایگان شروع کن. بدون شروع از صفر، بدون وقت‌تلف.'
+              : 'Start with a ready-made AI template. Save time without starting from scratch.'}
           </p>
 
           <a
