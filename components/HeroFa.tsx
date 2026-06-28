@@ -75,7 +75,7 @@ export default function HeroFa() {
       <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none select-none">
 
         {/* Card A — right · "ایمیل نوشته شد" */}
-        <FloatCard pos="right-[5%] top-[32%]" inDelay={0.8} floatDur={5.2} floatDelay={1.6}>
+        <FloatCard pos="right-[10%] top-[32%]" inDelay={0.8} floatDur={5.2} floatDelay={1.6}>
           <div dir="rtl" style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
             <span style={{
               width: 8, height: 8, borderRadius: "50%", background: "#FF6A32",
@@ -89,7 +89,7 @@ export default function HeroFa() {
         </FloatCard>
 
         {/* Card B — left top · "گردش‌کار فعال" */}
-        <FloatCard pos="left-[5%] top-[25%]" inDelay={1.0} floatDur={5.8} floatDelay={0.4}>
+        <FloatCard pos="left-[10%] top-[25%]" inDelay={1.0} floatDur={5.8} floatDelay={0.4}>
           <div dir="rtl">
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
               <span style={{
@@ -104,7 +104,7 @@ export default function HeroFa() {
         </FloatCard>
 
         {/* Card C — left lower · "گزارش آماده شد" */}
-        <FloatCard pos="left-[6%] top-[57%]" inDelay={1.2} floatDur={4.8} floatDelay={1.0}>
+        <FloatCard pos="left-[10%] top-[57%]" inDelay={1.2} floatDur={4.8} floatDelay={1.0}>
           <div dir="rtl">
             <p style={{ fontSize: 11, color: "rgba(17,17,17,0.38)", margin: "0 0 4px",
                         fontFamily: faFont, textTransform: "uppercase",
@@ -204,7 +204,7 @@ export default function HeroFa() {
               margin: "0 auto 40px",
             }}
           >
-            با ابزارهای هوشمند مسیر کارت را بدون کدنویسی ساده‌تر کن
+            کارهای روزمره، ایده‌ها و جریان‌های کاری‌ات را بدون کدنویسی ساده‌تر کن.
           </motion.p>
 
           {/* CTAs */}

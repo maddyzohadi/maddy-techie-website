@@ -73,7 +73,7 @@ export default function HeroEn() {
       <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none select-none">
 
         {/* Card A — left · "Email drafted" */}
-        <FloatCard pos="left-[5%] top-[32%]" inDelay={0.8} floatDur={5.2} floatDelay={1.6}>
+        <FloatCard pos="left-[10%] top-[32%]" inDelay={0.8} floatDur={5.2} floatDelay={1.6}>
           <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
             <span style={{
               width: 8, height: 8, borderRadius: "50%", background: "#FF6A32",
@@ -87,7 +87,7 @@ export default function HeroEn() {
         </FloatCard>
 
         {/* Card B — right top · "Automation active" */}
-        <FloatCard pos="right-[5%] top-[25%]" inDelay={1.0} floatDur={5.8} floatDelay={0.4}>
+        <FloatCard pos="right-[10%] top-[25%]" inDelay={1.0} floatDur={5.8} floatDelay={0.4}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
             <span style={{
               display: "inline-block", width: 8, height: 8, borderRadius: "50%",
@@ -100,7 +100,7 @@ export default function HeroEn() {
         </FloatCard>
 
         {/* Card C — right lower · "Report ready" */}
-        <FloatCard pos="right-[6%] top-[57%]" inDelay={1.2} floatDur={4.8} floatDelay={1.0}>
+        <FloatCard pos="right-[10%] top-[57%]" inDelay={1.2} floatDur={4.8} floatDelay={1.0}>
           <p style={{ fontSize: 11, color: "rgba(17,17,17,0.38)", margin: "0 0 4px",
                       fontFamily: "system-ui, sans-serif", textTransform: "uppercase",
                       letterSpacing: "0.06em" }}>
@@ -201,7 +201,7 @@ export default function HeroEn() {
               margin: "0 auto 40px",
             }}
           >
-            Automate your daily tasks without writing a single line of code
+            Automate daily tasks, organize ideas, and build simple workflows without writing code.
           </motion.p>
 
           {/* CTAs */}
