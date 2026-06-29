@@ -29,15 +29,33 @@ export default function ProcessSection() {
   const isFa   = locale === 'fa'
 
   if (isFa) {
+    const faFont = "var(--font-vazirmatn), 'Vazirmatn', sans-serif"
     return (
-      <section className="py-24 px-6 bg-[#EFE7DC]" dir="rtl">
+      <section className="py-20 px-6 bg-[#EFE7DC]" dir="rtl">
         <div className="max-w-3xl mx-auto">
           <motion.div {...fadeIn}>
-            <div className="text-center mb-16">
-              <p className="text-sm text-[#5A504A] opacity-60 tracking-widest mb-4 font-['Noto_Naskh_Arabic']">
+            <div className="text-center mb-12">
+              <p
+                style={{
+                  fontFamily: faFont,
+                  fontSize: '11px',
+                  fontWeight: 500,
+                  color: 'rgba(90,80,74,0.55)',
+                  marginBottom: '10px',
+                  letterSpacing: '0.04em',
+                }}
+              >
                 روش کار
               </p>
-              <h2 className="font-['Noto_Naskh_Arabic'] text-4xl text-[#111111] leading-relaxed">
+              <h2
+                style={{
+                  fontFamily: faFont,
+                  fontSize: 'clamp(20px, 2.5vw, 26px)',
+                  fontWeight: 700,
+                  color: '#111111',
+                  lineHeight: 1.6,
+                }}
+              >
                 از اولین پیام تا سیستم آماده
               </h2>
             </div>
@@ -46,19 +64,48 @@ export default function ProcessSection() {
               {FA_STEPS.map(({ week, title, body }) => (
                 <motion.div
                   key={week}
-                  className="flex items-start gap-6 py-8"
-                  whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}
+                  className="flex items-start gap-5 py-6"
+                  whileHover={{ y: -2, boxShadow: '0 6px 18px rgba(0,0,0,0.06)' }}
                   transition={{ duration: 0.2, ease: 'easeOut' }}
                 >
                   <div className="flex-1 text-right">
-                    <h3 className="font-['Noto_Naskh_Arabic'] text-lg font-medium text-[#111111] mb-2">
+                    <h3
+                      style={{
+                        fontFamily: faFont,
+                        fontSize: '15px',
+                        fontWeight: 600,
+                        color: '#111111',
+                        marginBottom: '6px',
+                        lineHeight: 1.5,
+                      }}
+                    >
                       {title}
                     </h3>
-                    <p className="font-['Noto_Naskh_Arabic'] text-sm text-[#5A504A] leading-loose">
+                    <p
+                      style={{
+                        fontFamily: faFont,
+                        fontSize: '13px',
+                        color: '#5A504A',
+                        lineHeight: 1.8,
+                        margin: 0,
+                      }}
+                    >
                       {body}
                     </p>
                   </div>
-                  <div className="shrink-0 bg-white border border-[#D8C7B8] rounded-full px-4 py-1.5 text-sm text-[#5A504A] opacity-60 font-['Noto_Naskh_Arabic']">
+                  <div
+                    style={{
+                      flexShrink: 0,
+                      background: '#F5ECE0',
+                      border: '0.5px solid #D8C7B8',
+                      borderRadius: '100px',
+                      padding: '4px 14px',
+                      fontSize: '12px',
+                      fontFamily: faFont,
+                      color: 'rgba(90,80,74,0.60)',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
                     {week}
                   </div>
                 </motion.div>

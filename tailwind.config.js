@@ -24,7 +24,7 @@ module.exports = {
         },
       },
       fontFamily: {
-        fa:      ['Noto Naskh Arabic', 'serif'],
+        fa:      ['var(--font-vazirmatn)', 'Vazirmatn', 'sans-serif'],
         en:      ['DM Serif Display', 'serif'],
         ui:      ['system-ui', '-apple-system', 'sans-serif'],
         heading: ['DM Serif Display', 'serif'],

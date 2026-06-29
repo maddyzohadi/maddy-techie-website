@@ -31,7 +31,7 @@
   --text-muted-light:    rgba(26, 26, 46, 0.60);
 
   /* Typography */
-  --font-fa:   'Noto Naskh Arabic', serif;
+  --font-fa:   var(--font-vazirmatn), 'Vazirmatn', sans-serif;
   --font-en:   'DM Serif Display', serif;
   --font-ui:   system-ui, -apple-system, sans-serif;
 
