@@ -7,9 +7,9 @@ export default async function WhoItsFor() {
   const isFa = locale === 'fa'
 
   const cardAccent = {
-    bg: 'rgba(181,51,137,0.08)',
-    border: 'rgba(181,51,137,0.20)',
-    icon: '#B53389',
+    bg: 'rgba(75,146,219,0.08)',
+    border: 'rgba(75,146,219,0.20)',
+    icon: '#4B92DB',
   }
 
   const audiences = [
@@ -48,7 +48,7 @@ export default async function WhoItsFor() {
 
         <div className="text-center mb-16">
           <span
-            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full"
+            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
           >
             {t('badge')}
           </span>
@@ -100,7 +100,7 @@ export default async function WhoItsFor() {
                 </div>
                 <h3
                   className={`${isFa ? 'font-fa' : 'font-en'} font-semibold text-lg md:text-xl mb-3`}
-                  style={{ color: '#1A1A2E' }}
+                  style={{ color: '#111111' }}
                 >
                   {t(audience.titleKey)}
                 </h3>
@@ -116,8 +116,8 @@ export default async function WhoItsFor() {
                       key={exKey}
                       className={`${isFa ? 'font-fa' : 'font-ui'} text-xs px-2.5 py-1`}
                       style={{
-                        background: 'rgba(181,51,137,0.06)',
-                        border: '0.5px solid rgba(181,51,137,0.15)',
+                        background: 'rgba(75,146,219,0.06)',
+                        border: '0.5px solid rgba(75,146,219,0.15)',
                         color: '#5A504A',
                         borderRadius: '6px',
                       }}
@@ -142,7 +142,7 @@ export default async function WhoItsFor() {
           <div className="text-center mb-8">
             <h3
               className={`${isFa ? 'font-fa' : 'font-en'} font-semibold text-xl md:text-2xl`}
-              style={{ color: '#1A1A2E' }}
+              style={{ color: '#111111' }}
             >
               {t('noRequirementsTitle')}
             </h3>
@@ -160,7 +160,7 @@ export default async function WhoItsFor() {
                 className={`flex items-center gap-2.5 ${isFa ? 'font-fa flex-row-reverse' : 'font-ui'} text-sm`}
                 style={{ color: '#5A504A' }}
               >
-                <CheckCircle size={15} style={{ color: '#B53389', flexShrink: 0 }} />
+                <CheckCircle size={15} style={{ color: '#4B92DB', flexShrink: 0 }} />
                 <span>{t(key)}</span>
               </div>
             ))}

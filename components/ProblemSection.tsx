@@ -44,7 +44,7 @@ export default async function ProblemSection() {
               fontWeight: 600,
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: '#999',
+              color: '#8C7E74',
               marginBottom: '16px',
             }}
           >

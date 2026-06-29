@@ -159,16 +159,16 @@ function Thumbnail({ cat }: { cat: string }) {
       <div style={base} aria-hidden>
         <div style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: '6px', height: '100%' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '2px' }}>
-            <div style={{ width: 18, height: 18, borderRadius: '50%', background: 'rgba(181,51,137,0.10)', border: '0.5px solid rgba(181,51,137,0.22)', flexShrink: 0 }} />
+            <div style={{ width: 18, height: 18, borderRadius: '50%', background: 'rgba(75,146,219,0.10)', border: '0.5px solid rgba(75,146,219,0.22)', flexShrink: 0 }} />
             <div style={{ height: 5, width: 52, borderRadius: 3, background: '#D8C7B8' }} />
           </div>
           <div style={{ background: '#FFFFFF', border: '0.5px solid #D8C7B8', borderRadius: 8, padding: '8px 10px' }}>
             <div style={{ height: 4, borderRadius: 3, background: '#D8C7B8', width: '88%', marginBottom: 5 }} />
             <div style={{ height: 4, borderRadius: 3, background: '#D8C7B8', width: '62%' }} />
           </div>
-          <div style={{ background: 'rgba(181,51,137,0.07)', border: '0.5px solid rgba(181,51,137,0.16)', borderRadius: 8, padding: '8px 10px' }}>
-            <div style={{ height: 4, borderRadius: 3, background: 'rgba(181,51,137,0.28)', width: '76%', marginBottom: 5 }} />
-            <div style={{ height: 4, borderRadius: 3, background: 'rgba(181,51,137,0.16)', width: '52%' }} />
+          <div style={{ background: 'rgba(75,146,219,0.07)', border: '0.5px solid rgba(75,146,219,0.16)', borderRadius: 8, padding: '8px 10px' }}>
+            <div style={{ height: 4, borderRadius: 3, background: 'rgba(75,146,219,0.28)', width: '76%', marginBottom: 5 }} />
+            <div style={{ height: 4, borderRadius: 3, background: 'rgba(75,146,219,0.16)', width: '52%' }} />
           </div>
           <div style={{ display: 'flex', gap: 5, paddingLeft: 2 }}>
             {[0, 1, 2].map((i) => (
@@ -185,15 +185,15 @@ function Thumbnail({ cat }: { cat: string }) {
       <div style={base} aria-hidden>
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
           <div style={{ background: '#171717', padding: '9px 13px', display: 'flex', alignItems: 'center', gap: 6 }}>
-            <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#B53389', flexShrink: 0 }} />
+            <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#4B92DB', flexShrink: 0 }} />
             <div style={{ height: 4, width: 58, borderRadius: 3, background: 'rgba(245,236,224,0.28)' }} />
           </div>
           <div style={{ padding: '11px 13px', display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
             {[90, 76, 84, 56].map((w, i) => (
-              <div key={i} style={{ height: 4, borderRadius: 3, background: i === 3 ? 'rgba(181,51,137,0.22)' : '#D8C7B8', width: `${w}%` }} />
+              <div key={i} style={{ height: 4, borderRadius: 3, background: i === 3 ? 'rgba(75,146,219,0.22)' : '#D8C7B8', width: `${w}%` }} />
             ))}
             <div style={{ display: 'flex', gap: 6, marginTop: 1 }}>
-              <div style={{ background: 'rgba(181,51,137,0.08)', border: '0.5px solid rgba(181,51,137,0.18)', borderRadius: 5, width: 50, height: 16 }} />
+              <div style={{ background: 'rgba(75,146,219,0.08)', border: '0.5px solid rgba(75,146,219,0.18)', borderRadius: 5, width: 50, height: 16 }} />
               <div style={{ background: '#F5ECE0', border: '0.5px solid #D8C7B8', borderRadius: 5, width: 38, height: 16 }} />
             </div>
           </div>
@@ -212,8 +212,8 @@ function Thumbnail({ cat }: { cat: string }) {
                 key={i}
                 style={{
                   flex: 1, height: 22, borderRadius: 5,
-                  background: i === 2 ? '#B53389' : '#F5ECE0',
-                  border: `0.5px solid ${i === 2 ? 'rgba(181,51,137,0.42)' : '#D8C7B8'}`,
+                  background: i === 2 ? '#4B92DB' : '#F5ECE0',
+                  border: `0.5px solid ${i === 2 ? 'rgba(75,146,219,0.42)' : '#D8C7B8'}`,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}
               >
@@ -222,10 +222,10 @@ function Thumbnail({ cat }: { cat: string }) {
             ))}
           </div>
           {[
-            ['rgba(181,51,137,0.09)', 'rgba(181,51,137,0.18)', '56%'],
+            ['rgba(75,146,219,0.09)', 'rgba(75,146,219,0.18)', '56%'],
             ['#F5ECE0', '#D8C7B8', '40%'],
             ['#F5ECE0', '#D8C7B8', '64%'],
-            ['rgba(181,51,137,0.05)', 'rgba(181,51,137,0.13)', '48%'],
+            ['rgba(75,146,219,0.05)', 'rgba(75,146,219,0.13)', '48%'],
           ].map(([bg, border, w], i) => (
             <div key={i} style={{ height: 18, borderRadius: 5, background: bg, border: `0.5px solid ${border}`, width: w }} />
           ))}
@@ -244,7 +244,7 @@ function Thumbnail({ cat }: { cat: string }) {
               style={{
                 flex: i === 0 ? 2 : 1,
                 padding: '7px 9px',
-                background: '#B53389',
+                background: '#4B92DB',
                 borderRight: i < 2 ? '0.5px solid rgba(255,255,255,0.20)' : 'none',
                 display: 'flex', alignItems: 'center',
               }}
@@ -257,7 +257,7 @@ function Thumbnail({ cat }: { cat: string }) {
           <div key={ri} style={{ display: 'flex', borderBottom: ri < 3 ? '0.5px solid #D8C7B8' : 'none', background: ri % 2 === 0 ? '#FFFFFF' : '#EFE7DC' }}>
             {[2, 1, 1].map((flex, ci) => (
               <div key={ci} style={{ flex, padding: '8px 9px', borderRight: ci < 2 ? '0.5px solid #D8C7B8' : 'none', display: 'flex', alignItems: 'center' }}>
-                <div style={{ height: 4, borderRadius: 2, background: ci === 2 ? 'rgba(181,51,137,0.22)' : '#D8C7B8', width: ci === 0 ? '68%' : '52%' }} />
+                <div style={{ height: 4, borderRadius: 2, background: ci === 2 ? 'rgba(75,146,219,0.22)' : '#D8C7B8', width: ci === 0 ? '68%' : '52%' }} />
               </div>
             ))}
           </div>
@@ -268,7 +268,7 @@ function Thumbnail({ cat }: { cat: string }) {
 
   // Client Work (default)
   const statuses = [
-    { color: '#B53389', label: 'HOT' },
+    { color: '#4B92DB', label: 'HOT' },
     { color: '#52C47A', label: 'WARM' },
     { color: '#B8B0A7', label: 'cold' },
   ]
@@ -350,7 +350,7 @@ function PreviewModal({
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             background: 'rgba(0,0,0,0.05)',
             border: '0.5px solid #D8C7B8',
-            cursor: 'pointer', color: '#1A1A2E',
+            cursor: 'pointer', color: '#111111',
           }}
         >
           <X size={16} />
@@ -375,14 +375,14 @@ function PreviewModal({
 
         <h3
           className="font-en font-bold"
-          style={{ fontSize: 'clamp(20px, 4vw, 26px)', color: '#1A1A2E', marginBottom: '8px', lineHeight: 1.2 }}
+          style={{ fontSize: 'clamp(20px, 4vw, 26px)', color: '#111111', marginBottom: '8px', lineHeight: 1.2 }}
         >
           {tmpl.name}
         </h3>
 
         <p
           className={`${isFa ? 'font-fa' : 'font-ui'}`}
-          style={{ fontSize: '16px', color: 'rgba(26,26,46,0.60)', lineHeight: 1.55, marginBottom: '16px' }}
+          style={{ fontSize: '16px', color: '#5A504A', lineHeight: 1.55, marginBottom: '16px' }}
         >
           {tmpl.desc}
         </p>
@@ -391,13 +391,13 @@ function PreviewModal({
 
         <p
           className="font-ui font-semibold"
-          style={{ fontSize: '12px', letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(26,26,46,0.50)', marginBottom: '10px' }}
+          style={{ fontSize: '12px', letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(90,80,74,0.55)', marginBottom: '10px' }}
         >
           {isFa ? 'چه شامل می‌شود' : "What's inside"}
         </p>
         <p
           className={`${isFa ? 'font-fa' : 'font-ui'}`}
-          style={{ fontSize: '15px', color: 'rgba(26,26,46,0.60)', lineHeight: 1.6, marginBottom: '22px' }}
+          style={{ fontSize: '15px', color: '#5A504A', lineHeight: 1.6, marginBottom: '22px' }}
         >
           {tmpl.preview}
         </p>
@@ -410,7 +410,7 @@ function PreviewModal({
               style={{
                 padding: '5px 11px', borderRadius: '7px',
                 fontSize: '12px', fontWeight: 500,
-                color: 'rgba(26,26,46,0.60)',
+                color: '#5A504A',
                 background: 'rgba(0,0,0,0.04)',
                 border: '0.5px solid #D8C7B8',
               }}
@@ -428,7 +428,7 @@ function PreviewModal({
             width: '100%', padding: '14px 24px',
             borderRadius: '8px', fontSize: '15px',
             color: '#FFFFFF', textDecoration: 'none',
-            background: '#B53389',
+            background: '#4B92DB',
           }}
         >
           {isFa ? 'دریافت قالب' : 'Get template'}
@@ -480,7 +480,7 @@ export default function ResourcesSection() {
                     fontSize: '14px',
                     border: active ? 'none' : '0.5px solid #D8C7B8',
                     background: active ? '#111111' : '#FFFFFF',
-                    color: active ? '#FFFFFF' : 'rgba(26,26,46,0.58)',
+                    color: active ? '#FFFFFF' : '#5A504A',
                   }}
                 >
                   {catLabel(cat)}
@@ -491,7 +491,7 @@ export default function ResourcesSection() {
 
           <p
             className={`${isFa ? 'font-fa' : 'font-ui'} text-center mb-10`}
-            style={{ fontSize: '13.5px', color: 'rgba(26,26,46,0.44)' }}
+            style={{ fontSize: '13.5px', color: 'rgba(90,80,74,0.45)' }}
           >
             {isFa
               ? `${visible.length} قالب آماده`
@@ -540,7 +540,7 @@ export default function ResourcesSection() {
                   </span>
                   <h3
                     className={`${isFa ? 'font-fa' : 'font-en'}`}
-                    style={{ fontSize: '18px', fontWeight: 700, color: '#1A1A2E', letterSpacing: '-.01em', lineHeight: 1.25, margin: 0 }}
+                    style={{ fontSize: '18px', fontWeight: 700, color: '#111111', letterSpacing: '-.01em', lineHeight: 1.25, margin: 0 }}
                   >
                     {tmpl.name}
                   </h3>
@@ -548,7 +548,7 @@ export default function ResourcesSection() {
 
                 <p
                   className={`${isFa ? 'font-fa' : 'font-ui'}`}
-                  style={{ fontSize: '14px', color: 'rgba(26,26,46,0.58)', lineHeight: 1.5, margin: 0, flexGrow: 1 }}
+                  style={{ fontSize: '14px', color: '#5A504A', lineHeight: 1.5, margin: 0, flexGrow: 1 }}
                 >
                   {tmpl.desc}
                 </p>
@@ -563,7 +563,7 @@ export default function ResourcesSection() {
                         borderRadius: '7px',
                         fontSize: '12px',
                         fontWeight: 500,
-                        color: 'rgba(26,26,46,0.55)',
+                        color: '#5A504A',
                         background: 'rgba(0,0,0,0.04)',
                         border: '0.5px solid #D8C7B8',
                       }}
@@ -585,7 +585,7 @@ export default function ResourcesSection() {
                   <a
                     href="#contact"
                     className={`${isFa ? 'font-fa' : 'font-ui'} font-bold inline-flex items-center gap-1.5`}
-                    style={{ fontSize: '14.5px', color: '#B53389', textDecoration: 'none' }}
+                    style={{ fontSize: '14.5px', color: '#4B92DB', textDecoration: 'none' }}
                     onClick={(e) => e.stopPropagation()}
                   >
                     {isFa ? 'دریافت قالب' : 'Get template'}
@@ -594,19 +594,19 @@ export default function ResourcesSection() {
                   <button
                     className={`${isFa ? 'font-fa' : 'font-ui'} cursor-pointer transition-colors duration-200`}
                     style={{
-                      fontSize: '13.5px', fontWeight: 500, color: 'rgba(26,26,46,0.58)',
+                      fontSize: '13.5px', fontWeight: 500, color: '#5A504A',
                       background: 'none',
                       border: '0.5px solid #D8C7B8',
                       padding: '6px 14px', borderRadius: '8px',
                     }}
                     onMouseEnter={(e) => {
                       const el = e.currentTarget as HTMLButtonElement
-                      el.style.color = '#B53389'
-                      el.style.borderColor = 'rgba(181,51,137,0.40)'
+                      el.style.color = '#4B92DB'
+                      el.style.borderColor = 'rgba(75,146,219,0.40)'
                     }}
                     onMouseLeave={(e) => {
                       const el = e.currentTarget as HTMLButtonElement
-                      el.style.color = 'rgba(26,26,46,0.58)'
+                      el.style.color = '#5A504A'
                       el.style.borderColor = '#D8C7B8'
                     }}
                     onClick={(e) => {

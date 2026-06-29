@@ -42,7 +42,7 @@ export default async function Footer() {
           transform: 'translateX(-50%)',
           width: '120px',
           height: '1.5px',
-          background: 'linear-gradient(90deg, transparent, #B53389, transparent)',
+          background: 'linear-gradient(90deg, transparent, #4B92DB, transparent)',
           opacity: 0.5,
         }}
       />
@@ -156,7 +156,7 @@ export default async function Footer() {
                   fontFamily: 'system-ui, sans-serif',
                   fontSize: '11px',
                   fontWeight: locale === 'en' ? 600 : 400,
-                  color: locale === 'en' ? '#B53389' : '#5A504A',
+                  color: locale === 'en' ? '#4B92DB' : '#5A504A',
                   textDecoration: 'none',
                 }}
               >
@@ -170,7 +170,7 @@ export default async function Footer() {
                   fontFamily: "'Noto Naskh Arabic', serif",
                   fontSize: '12px',
                   fontWeight: locale === 'fa' ? 600 : 400,
-                  color: locale === 'fa' ? '#B53389' : '#5A504A',
+                  color: locale === 'fa' ? '#4B92DB' : '#5A504A',
                   textDecoration: 'none',
                 }}
               >

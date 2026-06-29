@@ -66,7 +66,7 @@ export default function HeroEn() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 30%, rgba(181,51,137,0.07) 0%, transparent 70%)",
+            "radial-gradient(ellipse 80% 60% at 50% 30%, rgba(75,146,219,0.07) 0%, transparent 70%)",
         }}
       />
 
@@ -102,7 +102,7 @@ export default function HeroEn() {
         <FloatCard pos="left-[10%] top-[32%]" inDelay={0.8} floatDur={7.0} floatDelay={1.6}>
           <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
             <span style={{
-              width: 8, height: 8, borderRadius: "50%", background: "#B53389",
+              width: 8, height: 8, borderRadius: "50%", background: "#4B92DB",
               flexShrink: 0, marginTop: 3,
             }} />
             <div>
@@ -137,7 +137,7 @@ export default function HeroEn() {
             {[0,1,2,3].map(i => (
               <span key={i} style={{
                 display: "block", height: 4, flex: 1, borderRadius: 2,
-                background: i < 3 ? "#B53389" : "rgba(0,0,0,0.09)",
+                background: i < 3 ? "#4B92DB" : "rgba(0,0,0,0.09)",
               }} />
             ))}
           </div>
@@ -167,14 +167,14 @@ export default function HeroEn() {
             <span
               className="inline-flex items-center gap-2 rounded-full px-4 py-2"
               style={{
-                background: "#F2C1D1",
-                border: "0.5px solid rgba(213,11,31,0.18)",
+                background: "#89CFF0",
+                border: "0.5px solid rgba(75,146,219,0.18)",
               }}
             >
               <span
                 style={{
                   width: 6, height: 6, borderRadius: "50%",
-                  background: "#B53389", display: "inline-block", flexShrink: 0,
+                  background: "#4B92DB", display: "inline-block", flexShrink: 0,
                 }}
               />
               <span
@@ -212,17 +212,34 @@ export default function HeroEn() {
             <span style={{ color: "#5A504A" }}>Start With the Right One.</span>
           </motion.h1>
 
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.18, ease: "easeOut" }}
+            style={{
+              fontFamily: 'system-ui, sans-serif',
+              fontSize: 'clamp(16px, 2vw, 19px)',
+              color: '#5A504A',
+              lineHeight: 1.7,
+              maxWidth: '460px',
+              margin: '0 auto',
+            }}
+          >
+            Practical AI and automation for daily work — no code, no jargon.
+          </motion.p>
+
           {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.65, delay: 0.28, ease: "easeOut" }}
             className="flex justify-center"
             style={{ marginTop: "40px" }}
           >
             <a
-              href="/contact"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-white rounded-full no-underline bg-brand-red hover:bg-brand-red-dark transition-colors duration-150"
+              href="/services#contact-form"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-white rounded-full no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150"
               style={{ padding: "13px 28px", fontFamily: "system-ui, sans-serif" }}
             >
               Start a Project →

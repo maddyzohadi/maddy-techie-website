@@ -57,7 +57,7 @@ export default async function GradientCTASection() {
 
           <Link
             href="/services"
-            className="inline-flex items-center gap-2 font-semibold rounded-full no-underline text-white bg-brand-orange hover:bg-brand-coral transition-colors duration-150"
+            className="inline-flex items-center gap-2 font-semibold rounded-full no-underline text-white bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150"
             style={{ fontFamily: bodyFont, fontSize: '15px', padding: '14px 32px' }}
           >
             {isFa ? 'شروع پروژه ←' : 'Start a Project →'}

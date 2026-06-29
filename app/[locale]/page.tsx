@@ -3,12 +3,9 @@ import { getLocale } from 'next-intl/server'
 import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
 import ProblemSection from '@/components/ProblemSection'
-import MethodSection from '@/components/MethodSection'
-import ProcessSection from '@/components/ProcessSection'
-import ServicesListSection from '@/components/ServicesListSection'
-import CurriculumSection from '@/components/CurriculumSection'
+import FaPainPoints from '@/components/FaPainPoints'
 import ServicesSection from '@/components/ServicesSection'
-import FAQSection from '@/components/FAQSection'
+import ProcessSection from '@/components/ProcessSection'
 import AboutSection from '@/components/AboutSection'
 import Footer from '@/components/Footer'
 import AIAssistant from '@/components/AIAssistant'
@@ -59,16 +56,14 @@ export default async function Home() {
       {/* EN: problem cards */}
       {!isFa && <ProblemSection />}
 
-      {/* FA: full section set (unchanged) */}
-      {isFa && <MethodSection />}
-      {isFa && <ProcessSection />}
-      {isFa && <ServicesListSection />}
-      {isFa && <CurriculumSection />}
+      {/* FA: who it's for + outcomes */}
+      {isFa && <FaPainPoints />}
 
-      {/* EN: services preview cards → simple process → about */}
-      {!isFa && <ServicesSection />}
-      {!isFa && <ProcessSection />}
-      {!isFa && <AboutSection />}
+      {/* Both: services preview → process → about */}
+      <ServicesSection />
+      <ProcessSection />
+      <AboutSection />
+
       <Footer />
       <AIAssistant />
     </main>

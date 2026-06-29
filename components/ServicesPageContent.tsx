@@ -62,7 +62,7 @@ export default async function ServicesPageContent() {
       >
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <span
-            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-5 bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full"
+            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-5 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
           >
             {t('heroBadge')}
           </span>
@@ -80,7 +80,7 @@ export default async function ServicesPageContent() {
           </p>
           <a
             href="#contact-form"
-            className="font-ui inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-orange hover:bg-brand-coral transition-colors duration-150"
+            className="font-ui inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150"
           >
             {t('heroCta')}
             <ArrowRight size={16} />
@@ -112,9 +112,9 @@ export default async function ServicesPageContent() {
                 >
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: 'rgba(181,51,137,0.08)', border: '0.5px solid rgba(181,51,137,0.20)' }}
+                    style={{ background: 'rgba(75,146,219,0.08)', border: '0.5px solid rgba(75,146,219,0.20)' }}
                   >
-                    <Icon size={20} style={{ color: '#B53389' }} />
+                    <Icon size={20} style={{ color: '#4B92DB' }} />
                   </div>
 
                   <div>
@@ -129,7 +129,7 @@ export default async function ServicesPageContent() {
                   <div>
                     <span
                       className="font-ui text-xs font-semibold uppercase tracking-[0.14em] block mb-1"
-                      style={{ color: '#999' }}
+                      style={{ color: '#8C7E74' }}
                     >
                       {t('bestForLabel')}
                     </span>
@@ -141,7 +141,7 @@ export default async function ServicesPageContent() {
                   <div>
                     <span
                       className="font-ui text-xs font-semibold uppercase tracking-[0.14em] block mb-2"
-                      style={{ color: '#999' }}
+                      style={{ color: '#8C7E74' }}
                     >
                       {t('toolsLabel')}
                     </span>
@@ -153,7 +153,7 @@ export default async function ServicesPageContent() {
                           style={{
                             background: 'rgba(0,0,0,0.04)',
                             border: '0.5px solid rgba(0,0,0,0.08)',
-                            color: '#888',
+                            color: '#8C7E74',
                           }}
                         >
                           {tool}
@@ -165,7 +165,7 @@ export default async function ServicesPageContent() {
                   <a
                     href="#contact-form"
                     className="mt-auto inline-flex items-center gap-1.5 font-ui font-semibold text-sm transition-opacity duration-200 hover:opacity-75 self-start"
-                    style={{ color: '#B53389' }}
+                    style={{ color: '#4B92DB' }}
                   >
                     {t(svc.ctaKey)}
                     <ArrowRight size={13} />
@@ -185,7 +185,7 @@ export default async function ServicesPageContent() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span
-              className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full"
+              className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
             >
               {t('howBadge')}
             </span>
@@ -233,7 +233,7 @@ export default async function ServicesPageContent() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span
-              className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full"
+              className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
             >
               {t('whoBadge')}
             </span>
@@ -258,7 +258,7 @@ export default async function ServicesPageContent() {
                 <CheckCircle
                   size={18}
                   className="flex-shrink-0 mt-0.5"
-                  style={{ color: '#B53389' }}
+                  style={{ color: '#4B92DB' }}
                 />
                 <p className="font-ui text-sm leading-relaxed" style={{ color: '#5A504A' }}>
                   {t(key)}
@@ -278,7 +278,7 @@ export default async function ServicesPageContent() {
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span
-              className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full"
+              className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
             >
               {t('formBadge')}
             </span>

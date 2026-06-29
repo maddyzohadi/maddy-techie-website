@@ -20,13 +20,13 @@ export default function ServicesSection() {
     <section
       id="services"
       className="py-24 md:py-32 relative scroll-mt-24"
-      style={{ background: '#FAFAF7', borderTop: '0.5px solid rgba(0,0,0,0.08)' }}
+      style={{ background: '#EFE7DC', borderTop: '0.5px solid #D8C7B8' }}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-16">
           <span
-            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full"
+            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
           >
             {t('badge')}
           </span>
@@ -51,7 +51,7 @@ export default function ServicesSection() {
               <motion.div
                 key={service.titleKey}
                 style={{
-                  background: '#EFE7DC',
+                  background: '#F5ECE0',
                   border: '0.5px solid #D8C7B8',
                   borderRadius: '16px',
                   padding: '28px 30px',
@@ -64,11 +64,11 @@ export default function ServicesSection() {
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
                   style={{
-                    background: 'rgba(213,11,31,0.06)',
-                    border: '0.5px solid rgba(213,11,31,0.15)',
+                    background: 'rgba(75,146,219,0.06)',
+                    border: '0.5px solid rgba(75,146,219,0.15)',
                   }}
                 >
-                  <Icon size={22} style={{ color: '#B53389' }} />
+                  <Icon size={22} style={{ color: '#4B92DB' }} />
                 </div>
                 <h3
                   className={`${isFa ? 'font-fa' : 'font-en'} font-semibold text-xl md:text-2xl mb-3 leading-snug`}
@@ -90,7 +90,7 @@ export default function ServicesSection() {
         <div className="text-center">
           <Link
             href="/services"
-            className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-red hover:bg-brand-red-dark transition-colors duration-150`}
+            className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150`}
           >
             {t('cta')}
             <ArrowRight size={16} className={isFa ? 'rotate-180' : ''} />

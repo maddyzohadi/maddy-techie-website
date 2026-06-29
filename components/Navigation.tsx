@@ -87,7 +87,7 @@ export default function Navigation() {
               <nav className="hidden lg:flex" style={{ alignItems: 'center', gap: '24px' }}>
                 {navLinks.map((link) => {
                   const active = isActive(link.href)
-                  const activeColor = isFa ? '#111111' : '#B53389'
+                  const activeColor = isFa ? '#111111' : '#4B92DB'
                   return (
                     <Link
                       key={link.key}
@@ -180,7 +180,7 @@ export default function Navigation() {
                     >
                       English
                       {locale === 'en' && (
-                        <span style={{ color: '#B53389', fontSize: '11px' }}>✓</span>
+                        <span style={{ color: '#4B92DB', fontSize: '11px' }}>✓</span>
                       )}
                     </Link>
                     <Link
@@ -203,7 +203,7 @@ export default function Navigation() {
                     >
                       فارسی
                       {locale === 'fa' && (
-                        <span style={{ color: '#B53389', fontSize: '11px', fontFamily: 'system-ui' }}>✓</span>
+                        <span style={{ color: '#4B92DB', fontSize: '11px', fontFamily: 'system-ui' }}>✓</span>
                       )}
                     </Link>
                   </div>
@@ -213,7 +213,7 @@ export default function Navigation() {
               {/* CTA */}
               <Link
                 href="/services"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-white rounded-full no-underline bg-brand-red hover:bg-brand-red-dark transition-colors duration-150"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-white rounded-full no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150"
                 style={{ padding: '10px 22px', fontFamily: navFont }}
               >
                 {isFa ? 'شروع پروژه ←' : 'Start a Project →'}
@@ -306,7 +306,7 @@ export default function Navigation() {
                   fontFamily: 'system-ui, sans-serif',
                   fontSize: '10px',
                   fontWeight: 600,
-                  color: '#999',
+                  color: '#8C7E74',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
                 }}
@@ -362,7 +362,7 @@ export default function Navigation() {
               <Link
                 href="/services"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center justify-center gap-1.5 font-semibold text-white rounded-full no-underline bg-brand-red hover:bg-brand-red-dark transition-colors duration-150"
+                className="flex items-center justify-center gap-1.5 font-semibold text-white rounded-full no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150"
                 style={{ padding: '13px 20px', fontSize: '15px', fontFamily: navFont }}
               >
                 {isFa ? 'شروع پروژه ←' : 'Start a Project →'}

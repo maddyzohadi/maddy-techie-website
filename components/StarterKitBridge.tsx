@@ -5,7 +5,7 @@ export default function StarterKitBridge() {
     <div
       className="relative py-16 text-center overflow-hidden"
       style={{
-        background: '#1A1A2E',
+        background: '#111111',
         borderTop: '0.5px solid rgba(245,240,232,0.10)',
         borderBottom: '0.5px solid rgba(245,240,232,0.10)',
       }}

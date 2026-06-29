@@ -8,9 +8,9 @@ export default async function AboutSection() {
   const t = await getTranslations('about')
   const isFa = locale === 'fa'
 
-  const headingColor = '#1A1A2E'
-  const bodyColor    = 'rgba(26,26,46,0.60)'
-  const badgeColor   = 'rgba(26,26,46,0.50)'
+  const headingColor = '#111111'
+  const bodyColor    = '#5A504A'
+  const badgeColor   = 'rgba(90,80,74,0.55)'
 
   return (
     <>
@@ -22,36 +22,67 @@ export default async function AboutSection() {
 
             {/* Left — avatar card */}
             <div className="order-2 lg:order-1">
-              <div className="bg-white border border-[#E8E3DA] rounded-2xl p-8 max-w-sm mx-auto">
-                <p className="font-['DM_Serif_Display'] text-lg text-[#111111] mb-1">
+              <div
+                className="bg-white border border-[#D8C7B8] rounded-2xl p-8 max-w-sm mx-auto"
+                dir={isFa ? 'rtl' : 'ltr'}
+              >
+                <p className={`${isFa ? 'font-fa text-xl' : "font-['DM_Serif_Display'] text-lg"} text-[#111111] mb-1`}>
                   Maddy the Techie
                 </p>
-                <p className="text-sm text-[#888] mb-6">
-                  AI &amp; Automation Educator · Silicon Valley
+                {!isFa && (
+                  <p className="text-sm text-[#5A504A] opacity-60 mb-6">
+                    AI &amp; Automation Educator · Silicon Valley
+                  </p>
+                )}
+                {isFa && (
+                  <p className="font-fa text-sm text-[#5A504A] opacity-60 mb-6">
+                    مربی هوش مصنوعی و اتوماسیون
+                  </p>
+                )}
+
+                <p
+                  className={`text-sm text-[#5A504A] leading-relaxed italic mb-6 ${
+                    isFa
+                      ? 'font-fa border-r-2 border-[#4B92DB] pr-3 text-right'
+                      : 'border-l-2 border-[#4B92DB] pl-3'
+                  }`}
+                >
+                  {isFa
+                    ? 'هوش مصنوعی را برای همه‌ی کسانی که کد نمی‌زنند، کاربردی می‌کنم.'
+                    : "Making AI practical for everyone who doesn't code"}
                 </p>
 
-                <p className="text-sm text-[#666] leading-relaxed italic border-l-2 border-[#B53389] pl-3 mb-6">
-                  Making AI practical for everyone who doesn&apos;t code
-                </p>
-
-                <div className="grid grid-cols-3 gap-3 mb-5">
-                  {[
-                    { num: '4', label: 'Modules' },
-                    { num: '12+', label: 'Projects' },
-                    { num: '100%', label: 'No-code' },
-                  ].map(({ num, label }) => (
-                    <div key={label} className="bg-[#F5ECE0] rounded-xl p-3 text-center">
-                      <span className="block text-xl font-medium text-[#111111]">{num}</span>
-                      <span className="block text-[11px] text-[#888] mt-0.5">{label}</span>
+                {!isFa && (
+                  <div className="grid grid-cols-3 gap-3 mb-5">
+                    {[
+                      { num: '4', label: 'Modules' },
+                      { num: '12+', label: 'Projects' },
+                      { num: '100%', label: 'No-code' },
+                    ].map(({ num, label }) => (
+                      <div key={label} className="bg-[#F5ECE0] rounded-xl p-3 text-center">
+                        <span className="block text-xl font-medium text-[#111111]">{num}</span>
+                        <span className="block text-[11px] text-[#5A504A] opacity-60 mt-0.5">{label}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {isFa && (
+                  <div className="flex justify-center mb-5">
+                    <div className="bg-[#F5ECE0] border border-[#D8C7B8] rounded-xl px-6 py-3 text-center">
+                      <span className="block text-2xl font-medium text-[#111111]">۴</span>
+                      <span className="block font-fa text-xs text-[#5A504A] opacity-60 mt-0.5">ماژول</span>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                )}
 
                 <div className="flex flex-wrap gap-1.5">
-                  {['ChatGPT', 'Claude', 'n8n', 'Google Sheets', 'Make'].map((tag) => (
+                  {(isFa
+                    ? ['ChatGPT', 'Claude', 'Google Sheets']
+                    : ['ChatGPT', 'Claude', 'n8n', 'Google Sheets', 'Make']
+                  ).map((tag) => (
                     <span
                       key={tag}
-                      className="text-[11px] text-[#888] border border-[#E8E3DA] rounded-full px-2.5 py-0.5"
+                      className="text-[11px] text-[#5A504A] opacity-60 border border-[#D8C7B8] rounded-full px-2.5 py-0.5"
                     >
                       {tag}
                     </span>
@@ -63,7 +94,7 @@ export default async function AboutSection() {
             {/* Right — intro */}
             <div className="order-1 lg:order-2">
               <span
-                className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full"
+                className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
               >
                 {t('badge')}
               </span>
@@ -94,7 +125,7 @@ export default async function AboutSection() {
 
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2.5 font-ui font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-red hover:bg-brand-red-dark transition-colors duration-150"
+                className="inline-flex items-center gap-2.5 font-ui font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150"
               >
                 {t('ctaLabel')}
                 <ArrowRight size={16} className={locale === 'fa' ? 'rotate-180' : ''} />

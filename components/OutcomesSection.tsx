@@ -32,18 +32,18 @@ export default function OutcomesSection() {
         <div className="text-center mb-14">
           <p
             className="font-ui font-bold mb-4"
-            style={{ fontSize: '13px', letterSpacing: '.22em', color: 'rgba(26,26,46,0.50)', textTransform: 'uppercase' }}
+            style={{ fontSize: '13px', letterSpacing: '.22em', color: 'rgba(90,80,74,0.55)', textTransform: 'uppercase' }}
           >
             {isFa ? 'چه چیزی ممکن می‌شود' : "What you'll be able to do"}
           </p>
           <h2
             className={`${isFa ? 'font-fa' : 'font-en'} font-extrabold`}
-            style={{ fontSize: 'clamp(28px, 4.5vw, 48px)', lineHeight: 1.1, letterSpacing: '-.02em', color: '#1A1A2E' }}
+            style={{ fontSize: 'clamp(28px, 4.5vw, 48px)', lineHeight: 1.1, letterSpacing: '-.02em', color: '#111111' }}
           >
             {isFa ? (
-              <>نتیجه‌های واقعی،{' '}<span style={{ color: 'rgba(26,26,46,0.60)' }}>از همین امروز</span></>
+              <>نتیجه‌های واقعی،{' '}<span style={{ color: '#5A504A' }}>از همین امروز</span></>
             ) : (
-              <>Real results,{' '}<span style={{ color: 'rgba(26,26,46,0.60)' }}>starting today</span></>
+              <>Real results,{' '}<span style={{ color: '#5A504A' }}>starting today</span></>
             )}
           </h2>
         </div>
@@ -60,7 +60,7 @@ export default function OutcomesSection() {
               key={i}
               style={{
                 background: '#FFFFFF',
-                border: '0.5px solid rgba(26,26,46,0.12)',
+                border: '0.5px solid rgba(0,0,0,0.10)',
                 borderRadius: '12px',
                 padding: '24px 26px',
                 display: 'flex',
@@ -78,18 +78,18 @@ export default function OutcomesSection() {
                   flexShrink: 0, marginTop: '2px',
                 }}
               >
-                <CheckCircle2 size={18} style={{ color: '#1A1A2E' }} />
+                <CheckCircle2 size={18} style={{ color: '#111111' }} />
               </span>
               <div>
                 <p
                   className={`${isFa ? 'font-fa' : 'font-en'} font-bold`}
-                  style={{ fontSize: '16.5px', color: '#1A1A2E', lineHeight: 1.3, marginBottom: '6px' }}
+                  style={{ fontSize: '16.5px', color: '#111111', lineHeight: 1.3, marginBottom: '6px' }}
                 >
                   {item.headline}
                 </p>
                 <p
                   className={`${isFa ? 'font-fa' : 'font-ui'}`}
-                  style={{ fontSize: '14px', color: 'rgba(26,26,46,0.60)', lineHeight: 1.55 }}
+                  style={{ fontSize: '14px', color: '#5A504A', lineHeight: 1.55 }}
                 >
                   {item.body}
                 </p>

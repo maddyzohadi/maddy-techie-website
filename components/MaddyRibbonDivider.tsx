@@ -21,12 +21,12 @@ export default function MaddyRibbonDivider({
         className={`mrda-wrap mrda-${direction}${className ? ` ${className}` : ''}`}
         style={{ '--mrda-dur': `${duration}s` } as React.CSSProperties}
       />
-      {/* Recolor overlay: applies hue/sat of #F2C1D1 to the ribbon marks */}
+      {/* Recolor overlay: applies hue/sat of #89CFF0 to the ribbon marks */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
-          background: '#F2C1D1',
+          background: '#89CFF0',
           mixBlendMode: 'color',
           pointerEvents: 'none',
         }}

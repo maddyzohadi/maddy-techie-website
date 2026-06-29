@@ -39,14 +39,14 @@ export default function PainPointsSectionFA() {
           {cards.map(({ icon: Icon, title, body }) => (
             <div
               key={title}
-              className="relative bg-white border border-[#E8E3DA] rounded-2xl p-7 overflow-hidden"
+              className="relative bg-white border border-[#D8C7B8] rounded-2xl p-7 overflow-hidden"
             >
-              <div className="absolute top-0 right-0 w-[3px] h-full bg-[#B53389] rounded-r-2xl" />
-              <Icon size={22} strokeWidth={1.5} className="text-[#B53389] mb-4" />
+              <div className="absolute top-0 right-0 w-[3px] h-full bg-[#4B92DB] rounded-r-2xl" />
+              <Icon size={22} strokeWidth={1.5} className="text-[#4B92DB] mb-4" />
               <h3 className="font-['Noto_Naskh_Arabic'] text-xl text-[#111111] mb-3 leading-relaxed">
                 {title}
               </h3>
-              <p className="text-[#666] text-sm leading-loose font-['Noto_Naskh_Arabic']">
+              <p className="text-[#5A504A] text-sm leading-loose font-['Noto_Naskh_Arabic']">
                 {body}
               </p>
             </div>

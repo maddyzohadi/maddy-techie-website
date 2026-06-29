@@ -42,16 +42,16 @@ export default function PainPointsSection() {
           {cards.map(({ icon: Icon, title, body }) => (
             <motion.div
               key={title}
-              className="relative bg-white border border-[#E8E3DA] rounded-2xl p-7 overflow-hidden"
+              className="relative bg-white border border-[#D8C7B8] rounded-2xl p-7 overflow-hidden"
               whileHover={{ y: -4, boxShadow: "0 8px 24px rgba(0,0,0,0.08)" }}
               transition={{ duration: 0.2, ease: "easeOut" }}
             >
-              <div className="absolute top-0 left-0 w-[3px] h-full bg-[#B53389] rounded-l-2xl" />
-              <Icon size={22} strokeWidth={1.5} className="text-[#B53389] mb-4" />
+              <div className="absolute top-0 left-0 w-[3px] h-full bg-[#4B92DB] rounded-l-2xl" />
+              <Icon size={22} strokeWidth={1.5} className="text-[#4B92DB] mb-4" />
               <h3 className="font-['DM_Serif_Display'] text-xl text-[#111111] mb-3">
                 {title}
               </h3>
-              <p className="text-[#666] text-sm leading-relaxed">{body}</p>
+              <p className="text-[#5A504A] text-sm leading-relaxed">{body}</p>
             </motion.div>
           ))}
         </div>

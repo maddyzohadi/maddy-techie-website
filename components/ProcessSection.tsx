@@ -30,11 +30,11 @@ export default function ProcessSection() {
 
   if (isFa) {
     return (
-      <section className="py-24 px-6 bg-[#FDF0EE]" dir="rtl">
+      <section className="py-24 px-6 bg-[#EFE7DC]" dir="rtl">
         <div className="max-w-3xl mx-auto">
           <motion.div {...fadeIn}>
             <div className="text-center mb-16">
-              <p className="text-sm text-[#888] tracking-widest mb-4 font-['Noto_Naskh_Arabic']">
+              <p className="text-sm text-[#5A504A] opacity-60 tracking-widest mb-4 font-['Noto_Naskh_Arabic']">
                 روش کار
               </p>
               <h2 className="font-['Noto_Naskh_Arabic'] text-4xl text-[#111111] leading-relaxed">
@@ -42,7 +42,7 @@ export default function ProcessSection() {
               </h2>
             </div>
 
-            <div className="flex flex-col divide-y divide-[#E8E3DA]">
+            <div className="flex flex-col divide-y divide-[#D8C7B8]">
               {FA_STEPS.map(({ week, title, body }) => (
                 <motion.div
                   key={week}
@@ -54,11 +54,11 @@ export default function ProcessSection() {
                     <h3 className="font-['Noto_Naskh_Arabic'] text-lg font-medium text-[#111111] mb-2">
                       {title}
                     </h3>
-                    <p className="font-['Noto_Naskh_Arabic'] text-sm text-[#666] leading-loose">
+                    <p className="font-['Noto_Naskh_Arabic'] text-sm text-[#5A504A] leading-loose">
                       {body}
                     </p>
                   </div>
-                  <div className="shrink-0 bg-white border border-[#E8E3DA] rounded-full px-4 py-1.5 text-sm text-[#888] font-['Noto_Naskh_Arabic']">
+                  <div className="shrink-0 bg-white border border-[#D8C7B8] rounded-full px-4 py-1.5 text-sm text-[#5A504A] opacity-60 font-['Noto_Naskh_Arabic']">
                     {week}
                   </div>
                 </motion.div>
@@ -73,9 +73,9 @@ export default function ProcessSection() {
   return (
     <section
       style={{
-        background: '#FAFAF7',
+        background: '#EFE7DC',
         padding: '96px 24px',
-        borderTop: '0.5px solid rgba(0,0,0,0.08)',
+        borderTop: '0.5px solid #D8C7B8',
       }}
     >
       <motion.div
@@ -92,7 +92,7 @@ export default function ProcessSection() {
               fontWeight: 600,
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: '#999',
+              color: '#8C7E74',
               marginBottom: '16px',
             }}
           >
@@ -135,7 +135,7 @@ export default function ProcessSection() {
                     fontFamily: 'system-ui, sans-serif',
                     fontSize: '11px',
                     fontWeight: 600,
-                    color: '#999',
+                    color: '#8C7E74',
                     letterSpacing: '0.06em',
                     background: 'rgba(0,0,0,0.05)',
                     border: '0.5px solid rgba(0,0,0,0.08)',

@@ -15,7 +15,7 @@ export default function FaSimpleStart() {
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <span
-          className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full"
+          className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
         >
           شروع ساده
         </span>
@@ -23,7 +23,7 @@ export default function FaSimpleStart() {
           className="font-fa font-bold text-3xl md:text-4xl leading-tight mb-4"
           style={{ color: '#111111', letterSpacing: '-0.025em' }}
         >
-          مسیر <span style={{ color: '#B53389' }}>ساده</span> برای شروع
+          مسیر <span style={{ color: '#4B92DB' }}>ساده</span> برای شروع
         </h2>
         <p
           className="font-fa text-lg md:text-xl leading-relaxed mb-10"
@@ -38,7 +38,7 @@ export default function FaSimpleStart() {
               className="flex items-center gap-3 font-fa text-base md:text-lg"
               style={{ color: '#111111' }}
             >
-              <CheckCircle2 size={20} style={{ color: '#B53389', flexShrink: 0 }} />
+              <CheckCircle2 size={20} style={{ color: '#4B92DB', flexShrink: 0 }} />
               {item}
             </li>
           ))}

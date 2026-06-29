@@ -10,7 +10,7 @@ export default function CurriculumSection() {
   const isFa = locale === 'fa'
   const [openPart, setOpenPart] = useState<number | null>(0)
 
-  const accent = { text: '#B53389', bg: 'rgba(213,11,31,0.06)', border: 'rgba(213,11,31,0.15)' }
+  const accent = { text: '#4B92DB', bg: 'rgba(75,146,219,0.06)', border: 'rgba(75,146,219,0.15)' }
 
   const parts = [
     { number: '01', icon: Zap,    title: t('part0title'), tagline: t('part0tagline'), items: [t('part0item0'), t('part0item1'), t('part0item2'), t('part0item3')] },
@@ -20,8 +20,8 @@ export default function CurriculumSection() {
   ]
 
   const headingColor = '#111111'
-  const bodyColor    = '#666'
-  const badgeColor   = '#999'
+  const bodyColor    = '#5A504A'
+  const badgeColor   = '#8C7E74'
 
   return (
     <section id="training" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#F5ECE0' }}>
@@ -30,7 +30,7 @@ export default function CurriculumSection() {
 
         <div className="text-center mb-16">
           <span
-            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full"
+            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
           >
             {t('badge')}
           </span>
@@ -59,7 +59,7 @@ export default function CurriculumSection() {
                 className="overflow-hidden transition-all duration-300"
                 style={{
                   background: '#EFE7DC',
-                  border: `0.5px solid ${isOpen ? 'rgba(26,26,46,0.20)' : 'rgba(26,26,46,0.12)'}`,
+                  border: `0.5px solid ${isOpen ? 'rgba(0,0,0,0.14)' : 'rgba(0,0,0,0.10)'}`,
                   borderRadius: '12px',
                 }}
               >
@@ -99,7 +99,7 @@ export default function CurriculumSection() {
                   <ChevronDown
                     size={18}
                     className={`flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-                    style={{ color: '#888' }}
+                    style={{ color: '#8C7E74' }}
                   />
                 </button>
 
@@ -121,7 +121,7 @@ export default function CurriculumSection() {
                           className={`flex items-start gap-3 ${isFa ? 'flex-row-reverse' : ''} text-base md:text-lg`}
                           style={{ color: bodyColor }}
                         >
-                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-brand-red" />
+                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-brand-blue" />
                           <span className={isFa ? 'font-fa flex-1 text-right' : 'font-ui'}>{item}</span>
                         </li>
                       ))}
@@ -135,7 +135,7 @@ export default function CurriculumSection() {
 
         <p
           className="text-center font-ui text-sm mt-10"
-          style={{ color: '#888' }}
+          style={{ color: '#8C7E74' }}
         >
           {t('bottomNote')}{' '}
           <span className="font-medium" style={{ color: '#111111' }}>{t('bottomNoteHighlight')}</span>

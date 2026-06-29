@@ -13,9 +13,9 @@ export default function MethodSection() {
 
   const card1 = {
     badge: isFa ? 'اتوماسیون بدون کدنویسی' : 'NO-CODE AUTOMATION',
-    title: isFa ? 'ابزارهایت را به هم متصل کن'  : 'Connect your tools together',
+    title: isFa ? 'کارهای تکراری را ساده کن'  : 'Connect your tools together',
     desc:  isFa
-      ? 'Make، Zapier و ChatGPT رو وصل کن — کارها خودشون انجام می‌شن.'
+      ? 'Claude، ChatGPT و Google Sheets رو برای ساخت گردش‌کار کاری به کار بگیر — بدون کد.'
       : 'Link Make, Zapier, and ChatGPT so tasks complete themselves — no developer required.',
   }
 
@@ -31,8 +31,8 @@ export default function MethodSection() {
     width: '40px',
     height: '40px',
     borderRadius: '10px',
-    background: 'rgba(213,11,31,0.06)',
-    border: '0.5px solid rgba(213,11,31,0.15)',
+    background: 'rgba(75,146,219,0.06)',
+    border: '0.5px solid rgba(75,146,219,0.15)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -61,7 +61,7 @@ export default function MethodSection() {
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: '56px' }}>
           <span
-            className="inline-flex items-center font-ui text-[11px] font-semibold uppercase tracking-[0.12em] mb-4 bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full"
+            className="inline-flex items-center font-ui text-[11px] font-semibold uppercase tracking-[0.12em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
           >
             {isFa ? 'روش کار' : 'HOW IT WORKS'}
           </span>
@@ -99,7 +99,7 @@ export default function MethodSection() {
             transition={{ duration: 0.2, ease: 'easeOut' }}
           >
             <div style={iconBox}>
-              <Zap size={20} style={{ color: '#B53389' }} />
+              <Zap size={20} style={{ color: '#4B92DB' }} />
             </div>
             <span
               style={{
@@ -108,7 +108,7 @@ export default function MethodSection() {
                 fontWeight: 600,
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
-                color: '#999',
+                color: '#8C7E74',
                 display: 'block',
                 marginBottom: '10px',
               }}
@@ -146,7 +146,7 @@ export default function MethodSection() {
             transition={{ duration: 0.2, ease: 'easeOut' }}
           >
             <div style={iconBox}>
-              <Brain size={20} style={{ color: '#B53389' }} />
+              <Brain size={20} style={{ color: '#4B92DB' }} />
             </div>
             <span
               style={{
@@ -155,7 +155,7 @@ export default function MethodSection() {
                 fontWeight: 600,
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
-                color: '#999',
+                color: '#8C7E74',
                 display: 'block',
                 marginBottom: '10px',
               }}

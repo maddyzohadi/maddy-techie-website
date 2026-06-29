@@ -62,7 +62,7 @@ export default function HeroDarkPanel() {
         }}
       >
         <div style={{ display: 'flex', gap: '6px' }}>
-          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#B53389', opacity: 0.75 }} />
+          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#4B92DB', opacity: 0.75 }} />
           <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#FFD166', opacity: 0.45 }} />
           <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#52C47A', opacity: 0.40 }} />
         </div>
@@ -106,11 +106,11 @@ export default function HeroDarkPanel() {
                 gap: '8px',
                 padding: '7px 10px',
                 borderRadius: '7px',
-                background: active ? 'rgba(181,51,137,0.10)' : 'transparent',
-                border: active ? '0.5px solid rgba(181,51,137,0.18)' : '0.5px solid transparent',
+                background: active ? 'rgba(75,146,219,0.10)' : 'transparent',
+                border: active ? '0.5px solid rgba(75,146,219,0.18)' : '0.5px solid transparent',
               }}
             >
-              <Icon size={13} style={{ color: active ? '#B53389' : MUTED, flexShrink: 0 }} />
+              <Icon size={13} style={{ color: active ? '#4B92DB' : MUTED, flexShrink: 0 }} />
               <span style={{ fontFamily: 'system-ui', fontSize: '12px', color: active ? TEXT : MUTED }}>
                 {label}
               </span>
@@ -166,16 +166,16 @@ export default function HeroDarkPanel() {
               const Icon       = step.Icon
               const isActive   = step.status === 'active'
               const isDone     = step.status === 'done'
-              const nodeColor  = isActive ? '#B53389' : isDone ? '#52C47A' : 'rgba(245,236,224,0.32)'
-              const nodeBg     = isActive ? 'rgba(181,51,137,0.10)' : isDone ? 'rgba(82,196,122,0.07)' : 'rgba(245,236,224,0.03)'
-              const nodeBorder = isActive ? 'rgba(181,51,137,0.22)' : isDone ? 'rgba(82,196,122,0.16)' : 'rgba(245,236,224,0.07)'
+              const nodeColor  = isActive ? '#4B92DB' : isDone ? '#52C47A' : 'rgba(245,236,224,0.32)'
+              const nodeBg     = isActive ? 'rgba(75,146,219,0.10)' : isDone ? 'rgba(82,196,122,0.07)' : 'rgba(245,236,224,0.03)'
+              const nodeBorder = isActive ? 'rgba(75,146,219,0.22)' : isDone ? 'rgba(82,196,122,0.16)' : 'rgba(245,236,224,0.07)'
               const textColor  = isActive ? TEXT : isDone ? 'rgba(245,236,224,0.65)' : 'rgba(245,236,224,0.35)'
-              const subColor   = isActive ? 'rgba(181,51,137,0.70)' : isDone ? 'rgba(82,196,122,0.60)' : 'rgba(245,236,224,0.20)'
+              const subColor   = isActive ? 'rgba(75,146,219,0.70)' : isDone ? 'rgba(82,196,122,0.60)' : 'rgba(245,236,224,0.20)'
               return (
                 <React.Fragment key={i}>
                   <motion.div
                     animate={isActive ? {
-                      boxShadow: ['0 0 0px rgba(181,51,137,0)', '0 0 18px rgba(181,51,137,0.18)', '0 0 0px rgba(181,51,137,0)'],
+                      boxShadow: ['0 0 0px rgba(75,146,219,0)', '0 0 18px rgba(75,146,219,0.18)', '0 0 0px rgba(75,146,219,0)'],
                     } : {}}
                     transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
                     style={{
@@ -212,7 +212,7 @@ export default function HeroDarkPanel() {
             {STATS.map((stat, i) => (
               <React.Fragment key={stat.label}>
                 <div style={{ flex: 1, textAlign: 'center' }}>
-                  <div style={{ fontFamily: 'system-ui', fontSize: '14px', fontWeight: 700, color: '#B53389' }}>{stat.value}</div>
+                  <div style={{ fontFamily: 'system-ui', fontSize: '14px', fontWeight: 700, color: '#4B92DB' }}>{stat.value}</div>
                   <div style={{ fontFamily: 'system-ui', fontSize: '9px', color: 'rgba(245,236,224,0.28)', textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: '2px' }}>{stat.label}</div>
                 </div>
                 {i < STATS.length - 1 && (
@@ -282,7 +282,7 @@ export default function HeroDarkPanel() {
                   transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
                   style={{ flexShrink: 0, display: 'flex' }}
                 >
-                  <Loader2 size={12} style={{ color: '#B53389', opacity: 0.7 }} />
+                  <Loader2 size={12} style={{ color: '#4B92DB', opacity: 0.7 }} />
                 </motion.div>
               ) : (
                 <CheckCircle size={12} style={{ color: '#52C47A', opacity: 0.6, flexShrink: 0 }} />

@@ -53,7 +53,7 @@ export default function ServicesListSection() {
             fontWeight: 600,
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            color: '#999',
+            color: '#8C7E74',
             marginBottom: '48px',
             textAlign: isFa ? 'center' : 'left',
           }}
@@ -123,7 +123,7 @@ export default function ServicesListSection() {
                     style={{
                       fontFamily: bodyFont,
                       fontSize: '14px',
-                      color: '#888',
+                      color: '#8C7E74',
                       lineHeight: 1.5,
                     }}
                   >

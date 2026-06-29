@@ -80,7 +80,7 @@ export default function StarterKitModal({ isOpen, onClose }: StarterKitModalProp
       <div
         aria-hidden
         className="absolute inset-0"
-        style={{ background: 'rgba(26,26,46,0.75)', backdropFilter: 'blur(8px)' }}
+        style={{ background: 'rgba(90,80,74,0.75)', backdropFilter: 'blur(8px)' }}
       />
 
       <div
@@ -102,9 +102,9 @@ export default function StarterKitModal({ isOpen, onClose }: StarterKitModalProp
             onClick={onClose}
             aria-label="Close"
             className="absolute top-5 right-5 p-2 rounded-xl transition-colors"
-            style={{ color: 'rgba(26,26,46,0.60)' }}
-            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#1A1A2E')}
-            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = 'rgba(26,26,46,0.60)')}
+            style={{ color: '#5A504A' }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#111111')}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = '#5A504A')}
           >
             <X size={18} />
           </button>
@@ -119,13 +119,13 @@ export default function StarterKitModal({ isOpen, onClose }: StarterKitModalProp
                     border: '0.5px solid rgba(123,47,190,0.30)',
                   }}
                 >
-                  <CheckCircle size={32} style={{ color: '#1A1A2E' }} />
+                  <CheckCircle size={32} style={{ color: '#111111' }} />
                 </div>
               </div>
-              <h2 className="font-en font-bold text-2xl mb-2" style={{ color: '#1A1A2E' }}>
+              <h2 className="font-en font-bold text-2xl mb-2" style={{ color: '#111111' }}>
                 Check your inbox
               </h2>
-              <p className="font-ui text-sm" style={{ color: 'rgba(26,26,46,0.60)' }}>
+              <p className="font-ui text-sm" style={{ color: '#5A504A' }}>
                 Your Starter Kit is on the way
               </p>
             </div>
@@ -133,7 +133,7 @@ export default function StarterKitModal({ isOpen, onClose }: StarterKitModalProp
             <>
               <p
                 className="font-ui text-xs font-semibold uppercase tracking-[0.20em] mb-4"
-                style={{ color: 'rgba(26,26,46,0.50)' }}
+                style={{ color: 'rgba(90,80,74,0.55)' }}
               >
                 Free Resource
               </p>
@@ -141,7 +141,7 @@ export default function StarterKitModal({ isOpen, onClose }: StarterKitModalProp
               <h2
                 id="skm-title"
                 className="font-en font-bold mb-3"
-                style={{ fontSize: 'clamp(22px, 3vw, 28px)', lineHeight: 1.15, color: '#1A1A2E' }}
+                style={{ fontSize: 'clamp(22px, 3vw, 28px)', lineHeight: 1.15, color: '#111111' }}
               >
                 Get the Free Starter Kit
               </h2>
@@ -149,7 +149,7 @@ export default function StarterKitModal({ isOpen, onClose }: StarterKitModalProp
               <p
                 id="skm-desc"
                 className="font-ui text-sm leading-relaxed mb-6"
-                style={{ color: 'rgba(26,26,46,0.60)' }}
+                style={{ color: '#5A504A' }}
               >
                 Start with ready-to-use prompts, templates, and workflow ideas for your everyday work
               </p>
@@ -170,9 +170,9 @@ export default function StarterKitModal({ isOpen, onClose }: StarterKitModalProp
                     className="w-full font-ui text-sm rounded-xl px-4 py-3 disabled:opacity-50 placeholder:opacity-50"
                     style={{
                       background: 'rgba(123,47,190,0.06)',
-                      color: '#1A1A2E',
+                      color: '#111111',
                       border: `0.5px solid ${emailError ? 'rgba(239,68,68,0.55)' : 'rgba(123,47,190,0.25)'}`,
-                      caretColor: '#1A1A2E',
+                      caretColor: '#111111',
                       outline: 'none',
                     }}
                   />
@@ -194,7 +194,7 @@ export default function StarterKitModal({ isOpen, onClose }: StarterKitModalProp
                   className="w-full font-ui font-semibold text-sm inline-flex items-center justify-center gap-2.5 rounded-xl py-3.5 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                   style={{
                     color: '#ffffff',
-                    background: '#7B2FBE',
+                    background: '#4B92DB',
                   }}
                 >
                   {status === 'submitting' ? (
@@ -205,7 +205,7 @@ export default function StarterKitModal({ isOpen, onClose }: StarterKitModalProp
                 </button>
               </form>
 
-              <p className="font-ui text-xs text-center mt-4" style={{ color: 'rgba(26,26,46,0.50)' }}>
+              <p className="font-ui text-xs text-center mt-4" style={{ color: 'rgba(90,80,74,0.55)' }}>
                 No spam. Unsubscribe any time.
               </p>
             </>

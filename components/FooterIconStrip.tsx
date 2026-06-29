@@ -5,14 +5,14 @@ import { motion } from 'motion/react'
 import { Bot, Zap, FileText, Brain, LayoutGrid, Sparkles, ArrowRight } from 'lucide-react'
 
 const ROW1 = [
-  { Icon: Bot,        color: '#B53389', delay: 0   },
+  { Icon: Bot,        color: '#4B92DB', delay: 0   },
   { Icon: Zap,        color: '#5A504A', delay: 0.5 },
   { Icon: FileText,   color: '#5A504A', delay: 1.0 },
 ]
 
 const ROW2 = [
   { Icon: Brain,      color: '#5A504A', delay: 0.25 },
-  { Icon: LayoutGrid, color: '#B53389', delay: 0.75 },
+  { Icon: LayoutGrid, color: '#4B92DB', delay: 0.75 },
   { Icon: Sparkles,   color: '#5A504A', delay: 1.25 },
 ]
 
@@ -38,7 +38,7 @@ function IconBox({
         width: '44px',
         height: '44px',
         borderRadius: '12px',
-        background: '#FAFAF8',
+        background: '#F5ECE0',
         border: '0.5px solid #D8C7B8',
         display: 'flex',
         alignItems: 'center',
@@ -78,7 +78,7 @@ export default function FooterIconStrip() {
           position: 'absolute',
           inset: '-20px',
           background:
-            'radial-gradient(ellipse at center, rgba(181,51,137,0.10) 0%, transparent 70%)',
+            'radial-gradient(ellipse at center, rgba(75,146,219,0.10) 0%, transparent 70%)',
           pointerEvents: 'none',
           borderRadius: '50%',
         }}

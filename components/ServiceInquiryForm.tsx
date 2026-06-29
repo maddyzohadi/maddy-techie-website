@@ -22,7 +22,7 @@ function FieldLabel({ htmlFor, children }: { htmlFor: string; children: React.Re
     <label
       htmlFor={htmlFor}
       className="block font-ui text-xs font-semibold uppercase tracking-[0.15em] mb-2"
-      style={{ color: 'rgba(26,26,46,0.60)' }}
+      style={{ color: '#5A504A' }}
     >
       {children}
     </label>
@@ -50,7 +50,7 @@ export default function ServiceInquiryForm() {
     border:     '0.5px solid rgba(0,0,0,0.12)',
     color:      '#111111',
   }
-  const inputFocusStyle: React.CSSProperties = { borderColor: 'rgba(181,51,137,0.50)' }
+  const inputFocusStyle: React.CSSProperties = { borderColor: 'rgba(75,146,219,0.50)' }
   const inputErrorStyle: React.CSSProperties = { borderColor: 'rgba(239,68,68,0.55)' }
 
   const validate = (): boolean => {
@@ -101,7 +101,7 @@ export default function ServiceInquiryForm() {
           role="alert"
           style={{ background: 'rgba(0,0,0,0.04)', border: '0.5px solid rgba(0,0,0,0.10)' }}
         >
-          <CheckCircle size={18} className="flex-shrink-0" style={{ color: '#B53389' }} />
+          <CheckCircle size={18} className="flex-shrink-0" style={{ color: '#4B92DB' }} />
           <p className={`${isFa ? 'font-fa' : 'font-ui'} text-sm font-medium`} style={{ color: '#111111' }}>
             {t('successMessage')}
           </p>
@@ -178,7 +178,7 @@ export default function ServiceInquiryForm() {
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center justify-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white bg-brand-orange hover:bg-brand-coral disabled:opacity-60 transition duration-150 self-start`}
+        className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center justify-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white bg-brand-blue hover:bg-brand-blue-dark disabled:opacity-60 transition duration-150 self-start`}
         style={{ border: 'none' }}
       >
         {status === 'submitting' ? (

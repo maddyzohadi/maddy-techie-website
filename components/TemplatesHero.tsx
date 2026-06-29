@@ -2,9 +2,6 @@
 
 import { useLocale } from 'next-intl'
 
-const VIDEO_SRC =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_145119_f4ec4d9f-3ecd-4116-baa3-26e8cf2df976.mp4'
-
 export default function TemplatesHero() {
   const locale = useLocale()
   const isFa = locale === 'fa'
@@ -20,35 +17,6 @@ export default function TemplatesHero() {
         overflow: 'hidden',
       }}
     >
-      {/* Ambient video — decorative only, right side, desktop only */}
-      <div
-        className="hidden md:block"
-        style={{
-          position: 'absolute',
-          right: 0,
-          top: 0,
-          bottom: 0,
-          width: '50%',
-          opacity: 0.42,
-          pointerEvents: 'none',
-          WebkitMaskImage:
-            'linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%), linear-gradient(to right, transparent 0%, black 28%, black 100%)',
-          WebkitMaskComposite: 'source-in',
-          maskImage:
-            'linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%), linear-gradient(to right, transparent 0%, black 28%, black 100%)',
-          maskComposite: 'intersect',
-        }}
-      >
-        <video
-          src={VIDEO_SRC}
-          autoPlay
-          muted
-          loop
-          playsInline
-          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-        />
-      </div>
-
       {/* Text content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-lg" dir={isFa ? 'rtl' : 'ltr'}>
@@ -57,7 +25,7 @@ export default function TemplatesHero() {
             style={{
               fontSize: '12px',
               letterSpacing: '.20em',
-              color: '#B53389',
+              color: '#4B92DB',
               textTransform: 'uppercase',
             }}
           >
@@ -104,7 +72,7 @@ export default function TemplatesHero() {
 
           <a
             href="#templates"
-            className="font-ui font-bold inline-flex items-center gap-2 text-white no-underline rounded-full bg-brand-orange hover:bg-brand-coral transition-colors duration-150"
+            className="font-ui font-bold inline-flex items-center gap-2 text-white no-underline rounded-full bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150"
             style={{ padding: '13px 28px', fontSize: '14.5px' }}
           >
             {isFa ? 'مشاهده قالب‌ها ↓' : 'Browse templates ↓'}

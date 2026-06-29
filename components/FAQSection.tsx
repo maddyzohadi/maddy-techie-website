@@ -64,7 +64,7 @@ export default function FAQSection() {
 
           <div className="text-center mb-14">
             <div className="flex justify-center mb-4">
-              <span className="inline-flex items-center font-ui text-[11px] font-semibold uppercase tracking-[0.18em] bg-brand-peach text-brand-charcoal px-3 py-1.5 rounded-full">
+              <span className="inline-flex items-center font-ui text-[11px] font-semibold uppercase tracking-[0.18em] bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full">
                 {isFa ? 'سوالات رایج' : 'FAQ'}
               </span>
             </div>
@@ -73,9 +73,9 @@ export default function FAQSection() {
               style={{ fontSize: 'clamp(28px, 4.5vw, 44px)', lineHeight: 1.1, letterSpacing: '-.02em', color: '#111111' }}
             >
               {isFa ? (
-                <>سوال داری؟{' '}<span style={{ color: '#888' }}>جواب داریم.</span></>
+                <>سوال داری؟{' '}<span style={{ color: '#8C7E74' }}>جواب داریم.</span></>
               ) : (
-                <>Got questions?{' '}<span style={{ color: '#888' }}>We have answers.</span></>
+                <>Got questions?{' '}<span style={{ color: '#8C7E74' }}>We have answers.</span></>
               )}
             </h2>
           </div>
@@ -88,7 +88,7 @@ export default function FAQSection() {
                   key={i}
                   style={{
                     background: '#EFE7DC',
-                    border: `0.5px solid ${isOpen ? 'rgba(26,26,46,0.20)' : 'rgba(26,26,46,0.12)'}`,
+                    border: `0.5px solid ${isOpen ? 'rgba(0,0,0,0.14)' : 'rgba(0,0,0,0.10)'}`,
                     borderRadius: '12px',
                     overflow: 'hidden',
                     transition: 'border-color 0.2s',

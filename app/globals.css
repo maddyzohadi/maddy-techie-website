@@ -73,23 +73,19 @@ html {
 }
 
 body {
-  background-color: var(--color-midnight);
-  color: var(--text-primary-dark);
-  font-family: var(--font-fa);
+  font-family: var(--font-ui);
   font-size: var(--text-body);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 
 /* --- Direction helpers ------------------------------------ */
-[lang="fa"], .fa {
-  font-family: var(--font-fa);
+[lang="fa"] {
   direction: rtl;
   text-align: right;
 }
 
-[lang="en"], .en {
-  font-family: var(--font-en);
+[lang="en"] {
   direction: ltr;
   text-align: left;
 }
@@ -250,17 +246,17 @@ h3 { font-size: var(--text-h3); }
 }
 
 .footer-nav-link-dark:hover {
-  color: #B53389;
+  color: #4B92DB;
 }
 
 .footer-cta-link {
-  color: #B53389;
+  color: #4B92DB;
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .footer-cta-link:hover {
-  color: #9E2A76;
+  color: #3478C2;
 }
 
 .template-card {
@@ -268,7 +264,7 @@ h3 { font-size: var(--text-h3); }
 }
 
 .template-card:hover {
-  border-color: rgba(181, 51, 137, 0.38);
+  border-color: rgba(75, 146, 219, 0.38);
 }
 
 /* --- Liquid Glass ----------------------------------------- */
@@ -392,7 +388,7 @@ h3 { font-size: var(--text-h3); }
   left: 0;
   height: 100%;
   width: calc(100% + 320px);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 56'%3E%3Cpath d='M20,54 C40,54 64,4 80,4 L160,42 Z' fill='%23B53389'/%3E%3Cpath d='M300,54 C280,54 256,4 240,4 L160,42 Z' fill='%23B53389'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 56'%3E%3Cpath d='M20,54 C40,54 64,4 80,4 L160,42 Z' fill='%234B92DB'/%3E%3Cpath d='M300,54 C280,54 256,4 240,4 L160,42 Z' fill='%234B92DB'/%3E%3C/svg%3E");
   background-size: 320px 100%;
   background-repeat: repeat-x;
   background-color: transparent;
