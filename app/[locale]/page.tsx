@@ -12,6 +12,7 @@ import FAQSection from '@/components/FAQSection'
 import AboutSection from '@/components/AboutSection'
 import Footer from '@/components/Footer'
 import AIAssistant from '@/components/AIAssistant'
+import MaddyRibbonDivider from '@/components/MaddyRibbonDivider'
 import { routing } from '@/i18n/routing'
 
 const BASE = 'https://www.maddythetechie.com'
@@ -53,6 +54,7 @@ export default async function Home() {
     <main className="min-h-screen overflow-x-hidden">
       <Navigation />
       <Hero />
+      <MaddyRibbonDivider direction="left" duration={2} />
 
       {!isFa && <ProblemSection />}
 

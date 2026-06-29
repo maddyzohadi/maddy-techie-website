@@ -424,3 +424,58 @@ h3 { font-size: var(--text-h3); }
     transform: none !important;
   }
 }
+
+/* --- MaddyRibbonDivider — ribbon marquee -----------------------------------
+   Asset: /images/maddy-ribbon-divider.png (1916×821px, ratio ~2.334:1)
+   Used as background-image with repeat-x. background-size: auto 100% scales
+   the tile to the container height while preserving the image aspect ratio.
+     mobile  140px → tile_w = 140 × (1916/821) ≈ 327px
+     desktop 200px → tile_w = 200 × (1916/821) ≈ 467px
+   background-position-x animates by one tile for a seamless loop.
+---------------------------------------------------------------------------- */
+.mrda-wrap {
+  display: block;
+  height: 140px;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: #F7F3EC;
+  background-image: url('/images/maddy-ribbon-divider.png');
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  background-position: 0 0;
+  --mrda-tile: 327px;
+}
+
+@media (min-width: 768px) {
+  .mrda-wrap {
+    height: 200px;
+    --mrda-tile: 467px;
+  }
+}
+
+.mrda-left {
+  animation: mrda-left var(--mrda-dur, 2s) linear infinite;
+}
+
+.mrda-right {
+  background-position-x: calc(-1 * var(--mrda-tile));
+  animation: mrda-right var(--mrda-dur, 2s) linear infinite;
+}
+
+@keyframes mrda-left {
+  from { background-position-x: 0; }
+  to   { background-position-x: calc(-1 * var(--mrda-tile)); }
+}
+
+@keyframes mrda-right {
+  from { background-position-x: calc(-1 * var(--mrda-tile)); }
+  to   { background-position-x: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mrda-left,
+  .mrda-right {
+    animation: none !important;
+    background-position-x: 0 !important;
+  }
+}
