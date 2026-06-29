@@ -143,8 +143,8 @@ export default function AIAssistant() {
         <div
           className="flex flex-col rounded-2xl overflow-hidden"
           style={{
-            background: '#F7F3EC',
-            border:     '0.5px solid #E7DED2',
+            background: '#F5ECE0',
+            border:     '0.5px solid #D8C7B8',
             maxHeight:  'min(500px, 82vh)',
           }}
         >
@@ -155,7 +155,7 @@ export default function AIAssistant() {
           >
             <div
               className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-              style={{ background: 'rgba(255,106,50,0.15)', border: '0.5px solid rgba(255,106,50,0.35)' }}
+              style={{ background: 'rgba(181,51,137,0.15)', border: '0.5px solid rgba(181,51,137,0.35)' }}
             >
               <Bot size={15} style={{ color: '#FFFFFF' }} />
             </div>
@@ -186,7 +186,7 @@ export default function AIAssistant() {
           {/* Disclaimer strip */}
           <div
             className="px-4 py-2.5 flex-shrink-0"
-            style={{ background: 'rgba(0,0,0,0.03)', borderBottom: '0.5px solid #E7DED2' }}
+            style={{ background: 'rgba(0,0,0,0.03)', borderBottom: '0.5px solid #D8C7B8' }}
           >
             <p className="font-ui text-xs text-center" style={{ color: 'rgba(17,17,17,0.45)' }}>
               {t('disclaimer')}{' '}
@@ -197,7 +197,7 @@ export default function AIAssistant() {
           {/* Messages */}
           <div
             className="flex-1 overflow-y-auto chat-scroll p-3 space-y-3"
-            style={{ minHeight: 0, background: '#F7F3EC' }}
+            style={{ minHeight: 0, background: '#F5ECE0' }}
           >
             {messages.map(msg => (
               <div key={msg.id} className="flex flex-col gap-1">
@@ -206,13 +206,13 @@ export default function AIAssistant() {
                     className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5"
                     style={
                       msg.role === 'assistant'
-                        ? { background: 'rgba(255,106,50,0.12)', border: '0.5px solid rgba(255,106,50,0.30)' }
-                        : { background: 'rgba(255,106,50,0.10)', border: '0.5px solid rgba(255,106,50,0.25)' }
+                        ? { background: 'rgba(181,51,137,0.12)', border: '0.5px solid rgba(181,51,137,0.30)' }
+                        : { background: 'rgba(181,51,137,0.10)', border: '0.5px solid rgba(181,51,137,0.25)' }
                     }
                   >
                     {msg.role === 'assistant'
-                      ? <Bot  size={11} style={{ color: '#FF6A32' }} />
-                      : <User size={11} style={{ color: '#FF6A32' }} />}
+                      ? <Bot  size={11} style={{ color: '#B53389' }} />
+                      : <User size={11} style={{ color: '#B53389' }} />}
                   </div>
 
                   <div
@@ -220,8 +220,8 @@ export default function AIAssistant() {
                     style={{
                       padding:    '8px 12px',
                       color:      msg.role === 'assistant' ? '#111111' : '#FFFFFF',
-                      background: msg.role === 'assistant' ? '#FFF8F1' : '#FF6A32',
-                      border:     `0.5px solid ${msg.role === 'assistant' ? '#E7DED2' : '#FF6A32'}`,
+                      background: msg.role === 'assistant' ? '#EFE7DC' : '#B53389',
+                      border:     `0.5px solid ${msg.role === 'assistant' ? '#D8C7B8' : '#B53389'}`,
                       borderRadius: msg.role === 'assistant'
                         ? '18px 18px 18px 4px'
                         : '18px 18px 4px 18px',
@@ -254,16 +254,16 @@ export default function AIAssistant() {
               <div className="flex gap-2 animate-fade-in">
                 <div
                   className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5"
-                  style={{ background: 'rgba(255,106,50,0.12)', border: '0.5px solid rgba(255,106,50,0.30)' }}
+                  style={{ background: 'rgba(181,51,137,0.12)', border: '0.5px solid rgba(181,51,137,0.30)' }}
                 >
-                  <Bot size={12} style={{ color: '#FF6A32' }} />
+                  <Bot size={12} style={{ color: '#B53389' }} />
                 </div>
                 <div
                   className="flex items-center gap-1.5"
                   style={{
                     padding:      '8px 12px',
-                    background:   '#FFF8F1',
-                    border:       '0.5px solid #E7DED2',
+                    background:   '#EFE7DC',
+                    border:       '0.5px solid #D8C7B8',
                     borderRadius: '18px 18px 18px 4px',
                   }}
                 >
@@ -285,7 +285,7 @@ export default function AIAssistant() {
           <form
             onSubmit={e => { e.preventDefault(); sendMessage(input) }}
             className="flex items-center gap-2 px-2 py-2 flex-shrink-0"
-            style={{ background: 'rgba(0,0,0,0.03)', borderTop: '0.5px solid #E7DED2' }}
+            style={{ background: 'rgba(0,0,0,0.03)', borderTop: '0.5px solid #D8C7B8' }}
           >
             <input
               ref={inputRef}
@@ -298,7 +298,7 @@ export default function AIAssistant() {
               className="flex-1 font-ui text-xs rounded-xl px-3 py-2 transition-all disabled:opacity-50 placeholder:opacity-40"
               style={{
                 background: '#FFFFFF',
-                border:     '0.5px solid #E7DED2',
+                border:     '0.5px solid #D8C7B8',
                 color:      '#111111',
                 caretColor: '#111111',
                 outline:    'none',
@@ -309,7 +309,7 @@ export default function AIAssistant() {
               disabled={!input.trim() || isLoading}
               aria-label="Send message"
               className="flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed"
-              style={{ background: '#FF6A32' }}
+              style={{ background: '#B53389' }}
             >
               {isLoading
                 ? <Loader2 size={16} className="text-white animate-spin" />
@@ -327,18 +327,18 @@ export default function AIAssistant() {
         aria-expanded={isOpen}
         className="fixed bottom-5 right-4 sm:right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300"
         style={{
-          background: isOpen ? 'rgba(255,106,50,0.10)' : '#FF6A32',
-          border:     isOpen ? '0.5px solid rgba(255,106,50,0.40)' : 'none',
+          background: isOpen ? 'rgba(181,51,137,0.10)' : '#B53389',
+          border:     isOpen ? '0.5px solid rgba(181,51,137,0.40)' : 'none',
         }}
       >
         {hasNew && !isOpen && (
           <span
             className="absolute -top-1 -right-1 w-4 h-4 rounded-full border-2 motion-safe:animate-bounce"
-            style={{ background: '#FF6A32', borderColor: '#F7F3EC' }}
+            style={{ background: '#B53389', borderColor: '#F5ECE0' }}
           />
         )}
         {isOpen
-          ? <X size={22} style={{ color: 'rgba(255,106,50,0.80)' }} />
+          ? <X size={22} style={{ color: 'rgba(181,51,137,0.80)' }} />
           : <MessageCircle size={24} className="text-white" />}
       </button>
 

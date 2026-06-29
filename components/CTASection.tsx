@@ -20,7 +20,7 @@ export default function CTASection() {
     <section
       id="contact"
       className="pt-14 pb-14 md:pt-20 md:pb-20 relative overflow-hidden scroll-mt-24"
-      style={{ background: 'linear-gradient(135deg, #F7F3EC 0%, #F6D2BF 60%, #FFF8F1 100%)', borderTop: '0.5px solid #E7DED2' }}
+      style={{ background: 'linear-gradient(135deg, #F5ECE0 0%, #F2C1D1 60%, #EFE7DC 100%)', borderTop: '0.5px solid #D8C7B8' }}
     >
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
@@ -28,7 +28,7 @@ export default function CTASection() {
           <span
             className="inline-flex items-center gap-2 font-ui text-sm font-semibold uppercase tracking-[0.22em] px-5 py-2 rounded-full bg-brand-peach text-brand-charcoal"
           >
-            <Zap size={11} style={{ color: '#FF6A32' }} />
+            <Zap size={11} style={{ color: '#B53389' }} />
             {t('badge')}
           </span>
         </div>
@@ -43,7 +43,7 @@ export default function CTASection() {
 
         <p
           className={`${isFa ? 'font-fa' : 'font-ui'} text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8`}
-          style={{ color: '#666' }}
+          style={{ color: '#5A504A' }}
         >
           {t('subtitle')}
         </p>
@@ -56,7 +56,7 @@ export default function CTASection() {
           <Link
             href="/services"
             className={`${isFa ? 'font-fa' : 'font-ui'} text-base transition-opacity hover:opacity-80`}
-            style={{ color: '#666' }}
+            style={{ color: '#5A504A' }}
           >
             {t('getStarterKit')}
           </Link>
@@ -74,7 +74,7 @@ export default function CTASection() {
             <div
               key={pill.textKey}
               className={`flex items-center gap-2 ${isFa ? 'font-fa' : 'font-ui'} text-sm`}
-              style={{ color: '#666' }}
+              style={{ color: '#5A504A' }}
             >
               <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-brand-orange opacity-60" />
               {t(pill.textKey)}

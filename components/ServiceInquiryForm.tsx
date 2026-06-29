@@ -4,30 +4,18 @@ import { useState } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 import { CheckCircle, AlertCircle, Send } from 'lucide-react'
 
-const PROJECT_TYPES = ['workflow', 'prompt', 'sheets_auto', 'content', 'unsure'] as const
-const TIMELINES     = ['week', 'month', 'flexible']                               as const
-
-type ProjectTypeKey = typeof PROJECT_TYPES[number]
-type TimelineKey    = typeof TIMELINES[number]
-
 interface FormState {
-  name:        string
-  email:       string
-  help:        string
-  projectType: ProjectTypeKey | ''
-  timeline:    TimelineKey | ''
-  message:     string
+  name:  string
+  email: string
+  help:  string
 }
 
 interface FormErrors {
-  name?:    string
-  email?:   string
-  message?: string
+  name?:  string
+  email?: string
 }
 
-const EMPTY: FormState = {
-  name: '', email: '', help: '', projectType: '', timeline: '', message: '',
-}
+const EMPTY: FormState = { name: '', email: '', help: '' }
 
 function FieldLabel({ htmlFor, children }: { htmlFor: string; children: React.ReactNode }) {
   return (
@@ -62,11 +50,8 @@ export default function ServiceInquiryForm() {
     border:     '0.5px solid rgba(0,0,0,0.12)',
     color:      '#111111',
   }
-  const inputFocusStyle: React.CSSProperties = { borderColor: 'rgba(255,106,50,0.50)' }
+  const inputFocusStyle: React.CSSProperties = { borderColor: 'rgba(181,51,137,0.50)' }
   const inputErrorStyle: React.CSSProperties = { borderColor: 'rgba(239,68,68,0.55)' }
-
-  const pillActive: React.CSSProperties   = { background: 'rgba(255,106,50,0.08)', border: '0.5px solid rgba(255,106,50,0.40)', color: '#111111' }
-  const pillInactive: React.CSSProperties = { background: '#FFFFFF', border: '0.5px solid rgba(0,0,0,0.10)', color: '#888' }
 
   const validate = (): boolean => {
     const e: FormErrors = {}
@@ -76,7 +61,6 @@ export default function ServiceInquiryForm() {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
       e.email = t('errorEmail')
     }
-    if (!form.message.trim()) e.message = t('errorRequired')
     setErrors(e)
     return Object.keys(e).length === 0
   }
@@ -105,9 +89,6 @@ export default function ServiceInquiryForm() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => setForm((prev) => ({ ...prev, [key]: e.target.value }))
 
-  const selectSingle = (key: 'projectType' | 'timeline') => (val: string) =>
-    setForm((prev) => ({ ...prev, [key]: val }))
-
   const borderFor = (field: keyof FormErrors) =>
     errors[field] ? inputErrorStyle : focused === field ? inputFocusStyle : {}
 
@@ -120,7 +101,7 @@ export default function ServiceInquiryForm() {
           role="alert"
           style={{ background: 'rgba(0,0,0,0.04)', border: '0.5px solid rgba(0,0,0,0.10)' }}
         >
-          <CheckCircle size={18} className="flex-shrink-0" style={{ color: '#FF6A32' }} />
+          <CheckCircle size={18} className="flex-shrink-0" style={{ color: '#B53389' }} />
           <p className={`${isFa ? 'font-fa' : 'font-ui'} text-sm font-medium`} style={{ color: '#111111' }}>
             {t('successMessage')}
           </p>
@@ -192,74 +173,6 @@ export default function ServiceInquiryForm() {
           className={`${inputBase} resize-none`}
           style={{ ...inputStyle, ...(focused === 'help' ? inputFocusStyle : {}) }}
         />
-      </div>
-
-      <div>
-        <FieldLabel htmlFor="inq-project">{t('projectTypeLabel')}</FieldLabel>
-        <div id="inq-project" className="flex flex-wrap gap-2.5" role="radiogroup" aria-label={t('projectTypeLabel')}>
-          {PROJECT_TYPES.map((pt) => {
-            const active = form.projectType === pt
-            return (
-              <label
-                key={pt}
-                className={`cursor-pointer select-none ${isFa ? 'font-fa' : 'font-ui'} text-sm px-3.5 py-1.5 rounded-lg transition-all duration-150`}
-                style={active ? pillActive : pillInactive}
-              >
-                <input
-                  type="radio"
-                  name="projectType"
-                  className="sr-only"
-                  checked={active}
-                  onChange={() => selectSingle('projectType')(pt)}
-                />
-                {t(`projectType_${pt}` as const)}
-              </label>
-            )
-          })}
-        </div>
-      </div>
-
-      <div>
-        <FieldLabel htmlFor="inq-timeline">{t('timelineLabel')}</FieldLabel>
-        <div id="inq-timeline" className="flex flex-wrap gap-2.5" role="radiogroup" aria-label={t('timelineLabel')}>
-          {TIMELINES.map((tl) => {
-            const active = form.timeline === tl
-            return (
-              <label
-                key={tl}
-                className={`cursor-pointer select-none ${isFa ? 'font-fa' : 'font-ui'} text-sm px-3.5 py-1.5 rounded-lg transition-all duration-150`}
-                style={active ? pillActive : pillInactive}
-              >
-                <input
-                  type="radio"
-                  name="timeline"
-                  className="sr-only"
-                  checked={active}
-                  onChange={() => selectSingle('timeline')(tl)}
-                />
-                {t(`timeline_${tl}` as const)}
-              </label>
-            )
-          })}
-        </div>
-      </div>
-
-      <div>
-        <FieldLabel htmlFor="inq-message">{t('messageLabel')}</FieldLabel>
-        <textarea
-          id="inq-message"
-          rows={4}
-          placeholder={t('messagePlaceholder')}
-          value={form.message}
-          onChange={set('message')}
-          onFocus={() => setFocused('message')}
-          onBlur={() => setFocused(null)}
-          aria-required
-          aria-invalid={!!errors.message}
-          className={`${inputBase} resize-none`}
-          style={{ ...inputStyle, ...borderFor('message') }}
-        />
-        <FieldError msg={errors.message} />
       </div>
 
       <button

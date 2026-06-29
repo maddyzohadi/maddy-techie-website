@@ -55,9 +55,9 @@ export default async function LearnPage({
       </h1>
       <Navigation />
       <div className="pt-[72px]">
-        <MethodSection />
+        {isFa && <MethodSection />}
         <CurriculumSection />
-        <WhoItsFor />
+        {isFa && <WhoItsFor />}
       </div>
       <CTASection />
       <Footer />

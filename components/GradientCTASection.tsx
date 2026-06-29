@@ -10,7 +10,7 @@ export default async function GradientCTASection() {
   return (
     <section
       style={{
-        background: '#EDE5DC',
+        background: '#EFE7DC',
         padding: '96px 24px',
         borderTop: '0.5px solid rgba(0,0,0,0.06)',
         direction: isFa ? 'rtl' : 'ltr',
@@ -19,7 +19,7 @@ export default async function GradientCTASection() {
       <div style={{ maxWidth: '620px', margin: '0 auto' }}>
         <div
           style={{
-            background: '#FFF8F1',
+            background: '#EFE7DC',
             borderRadius: '24px',
             padding: '48px',
             textAlign: 'center',
@@ -44,7 +44,7 @@ export default async function GradientCTASection() {
             style={{
               fontFamily: bodyFont,
               fontSize: '16px',
-              color: '#666',
+              color: '#5A504A',
               lineHeight: 1.7,
               maxWidth: '420px',
               margin: '0 auto 32px',

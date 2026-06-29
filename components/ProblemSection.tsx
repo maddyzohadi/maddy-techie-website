@@ -26,7 +26,7 @@ export default async function ProblemSection() {
   return (
     <section
       style={{
-        background: '#EDE5DC',
+        background: '#EFE7DC',
         padding: '96px 24px',
         borderTop: '0.5px solid rgba(0,0,0,0.06)',
         direction: isFa ? 'rtl' : 'ltr',
@@ -69,7 +69,7 @@ export default async function ProblemSection() {
             style={{
               fontFamily: bodyFont,
               fontSize: '17px',
-              color: '#555',
+              color: '#5A504A',
               lineHeight: 1.7,
               maxWidth: '500px',
               margin: '0 auto',
@@ -129,7 +129,7 @@ export default async function ProblemSection() {
                 style={{
                   fontFamily: bodyFont,
                   fontSize: '14px',
-                  color: '#666',
+                  color: '#5A504A',
                   lineHeight: 1.65,
                   margin: 0,
                 }}
@@ -138,11 +138,6 @@ export default async function ProblemSection() {
               </p>
             </div>
           ))}
-        </div>
-
-        {/* Soft CTA */}
-        <div style={{ textAlign: isFa ? 'right' : 'left' }}>
-          <AskMaddyCTA />
         </div>
 
       </div>

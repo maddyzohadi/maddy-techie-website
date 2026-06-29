@@ -13,8 +13,8 @@ export default function TemplatesHero() {
     <section
       style={{
         position: 'relative',
-        background: '#F7F3EC',
-        borderBottom: '0.5px solid #E7DED2',
+        background: '#F5ECE0',
+        borderBottom: '0.5px solid #D8C7B8',
         paddingTop: 'calc(68px + 40px)',
         paddingBottom: '52px',
         overflow: 'hidden',
@@ -57,7 +57,7 @@ export default function TemplatesHero() {
             style={{
               fontSize: '12px',
               letterSpacing: '.20em',
-              color: '#FF6A32',
+              color: '#B53389',
               textTransform: 'uppercase',
             }}
           >

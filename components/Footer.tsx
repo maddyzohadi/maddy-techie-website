@@ -17,7 +17,7 @@ const LEGAL_LINKS = [
   { labelKey: 'terms'   as const, href: '#' },
 ] as const
 
-const BORDER = 'rgba(247,243,236,0.10)'
+const BORDER = '#D8C7B8'
 
 export default async function Footer() {
   const t      = await getTranslations('footer')
@@ -30,7 +30,7 @@ export default async function Footer() {
   return (
     <footer
       className="relative overflow-hidden"
-      style={{ background: '#171717', borderTop: `0.5px solid ${BORDER}` }}
+      style={{ background: '#F5ECE0', borderTop: `0.5px solid ${BORDER}` }}
     >
 
       {/* Very subtle top accent line */}
@@ -42,8 +42,8 @@ export default async function Footer() {
           transform: 'translateX(-50%)',
           width: '120px',
           height: '1.5px',
-          background: 'linear-gradient(90deg, transparent, #FF6A32, transparent)',
-          opacity: 0.6,
+          background: 'linear-gradient(90deg, transparent, #B53389, transparent)',
+          opacity: 0.5,
         }}
       />
 
@@ -63,7 +63,7 @@ export default async function Footer() {
               className="font-bold text-xl mb-3"
               style={{
                 fontFamily: headingFont,
-                color: '#F7F3EC',
+                color: '#111111',
                 letterSpacing: '-0.01em',
               }}
             >
@@ -72,14 +72,14 @@ export default async function Footer() {
 
             <p
               className="text-sm leading-relaxed mb-2"
-              style={{ fontFamily: bodyFont, color: '#B8B0A7' }}
+              style={{ fontFamily: bodyFont, color: '#5A504A' }}
             >
               {t('brand')}
             </p>
 
             <p
               className="text-xs mb-6 font-semibold uppercase tracking-[0.12em]"
-              style={{ color: 'rgba(247,243,236,0.35)', fontFamily: 'system-ui, sans-serif' }}
+              style={{ color: 'rgba(90,80,74,0.60)', fontFamily: 'system-ui, sans-serif' }}
             >
               {t('motto')}
             </p>
@@ -125,12 +125,12 @@ export default async function Footer() {
 
           {/* Copyright + disclaimer */}
           <div className="flex flex-col gap-1">
-            <p className="font-ui text-xs" style={{ color: '#B8B0A7' }}>
+            <p className="font-ui text-xs" style={{ color: '#5A504A' }}>
               {'© '}
               <span dir="ltr">2026</span>
               {' Maddy the Techie'}
             </p>
-            <p className="font-ui text-xs" style={{ color: 'rgba(247,243,236,0.28)' }}>
+            <p className="font-ui text-xs" style={{ color: 'rgba(90,80,74,0.55)' }}>
               {t('disclaimer')}
             </p>
           </div>
@@ -144,7 +144,7 @@ export default async function Footer() {
                 style={{
                   fontFamily: 'system-ui, sans-serif',
                   fontSize: '11px',
-                  color: 'rgba(247,243,236,0.35)',
+                  color: '#5A504A',
                 }}
               >
                 Language:
@@ -156,13 +156,13 @@ export default async function Footer() {
                   fontFamily: 'system-ui, sans-serif',
                   fontSize: '11px',
                   fontWeight: locale === 'en' ? 600 : 400,
-                  color: locale === 'en' ? '#FF6A32' : '#B8B0A7',
+                  color: locale === 'en' ? '#B53389' : '#5A504A',
                   textDecoration: 'none',
                 }}
               >
                 English
               </Link>
-              <span style={{ color: 'rgba(247,243,236,0.20)', fontSize: '11px' }}>|</span>
+              <span style={{ color: '#D8C7B8', fontSize: '11px' }}>|</span>
               <Link
                 href="/"
                 locale="fa"
@@ -170,7 +170,7 @@ export default async function Footer() {
                   fontFamily: "'Noto Naskh Arabic', serif",
                   fontSize: '12px',
                   fontWeight: locale === 'fa' ? 600 : 400,
-                  color: locale === 'fa' ? '#FF6A32' : '#B8B0A7',
+                  color: locale === 'fa' ? '#B53389' : '#5A504A',
                   textDecoration: 'none',
                 }}
               >

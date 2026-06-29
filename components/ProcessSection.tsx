@@ -164,7 +164,7 @@ export default function ProcessSection() {
                     style={{
                       fontFamily: 'system-ui, sans-serif',
                       fontSize: '14px',
-                      color: '#666',
+                      color: '#5A504A',
                       lineHeight: 1.65,
                       margin: 0,
                     }}

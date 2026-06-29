@@ -11,7 +11,7 @@ export default function FaSimpleStart() {
   return (
     <section
       className="py-20 md:py-24 relative"
-      style={{ background: '#F7F3EC', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+      style={{ background: '#F5ECE0', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <span
@@ -23,11 +23,11 @@ export default function FaSimpleStart() {
           className="font-fa font-bold text-3xl md:text-4xl leading-tight mb-4"
           style={{ color: '#111111', letterSpacing: '-0.025em' }}
         >
-          مسیر <span style={{ color: '#FF6A32' }}>ساده</span> برای شروع
+          مسیر <span style={{ color: '#B53389' }}>ساده</span> برای شروع
         </h2>
         <p
           className="font-fa text-lg md:text-xl leading-relaxed mb-10"
-          style={{ color: '#666' }}
+          style={{ color: '#5A504A' }}
         >
           با چند قدم ساده می‌توانی اولین سیستم کاری خودت را بسازی
         </p>
@@ -38,7 +38,7 @@ export default function FaSimpleStart() {
               className="flex items-center gap-3 font-fa text-base md:text-lg"
               style={{ color: '#111111' }}
             >
-              <CheckCircle2 size={20} style={{ color: '#FF6A32', flexShrink: 0 }} />
+              <CheckCircle2 size={20} style={{ color: '#B53389', flexShrink: 0 }} />
               {item}
             </li>
           ))}

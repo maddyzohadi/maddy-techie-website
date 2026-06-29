@@ -5,7 +5,7 @@ export default function FaHomeCta() {
   return (
     <section
       className="pt-20 md:pt-24 pb-0 relative"
-      style={{ background: 'linear-gradient(135deg, #F7F3EC 0%, #F6D2BF 60%, #FFF8F1 100%)', borderTop: '0.5px solid #E7DED2' }}
+      style={{ background: 'linear-gradient(135deg, #F5ECE0 0%, #F2C1D1 60%, #EFE7DC 100%)', borderTop: '0.5px solid #D8C7B8' }}
     >
       <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 text-center">
         <h2
@@ -16,7 +16,7 @@ export default function FaHomeCta() {
         </h2>
         <p
           className="font-fa text-lg md:text-xl leading-relaxed mb-10"
-          style={{ color: '#666' }}
+          style={{ color: '#5A504A' }}
         >
           اگر می‌خواهی کارهای روزمره‌ات را با هوش مصنوعی و اتوماسیون ساده‌تر کنی از همین جا شروع کن
         </p>

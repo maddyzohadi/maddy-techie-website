@@ -244,23 +244,23 @@ h3 { font-size: var(--text-h3); }
 }
 
 .footer-nav-link-dark {
-  color: #B8B0A7;
+  color: #5A504A;
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .footer-nav-link-dark:hover {
-  color: #FF6A32;
+  color: #B53389;
 }
 
 .footer-cta-link {
-  color: #FF6A32;
+  color: #B53389;
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .footer-cta-link:hover {
-  color: #F46A2E;
+  color: #9E2A76;
 }
 
 .template-card {
@@ -268,7 +268,7 @@ h3 { font-size: var(--text-h3); }
 }
 
 .template-card:hover {
-  border-color: rgba(255, 106, 50, 0.38);
+  border-color: rgba(181, 51, 137, 0.38);
 }
 
 /* --- Liquid Glass ----------------------------------------- */
@@ -392,7 +392,7 @@ h3 { font-size: var(--text-h3); }
   left: 0;
   height: 100%;
   width: calc(100% + 320px);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 56'%3E%3Cpath d='M20,54 C40,54 64,4 80,4 L160,42 Z' fill='%23D50B1F'/%3E%3Cpath d='M300,54 C280,54 256,4 240,4 L160,42 Z' fill='%23D50B1F'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 56'%3E%3Cpath d='M20,54 C40,54 64,4 80,4 L160,42 Z' fill='%23B53389'/%3E%3Cpath d='M300,54 C280,54 256,4 240,4 L160,42 Z' fill='%23B53389'/%3E%3C/svg%3E");
   background-size: 320px 100%;
   background-repeat: repeat-x;
   background-color: transparent;
@@ -438,7 +438,7 @@ h3 { font-size: var(--text-h3); }
   height: 140px;
   overflow: hidden;
   pointer-events: none;
-  background-color: #F7F3EC;
+  background-color: #F5ECE0;
   background-image: url('/images/maddy-ribbon-divider.png');
   background-repeat: repeat-x;
   background-size: auto 100%;

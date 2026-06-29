@@ -16,7 +16,7 @@ export default async function HomepageTemplatesSection() {
   return (
     <section
       className="py-24 md:py-32 relative"
-      style={{ background: '#F7F3EC', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+      style={{ background: '#F5ECE0', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -34,7 +34,7 @@ export default async function HomepageTemplatesSection() {
           </h2>
           <p
             className={`${isFa ? 'font-fa' : 'font-ui'} text-lg md:text-xl max-w-xl mx-auto leading-relaxed`}
-            style={{ color: '#666' }}
+            style={{ color: '#5A504A' }}
           >
             {t('subtitle')}
           </p>
@@ -47,8 +47,8 @@ export default async function HomepageTemplatesSection() {
               <div
                 key={tmpl.titleKey}
                 style={{
-                  background: '#FFF8F1',
-                  border: '0.5px solid #E7DED2',
+                  background: '#EFE7DC',
+                  border: '0.5px solid #D8C7B8',
                   borderRadius: '12px',
                   padding: '28px 30px',
                   display: 'flex',
@@ -60,11 +60,11 @@ export default async function HomepageTemplatesSection() {
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
                     style={{
-                      background: 'rgba(255,106,50,0.08)',
-                      border: '0.5px solid rgba(255,106,50,0.20)',
+                      background: 'rgba(181,51,137,0.08)',
+                      border: '0.5px solid rgba(181,51,137,0.20)',
                     }}
                   >
-                    <Icon size={20} style={{ color: '#FF6A32' }} />
+                    <Icon size={20} style={{ color: '#B53389' }} />
                   </div>
                   <span
                     className="font-ui text-xs font-semibold uppercase tracking-[0.14em] px-2.5 py-1 rounded-md bg-brand-peach text-brand-charcoal"
@@ -82,7 +82,7 @@ export default async function HomepageTemplatesSection() {
                   </h3>
                   <p
                     className={`${isFa ? 'font-fa' : 'font-ui'} text-base leading-relaxed`}
-                    style={{ color: '#666' }}
+                    style={{ color: '#5A504A' }}
                   >
                     {t(tmpl.descKey)}
                   </p>
@@ -91,7 +91,7 @@ export default async function HomepageTemplatesSection() {
                 <Link
                   href="/templates"
                   className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center gap-1.5 font-semibold text-sm transition-opacity duration-200 hover:opacity-75 self-start`}
-                  style={{ color: '#FF6A32', textDecoration: 'none' }}
+                  style={{ color: '#B53389', textDecoration: 'none' }}
                 >
                   {t(tmpl.ctaKey)}
                   <ArrowRight size={13} className={isFa ? 'rotate-180' : ''} />

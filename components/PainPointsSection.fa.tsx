@@ -41,8 +41,8 @@ export default function PainPointsSectionFA() {
               key={title}
               className="relative bg-white border border-[#E8E3DA] rounded-2xl p-7 overflow-hidden"
             >
-              <div className="absolute top-0 right-0 w-[3px] h-full bg-[#FF6A32] rounded-r-2xl" />
-              <Icon size={22} strokeWidth={1.5} className="text-[#FF6A32] mb-4" />
+              <div className="absolute top-0 right-0 w-[3px] h-full bg-[#B53389] rounded-r-2xl" />
+              <Icon size={22} strokeWidth={1.5} className="text-[#B53389] mb-4" />
               <h3 className="font-['Noto_Naskh_Arabic'] text-xl text-[#111111] mb-3 leading-relaxed">
                 {title}
               </h3>

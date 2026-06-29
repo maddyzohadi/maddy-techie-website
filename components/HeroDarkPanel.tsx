@@ -4,9 +4,9 @@ import React from 'react'
 import { motion } from 'motion/react'
 import { Mail, Bot, FileText, CheckCircle, Zap, LayoutGrid, ArrowRight, Loader2 } from 'lucide-react'
 
-const DIM   = 'rgba(247,243,236,0.08)'
-const MUTED = 'rgba(247,243,236,0.28)'
-const TEXT  = '#F7F3EC'
+const DIM   = 'rgba(245,236,224,0.08)'
+const MUTED = 'rgba(245,236,224,0.28)'
+const TEXT  = '#F5ECE0'
 
 const WORKFLOW = [
   { Icon: Mail,        title: 'Emails In',   sub: '24 new',    status: 'done'    },
@@ -58,20 +58,20 @@ export default function HeroDarkPanel() {
           justifyContent: 'space-between',
           padding: '13px 20px',
           borderBottom: `0.5px solid ${DIM}`,
-          background: 'rgba(247,243,236,0.02)',
+          background: 'rgba(245,236,224,0.02)',
         }}
       >
         <div style={{ display: 'flex', gap: '6px' }}>
-          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#FF6A32', opacity: 0.75 }} />
+          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#B53389', opacity: 0.75 }} />
           <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#FFD166', opacity: 0.45 }} />
           <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#52C47A', opacity: 0.40 }} />
         </div>
-        <span style={{ fontFamily: 'system-ui', fontSize: '11px', color: 'rgba(247,243,236,0.38)', letterSpacing: '0.07em' }}>
+        <span style={{ fontFamily: 'system-ui', fontSize: '11px', color: 'rgba(245,236,224,0.38)', letterSpacing: '0.07em' }}>
           Maddy AI · Workflow Center
         </span>
         <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
           <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#52C47A' }} />
-          <span style={{ fontFamily: 'system-ui', fontSize: '10px', color: 'rgba(247,243,236,0.30)' }}>3 active</span>
+          <span style={{ fontFamily: 'system-ui', fontSize: '10px', color: 'rgba(245,236,224,0.30)' }}>3 active</span>
         </div>
       </div>
 
@@ -79,7 +79,7 @@ export default function HeroDarkPanel() {
       <div
         className="flex min-h-[300px] md:h-[360px]"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(247,243,236,0.055) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, rgba(245,236,224,0.055) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
         }}
       >
@@ -94,7 +94,7 @@ export default function HeroDarkPanel() {
             gap: '2px',
           }}
         >
-          <span style={{ fontFamily: 'system-ui', fontSize: '9px', color: 'rgba(247,243,236,0.20)', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0 8px', marginBottom: '8px', display: 'block' }}>
+          <span style={{ fontFamily: 'system-ui', fontSize: '9px', color: 'rgba(245,236,224,0.20)', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0 8px', marginBottom: '8px', display: 'block' }}>
             Workspace
           </span>
           {NAV.map(({ Icon, label, active }) => (
@@ -106,11 +106,11 @@ export default function HeroDarkPanel() {
                 gap: '8px',
                 padding: '7px 10px',
                 borderRadius: '7px',
-                background: active ? 'rgba(255,106,50,0.10)' : 'transparent',
-                border: active ? '0.5px solid rgba(255,106,50,0.18)' : '0.5px solid transparent',
+                background: active ? 'rgba(181,51,137,0.10)' : 'transparent',
+                border: active ? '0.5px solid rgba(181,51,137,0.18)' : '0.5px solid transparent',
               }}
             >
-              <Icon size={13} style={{ color: active ? '#FF6A32' : MUTED, flexShrink: 0 }} />
+              <Icon size={13} style={{ color: active ? '#B53389' : MUTED, flexShrink: 0 }} />
               <span style={{ fontFamily: 'system-ui', fontSize: '12px', color: active ? TEXT : MUTED }}>
                 {label}
               </span>
@@ -134,7 +134,7 @@ export default function HeroDarkPanel() {
           {/* Pipeline header */}
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
-              <span style={{ fontFamily: 'system-ui', fontSize: '10px', color: 'rgba(247,243,236,0.28)', letterSpacing: '0.10em', textTransform: 'uppercase' }}>
+              <span style={{ fontFamily: 'system-ui', fontSize: '10px', color: 'rgba(245,236,224,0.28)', letterSpacing: '0.10em', textTransform: 'uppercase' }}>
                 Active Pipeline
               </span>
               <span style={{ fontFamily: "'DM Serif Display', serif", fontSize: '17px', color: TEXT, letterSpacing: '-0.01em' }}>
@@ -166,16 +166,16 @@ export default function HeroDarkPanel() {
               const Icon       = step.Icon
               const isActive   = step.status === 'active'
               const isDone     = step.status === 'done'
-              const nodeColor  = isActive ? '#FF6A32' : isDone ? '#52C47A' : 'rgba(247,243,236,0.32)'
-              const nodeBg     = isActive ? 'rgba(255,106,50,0.10)' : isDone ? 'rgba(82,196,122,0.07)' : 'rgba(247,243,236,0.03)'
-              const nodeBorder = isActive ? 'rgba(255,106,50,0.22)' : isDone ? 'rgba(82,196,122,0.16)' : 'rgba(247,243,236,0.07)'
-              const textColor  = isActive ? TEXT : isDone ? 'rgba(247,243,236,0.65)' : 'rgba(247,243,236,0.35)'
-              const subColor   = isActive ? 'rgba(255,106,50,0.70)' : isDone ? 'rgba(82,196,122,0.60)' : 'rgba(247,243,236,0.20)'
+              const nodeColor  = isActive ? '#B53389' : isDone ? '#52C47A' : 'rgba(245,236,224,0.32)'
+              const nodeBg     = isActive ? 'rgba(181,51,137,0.10)' : isDone ? 'rgba(82,196,122,0.07)' : 'rgba(245,236,224,0.03)'
+              const nodeBorder = isActive ? 'rgba(181,51,137,0.22)' : isDone ? 'rgba(82,196,122,0.16)' : 'rgba(245,236,224,0.07)'
+              const textColor  = isActive ? TEXT : isDone ? 'rgba(245,236,224,0.65)' : 'rgba(245,236,224,0.35)'
+              const subColor   = isActive ? 'rgba(181,51,137,0.70)' : isDone ? 'rgba(82,196,122,0.60)' : 'rgba(245,236,224,0.20)'
               return (
                 <React.Fragment key={i}>
                   <motion.div
                     animate={isActive ? {
-                      boxShadow: ['0 0 0px rgba(255,106,50,0)', '0 0 18px rgba(255,106,50,0.18)', '0 0 0px rgba(255,106,50,0)'],
+                      boxShadow: ['0 0 0px rgba(181,51,137,0)', '0 0 18px rgba(181,51,137,0.18)', '0 0 0px rgba(181,51,137,0)'],
                     } : {}}
                     transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
                     style={{
@@ -193,7 +193,7 @@ export default function HeroDarkPanel() {
                     <div style={{ fontFamily: 'system-ui', fontSize: '10px', color: subColor, marginTop: '2px' }}>{step.sub}</div>
                   </motion.div>
                   {i < WORKFLOW.length - 1 && (
-                    <ArrowRight size={10} style={{ color: 'rgba(247,243,236,0.14)', flexShrink: 0, alignSelf: 'center' }} />
+                    <ArrowRight size={10} style={{ color: 'rgba(245,236,224,0.14)', flexShrink: 0, alignSelf: 'center' }} />
                   )}
                 </React.Fragment>
               )
@@ -204,19 +204,19 @@ export default function HeroDarkPanel() {
           <div style={{
             display: 'flex',
             padding: '10px 14px',
-            background: 'rgba(247,243,236,0.025)',
-            border: '0.5px solid rgba(247,243,236,0.06)',
+            background: 'rgba(245,236,224,0.025)',
+            border: '0.5px solid rgba(245,236,224,0.06)',
             borderRadius: '10px',
             gap: '4px',
           }}>
             {STATS.map((stat, i) => (
               <React.Fragment key={stat.label}>
                 <div style={{ flex: 1, textAlign: 'center' }}>
-                  <div style={{ fontFamily: 'system-ui', fontSize: '14px', fontWeight: 700, color: '#FF6A32' }}>{stat.value}</div>
-                  <div style={{ fontFamily: 'system-ui', fontSize: '9px', color: 'rgba(247,243,236,0.28)', textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: '2px' }}>{stat.label}</div>
+                  <div style={{ fontFamily: 'system-ui', fontSize: '14px', fontWeight: 700, color: '#B53389' }}>{stat.value}</div>
+                  <div style={{ fontFamily: 'system-ui', fontSize: '9px', color: 'rgba(245,236,224,0.28)', textTransform: 'uppercase', letterSpacing: '0.08em', marginTop: '2px' }}>{stat.label}</div>
                 </div>
                 {i < STATS.length - 1 && (
-                  <div style={{ width: '0.5px', background: 'rgba(247,243,236,0.08)', alignSelf: 'stretch' }} />
+                  <div style={{ width: '0.5px', background: 'rgba(245,236,224,0.08)', alignSelf: 'stretch' }} />
                 )}
               </React.Fragment>
             ))}
@@ -230,9 +230,9 @@ export default function HeroDarkPanel() {
                 fontSize: '10px',
                 padding: '3px 8px',
                 borderRadius: '100px',
-                background: 'rgba(247,243,236,0.04)',
-                border: '0.5px solid rgba(247,243,236,0.09)',
-                color: 'rgba(247,243,236,0.36)',
+                background: 'rgba(245,236,224,0.04)',
+                border: '0.5px solid rgba(245,236,224,0.09)',
+                color: 'rgba(245,236,224,0.36)',
               }}>
                 {tool}
               </span>
@@ -251,7 +251,7 @@ export default function HeroDarkPanel() {
             gap: '4px',
           }}
         >
-          <span style={{ fontFamily: 'system-ui', fontSize: '9px', color: 'rgba(247,243,236,0.20)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '8px', display: 'block' }}>
+          <span style={{ fontFamily: 'system-ui', fontSize: '9px', color: 'rgba(245,236,224,0.20)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '8px', display: 'block' }}>
             Recent Runs
           </span>
           {RECENT.map((run, i) => (
@@ -263,16 +263,16 @@ export default function HeroDarkPanel() {
                 justifyContent: 'space-between',
                 padding: '7px 8px',
                 borderRadius: '6px',
-                background: 'rgba(247,243,236,0.025)',
-                border: '0.5px solid rgba(247,243,236,0.06)',
+                background: 'rgba(245,236,224,0.025)',
+                border: '0.5px solid rgba(245,236,224,0.06)',
                 gap: '8px',
               }}
             >
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', minWidth: 0 }}>
-                <span style={{ fontFamily: 'system-ui', fontSize: '11px', color: 'rgba(247,243,236,0.55)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                <span style={{ fontFamily: 'system-ui', fontSize: '11px', color: 'rgba(245,236,224,0.55)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                   {run.label}
                 </span>
-                <span style={{ fontFamily: 'system-ui', fontSize: '9px', color: 'rgba(247,243,236,0.22)' }}>
+                <span style={{ fontFamily: 'system-ui', fontSize: '9px', color: 'rgba(245,236,224,0.22)' }}>
                   {run.time}
                 </span>
               </div>
@@ -282,7 +282,7 @@ export default function HeroDarkPanel() {
                   transition={{ duration: 1.5, repeat: Infinity, ease: 'linear' }}
                   style={{ flexShrink: 0, display: 'flex' }}
                 >
-                  <Loader2 size={12} style={{ color: '#FF6A32', opacity: 0.7 }} />
+                  <Loader2 size={12} style={{ color: '#B53389', opacity: 0.7 }} />
                 </motion.div>
               ) : (
                 <CheckCircle size={12} style={{ color: '#52C47A', opacity: 0.6, flexShrink: 0 }} />

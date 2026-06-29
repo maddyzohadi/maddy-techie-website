@@ -41,8 +41,8 @@ export default function MethodSection() {
   }
 
   const cardStyle: React.CSSProperties = {
-    background: '#FFF8F1',
-    border: '0.5px solid #E7DED2',
+    background: '#EFE7DC',
+    border: '0.5px solid #D8C7B8',
     borderRadius: '16px',
     padding: '32px',
   }
@@ -50,7 +50,7 @@ export default function MethodSection() {
   return (
     <section
       style={{
-        background: '#F7F3EC',
+        background: '#F5ECE0',
         padding: '96px 24px',
         borderTop: '0.5px solid rgba(0,0,0,0.06)',
         direction: isFa ? 'rtl' : 'ltr',
@@ -99,7 +99,7 @@ export default function MethodSection() {
             transition={{ duration: 0.2, ease: 'easeOut' }}
           >
             <div style={iconBox}>
-              <Zap size={20} style={{ color: '#D50B1F' }} />
+              <Zap size={20} style={{ color: '#B53389' }} />
             </div>
             <span
               style={{
@@ -131,7 +131,7 @@ export default function MethodSection() {
               style={{
                 fontFamily: bodyFont,
                 fontSize: '15px',
-                color: '#666',
+                color: '#5A504A',
                 lineHeight: 1.7,
                 margin: 0,
               }}
@@ -146,7 +146,7 @@ export default function MethodSection() {
             transition={{ duration: 0.2, ease: 'easeOut' }}
           >
             <div style={iconBox}>
-              <Brain size={20} style={{ color: '#D50B1F' }} />
+              <Brain size={20} style={{ color: '#B53389' }} />
             </div>
             <span
               style={{
@@ -178,7 +178,7 @@ export default function MethodSection() {
               style={{
                 fontFamily: bodyFont,
                 fontSize: '15px',
-                color: '#666',
+                color: '#5A504A',
                 lineHeight: 1.7,
                 margin: 0,
               }}

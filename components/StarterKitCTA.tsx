@@ -21,7 +21,7 @@ export default function StarterKitCTA({
         type="button"
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
-        className={`font-ui inline-flex items-center gap-2.5 cursor-pointer bg-brand-orange hover:bg-brand-coral transition-colors duration-150 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF6A32] ${className}`}
+        className={`font-ui inline-flex items-center gap-2.5 cursor-pointer bg-brand-orange hover:bg-brand-coral transition-colors duration-150 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B53389] ${className}`}
         style={{
           padding: '10px 22px',
           borderRadius: '8px',

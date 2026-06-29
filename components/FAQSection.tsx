@@ -58,7 +58,7 @@ export default function FAQSection() {
       <section
         id="faq"
         className="py-24 md:py-32 relative scroll-mt-24"
-        style={{ background: '#FFF8F1', borderTop: '0.5px solid rgba(0,0,0,0.08)' }}
+        style={{ background: '#EFE7DC', borderTop: '0.5px solid rgba(0,0,0,0.08)' }}
       >
         <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -87,7 +87,7 @@ export default function FAQSection() {
                 <div
                   key={i}
                   style={{
-                    background: '#FFF8F1',
+                    background: '#EFE7DC',
                     border: `0.5px solid ${isOpen ? 'rgba(26,26,46,0.20)' : 'rgba(26,26,46,0.12)'}`,
                     borderRadius: '12px',
                     overflow: 'hidden',
@@ -134,7 +134,7 @@ export default function FAQSection() {
                       style={{
                         padding: '14px 22px 18px',
                         fontSize: '15px',
-                        color: '#666',
+                        color: '#5A504A',
                         lineHeight: 1.65,
                         borderTop: '0.5px solid rgba(0,0,0,0.08)',
                       }}

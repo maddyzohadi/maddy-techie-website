@@ -10,7 +10,7 @@ export default function CurriculumSection() {
   const isFa = locale === 'fa'
   const [openPart, setOpenPart] = useState<number | null>(0)
 
-  const accent = { text: '#D50B1F', bg: 'rgba(213,11,31,0.06)', border: 'rgba(213,11,31,0.15)' }
+  const accent = { text: '#B53389', bg: 'rgba(213,11,31,0.06)', border: 'rgba(213,11,31,0.15)' }
 
   const parts = [
     { number: '01', icon: Zap,    title: t('part0title'), tagline: t('part0tagline'), items: [t('part0item0'), t('part0item1'), t('part0item2'), t('part0item3')] },
@@ -24,7 +24,7 @@ export default function CurriculumSection() {
   const badgeColor   = '#999'
 
   return (
-    <section id="training" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#F7F3EC' }}>
+    <section id="training" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#F5ECE0' }}>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -58,7 +58,7 @@ export default function CurriculumSection() {
                 key={part.number}
                 className="overflow-hidden transition-all duration-300"
                 style={{
-                  background: '#FFF8F1',
+                  background: '#EFE7DC',
                   border: `0.5px solid ${isOpen ? 'rgba(26,26,46,0.20)' : 'rgba(26,26,46,0.12)'}`,
                   borderRadius: '12px',
                 }}

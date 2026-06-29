@@ -46,8 +46,8 @@ export default function PainPointsSection() {
               whileHover={{ y: -4, boxShadow: "0 8px 24px rgba(0,0,0,0.08)" }}
               transition={{ duration: 0.2, ease: "easeOut" }}
             >
-              <div className="absolute top-0 left-0 w-[3px] h-full bg-[#FF6A32] rounded-l-2xl" />
-              <Icon size={22} strokeWidth={1.5} className="text-[#FF6A32] mb-4" />
+              <div className="absolute top-0 left-0 w-[3px] h-full bg-[#B53389] rounded-l-2xl" />
+              <Icon size={22} strokeWidth={1.5} className="text-[#B53389] mb-4" />
               <h3 className="font-['DM_Serif_Display'] text-xl text-[#111111] mb-3">
                 {title}
               </h3>

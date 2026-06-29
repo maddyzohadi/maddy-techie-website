@@ -38,7 +38,7 @@ export default function ServicesSection() {
           </h2>
           <p
             className={`${isFa ? 'font-fa' : 'font-ui'} text-lg md:text-xl max-w-2xl mx-auto leading-relaxed`}
-            style={{ color: '#666' }}
+            style={{ color: '#5A504A' }}
           >
             {t('subtitle')}
           </p>
@@ -51,8 +51,8 @@ export default function ServicesSection() {
               <motion.div
                 key={service.titleKey}
                 style={{
-                  background: '#FFF8F1',
-                  border: '0.5px solid #E7DED2',
+                  background: '#EFE7DC',
+                  border: '0.5px solid #D8C7B8',
                   borderRadius: '16px',
                   padding: '28px 30px',
                   display: 'flex',
@@ -68,7 +68,7 @@ export default function ServicesSection() {
                     border: '0.5px solid rgba(213,11,31,0.15)',
                   }}
                 >
-                  <Icon size={22} style={{ color: '#D50B1F' }} />
+                  <Icon size={22} style={{ color: '#B53389' }} />
                 </div>
                 <h3
                   className={`${isFa ? 'font-fa' : 'font-en'} font-semibold text-xl md:text-2xl mb-3 leading-snug`}
@@ -78,7 +78,7 @@ export default function ServicesSection() {
                 </h3>
                 <p
                   className={`${isFa ? 'font-fa' : 'font-ui'} text-base md:text-lg leading-relaxed flex-1`}
-                  style={{ color: '#666' }}
+                  style={{ color: '#5A504A' }}
                 >
                   {t(service.descKey)}
                 </p>

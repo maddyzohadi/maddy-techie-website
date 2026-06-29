@@ -7,9 +7,9 @@ export default async function WhoItsFor() {
   const isFa = locale === 'fa'
 
   const cardAccent = {
-    bg: 'rgba(255,106,50,0.08)',
-    border: 'rgba(255,106,50,0.20)',
-    icon: '#FF6A32',
+    bg: 'rgba(181,51,137,0.08)',
+    border: 'rgba(181,51,137,0.20)',
+    icon: '#B53389',
   }
 
   const audiences = [
@@ -41,7 +41,7 @@ export default async function WhoItsFor() {
   return (
     <section
       className="py-24 md:py-32 relative"
-      style={{ background: '#F7F3EC', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+      style={{ background: '#F5ECE0', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
       dir={isFa ? 'rtl' : 'ltr'}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,11 +57,11 @@ export default async function WhoItsFor() {
             style={{ color: '#111111', letterSpacing: '-.02em' }}
           >
             {t('title')}{' '}
-            <span style={{ color: '#666' }}>{t('titleHighlight')}</span>
+            <span style={{ color: '#5A504A' }}>{t('titleHighlight')}</span>
           </h2>
           <p
             className={`${isFa ? 'font-fa' : 'font-ui'} text-base md:text-lg max-w-2xl mx-auto leading-relaxed`}
-            style={{ color: '#666' }}
+            style={{ color: '#5A504A' }}
           >
             {t('subtitle')}
           </p>
@@ -74,8 +74,8 @@ export default async function WhoItsFor() {
               <div
                 key={audience.number}
                 style={{
-                  background: '#FFF8F1',
-                  border: '0.5px solid #E7DED2',
+                  background: '#EFE7DC',
+                  border: '0.5px solid #D8C7B8',
                   borderRadius: '12px',
                   padding: '28px 30px',
                 }}
@@ -106,7 +106,7 @@ export default async function WhoItsFor() {
                 </h3>
                 <p
                   className={`${isFa ? 'font-fa' : 'font-ui'} text-sm leading-relaxed mb-5`}
-                  style={{ color: '#666' }}
+                  style={{ color: '#5A504A' }}
                 >
                   {t(audience.descKey)}
                 </p>
@@ -116,9 +116,9 @@ export default async function WhoItsFor() {
                       key={exKey}
                       className={`${isFa ? 'font-fa' : 'font-ui'} text-xs px-2.5 py-1`}
                       style={{
-                        background: 'rgba(255,106,50,0.06)',
-                        border: '0.5px solid rgba(255,106,50,0.15)',
-                        color: '#5F5A54',
+                        background: 'rgba(181,51,137,0.06)',
+                        border: '0.5px solid rgba(181,51,137,0.15)',
+                        color: '#5A504A',
                         borderRadius: '6px',
                       }}
                     >
@@ -135,8 +135,8 @@ export default async function WhoItsFor() {
           className="max-w-4xl mx-auto p-8 md:p-10"
           style={{
             borderRadius: '12px',
-            background: '#FFF8F1',
-            border: '0.5px solid #E7DED2',
+            background: '#EFE7DC',
+            border: '0.5px solid #D8C7B8',
           }}
         >
           <div className="text-center mb-8">
@@ -148,7 +148,7 @@ export default async function WhoItsFor() {
             </h3>
             <p
               className={`${isFa ? 'font-fa' : 'font-ui'} text-sm mt-2`}
-              style={{ color: '#666' }}
+              style={{ color: '#5A504A' }}
             >
               {t('noRequirementsSubtitle')}
             </p>
@@ -158,9 +158,9 @@ export default async function WhoItsFor() {
               <div
                 key={key}
                 className={`flex items-center gap-2.5 ${isFa ? 'font-fa flex-row-reverse' : 'font-ui'} text-sm`}
-                style={{ color: '#666' }}
+                style={{ color: '#5A504A' }}
               >
-                <CheckCircle size={15} style={{ color: '#FF6A32', flexShrink: 0 }} />
+                <CheckCircle size={15} style={{ color: '#B53389', flexShrink: 0 }} />
                 <span>{t(key)}</span>
               </div>
             ))}

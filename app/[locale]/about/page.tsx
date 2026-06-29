@@ -55,7 +55,7 @@ export default async function AboutPage({
       <div className="pt-[72px]">
         <AboutSection />
       </div>
-      <CTASection />
+      {isFa && <CTASection />}
       <Footer />
       <AIAssistant />
     </main>

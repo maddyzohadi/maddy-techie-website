@@ -54,19 +54,20 @@ export default async function Home() {
     <main className="min-h-screen overflow-x-hidden">
       <Navigation />
       <Hero />
-      <MaddyRibbonDivider direction="left" duration={2} />
+      <MaddyRibbonDivider direction="left" duration={7} />
 
+      {/* EN: problem cards */}
       {!isFa && <ProblemSection />}
 
-      <MethodSection />
+      {/* FA: full section set (unchanged) */}
+      {isFa && <MethodSection />}
+      {isFa && <ProcessSection />}
+      {isFa && <ServicesListSection />}
+      {isFa && <CurriculumSection />}
 
-      <ProcessSection />
-      <ServicesListSection />
-      <CurriculumSection />
-
+      {/* EN: services preview cards → simple process → about */}
       {!isFa && <ServicesSection />}
-      {!isFa && <FAQSection />}
-
+      {!isFa && <ProcessSection />}
       {!isFa && <AboutSection />}
       <Footer />
       <AIAssistant />

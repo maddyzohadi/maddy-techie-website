@@ -14,7 +14,7 @@ export default async function AboutSection() {
 
   return (
     <>
-      <section id="about" className="py-24 md:py-32 relative scroll-mt-[88px]" style={{ background: '#F7F3EC' }}>
+      <section id="about" className="py-24 md:py-32 relative scroll-mt-[88px]" style={{ background: '#F5ECE0' }}>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <MotionFadeIn>
@@ -30,7 +30,7 @@ export default async function AboutSection() {
                   AI &amp; Automation Educator · Silicon Valley
                 </p>
 
-                <p className="text-sm text-[#666] leading-relaxed italic border-l-2 border-[#D50B1F] pl-3 mb-6">
+                <p className="text-sm text-[#666] leading-relaxed italic border-l-2 border-[#B53389] pl-3 mb-6">
                   Making AI practical for everyone who doesn&apos;t code
                 </p>
 
@@ -40,7 +40,7 @@ export default async function AboutSection() {
                     { num: '12+', label: 'Projects' },
                     { num: '100%', label: 'No-code' },
                   ].map(({ num, label }) => (
-                    <div key={label} className="bg-[#F7F3EC] rounded-xl p-3 text-center">
+                    <div key={label} className="bg-[#F5ECE0] rounded-xl p-3 text-center">
                       <span className="block text-xl font-medium text-[#111111]">{num}</span>
                       <span className="block text-[11px] text-[#888] mt-0.5">{label}</span>
                     </div>
@@ -116,7 +116,7 @@ async function FaFinalCTA() {
   return (
     <section
       className="py-20 md:py-24 relative overflow-hidden"
-      style={{ background: '#F7F3EC', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+      style={{ background: '#F5ECE0', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
     >
       <div className="relative z-10 max-w-xl mx-auto px-4 sm:px-6 text-center">
         <h2
@@ -127,7 +127,7 @@ async function FaFinalCTA() {
         </h2>
         <p
           className="font-fa text-base md:text-lg leading-relaxed mb-8"
-          style={{ color: '#666' }}
+          style={{ color: '#5A504A' }}
         >
           {t('subtitle')}
         </p>

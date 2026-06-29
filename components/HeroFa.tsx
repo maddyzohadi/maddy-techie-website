@@ -59,7 +59,7 @@ export default function HeroFa() {
   return (
     <section
       className="relative min-h-screen overflow-hidden"
-      style={{ background: '#F7F3EC' }}
+      style={{ background: '#F5ECE0' }}
     >
 
       {/* Warm orange radial bloom */}
@@ -68,7 +68,7 @@ export default function HeroFa() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255,106,50,0.07) 0%, transparent 70%)",
+            "radial-gradient(ellipse 80% 60% at 50% 30%, rgba(181,51,137,0.07) 0%, transparent 70%)",
         }}
       />
 
@@ -104,7 +104,7 @@ export default function HeroFa() {
         <FloatCard pos="right-[10%] top-[32%]" inDelay={0.8} floatDur={7.0} floatDelay={1.6}>
           <div dir="rtl" style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
             <span style={{
-              width: 8, height: 8, borderRadius: "50%", background: "#D50B1F",
+              width: 8, height: 8, borderRadius: "50%", background: "#B53389",
               flexShrink: 0, marginTop: 3,
             }} />
             <div>
@@ -142,7 +142,7 @@ export default function HeroFa() {
               {[0,1,2,3].map(i => (
                 <span key={i} style={{
                   display: "block", height: 4, flex: 1, borderRadius: 2,
-                  background: i < 3 ? "#D50B1F" : "rgba(0,0,0,0.09)",
+                  background: i < 3 ? "#B53389" : "rgba(0,0,0,0.09)",
                 }} />
               ))}
             </div>
@@ -172,7 +172,7 @@ export default function HeroFa() {
             <span
               className="inline-flex items-center gap-2 rounded-full px-4 py-2"
               style={{
-                background: '#FBE7E9',
+                background: '#F2C1D1',
                 border: '0.5px solid rgba(213,11,31,0.18)',
               }}
             >
@@ -181,7 +181,7 @@ export default function HeroFa() {
                   width: 6,
                   height: 6,
                   borderRadius: "50%",
-                  background: "#D50B1F",
+                  background: "#B53389",
                   display: "inline-block",
                   flexShrink: 0,
                 }}
@@ -244,7 +244,7 @@ export default function HeroFa() {
         className="absolute bottom-0 inset-x-0 pointer-events-none"
         style={{
           height:     '160px',
-          background: 'linear-gradient(to bottom, transparent, rgba(247,243,236,0.95))',
+          background: 'linear-gradient(to bottom, transparent, rgba(245,236,224,0.95))',
           zIndex:     15,
         }}
       />
