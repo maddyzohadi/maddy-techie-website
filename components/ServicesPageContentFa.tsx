@@ -26,16 +26,17 @@ export default function ServicesPageContentFa() {
 
   return (
     <>
-      {/* Hero — dark premium */}
+      {/* Hero — editorial light */}
       <section
         dir="rtl"
         style={{
-          background: '#351C1C',
-          padding: '72px 24px 80px',
+          background: '#FFF9F1',
+          padding: '80px 24px 72px',
+          borderBottom: '0.5px solid #E6D7C8',
         }}
       >
         <motion.div
-          style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}
+          style={{ maxWidth: '680px', margin: '0 auto' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: 'easeOut' }}
@@ -45,10 +46,10 @@ export default function ServicesPageContentFa() {
               fontFamily: vaFont,
               fontSize: '11px',
               fontWeight: 600,
-              color: '#C08064',
-              letterSpacing: '0.06em',
-              marginBottom: '20px',
+              color: '#ED5821',
+              letterSpacing: '0.08em',
               textTransform: 'uppercase',
+              marginBottom: '20px',
             }}
           >
             {t('heroBadge')}
@@ -56,11 +57,11 @@ export default function ServicesPageContentFa() {
           <h1
             style={{
               fontFamily: vaFont,
-              fontSize: 'clamp(22px, 3.5vw, 38px)',
-              fontWeight: 700,
-              color: '#FFFFFF',
-              lineHeight: 1.5,
-              marginBottom: '18px',
+              fontSize: 'clamp(30px, 5vw, 56px)',
+              fontWeight: 800,
+              color: '#111111',
+              lineHeight: 1.35,
+              marginBottom: '22px',
             }}
           >
             {t('heroTitle')}
@@ -68,11 +69,11 @@ export default function ServicesPageContentFa() {
           <p
             style={{
               fontFamily: vaFont,
-              fontSize: '15px',
-              color: 'rgba(239,231,220,0.72)',
+              fontSize: '16px',
+              color: '#625B55',
               lineHeight: 1.9,
-              maxWidth: '440px',
-              margin: '0 auto 32px',
+              maxWidth: '480px',
+              marginBottom: '36px',
             }}
           >
             {t('heroSubtitle')}
@@ -83,8 +84,8 @@ export default function ServicesPageContentFa() {
               fontFamily: vaFont,
               fontSize: '14px',
               fontWeight: 600,
-              color: '#FFFFFF',
-              background: '#4B92DB',
+              color: '#FFFDF8',
+              background: '#3F8DDE',
               padding: '12px 28px',
               borderRadius: '100px',
               textDecoration: 'none',
@@ -101,9 +102,9 @@ export default function ServicesPageContentFa() {
       <section
         dir="rtl"
         style={{
-          background: '#F5ECE0',
-          padding: '72px 24px',
-          borderTop: '0.5px solid rgba(255,255,255,0.06)',
+          background: '#FFF9F1',
+          padding: '64px 24px',
+          borderBottom: '0.5px solid #E6D7C8',
         }}
       >
         <motion.div style={{ maxWidth: '680px', margin: '0 auto' }} {...fadeIn}>
@@ -117,24 +118,24 @@ export default function ServicesPageContentFa() {
                   gap: '18px',
                   padding: '28px 0',
                   borderBottom:
-                    i < SERVICES.length - 1 ? '0.5px solid #D8C7B8' : 'none',
+                    i < SERVICES.length - 1 ? '0.5px solid #E6D7C8' : 'none',
                 }}
               >
                 <div
                   style={{
                     flexShrink: 0,
-                    width: '40px',
-                    height: '40px',
+                    width: '38px',
+                    height: '38px',
                     borderRadius: '10px',
-                    background: 'rgba(75,146,219,0.07)',
-                    border: '0.5px solid rgba(75,146,219,0.18)',
+                    background: 'rgba(156,204,239,0.12)',
+                    border: '0.5px solid rgba(156,204,239,0.28)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     marginTop: '2px',
                   }}
                 >
-                  <Icon size={18} style={{ color: '#4B92DB' }} />
+                  <Icon size={17} style={{ color: '#3F8DDE' }} />
                 </div>
                 <div style={{ flex: 1 }}>
                   <h2
@@ -153,7 +154,7 @@ export default function ServicesPageContentFa() {
                     style={{
                       fontFamily: vaFont,
                       fontSize: '14px',
-                      color: '#5A504A',
+                      color: '#625B55',
                       lineHeight: 1.85,
                       margin: '0 0 10px',
                     }}
@@ -166,9 +167,8 @@ export default function ServicesPageContentFa() {
                       fontFamily: vaFont,
                       fontSize: '13px',
                       fontWeight: 600,
-                      color: '#4B92DB',
+                      color: '#3F8DDE',
                       textDecoration: 'none',
-                      opacity: 0.9,
                     }}
                   >
                     {t(ctaKey)} ←
@@ -184,40 +184,26 @@ export default function ServicesPageContentFa() {
       <section
         dir="rtl"
         style={{
-          background: '#EFE7DC',
+          background: '#FAF1E6',
           padding: '72px 24px',
-          borderTop: '0.5px solid #D8C7B8',
+          borderBottom: '0.5px solid #E6D7C8',
         }}
       >
         <motion.div style={{ maxWidth: '640px', margin: '0 auto' }} {...fadeIn}>
-          <p
-            style={{
-              fontFamily: vaFont,
-              fontSize: '11px',
-              fontWeight: 500,
-              letterSpacing: '0.04em',
-              color: 'rgba(90,80,74,0.48)',
-              marginBottom: '10px',
-              textAlign: 'center',
-            }}
-          >
-            {t('howBadge')}
-          </p>
           <h2
             style={{
               fontFamily: vaFont,
-              fontSize: 'clamp(17px, 2.2vw, 22px)',
-              fontWeight: 700,
+              fontSize: 'clamp(20px, 2.5vw, 28px)',
+              fontWeight: 800,
               color: '#111111',
-              lineHeight: 1.6,
+              lineHeight: 1.5,
               marginBottom: '40px',
-              textAlign: 'center',
             }}
           >
             {t('howTitle')}
           </h2>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+          <div>
             {[
               { num: t('step1num'), title: t('step1title'), desc: t('step1desc') },
               { num: t('step2num'), title: t('step2title'), desc: t('step2desc') },
@@ -230,7 +216,7 @@ export default function ServicesPageContentFa() {
                   alignItems: 'flex-start',
                   gap: '20px',
                   padding: '24px 0',
-                  borderBottom: i < arr.length - 1 ? '0.5px solid #D8C7B8' : 'none',
+                  borderBottom: i < arr.length - 1 ? '0.5px solid #E6D7C8' : 'none',
                 }}
               >
                 <span
@@ -238,7 +224,7 @@ export default function ServicesPageContentFa() {
                     fontFamily: vaFont,
                     fontSize: '13px',
                     fontWeight: 700,
-                    color: '#C08064',
+                    color: '#ED5821',
                     flexShrink: 0,
                     width: '28px',
                     textAlign: 'center',
@@ -264,7 +250,7 @@ export default function ServicesPageContentFa() {
                     style={{
                       fontFamily: vaFont,
                       fontSize: '13px',
-                      color: '#5A504A',
+                      color: '#625B55',
                       lineHeight: 1.85,
                       margin: 0,
                     }}
@@ -283,21 +269,20 @@ export default function ServicesPageContentFa() {
         id="contact-form"
         dir="rtl"
         style={{
-          background: '#F5ECE0',
+          background: '#FFF9F1',
           padding: '72px 24px',
-          borderTop: '0.5px solid #D8C7B8',
         }}
       >
         <motion.div style={{ maxWidth: '560px', margin: '0 auto' }} {...fadeIn}>
-          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+          <div style={{ marginBottom: '40px' }}>
             <h2
               style={{
                 fontFamily: vaFont,
-                fontSize: 'clamp(17px, 2.2vw, 24px)',
-                fontWeight: 700,
+                fontSize: 'clamp(20px, 2.5vw, 28px)',
+                fontWeight: 800,
                 color: '#111111',
-                lineHeight: 1.6,
-                marginBottom: '10px',
+                lineHeight: 1.5,
+                marginBottom: '8px',
               }}
             >
               {t('formTitle')}
@@ -306,7 +291,7 @@ export default function ServicesPageContentFa() {
               style={{
                 fontFamily: vaFont,
                 fontSize: '14px',
-                color: '#5A504A',
+                color: '#625B55',
                 lineHeight: 1.85,
               }}
             >

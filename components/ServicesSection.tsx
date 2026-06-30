@@ -43,8 +43,8 @@ export default function ServicesSection() {
         id="services"
         dir="rtl"
         style={{
-          background: '#EFE7DC',
-          borderTop: '0.5px solid #D8C7B8',
+          background: '#FAF1E6',
+          borderTop: '0.5px solid #E6D7C8',
           padding: '64px 24px',
           scrollMarginTop: '96px',
         }}
@@ -57,7 +57,7 @@ export default function ServicesSection() {
                 fontFamily: vaFont,
                 fontSize: '11px',
                 fontWeight: 600,
-                color: '#C08064',
+                color: '#ED5821',
                 letterSpacing: '0.06em',
                 textTransform: 'uppercase',
                 marginBottom: '12px',
@@ -81,7 +81,7 @@ export default function ServicesSection() {
               style={{
                 fontFamily: vaFont,
                 fontSize: '14px',
-                color: '#5A504A',
+                color: '#625B55',
                 lineHeight: 1.9,
                 maxWidth: '520px',
               }}
@@ -101,7 +101,7 @@ export default function ServicesSection() {
                   gap: '16px',
                   padding: '20px 0',
                   borderBottom:
-                    i < FA_SERVICES.length - 1 ? '0.5px solid #D8C7B8' : 'none',
+                    i < FA_SERVICES.length - 1 ? '0.5px solid #E6D7C8' : 'none',
                 }}
               >
                 <span
@@ -109,7 +109,7 @@ export default function ServicesSection() {
                     fontFamily: vaFont,
                     fontSize: '12px',
                     fontWeight: 700,
-                    color: '#C08064',
+                    color: '#ED5821',
                     flexShrink: 0,
                     width: '20px',
                     textAlign: 'center',
@@ -135,7 +135,7 @@ export default function ServicesSection() {
                     style={{
                       fontFamily: vaFont,
                       fontSize: '13px',
-                      color: '#5A504A',
+                      color: '#625B55',
                       lineHeight: 1.85,
                       margin: 0,
                     }}
@@ -154,8 +154,8 @@ export default function ServicesSection() {
               fontFamily: vaFont,
               fontSize: '14px',
               fontWeight: 600,
-              color: '#FFFFFF',
-              background: '#4B92DB',
+              color: '#FFFDF8',
+              background: '#3F8DDE',
               padding: '11px 24px',
               borderRadius: '100px',
               textDecoration: 'none',
@@ -182,13 +182,13 @@ export default function ServicesSection() {
     <section
       id="services"
       className="py-24 md:py-32 relative scroll-mt-24"
-      style={{ background: '#EFE7DC', borderTop: '0.5px solid #D8C7B8' }}
+      style={{ background: '#F1E8DD', borderTop: '0.5px solid rgba(17,17,17,0.12)' }}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-16">
           <span
-            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
+            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
           >
             {t('badge')}
           </span>
@@ -213,8 +213,8 @@ export default function ServicesSection() {
               <motion.div
                 key={service.titleKey}
                 style={{
-                  background: '#F5ECE0',
-                  border: '0.5px solid #D8C7B8',
+                  background: '#FAF6EF',
+                  border: '0.5px solid rgba(17,17,17,0.12)',
                   borderRadius: '16px',
                   padding: '28px 30px',
                   display: 'flex',
@@ -226,11 +226,11 @@ export default function ServicesSection() {
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
                   style={{
-                    background: 'rgba(75,146,219,0.06)',
-                    border: '0.5px solid rgba(75,146,219,0.15)',
+                    background: 'rgba(63,141,222,0.06)',
+                    border: '0.5px solid rgba(63,141,222,0.15)',
                   }}
                 >
-                  <Icon size={22} style={{ color: '#4B92DB' }} />
+                  <Icon size={22} style={{ color: '#3F8DDE' }} />
                 </div>
                 <h3
                   className="font-en font-semibold text-xl md:text-2xl mb-3 leading-snug"

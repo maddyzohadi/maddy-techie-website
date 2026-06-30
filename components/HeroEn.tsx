@@ -57,7 +57,7 @@ export default function HeroEn() {
   return (
     <section
       className="relative min-h-screen overflow-hidden"
-      style={{ background: "#F5ECE0" }}
+      style={{ background: "#FAF6EF" }}
     >
 
       {/* Warm orange radial bloom */}
@@ -66,7 +66,7 @@ export default function HeroEn() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 30%, rgba(75,146,219,0.07) 0%, transparent 70%)",
+            "radial-gradient(ellipse 80% 60% at 50% 30%, rgba(63,141,222,0.07) 0%, transparent 70%)",
         }}
       />
 
@@ -102,7 +102,7 @@ export default function HeroEn() {
         <FloatCard pos="left-[10%] top-[32%]" inDelay={0.8} floatDur={7.0} floatDelay={1.6}>
           <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
             <span style={{
-              width: 8, height: 8, borderRadius: "50%", background: "#4B92DB",
+              width: 8, height: 8, borderRadius: "50%", background: "#3F8DDE",
               flexShrink: 0, marginTop: 3,
             }} />
             <div>
@@ -137,7 +137,7 @@ export default function HeroEn() {
             {[0,1,2,3].map(i => (
               <span key={i} style={{
                 display: "block", height: 4, flex: 1, borderRadius: 2,
-                background: i < 3 ? "#4B92DB" : "rgba(0,0,0,0.09)",
+                background: i < 3 ? "#3F8DDE" : "rgba(0,0,0,0.09)",
               }} />
             ))}
           </div>
@@ -167,14 +167,14 @@ export default function HeroEn() {
             <span
               className="inline-flex items-center gap-2 rounded-full px-4 py-2"
               style={{
-                background: "#89CFF0",
-                border: "0.5px solid rgba(75,146,219,0.18)",
+                background: "#F1E8DD",
+                border: "0.5px solid rgba(63,141,222,0.18)",
               }}
             >
               <span
                 style={{
                   width: 6, height: 6, borderRadius: "50%",
-                  background: "#4B92DB", display: "inline-block", flexShrink: 0,
+                  background: "#3F8DDE", display: "inline-block", flexShrink: 0,
                 }}
               />
               <span
@@ -255,7 +255,7 @@ export default function HeroEn() {
         className="absolute bottom-0 inset-x-0 pointer-events-none"
         style={{
           height:     '160px',
-          background: 'linear-gradient(to bottom, transparent, rgba(245,236,224,0.95))',
+          background: 'linear-gradient(to bottom, transparent, rgba(250,246,239,0.95))',
           zIndex:     15,
         }}
       />

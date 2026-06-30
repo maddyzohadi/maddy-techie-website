@@ -9,12 +9,11 @@ export default async function AboutSection() {
   const isFa = locale === 'fa'
 
   const headingColor = '#111111'
-  const bodyColor    = '#5A504A'
-  const badgeColor   = 'rgba(90,80,74,0.55)'
+  const bodyColor    = '#625B55'
 
   return (
     <>
-      <section id="about" className="py-24 md:py-32 relative scroll-mt-[88px]" style={{ background: '#F5ECE0' }}>
+      <section id="about" className="py-24 md:py-32 relative scroll-mt-[88px]" style={{ background: '#FFF9F1', borderTop: '0.5px solid #E6D7C8' }}>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <MotionFadeIn>
@@ -23,28 +22,28 @@ export default async function AboutSection() {
             {/* Left — avatar card */}
             <div className="order-2 lg:order-1">
               <div
-                className="bg-white border border-[#D8C7B8] rounded-2xl p-8 max-w-sm mx-auto"
+                className="bg-white border border-[#E6D7C8] rounded-2xl p-8 max-w-sm mx-auto"
                 dir={isFa ? 'rtl' : 'ltr'}
               >
                 <p className={`${isFa ? 'font-fa text-xl' : "font-['DM_Serif_Display'] text-lg"} text-[#111111] mb-1`}>
                   Maddy the Techie
                 </p>
                 {!isFa && (
-                  <p className="text-sm text-[#5A504A] opacity-60 mb-6">
+                  <p className="text-sm text-[#625B55] opacity-60 mb-6">
                     AI &amp; Automation Educator · Silicon Valley
                   </p>
                 )}
                 {isFa && (
-                  <p className="font-fa text-sm text-[#5A504A] opacity-60 mb-6">
+                  <p className="font-fa text-sm text-[#625B55] opacity-60 mb-6">
                     مربی هوش مصنوعی و اتوماسیون
                   </p>
                 )}
 
                 <p
-                  className={`text-sm text-[#5A504A] leading-relaxed italic mb-6 ${
+                  className={`text-sm text-[#625B55] leading-relaxed italic mb-6 ${
                     isFa
-                      ? 'font-fa border-r-2 border-[#4B92DB] pr-3 text-right'
-                      : 'border-l-2 border-[#4B92DB] pl-3'
+                      ? 'font-fa border-r-2 border-[#ED5821] pr-3 text-right'
+                      : 'border-l-2 border-[#3F8DDE] pl-3'
                   }`}
                 >
                   {isFa
@@ -59,18 +58,18 @@ export default async function AboutSection() {
                       { num: '12+', label: 'Projects' },
                       { num: '100%', label: 'No-code' },
                     ].map(({ num, label }) => (
-                      <div key={label} className="bg-[#F5ECE0] rounded-xl p-3 text-center">
+                      <div key={label} className="bg-[#FAF6EF] rounded-xl p-3 text-center">
                         <span className="block text-xl font-medium text-[#111111]">{num}</span>
-                        <span className="block text-[11px] text-[#5A504A] opacity-60 mt-0.5">{label}</span>
+                        <span className="block text-[11px] text-[#625B55] opacity-60 mt-0.5">{label}</span>
                       </div>
                     ))}
                   </div>
                 )}
                 {isFa && (
                   <div className="flex justify-center mb-5">
-                    <div className="bg-[#F5ECE0] border border-[#D8C7B8] rounded-xl px-6 py-3 text-center">
+                    <div className="bg-[#FFF9F1] border border-[#E6D7C8] rounded-xl px-6 py-3 text-center">
                       <span className="block text-2xl font-medium text-[#111111]">۴</span>
-                      <span className="block font-fa text-xs text-[#5A504A] opacity-60 mt-0.5">ماژول</span>
+                      <span className="block font-fa text-xs text-[#625B55] opacity-60 mt-0.5">ماژول</span>
                     </div>
                   </div>
                 )}
@@ -82,7 +81,7 @@ export default async function AboutSection() {
                   ).map((tag) => (
                     <span
                       key={tag}
-                      className="text-[11px] text-[#5A504A] opacity-60 border border-[#D8C7B8] rounded-full px-2.5 py-0.5"
+                      className="text-[11px] text-[#625B55] opacity-60 border border-[#E6D7C8] rounded-full px-2.5 py-0.5"
                     >
                       {tag}
                     </span>
@@ -93,11 +92,18 @@ export default async function AboutSection() {
 
             {/* Right — intro */}
             <div className="order-1 lg:order-2">
-              <span
-                className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
-              >
-                {t('badge')}
-              </span>
+              {isFa ? (
+                <span
+                  className="inline-flex items-center font-fa text-xs font-semibold uppercase tracking-[0.08em] mb-4 px-3 py-1.5 rounded-full"
+                  style={{ background: 'rgba(156,204,239,0.14)', color: '#ED5821', border: '0.5px solid rgba(156,204,239,0.30)' }}
+                >
+                  {t('badge')}
+                </span>
+              ) : (
+                <span className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full">
+                  {t('badge')}
+                </span>
+              )}
               <h2
                 className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight`}
                 style={{ color: headingColor, ...(isFa && { lineHeight: 1.4 }) }}
@@ -114,7 +120,7 @@ export default async function AboutSection() {
               {/* Stat strip */}
               <div
                 className="flex flex-wrap gap-x-6 gap-y-2 mb-8"
-                style={{ borderTop: '0.5px solid rgba(0,0,0,0.08)', paddingTop: '20px' }}
+                style={{ borderTop: '0.5px solid #E6D7C8', paddingTop: '20px' }}
               >
                 {([t('stat0'), t('stat1'), t('stat2')] as string[]).map((stat, i) => (
                   <span key={i} className={`${isFa ? 'font-fa' : 'font-ui'} font-semibold text-sm`} style={{ color: headingColor }}>
@@ -125,7 +131,8 @@ export default async function AboutSection() {
 
               <Link
                 href="/about"
-                className={`inline-flex items-center gap-2.5 ${isFa ? 'font-fa' : 'font-ui'} font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150`}
+                className={`inline-flex items-center gap-2.5 ${isFa ? 'font-fa' : 'font-ui'} font-semibold text-base px-9 py-4 rounded-full text-white no-underline transition-opacity duration-150 hover:opacity-90 ${isFa ? '' : 'bg-brand-blue hover:bg-brand-blue-dark hover:opacity-100'}`}
+                style={isFa ? { background: '#3F8DDE' } : undefined}
               >
                 {t('ctaLabel')}
                 <ArrowRight size={16} className={locale === 'fa' ? 'rotate-180' : ''} />
@@ -147,7 +154,7 @@ async function FaFinalCTA() {
   return (
     <section
       className="py-20 md:py-24 relative overflow-hidden"
-      style={{ background: '#F5ECE0', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+      style={{ background: '#FAF1E6', borderTop: '0.5px solid #E6D7C8' }}
     >
       <div className="relative z-10 max-w-xl mx-auto px-4 sm:px-6 text-center">
         <h2
@@ -158,7 +165,7 @@ async function FaFinalCTA() {
         </h2>
         <p
           className="font-fa text-base md:text-lg leading-relaxed mb-8"
-          style={{ color: '#5A504A' }}
+          style={{ color: '#625B55' }}
         >
           {t('subtitle')}
         </p>

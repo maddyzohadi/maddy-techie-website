@@ -149,8 +149,8 @@ function Thumbnail({ cat }: { cat: string }) {
     borderRadius: '10px',
     overflow: 'hidden',
     position: 'relative',
-    background: '#EFE7DC',
-    border: '0.5px solid #D8C7B8',
+    background: '#FAF1E6',
+    border: '0.5px solid #E6D7C8',
     flexShrink: 0,
   }
 
@@ -159,20 +159,20 @@ function Thumbnail({ cat }: { cat: string }) {
       <div style={base} aria-hidden>
         <div style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: '6px', height: '100%' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '2px' }}>
-            <div style={{ width: 18, height: 18, borderRadius: '50%', background: 'rgba(75,146,219,0.10)', border: '0.5px solid rgba(75,146,219,0.22)', flexShrink: 0 }} />
-            <div style={{ height: 5, width: 52, borderRadius: 3, background: '#D8C7B8' }} />
+            <div style={{ width: 18, height: 18, borderRadius: '50%', background: 'rgba(63,141,222,0.10)', border: '0.5px solid rgba(63,141,222,0.22)', flexShrink: 0 }} />
+            <div style={{ height: 5, width: 52, borderRadius: 3, background: '#E6D7C8' }} />
           </div>
-          <div style={{ background: '#FFFFFF', border: '0.5px solid #D8C7B8', borderRadius: 8, padding: '8px 10px' }}>
-            <div style={{ height: 4, borderRadius: 3, background: '#D8C7B8', width: '88%', marginBottom: 5 }} />
-            <div style={{ height: 4, borderRadius: 3, background: '#D8C7B8', width: '62%' }} />
+          <div style={{ background: '#FFFDF8', border: '0.5px solid #E6D7C8', borderRadius: 8, padding: '8px 10px' }}>
+            <div style={{ height: 4, borderRadius: 3, background: '#E6D7C8', width: '88%', marginBottom: 5 }} />
+            <div style={{ height: 4, borderRadius: 3, background: '#E6D7C8', width: '62%' }} />
           </div>
-          <div style={{ background: 'rgba(75,146,219,0.07)', border: '0.5px solid rgba(75,146,219,0.16)', borderRadius: 8, padding: '8px 10px' }}>
-            <div style={{ height: 4, borderRadius: 3, background: 'rgba(75,146,219,0.28)', width: '76%', marginBottom: 5 }} />
-            <div style={{ height: 4, borderRadius: 3, background: 'rgba(75,146,219,0.16)', width: '52%' }} />
+          <div style={{ background: 'rgba(63,141,222,0.07)', border: '0.5px solid rgba(63,141,222,0.16)', borderRadius: 8, padding: '8px 10px' }}>
+            <div style={{ height: 4, borderRadius: 3, background: 'rgba(63,141,222,0.28)', width: '76%', marginBottom: 5 }} />
+            <div style={{ height: 4, borderRadius: 3, background: 'rgba(63,141,222,0.16)', width: '52%' }} />
           </div>
           <div style={{ display: 'flex', gap: 5, paddingLeft: 2 }}>
             {[0, 1, 2].map((i) => (
-              <div key={i} style={{ width: 5, height: 5, borderRadius: '50%', background: '#D8C7B8' }} />
+              <div key={i} style={{ width: 5, height: 5, borderRadius: '50%', background: '#E6D7C8' }} />
             ))}
           </div>
         </div>
@@ -185,16 +185,16 @@ function Thumbnail({ cat }: { cat: string }) {
       <div style={base} aria-hidden>
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
           <div style={{ background: '#171717', padding: '9px 13px', display: 'flex', alignItems: 'center', gap: 6 }}>
-            <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#4B92DB', flexShrink: 0 }} />
-            <div style={{ height: 4, width: 58, borderRadius: 3, background: 'rgba(245,236,224,0.28)' }} />
+            <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#3F8DDE', flexShrink: 0 }} />
+            <div style={{ height: 4, width: 58, borderRadius: 3, background: 'rgba(255,249,241,0.28)' }} />
           </div>
           <div style={{ padding: '11px 13px', display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
             {[90, 76, 84, 56].map((w, i) => (
-              <div key={i} style={{ height: 4, borderRadius: 3, background: i === 3 ? 'rgba(75,146,219,0.22)' : '#D8C7B8', width: `${w}%` }} />
+              <div key={i} style={{ height: 4, borderRadius: 3, background: i === 3 ? 'rgba(63,141,222,0.22)' : '#E6D7C8', width: `${w}%` }} />
             ))}
             <div style={{ display: 'flex', gap: 6, marginTop: 1 }}>
-              <div style={{ background: 'rgba(75,146,219,0.08)', border: '0.5px solid rgba(75,146,219,0.18)', borderRadius: 5, width: 50, height: 16 }} />
-              <div style={{ background: '#F5ECE0', border: '0.5px solid #D8C7B8', borderRadius: 5, width: 38, height: 16 }} />
+              <div style={{ background: 'rgba(63,141,222,0.08)', border: '0.5px solid rgba(63,141,222,0.18)', borderRadius: 5, width: 50, height: 16 }} />
+              <div style={{ background: '#FFF9F1', border: '0.5px solid #E6D7C8', borderRadius: 5, width: 38, height: 16 }} />
             </div>
           </div>
         </div>
@@ -212,8 +212,8 @@ function Thumbnail({ cat }: { cat: string }) {
                 key={i}
                 style={{
                   flex: 1, height: 22, borderRadius: 5,
-                  background: i === 2 ? '#4B92DB' : '#F5ECE0',
-                  border: `0.5px solid ${i === 2 ? 'rgba(75,146,219,0.42)' : '#D8C7B8'}`,
+                  background: i === 2 ? '#3F8DDE' : '#FFF9F1',
+                  border: `0.5px solid ${i === 2 ? 'rgba(63,141,222,0.42)' : '#E6D7C8'}`,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}
               >
@@ -222,10 +222,10 @@ function Thumbnail({ cat }: { cat: string }) {
             ))}
           </div>
           {[
-            ['rgba(75,146,219,0.09)', 'rgba(75,146,219,0.18)', '56%'],
-            ['#F5ECE0', '#D8C7B8', '40%'],
-            ['#F5ECE0', '#D8C7B8', '64%'],
-            ['rgba(75,146,219,0.05)', 'rgba(75,146,219,0.13)', '48%'],
+            ['rgba(63,141,222,0.09)', 'rgba(63,141,222,0.18)', '56%'],
+            ['#FFF9F1', '#E6D7C8', '40%'],
+            ['#FFF9F1', '#E6D7C8', '64%'],
+            ['rgba(63,141,222,0.05)', 'rgba(63,141,222,0.13)', '48%'],
           ].map(([bg, border, w], i) => (
             <div key={i} style={{ height: 18, borderRadius: 5, background: bg, border: `0.5px solid ${border}`, width: w }} />
           ))}
@@ -236,7 +236,7 @@ function Thumbnail({ cat }: { cat: string }) {
 
   if (cat === 'Google Sheets') {
     return (
-      <div style={{ ...base, background: '#FFFFFF' }} aria-hidden>
+      <div style={{ ...base, background: '#FFFDF8' }} aria-hidden>
         <div style={{ display: 'flex', borderBottom: '0.5px solid rgba(255,255,255,0.22)' }}>
           {(['Name', 'Category', '★'] as const).map((h, i) => (
             <div
@@ -244,7 +244,7 @@ function Thumbnail({ cat }: { cat: string }) {
               style={{
                 flex: i === 0 ? 2 : 1,
                 padding: '7px 9px',
-                background: '#4B92DB',
+                background: '#3F8DDE',
                 borderRight: i < 2 ? '0.5px solid rgba(255,255,255,0.20)' : 'none',
                 display: 'flex', alignItems: 'center',
               }}
@@ -254,10 +254,10 @@ function Thumbnail({ cat }: { cat: string }) {
           ))}
         </div>
         {[0, 1, 2, 3].map((ri) => (
-          <div key={ri} style={{ display: 'flex', borderBottom: ri < 3 ? '0.5px solid #D8C7B8' : 'none', background: ri % 2 === 0 ? '#FFFFFF' : '#EFE7DC' }}>
+          <div key={ri} style={{ display: 'flex', borderBottom: ri < 3 ? '0.5px solid #E6D7C8' : 'none', background: ri % 2 === 0 ? '#FFFDF8' : '#FAF1E6' }}>
             {[2, 1, 1].map((flex, ci) => (
-              <div key={ci} style={{ flex, padding: '8px 9px', borderRight: ci < 2 ? '0.5px solid #D8C7B8' : 'none', display: 'flex', alignItems: 'center' }}>
-                <div style={{ height: 4, borderRadius: 2, background: ci === 2 ? 'rgba(75,146,219,0.22)' : '#D8C7B8', width: ci === 0 ? '68%' : '52%' }} />
+              <div key={ci} style={{ flex, padding: '8px 9px', borderRight: ci < 2 ? '0.5px solid #E6D7C8' : 'none', display: 'flex', alignItems: 'center' }}>
+                <div style={{ height: 4, borderRadius: 2, background: ci === 2 ? 'rgba(63,141,222,0.22)' : '#E6D7C8', width: ci === 0 ? '68%' : '52%' }} />
               </div>
             ))}
           </div>
@@ -268,34 +268,34 @@ function Thumbnail({ cat }: { cat: string }) {
 
   // Client Work (default)
   const statuses = [
-    { color: '#4B92DB', label: 'HOT' },
+    { color: '#3F8DDE', label: 'HOT' },
     { color: '#52C47A', label: 'WARM' },
     { color: '#B8B0A7', label: 'cold' },
   ]
   return (
-    <div style={{ ...base, background: '#FFFFFF' }} aria-hidden>
+    <div style={{ ...base, background: '#FFFDF8' }} aria-hidden>
       <div style={{ background: '#171717', padding: '8px 12px', display: 'flex', gap: 6 }}>
         {(['Name', 'Status', 'Follow-up'] as const).map((h, i) => (
           <div key={i} style={{ flex: i === 0 ? 2 : 1 }}>
-            <span style={{ fontSize: '8px', fontFamily: 'system-ui', fontWeight: 700, color: 'rgba(245,236,224,0.40)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{h}</span>
+            <span style={{ fontSize: '8px', fontFamily: 'system-ui', fontWeight: 700, color: 'rgba(255,249,241,0.40)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{h}</span>
           </div>
         ))}
       </div>
       {statuses.map((s, ri) => (
-        <div key={ri} style={{ display: 'flex', padding: '9px 12px', borderBottom: '0.5px solid #D8C7B8', alignItems: 'center', gap: 6, background: '#FFFFFF' }}>
+        <div key={ri} style={{ display: 'flex', padding: '9px 12px', borderBottom: '0.5px solid #E6D7C8', alignItems: 'center', gap: 6, background: '#FFFDF8' }}>
           <div style={{ flex: 2 }}>
-            <div style={{ height: 4, borderRadius: 2, background: '#D8C7B8', width: '68%' }} />
+            <div style={{ height: 4, borderRadius: 2, background: '#E6D7C8', width: '68%' }} />
           </div>
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 4 }}>
             <div style={{ width: 6, height: 6, borderRadius: '50%', background: s.color, flexShrink: 0 }} />
             <span style={{ fontSize: '8px', fontFamily: 'system-ui', fontWeight: 700, color: s.color, textTransform: 'uppercase' }}>{s.label}</span>
           </div>
           <div style={{ flex: 1 }}>
-            <div style={{ height: 4, borderRadius: 2, background: '#D8C7B8', width: '78%' }} />
+            <div style={{ height: 4, borderRadius: 2, background: '#E6D7C8', width: '78%' }} />
           </div>
         </div>
       ))}
-      <div style={{ flex: 1, background: '#EFE7DC' }} />
+      <div style={{ flex: 1, background: '#FAF1E6' }} />
     </div>
   )
 }
@@ -334,8 +334,8 @@ function PreviewModal({
       <div
         style={{
           position: 'relative', zIndex: 1,
-          background: '#EFE7DC',
-          border: '0.5px solid #D8C7B8',
+          background: '#FAF1E6',
+          border: '0.5px solid #E6D7C8',
           borderRadius: '16px',
           padding: 'clamp(28px, 5vw, 44px)',
           maxWidth: '520px', width: '100%',
@@ -349,7 +349,7 @@ function PreviewModal({
             width: '36px', height: '36px', borderRadius: '50%',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             background: 'rgba(0,0,0,0.05)',
-            border: '0.5px solid #D8C7B8',
+            border: '0.5px solid #E6D7C8',
             cursor: 'pointer', color: '#111111',
           }}
         >
@@ -366,8 +366,8 @@ function PreviewModal({
             fontSize: '11px',
             letterSpacing: '.05em',
             ...(tmpl.tier === 'Premium'
-              ? { background: '#171717', color: '#F5ECE0' }
-              : { background: 'rgba(0,0,0,0.05)', border: '0.5px solid #D8C7B8', color: '#5A504A' }),
+              ? { background: '#171717', color: '#FFF9F1' }
+              : { background: 'rgba(0,0,0,0.05)', border: '0.5px solid #E6D7C8', color: '#625B55' }),
           }}
         >
           {tierLabel}
@@ -382,22 +382,22 @@ function PreviewModal({
 
         <p
           className={`${isFa ? 'font-fa' : 'font-ui'}`}
-          style={{ fontSize: '16px', color: '#5A504A', lineHeight: 1.55, marginBottom: '16px' }}
+          style={{ fontSize: '16px', color: '#625B55', lineHeight: 1.55, marginBottom: '16px' }}
         >
           {tmpl.desc}
         </p>
 
-        <div style={{ height: '0.5px', background: '#D8C7B8', marginBottom: '16px' }} />
+        <div style={{ height: '0.5px', background: '#E6D7C8', marginBottom: '16px' }} />
 
         <p
           className="font-ui font-semibold"
-          style={{ fontSize: '12px', letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(90,80,74,0.55)', marginBottom: '10px' }}
+          style={{ fontSize: '12px', letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(98,91,85,0.55)', marginBottom: '10px' }}
         >
           {isFa ? 'چه شامل می‌شود' : "What's inside"}
         </p>
         <p
           className={`${isFa ? 'font-fa' : 'font-ui'}`}
-          style={{ fontSize: '15px', color: '#5A504A', lineHeight: 1.6, marginBottom: '22px' }}
+          style={{ fontSize: '15px', color: '#625B55', lineHeight: 1.6, marginBottom: '22px' }}
         >
           {tmpl.preview}
         </p>
@@ -410,9 +410,9 @@ function PreviewModal({
               style={{
                 padding: '5px 11px', borderRadius: '7px',
                 fontSize: '12px', fontWeight: 500,
-                color: '#5A504A',
+                color: '#625B55',
                 background: 'rgba(0,0,0,0.04)',
-                border: '0.5px solid #D8C7B8',
+                border: '0.5px solid #E6D7C8',
               }}
             >
               {tool}
@@ -427,8 +427,8 @@ function PreviewModal({
           style={{
             width: '100%', padding: '14px 24px',
             borderRadius: '8px', fontSize: '15px',
-            color: '#FFFFFF', textDecoration: 'none',
-            background: '#4B92DB',
+            color: '#FFFDF8', textDecoration: 'none',
+            background: '#3F8DDE',
           }}
         >
           {isFa ? 'دریافت قالب' : 'Get template'}
@@ -462,7 +462,7 @@ export default function ResourcesSection() {
       <section
         id="templates"
         className="pt-12 pb-24 md:pt-16 md:pb-32 relative scroll-mt-24"
-        style={{ background: '#F5ECE0' }}
+        style={{ background: '#FFF9F1' }}
       >
         <div className="relative z-10 max-w-[1160px] mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -478,9 +478,9 @@ export default function ResourcesSection() {
                     padding: '9px 20px',
                     borderRadius: '8px',
                     fontSize: '14px',
-                    border: active ? 'none' : '0.5px solid #D8C7B8',
-                    background: active ? '#111111' : '#FFFFFF',
-                    color: active ? '#FFFFFF' : '#5A504A',
+                    border: active ? 'none' : '0.5px solid #E6D7C8',
+                    background: active ? '#111111' : '#FFFDF8',
+                    color: active ? '#FFFDF8' : '#625B55',
                   }}
                 >
                   {catLabel(cat)}
@@ -491,7 +491,7 @@ export default function ResourcesSection() {
 
           <p
             className={`${isFa ? 'font-fa' : 'font-ui'} text-center mb-10`}
-            style={{ fontSize: '13.5px', color: 'rgba(90,80,74,0.45)' }}
+            style={{ fontSize: '13.5px', color: 'rgba(98,91,85,0.45)' }}
           >
             {isFa
               ? `${visible.length} قالب آماده`
@@ -516,8 +516,8 @@ export default function ResourcesSection() {
                   gap: '15px',
                   padding: '15px',
                   borderRadius: '12px',
-                  background: '#EFE7DC',
-                  border: '0.5px solid #D8C7B8',
+                  background: '#FAF1E6',
+                  border: '0.5px solid #E6D7C8',
                 }}
               >
                 <Thumbnail cat={tmpl.cat} />
@@ -532,8 +532,8 @@ export default function ResourcesSection() {
                       fontSize: '10px',
                       letterSpacing: '.06em',
                       ...(tmpl.tier === 'Premium'
-                        ? { background: '#171717', color: '#F5ECE0' }
-                        : { background: 'rgba(0,0,0,0.05)', border: '0.5px solid #D8C7B8', color: '#5A504A' }),
+                        ? { background: '#171717', color: '#FFF9F1' }
+                        : { background: 'rgba(0,0,0,0.05)', border: '0.5px solid #E6D7C8', color: '#625B55' }),
                     }}
                   >
                     {tierLabel(tmpl.tier)}
@@ -548,7 +548,7 @@ export default function ResourcesSection() {
 
                 <p
                   className={`${isFa ? 'font-fa' : 'font-ui'}`}
-                  style={{ fontSize: '14px', color: '#5A504A', lineHeight: 1.5, margin: 0, flexGrow: 1 }}
+                  style={{ fontSize: '14px', color: '#625B55', lineHeight: 1.5, margin: 0, flexGrow: 1 }}
                 >
                   {tmpl.desc}
                 </p>
@@ -563,9 +563,9 @@ export default function ResourcesSection() {
                         borderRadius: '7px',
                         fontSize: '12px',
                         fontWeight: 500,
-                        color: '#5A504A',
+                        color: '#625B55',
                         background: 'rgba(0,0,0,0.04)',
-                        border: '0.5px solid #D8C7B8',
+                        border: '0.5px solid #E6D7C8',
                       }}
                     >
                       {tool}
@@ -579,13 +579,13 @@ export default function ResourcesSection() {
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     paddingTop: '12px',
-                    borderTop: '0.5px solid #D8C7B8',
+                    borderTop: '0.5px solid #E6D7C8',
                   }}
                 >
                   <a
                     href="#contact"
                     className={`${isFa ? 'font-fa' : 'font-ui'} font-bold inline-flex items-center gap-1.5`}
-                    style={{ fontSize: '14.5px', color: '#4B92DB', textDecoration: 'none' }}
+                    style={{ fontSize: '14.5px', color: '#3F8DDE', textDecoration: 'none' }}
                     onClick={(e) => e.stopPropagation()}
                   >
                     {isFa ? 'دریافت قالب' : 'Get template'}
@@ -594,20 +594,20 @@ export default function ResourcesSection() {
                   <button
                     className={`${isFa ? 'font-fa' : 'font-ui'} cursor-pointer transition-colors duration-200`}
                     style={{
-                      fontSize: '13.5px', fontWeight: 500, color: '#5A504A',
+                      fontSize: '13.5px', fontWeight: 500, color: '#625B55',
                       background: 'none',
-                      border: '0.5px solid #D8C7B8',
+                      border: '0.5px solid #E6D7C8',
                       padding: '6px 14px', borderRadius: '8px',
                     }}
                     onMouseEnter={(e) => {
                       const el = e.currentTarget as HTMLButtonElement
-                      el.style.color = '#4B92DB'
-                      el.style.borderColor = 'rgba(75,146,219,0.40)'
+                      el.style.color = '#3F8DDE'
+                      el.style.borderColor = 'rgba(63,141,222,0.40)'
                     }}
                     onMouseLeave={(e) => {
                       const el = e.currentTarget as HTMLButtonElement
-                      el.style.color = '#5A504A'
-                      el.style.borderColor = '#D8C7B8'
+                      el.style.color = '#625B55'
+                      el.style.borderColor = '#E6D7C8'
                     }}
                     onClick={(e) => {
                       e.stopPropagation()

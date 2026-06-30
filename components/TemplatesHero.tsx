@@ -10,8 +10,8 @@ export default function TemplatesHero() {
     <section
       style={{
         position: 'relative',
-        background: '#F5ECE0',
-        borderBottom: '0.5px solid #D8C7B8',
+        background: '#FFF9F1',
+        borderBottom: '0.5px solid #E6D7C8',
         paddingTop: 'calc(68px + 40px)',
         paddingBottom: '52px',
         overflow: 'hidden',
@@ -25,7 +25,7 @@ export default function TemplatesHero() {
             style={{
               fontSize: '12px',
               letterSpacing: '.20em',
-              color: '#4B92DB',
+              color: '#3F8DDE',
               textTransform: 'uppercase',
             }}
           >
@@ -60,7 +60,7 @@ export default function TemplatesHero() {
             className={isFa ? 'font-fa' : 'font-ui'}
             style={{
               fontSize: '16px',
-              color: 'rgba(17,17,17,0.52)',
+              color: '#625B55',
               lineHeight: 1.65,
               marginBottom: '28px',
             }}

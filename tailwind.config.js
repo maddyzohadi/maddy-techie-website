@@ -10,17 +10,18 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          bg:          '#F5ECE0',   // page background, navbar, hero
-          card:        '#EFE7DC',   // cards, feature boxes, footer bg
-          border:      '#D8C7B8',   // borders, dividers, card outlines
-          text:        '#111111',   // H1, H2, logo, primary headings
-          muted:       '#5A504A',   // body text, nav links, captions
-          blue:        '#4B92DB',   // primary CTAs, active states, links
-          'blue-dark': '#3478C2',   // hover state for blue
-          babyblue:    '#89CFF0',   // tags, badges, icon bg circles
-          terra:       '#C08064',   // secondary/outline buttons, warm accent
-          dark:        '#351C1C',   // premium sections background
-          white:       '#FFFFFF',   // modal backgrounds, overlays
+          bg:          '#FFF9F1',   // page background, hero, navbar
+          surface:     '#FAF1E6',   // cards, panels, soft sections, forms
+          border:      '#E6D7C8',   // borders, dividers, card outlines
+          text:        '#111111',   // headings, primary text, logo
+          muted:       '#625B55',   // body text, descriptions, captions
+          blue:        '#3F8DDE',   // primary CTAs, active states, links, icons
+          'blue-dark': '#2F70BF',   // hover state for blue
+          sky:         '#9CCCEF',   // soft highlights, badges, icon backgrounds
+          orange:      '#ED5821',   // warm accent — eyebrows, labels, dots, accents (FA-primary)
+          clay:        '#ED5821',   // alias for orange
+          coral:       '#C9785A',   // alias kept for EN components using text-brand-coral
+          white:       '#FFFDF8',   // floating cards, overlays, clean surfaces
         },
       },
       fontFamily: {
@@ -36,7 +37,6 @@ module.exports = {
         card: '12px',
         pill: '20px',
       },
-      // No shadows — depth comes from surface color steps
       boxShadow: {},
     },
   },

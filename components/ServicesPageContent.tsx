@@ -58,11 +58,11 @@ export default async function ServicesPageContent() {
       {/* Hero */}
       <section
         className="py-24 md:py-32 relative overflow-hidden"
-        style={{ background: '#F5ECE0' }}
+        style={{ background: '#FAF6EF' }}
       >
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <span
-            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-5 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
+            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-5 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
           >
             {t('heroBadge')}
           </span>
@@ -91,7 +91,7 @@ export default async function ServicesPageContent() {
       {/* Service Cards */}
       <section
         className="py-20 md:py-24 relative"
-        style={{ background: '#F5ECE0', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+        style={{ background: '#FAF6EF', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
       >
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -101,8 +101,8 @@ export default async function ServicesPageContent() {
                 <div
                   key={svc.titleKey}
                   style={{
-                    background: '#EFE7DC',
-                    border: '0.5px solid #D8C7B8',
+                    background: '#F1E8DD',
+                    border: '0.5px solid rgba(17,17,17,0.12)',
                     borderRadius: '16px',
                     padding: '28px 30px',
                     display: 'flex',
@@ -112,9 +112,9 @@ export default async function ServicesPageContent() {
                 >
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: 'rgba(75,146,219,0.08)', border: '0.5px solid rgba(75,146,219,0.20)' }}
+                    style={{ background: 'rgba(63,141,222,0.08)', border: '0.5px solid rgba(63,141,222,0.20)' }}
                   >
-                    <Icon size={20} style={{ color: '#4B92DB' }} />
+                    <Icon size={20} style={{ color: '#3F8DDE' }} />
                   </div>
 
                   <div>
@@ -165,7 +165,7 @@ export default async function ServicesPageContent() {
                   <a
                     href="#contact-form"
                     className="mt-auto inline-flex items-center gap-1.5 font-ui font-semibold text-sm transition-opacity duration-200 hover:opacity-75 self-start"
-                    style={{ color: '#4B92DB' }}
+                    style={{ color: '#3F8DDE' }}
                   >
                     {t(svc.ctaKey)}
                     <ArrowRight size={13} />
@@ -180,12 +180,12 @@ export default async function ServicesPageContent() {
       {/* How It Works */}
       <section
         className="py-20 md:py-24 relative overflow-hidden"
-        style={{ background: '#F5ECE0', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+        style={{ background: '#FAF6EF', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
       >
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span
-              className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
+              className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
             >
               {t('howBadge')}
             </span>
@@ -203,8 +203,8 @@ export default async function ServicesPageContent() {
                 key={step.numKey}
                 className="relative p-6 rounded-2xl"
                 style={{
-                  background: '#EFE7DC',
-                  border: '0.5px solid #D8C7B8',
+                  background: '#F1E8DD',
+                  border: '0.5px solid rgba(17,17,17,0.12)',
                 }}
               >
                 <div
@@ -228,12 +228,12 @@ export default async function ServicesPageContent() {
       {/* Who This Is For */}
       <section
         className="py-20 md:py-24 relative"
-        style={{ background: '#F5ECE0', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+        style={{ background: '#FAF6EF', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span
-              className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
+              className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
             >
               {t('whoBadge')}
             </span>
@@ -251,14 +251,14 @@ export default async function ServicesPageContent() {
                 key={key}
                 className="flex items-start gap-3 p-5 rounded-xl"
                 style={{
-                  background: '#EFE7DC',
-                  border: '0.5px solid #D8C7B8',
+                  background: '#F1E8DD',
+                  border: '0.5px solid rgba(17,17,17,0.12)',
                 }}
               >
                 <CheckCircle
                   size={18}
                   className="flex-shrink-0 mt-0.5"
-                  style={{ color: '#4B92DB' }}
+                  style={{ color: '#3F8DDE' }}
                 />
                 <p className="font-ui text-sm leading-relaxed" style={{ color: '#5A504A' }}>
                   {t(key)}
@@ -273,12 +273,12 @@ export default async function ServicesPageContent() {
       <section
         id="contact-form"
         className="py-20 md:py-24 relative"
-        style={{ background: '#F5ECE0', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+        style={{ background: '#FAF6EF', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
       >
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span
-              className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
+              className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
             >
               {t('formBadge')}
             </span>

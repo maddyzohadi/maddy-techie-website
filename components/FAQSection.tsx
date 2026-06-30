@@ -58,13 +58,13 @@ export default function FAQSection() {
       <section
         id="faq"
         className="py-24 md:py-32 relative scroll-mt-24"
-        style={{ background: '#EFE7DC', borderTop: '0.5px solid rgba(0,0,0,0.08)' }}
+        style={{ background: '#F1E8DD', borderTop: '0.5px solid rgba(0,0,0,0.08)' }}
       >
         <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="text-center mb-14">
             <div className="flex justify-center mb-4">
-              <span className="inline-flex items-center font-ui text-[11px] font-semibold uppercase tracking-[0.18em] bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full">
+              <span className="inline-flex items-center font-ui text-[11px] font-semibold uppercase tracking-[0.18em] bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full">
                 {isFa ? 'سوالات رایج' : 'FAQ'}
               </span>
             </div>
@@ -87,7 +87,7 @@ export default function FAQSection() {
                 <div
                   key={i}
                   style={{
-                    background: '#EFE7DC',
+                    background: '#F1E8DD',
                     border: `0.5px solid ${isOpen ? 'rgba(0,0,0,0.14)' : 'rgba(0,0,0,0.10)'}`,
                     borderRadius: '12px',
                     overflow: 'hidden',

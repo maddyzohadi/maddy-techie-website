@@ -30,7 +30,7 @@ export default function ServicesListSection() {
   return (
     <section
       style={{
-        background: '#EFE7DC',
+        background: '#F1E8DD',
         padding: '96px 24px',
         borderTop: '0.5px solid rgba(0,0,0,0.08)',
         direction: isFa ? 'rtl' : 'ltr',

@@ -17,7 +17,7 @@ const LEGAL_LINKS = [
   { labelKey: 'terms'   as const, href: '#' },
 ] as const
 
-const BORDER = '#D8C7B8'
+const BORDER = 'rgba(17,17,17,0.12)'
 
 export default async function Footer() {
   const t      = await getTranslations('footer')
@@ -30,7 +30,7 @@ export default async function Footer() {
   return (
     <footer
       className="relative overflow-hidden"
-      style={{ background: '#F5ECE0', borderTop: `0.5px solid ${BORDER}` }}
+      style={{ background: '#FAF6EF', borderTop: `0.5px solid ${BORDER}` }}
     >
 
       {/* Very subtle top accent line */}
@@ -42,7 +42,7 @@ export default async function Footer() {
           transform: 'translateX(-50%)',
           width: '120px',
           height: '1.5px',
-          background: 'linear-gradient(90deg, transparent, #4B92DB, transparent)',
+          background: 'linear-gradient(90deg, transparent, #3F8DDE, transparent)',
           opacity: 0.5,
         }}
       />
@@ -156,13 +156,13 @@ export default async function Footer() {
                   fontFamily: 'system-ui, sans-serif',
                   fontSize: '11px',
                   fontWeight: locale === 'en' ? 600 : 400,
-                  color: locale === 'en' ? '#4B92DB' : '#5A504A',
+                  color: locale === 'en' ? '#3F8DDE' : '#5A504A',
                   textDecoration: 'none',
                 }}
               >
                 English
               </Link>
-              <span style={{ color: '#D8C7B8', fontSize: '11px' }}>|</span>
+              <span style={{ color: 'rgba(17,17,17,0.12)', fontSize: '11px' }}>|</span>
               <Link
                 href="/"
                 locale="fa"
@@ -170,7 +170,7 @@ export default async function Footer() {
                   fontFamily: "'Noto Naskh Arabic', serif",
                   fontSize: '12px',
                   fontWeight: locale === 'fa' ? 600 : 400,
-                  color: locale === 'fa' ? '#4B92DB' : '#5A504A',
+                  color: locale === 'fa' ? '#3F8DDE' : '#5A504A',
                   textDecoration: 'none',
                 }}
               >

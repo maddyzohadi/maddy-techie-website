@@ -57,10 +57,10 @@ export default function Navigation() {
           position: 'fixed',
           top: 0, left: 0, right: 0,
           zIndex: 100,
-          background: scrolled ? 'rgba(245,236,224,0.85)' : '#F5ECE0',
+          background: scrolled ? 'rgba(255,249,241,0.88)' : '#FFF9F1',
           backdropFilter: scrolled ? 'blur(12px)' : 'none',
           WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
-          borderBottom: '0.5px solid #D8C7B8',
+          borderBottom: '0.5px solid rgba(17,17,17,0.12)',
           boxShadow: scrolled ? '0 1px 0 rgba(0,0,0,0.06)' : 'none',
           transition: 'box-shadow 0.25s, backdrop-filter 0.25s, background 0.25s',
         }}
@@ -87,7 +87,7 @@ export default function Navigation() {
               <nav className="hidden lg:flex" style={{ alignItems: 'center', gap: '24px' }}>
                 {navLinks.map((link) => {
                   const active = isActive(link.href)
-                  const activeColor = isFa ? '#111111' : '#4B92DB'
+                  const activeColor = isFa ? '#111111' : '#3F8DDE'
                   return (
                     <Link
                       key={link.key}
@@ -96,7 +96,7 @@ export default function Navigation() {
                         fontFamily: navFont,
                         fontSize: isFa ? '14px' : '12px',
                         fontWeight: active ? 600 : 500,
-                        color: active ? activeColor : '#5A504A',
+                        color: active ? activeColor : '#625B55',
                         textDecoration: 'none',
                         transition: 'color 0.15s',
                         textTransform: isFa ? 'none' : 'uppercase',
@@ -105,7 +105,7 @@ export default function Navigation() {
                         paddingBottom: '2px',
                       }}
                       onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = activeColor }}
-                      onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = active ? activeColor : '#5A504A' }}
+                      onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = active ? activeColor : '#625B55' }}
                     >
                       {t(link.key)}
                     </Link>
@@ -152,7 +152,7 @@ export default function Navigation() {
                       position: 'absolute',
                       top: 'calc(100% + 8px)',
                       right: 0,
-                      background: '#fff',
+                      background: '#FFFDF8',
                       border: '0.5px solid rgba(0,0,0,0.10)',
                       borderRadius: '12px',
                       boxShadow: '0 8px 24px rgba(0,0,0,0.09)',
@@ -173,14 +173,14 @@ export default function Navigation() {
                         fontFamily: 'system-ui, sans-serif',
                         fontSize: '13px',
                         fontWeight: locale === 'en' ? 600 : 500,
-                        color: locale === 'en' ? '#111' : '#5A504A',
+                        color: locale === 'en' ? '#111' : '#625B55',
                         textDecoration: 'none',
                         background: locale === 'en' ? 'rgba(0,0,0,0.04)' : 'transparent',
                       }}
                     >
                       English
                       {locale === 'en' && (
-                        <span style={{ color: '#4B92DB', fontSize: '11px' }}>✓</span>
+                        <span style={{ color: '#3F8DDE', fontSize: '11px' }}>✓</span>
                       )}
                     </Link>
                     <Link
@@ -195,7 +195,7 @@ export default function Navigation() {
                         fontFamily: "'Noto Naskh Arabic', serif",
                         fontSize: '13px',
                         fontWeight: locale === 'fa' ? 600 : 500,
-                        color: locale === 'fa' ? '#111' : '#5A504A',
+                        color: locale === 'fa' ? '#111' : '#625B55',
                         textDecoration: 'none',
                         background: locale === 'fa' ? 'rgba(0,0,0,0.04)' : 'transparent',
                         borderTop: '0.5px solid rgba(0,0,0,0.06)',
@@ -203,7 +203,7 @@ export default function Navigation() {
                     >
                       فارسی
                       {locale === 'fa' && (
-                        <span style={{ color: '#4B92DB', fontSize: '11px', fontFamily: 'system-ui' }}>✓</span>
+                        <span style={{ color: '#3F8DDE', fontSize: '11px', fontFamily: 'system-ui' }}>✓</span>
                       )}
                     </Link>
                   </div>
@@ -259,7 +259,7 @@ export default function Navigation() {
             left: '16px',
             right: '16px',
             top: '80px',
-            background: '#fff',
+            background: '#FFFDF8',
             borderRadius: '16px',
             border: '0.5px solid rgba(0,0,0,0.08)',
             boxShadow: '0 8px 32px rgba(0,0,0,0.10)',

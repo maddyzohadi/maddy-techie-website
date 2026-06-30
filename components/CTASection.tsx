@@ -20,15 +20,15 @@ export default function CTASection() {
     <section
       id="contact"
       className="pt-14 pb-14 md:pt-20 md:pb-20 relative overflow-hidden scroll-mt-24"
-      style={{ background: 'linear-gradient(135deg, #F5ECE0 0%, #89CFF0 60%, #EFE7DC 100%)', borderTop: '0.5px solid #D8C7B8' }}
+      style={{ background: '#FAF1E6', borderTop: '0.5px solid #E6D7C8' }}
     >
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
         <div className="flex justify-center mb-5">
           <span
-            className="inline-flex items-center gap-2 font-ui text-sm font-semibold uppercase tracking-[0.22em] px-5 py-2 rounded-full bg-brand-babyblue text-brand-text"
+            className="inline-flex items-center gap-2 font-ui text-sm font-semibold uppercase tracking-[0.22em] px-5 py-2 rounded-full bg-brand-surface text-brand-coral"
           >
-            <Zap size={11} style={{ color: '#4B92DB' }} />
+            <Zap size={11} style={{ color: '#3F8DDE' }} />
             {t('badge')}
           </span>
         </div>
@@ -38,12 +38,12 @@ export default function CTASection() {
           style={{ color: '#111111' }}
         >
           {t('title')}{' '}
-          <span style={{ color: '#8C7E74' }}>{t('titleHighlight')}</span>
+          <span style={{ color: '#625B55' }}>{t('titleHighlight')}</span>
         </h2>
 
         <p
           className={`${isFa ? 'font-fa' : 'font-ui'} text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8`}
-          style={{ color: '#5A504A' }}
+          style={{ color: '#625B55' }}
         >
           {t('subtitle')}
         </p>
@@ -56,7 +56,7 @@ export default function CTASection() {
           <Link
             href="/services"
             className={`${isFa ? 'font-fa' : 'font-ui'} text-base transition-opacity hover:opacity-80`}
-            style={{ color: '#5A504A' }}
+            style={{ color: '#625B55' }}
           >
             {t('getStarterKit')}
           </Link>
@@ -66,15 +66,15 @@ export default function CTASection() {
           className="flex flex-wrap items-center justify-center gap-2 md:gap-4 py-3.5 px-5 max-w-sm mx-auto"
           style={{
             borderRadius: '12px',
-            background: 'rgba(0,0,0,0.04)',
-            border: '0.5px solid rgba(0,0,0,0.08)',
+            background: 'rgba(230,215,200,0.40)',
+            border: '0.5px solid #E6D7C8',
           }}
         >
           {pills.map((pill) => (
             <div
               key={pill.textKey}
               className={`flex items-center gap-2 ${isFa ? 'font-fa' : 'font-ui'} text-sm`}
-              style={{ color: '#5A504A' }}
+              style={{ color: '#625B55' }}
             >
               <span className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-brand-blue opacity-60" />
               {t(pill.textKey)}

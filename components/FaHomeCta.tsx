@@ -1,31 +1,60 @@
 import { ArrowRight } from 'lucide-react'
 import { Link } from '@/i18n/navigation'
 
+const vaFont = "var(--font-vazirmatn), 'Vazirmatn', sans-serif"
+
 export default function FaHomeCta() {
   return (
     <section
-      className="pt-20 md:pt-24 pb-0 relative"
-      style={{ background: 'linear-gradient(135deg, #F5ECE0 0%, #89CFF0 60%, #EFE7DC 100%)', borderTop: '0.5px solid #D8C7B8' }}
+      dir="rtl"
+      style={{
+        background: '#FAF1E6',
+        borderTop: '0.5px solid #E6D7C8',
+        padding: '80px 24px',
+      }}
     >
-      <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 text-center">
+      <div style={{ maxWidth: '560px', margin: '0 auto', textAlign: 'center' }}>
         <h2
-          className="font-fa font-bold text-3xl md:text-4xl leading-tight mb-5"
-          style={{ color: '#111111', letterSpacing: '-0.025em' }}
+          style={{
+            fontFamily: vaFont,
+            fontSize: 'clamp(20px, 2.8vw, 30px)',
+            fontWeight: 800,
+            color: '#111111',
+            lineHeight: 1.55,
+            marginBottom: '14px',
+          }}
         >
           شروع ساده با یک سیستم کاربردی
         </h2>
         <p
-          className="font-fa text-lg md:text-xl leading-relaxed mb-10"
-          style={{ color: '#5A504A' }}
+          style={{
+            fontFamily: vaFont,
+            fontSize: '15px',
+            color: '#625B55',
+            lineHeight: 1.9,
+            marginBottom: '36px',
+          }}
         >
           اگر می‌خواهی کارهای روزمره‌ات را با هوش مصنوعی و اتوماسیون ساده‌تر کنی از همین جا شروع کن
         </p>
         <Link
           href="/services"
-          className="inline-flex items-center gap-2.5 font-fa font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150"
+          style={{
+            fontFamily: vaFont,
+            fontSize: '14px',
+            fontWeight: 600,
+            color: '#FFFDF8',
+            background: '#3F8DDE',
+            padding: '12px 28px',
+            borderRadius: '100px',
+            textDecoration: 'none',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+          }}
         >
           شروع پروژه
-          <ArrowRight size={16} className="rotate-180" />
+          <ArrowRight size={15} style={{ transform: 'rotate(180deg)' }} />
         </Link>
       </div>
     </section>

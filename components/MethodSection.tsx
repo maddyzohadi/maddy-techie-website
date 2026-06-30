@@ -48,8 +48,8 @@ export default function MethodSection() {
     width: '40px',
     height: '40px',
     borderRadius: '10px',
-    background: 'rgba(75,146,219,0.06)',
-    border: '0.5px solid rgba(75,146,219,0.15)',
+    background: 'rgba(63,141,222,0.06)',
+    border: '0.5px solid rgba(63,141,222,0.15)',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -58,8 +58,8 @@ export default function MethodSection() {
   }
 
   const cardStyle: React.CSSProperties = {
-    background: '#EFE7DC',
-    border: '0.5px solid #D8C7B8',
+    background: '#FAF1E6',
+    border: '0.5px solid #E6D7C8',
     borderRadius: '14px',
     padding: '28px',
   }
@@ -67,9 +67,9 @@ export default function MethodSection() {
   return (
     <section
       style={{
-        background: '#F5ECE0',
+        background: '#FFF9F1',
         padding: '64px 24px',
-        borderTop: '0.5px solid rgba(0,0,0,0.06)',
+        borderTop: '0.5px solid #E6D7C8',
         direction: isFa ? 'rtl' : 'ltr',
       }}
     >
@@ -86,8 +86,8 @@ export default function MethodSection() {
               fontWeight: 600,
               letterSpacing: isFa ? undefined : '0.12em',
               textTransform: isFa ? 'none' : 'uppercase',
-              color: 'rgba(17,17,17,0.55)',
-              background: '#89CFF0',
+              color: '#625B55',
+              background: '#FAF1E6',
               padding: '5px 12px',
               borderRadius: '100px',
               marginBottom: '16px',
@@ -132,7 +132,7 @@ export default function MethodSection() {
                 transition={{ duration: 0.2, ease: 'easeOut' }}
               >
                 <div style={iconBox}>
-                  <Icon size={20} style={{ color: '#4B92DB' }} />
+                  <Icon size={20} style={{ color: '#3F8DDE' }} />
                 </div>
                 <span
                   style={{
@@ -141,7 +141,7 @@ export default function MethodSection() {
                     fontWeight: 600,
                     letterSpacing: isFa ? undefined : '0.1em',
                     textTransform: isFa ? 'none' : 'uppercase',
-                    color: '#8C7E74',
+                    color: '#625B55',
                     display: 'block',
                     marginBottom: '10px',
                   }}
@@ -164,7 +164,7 @@ export default function MethodSection() {
                   style={{
                     fontFamily: bodyFont,
                     fontSize: '15px',
-                    color: '#5A504A',
+                    color: '#625B55',
                     lineHeight: isFa ? 1.85 : 1.7,
                     margin: 0,
                   }}

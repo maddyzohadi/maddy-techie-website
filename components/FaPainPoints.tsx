@@ -29,27 +29,42 @@ const fadeIn = {
 export default function FaPainPoints() {
   return (
     <>
-      {/* Section 1: Pain Points — dark premium panel */}
+      {/* Section 1: Pain Points — editorial light panel */}
       <section
         dir="rtl"
         style={{
-          background: '#351C1C',
+          background: '#FFF9F1',
           padding: '72px 24px',
+          borderTop: '0.5px solid #E6D7C8',
         }}
       >
         <motion.div style={{ maxWidth: '680px', margin: '0 auto' }} {...fadeIn}>
+          <p
+            style={{
+              fontFamily: vaFont,
+              fontSize: '11px',
+              fontWeight: 600,
+              color: '#ED5821',
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase',
+              marginBottom: '14px',
+            }}
+          >
+            این آموزش برای توست اگر
+          </p>
           <h2
             style={{
               fontFamily: vaFont,
-              fontSize: 'clamp(17px, 2vw, 22px)',
-              fontWeight: 700,
-              color: 'rgba(255,255,255,0.95)',
-              lineHeight: 1.65,
+              fontSize: 'clamp(20px, 2.8vw, 30px)',
+              fontWeight: 800,
+              color: '#111111',
+              lineHeight: 1.55,
               marginBottom: '36px',
-              textAlign: 'center',
             }}
           >
-            این آموزش برای توست اگر…
+            هنوز مطمئن نیستی هوش مصنوعی
+            <br />
+            کجای کارت می‌تواند واقعاً کمک کند
           </h2>
           <ul
             style={{
@@ -70,7 +85,7 @@ export default function FaPainPoints() {
                   padding: '18px 0',
                   borderBottom:
                     i < PAIN_POINTS.length - 1
-                      ? '0.5px solid rgba(255,255,255,0.10)'
+                      ? '0.5px solid #E6D7C8'
                       : 'none',
                 }}
               >
@@ -79,7 +94,7 @@ export default function FaPainPoints() {
                     width: '6px',
                     height: '6px',
                     borderRadius: '50%',
-                    background: '#89CFF0',
+                    background: '#ED5821',
                     flexShrink: 0,
                     marginTop: '10px',
                     display: 'block',
@@ -89,7 +104,7 @@ export default function FaPainPoints() {
                   style={{
                     fontFamily: vaFont,
                     fontSize: '15px',
-                    color: 'rgba(239,231,220,0.85)',
+                    color: '#625B55',
                     lineHeight: 1.9,
                     margin: 0,
                     flex: 1,
@@ -104,12 +119,12 @@ export default function FaPainPoints() {
         </motion.div>
       </section>
 
-      {/* Section 2: Outcomes — warm light */}
+      {/* Section 2: Outcomes — warm surface */}
       <section
         dir="rtl"
         style={{
-          background: '#F5ECE0',
-          borderTop: '0.5px solid rgba(255,255,255,0.06)',
+          background: '#FAF1E6',
+          borderTop: '0.5px solid #E6D7C8',
           padding: '64px 24px',
         }}
       >
@@ -117,21 +132,17 @@ export default function FaPainPoints() {
           <h2
             style={{
               fontFamily: vaFont,
-              fontSize: 'clamp(16px, 2vw, 21px)',
+              fontSize: 'clamp(17px, 2.2vw, 22px)',
               fontWeight: 700,
               color: '#111111',
-              lineHeight: 1.65,
+              lineHeight: 1.6,
               marginBottom: '32px',
-              textAlign: 'center',
             }}
           >
             بعد از این، چه چیزی به دست می‌آوری
           </h2>
           <ul
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '10px',
               listStyle: 'none',
               margin: 0,
               padding: 0,
@@ -143,26 +154,26 @@ export default function FaPainPoints() {
                 style={{
                   display: 'flex',
                   alignItems: 'flex-start',
-                  gap: '12px',
-                  padding: '14px 18px',
-                  background: '#EFE7DC',
-                  border: '0.5px solid #D8C7B8',
-                  borderRadius: '12px',
+                  gap: '14px',
+                  padding: '18px 0',
+                  borderBottom:
+                    i < OUTCOMES.length - 1
+                      ? '0.5px solid #E6D7C8'
+                      : 'none',
                 }}
               >
                 <CheckCircle2
-                  size={17}
-                  style={{ color: '#C08064', flexShrink: 0, marginTop: '3px' }}
+                  size={16}
+                  style={{ color: '#ED5821', flexShrink: 0, marginTop: '3px' }}
                 />
                 <p
                   style={{
                     fontFamily: vaFont,
                     fontSize: '14px',
-                    color: '#5A504A',
-                    lineHeight: 1.8,
+                    color: '#625B55',
+                    lineHeight: 1.85,
                     margin: 0,
                     flex: 1,
-                    textAlign: 'right',
                   }}
                 >
                   {outcome}

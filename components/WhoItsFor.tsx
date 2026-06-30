@@ -7,9 +7,9 @@ export default async function WhoItsFor() {
   const isFa = locale === 'fa'
 
   const cardAccent = {
-    bg: 'rgba(75,146,219,0.08)',
-    border: 'rgba(75,146,219,0.20)',
-    icon: '#4B92DB',
+    bg: 'rgba(63,141,222,0.08)',
+    border: 'rgba(63,141,222,0.20)',
+    icon: '#3F8DDE',
   }
 
   const audiences = [
@@ -41,14 +41,14 @@ export default async function WhoItsFor() {
   return (
     <section
       className="py-24 md:py-32 relative"
-      style={{ background: '#F5ECE0', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+      style={{ background: '#FFF9F1', borderTop: '0.5px solid #E6D7C8' }}
       dir={isFa ? 'rtl' : 'ltr'}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-16">
           <span
-            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
+            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
           >
             {t('badge')}
           </span>
@@ -57,11 +57,11 @@ export default async function WhoItsFor() {
             style={{ color: '#111111', letterSpacing: '-.02em' }}
           >
             {t('title')}{' '}
-            <span style={{ color: '#5A504A' }}>{t('titleHighlight')}</span>
+            <span style={{ color: '#625B55' }}>{t('titleHighlight')}</span>
           </h2>
           <p
             className={`${isFa ? 'font-fa' : 'font-ui'} text-base md:text-lg max-w-2xl mx-auto leading-relaxed`}
-            style={{ color: '#5A504A' }}
+            style={{ color: '#625B55' }}
           >
             {t('subtitle')}
           </p>
@@ -74,8 +74,8 @@ export default async function WhoItsFor() {
               <div
                 key={audience.number}
                 style={{
-                  background: '#EFE7DC',
-                  border: '0.5px solid #D8C7B8',
+                  background: '#FAF1E6',
+                  border: '0.5px solid #E6D7C8',
                   borderRadius: '12px',
                   padding: '28px 30px',
                 }}
@@ -106,7 +106,7 @@ export default async function WhoItsFor() {
                 </h3>
                 <p
                   className={`${isFa ? 'font-fa' : 'font-ui'} text-sm leading-relaxed mb-5`}
-                  style={{ color: '#5A504A' }}
+                  style={{ color: '#625B55' }}
                 >
                   {t(audience.descKey)}
                 </p>
@@ -116,9 +116,9 @@ export default async function WhoItsFor() {
                       key={exKey}
                       className={`${isFa ? 'font-fa' : 'font-ui'} text-xs px-2.5 py-1`}
                       style={{
-                        background: 'rgba(75,146,219,0.06)',
-                        border: '0.5px solid rgba(75,146,219,0.15)',
-                        color: '#5A504A',
+                        background: 'rgba(63,141,222,0.06)',
+                        border: '0.5px solid rgba(63,141,222,0.15)',
+                        color: '#625B55',
                         borderRadius: '6px',
                       }}
                     >
@@ -135,8 +135,8 @@ export default async function WhoItsFor() {
           className="max-w-4xl mx-auto p-8 md:p-10"
           style={{
             borderRadius: '12px',
-            background: '#EFE7DC',
-            border: '0.5px solid #D8C7B8',
+            background: '#FAF1E6',
+            border: '0.5px solid #E6D7C8',
           }}
         >
           <div className="text-center mb-8">
@@ -148,7 +148,7 @@ export default async function WhoItsFor() {
             </h3>
             <p
               className={`${isFa ? 'font-fa' : 'font-ui'} text-sm mt-2`}
-              style={{ color: '#5A504A' }}
+              style={{ color: '#625B55' }}
             >
               {t('noRequirementsSubtitle')}
             </p>
@@ -158,9 +158,9 @@ export default async function WhoItsFor() {
               <div
                 key={key}
                 className={`flex items-center gap-2.5 ${isFa ? 'font-fa flex-row-reverse' : 'font-ui'} text-sm`}
-                style={{ color: '#5A504A' }}
+                style={{ color: '#625B55' }}
               >
-                <CheckCircle size={15} style={{ color: '#4B92DB', flexShrink: 0 }} />
+                <CheckCircle size={15} style={{ color: '#3F8DDE', flexShrink: 0 }} />
                 <span>{t(key)}</span>
               </div>
             ))}

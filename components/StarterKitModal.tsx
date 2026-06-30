@@ -90,7 +90,7 @@ export default function StarterKitModal({ isOpen, onClose }: StarterKitModalProp
         aria-describedby="skm-desc"
         className="relative w-full max-w-md overflow-hidden"
         style={{
-          background: '#FFFFFF',
+          background: '#FFFDF8',
           border: '0.5px solid rgba(123,47,190,0.30)',
           borderRadius: '16px',
         }}
@@ -194,7 +194,7 @@ export default function StarterKitModal({ isOpen, onClose }: StarterKitModalProp
                   className="w-full font-ui font-semibold text-sm inline-flex items-center justify-center gap-2.5 rounded-xl py-3.5 transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                   style={{
                     color: '#ffffff',
-                    background: '#4B92DB',
+                    background: '#3F8DDE',
                   }}
                 >
                   {status === 'submitting' ? (

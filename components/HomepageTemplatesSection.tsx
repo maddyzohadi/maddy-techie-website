@@ -16,13 +16,13 @@ export default async function HomepageTemplatesSection() {
   return (
     <section
       className="py-24 md:py-32 relative"
-      style={{ background: '#F5ECE0', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+      style={{ background: '#FAF6EF', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="text-center mb-16">
           <span
-            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
+            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
           >
             {t('badge')}
           </span>
@@ -47,8 +47,8 @@ export default async function HomepageTemplatesSection() {
               <div
                 key={tmpl.titleKey}
                 style={{
-                  background: '#EFE7DC',
-                  border: '0.5px solid #D8C7B8',
+                  background: '#F1E8DD',
+                  border: '0.5px solid rgba(17,17,17,0.12)',
                   borderRadius: '12px',
                   padding: '28px 30px',
                   display: 'flex',
@@ -60,14 +60,14 @@ export default async function HomepageTemplatesSection() {
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
                     style={{
-                      background: 'rgba(75,146,219,0.08)',
-                      border: '0.5px solid rgba(75,146,219,0.20)',
+                      background: 'rgba(63,141,222,0.08)',
+                      border: '0.5px solid rgba(63,141,222,0.20)',
                     }}
                   >
-                    <Icon size={20} style={{ color: '#4B92DB' }} />
+                    <Icon size={20} style={{ color: '#3F8DDE' }} />
                   </div>
                   <span
-                    className="font-ui text-xs font-semibold uppercase tracking-[0.14em] px-2.5 py-1 rounded-md bg-brand-babyblue text-brand-text"
+                    className="font-ui text-xs font-semibold uppercase tracking-[0.14em] px-2.5 py-1 rounded-md bg-brand-surface text-brand-coral"
                   >
                     {t(tmpl.badgeKey)}
                   </span>
@@ -91,7 +91,7 @@ export default async function HomepageTemplatesSection() {
                 <Link
                   href="/templates"
                   className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center gap-1.5 font-semibold text-sm transition-opacity duration-200 hover:opacity-75 self-start`}
-                  style={{ color: '#4B92DB', textDecoration: 'none' }}
+                  style={{ color: '#3F8DDE', textDecoration: 'none' }}
                 >
                   {t(tmpl.ctaKey)}
                   <ArrowRight size={13} className={isFa ? 'rotate-180' : ''} />

@@ -31,7 +31,7 @@ export default function ProcessSection() {
   if (isFa) {
     const faFont = "var(--font-vazirmatn), 'Vazirmatn', sans-serif"
     return (
-      <section className="py-20 px-6 bg-[#EFE7DC]" dir="rtl">
+      <section className="py-20 px-6 bg-[#FAF1E6]" dir="rtl" style={{ borderTop: '0.5px solid #E6D7C8' }}>
         <div className="max-w-3xl mx-auto">
           <motion.div {...fadeIn}>
             <div className="text-center mb-12">
@@ -40,7 +40,7 @@ export default function ProcessSection() {
                   fontFamily: faFont,
                   fontSize: '11px',
                   fontWeight: 500,
-                  color: 'rgba(90,80,74,0.55)',
+                  color: 'rgba(98,91,85,0.55)',
                   marginBottom: '10px',
                   letterSpacing: '0.04em',
                 }}
@@ -60,12 +60,12 @@ export default function ProcessSection() {
               </h2>
             </div>
 
-            <div className="flex flex-col divide-y divide-[#D8C7B8]">
+            <div className="flex flex-col divide-y divide-[#E6D7C8]">
               {FA_STEPS.map(({ week, title, body }) => (
                 <motion.div
                   key={week}
                   className="flex items-start gap-5 py-6"
-                  whileHover={{ y: -2, boxShadow: '0 6px 18px rgba(0,0,0,0.06)' }}
+                  whileHover={{ y: -2 }}
                   transition={{ duration: 0.2, ease: 'easeOut' }}
                 >
                   <div className="flex-1 text-right">
@@ -85,7 +85,7 @@ export default function ProcessSection() {
                       style={{
                         fontFamily: faFont,
                         fontSize: '13px',
-                        color: '#5A504A',
+                        color: '#625B55',
                         lineHeight: 1.8,
                         margin: 0,
                       }}
@@ -96,13 +96,13 @@ export default function ProcessSection() {
                   <div
                     style={{
                       flexShrink: 0,
-                      background: '#F5ECE0',
-                      border: '0.5px solid #D8C7B8',
+                      background: '#FFF9F1',
+                      border: '0.5px solid #E6D7C8',
                       borderRadius: '100px',
                       padding: '4px 14px',
                       fontSize: '12px',
                       fontFamily: faFont,
-                      color: 'rgba(90,80,74,0.60)',
+                      color: 'rgba(98,91,85,0.65)',
                       whiteSpace: 'nowrap',
                     }}
                   >
@@ -120,9 +120,9 @@ export default function ProcessSection() {
   return (
     <section
       style={{
-        background: '#EFE7DC',
+        background: '#F1E8DD',
         padding: '96px 24px',
-        borderTop: '0.5px solid #D8C7B8',
+        borderTop: '0.5px solid rgba(17,17,17,0.12)',
       }}
     >
       <motion.div

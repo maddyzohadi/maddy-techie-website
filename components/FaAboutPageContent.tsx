@@ -19,25 +19,20 @@ const BELIEFS = [
   'کاربردی بودن همیشه بر تئوری‌پردازی برتری دارد.',
 ]
 
-const PILLARS = [
-  { label: 'رویکرد', value: 'عملی و پروژه‌محور' },
-  { label: 'طراحی شده برای', value: 'متخصصان غیرفنی' },
-  { label: 'زبان', value: 'فارسی و انگلیسی' },
-]
-
 export default function FaAboutPageContent() {
   return (
     <>
-      {/* Hero — dark premium */}
+      {/* Hero — editorial light */}
       <section
         dir="rtl"
         style={{
-          background: '#351C1C',
-          padding: '72px 24px 80px',
+          background: '#FFF9F1',
+          padding: '80px 24px 72px',
+          borderBottom: '0.5px solid #E6D7C8',
         }}
       >
         <motion.div
-          style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'center' }}
+          style={{ maxWidth: '680px', margin: '0 auto' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: 'easeOut' }}
@@ -47,10 +42,10 @@ export default function FaAboutPageContent() {
               fontFamily: vaFont,
               fontSize: '11px',
               fontWeight: 600,
-              color: '#C08064',
-              letterSpacing: '0.06em',
-              marginBottom: '20px',
+              color: '#ED5821',
+              letterSpacing: '0.08em',
               textTransform: 'uppercase',
+              marginBottom: '20px',
             }}
           >
             درباره
@@ -58,80 +53,38 @@ export default function FaAboutPageContent() {
           <h1
             style={{
               fontFamily: vaFont,
-              fontSize: 'clamp(24px, 4vw, 40px)',
-              fontWeight: 700,
-              color: '#FFFFFF',
-              lineHeight: 1.45,
-              marginBottom: '22px',
+              fontSize: 'clamp(32px, 5.5vw, 60px)',
+              fontWeight: 800,
+              color: '#111111',
+              lineHeight: 1.35,
+              marginBottom: '24px',
             }}
           >
-            آموزش کاربردی هوش مصنوعی
+            آموزش کاربردی
             <br />
-            <span
-              style={{
-                color: 'rgba(239,231,220,0.55)',
-                fontWeight: 400,
-                fontSize: '74%',
-              }}
-            >
-              برای کار امروز
-            </span>
+            هوش مصنوعی
           </h1>
           <p
             style={{
               fontFamily: vaFont,
-              fontSize: '15px',
-              color: 'rgba(239,231,220,0.72)',
+              fontSize: '16px',
+              color: '#625B55',
               lineHeight: 1.9,
-              maxWidth: '460px',
-              margin: '0 auto 32px',
+              maxWidth: '520px',
             }}
           >
             Maddy the Techie به متخصصان غیرفنی کمک می‌کند از هوش مصنوعی با وضوح و اعتمادبه‌نفس استفاده کنند — با ابزارهای واقعی و روندهای کاری ساده.
           </p>
-
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '8px',
-              justifyContent: 'center',
-            }}
-          >
-            {PILLARS.map((p) => (
-              <span
-                key={p.label}
-                style={{
-                  display: 'inline-flex',
-                  gap: '5px',
-                  alignItems: 'center',
-                  background: 'rgba(255,255,255,0.06)',
-                  border: '0.5px solid rgba(255,255,255,0.12)',
-                  borderRadius: '100px',
-                  padding: '6px 14px',
-                  fontFamily: vaFont,
-                  fontSize: '12px',
-                }}
-              >
-                <span style={{ color: 'rgba(239,231,220,0.38)', fontWeight: 400 }}>
-                  {p.label}:
-                </span>
-                <span style={{ color: 'rgba(239,231,220,0.80)', fontWeight: 600 }}>
-                  {p.value}
-                </span>
-              </span>
-            ))}
-          </div>
         </motion.div>
       </section>
 
-      {/* Mission — two-column on warm card */}
+      {/* Mission — pull quote + description */}
       <section
         dir="rtl"
         style={{
-          background: '#EFE7DC',
+          background: '#FAF1E6',
           padding: '72px 24px',
-          borderTop: '0.5px solid rgba(255,255,255,0.06)',
+          borderBottom: '0.5px solid #E6D7C8',
         }}
       >
         <motion.div style={{ maxWidth: '760px', margin: '0 auto' }} {...fadeIn}>
@@ -147,11 +100,13 @@ export default function FaAboutPageContent() {
               <p
                 style={{
                   fontFamily: vaFont,
-                  fontSize: 'clamp(16px, 2vw, 19px)',
+                  fontSize: 'clamp(16px, 2vw, 20px)',
                   fontWeight: 700,
                   color: '#111111',
-                  lineHeight: 1.8,
-                  marginBottom: '16px',
+                  lineHeight: 1.75,
+                  marginBottom: '14px',
+                  borderRight: '2px solid #ED5821',
+                  paddingRight: '16px',
                 }}
               >
                 «هوش مصنوعی را برای همه‌ی کسانی که کد نمی‌زنند، کاربردی می‌کنم.»
@@ -160,7 +115,7 @@ export default function FaAboutPageContent() {
                 style={{
                   fontFamily: vaFont,
                   fontSize: '12px',
-                  color: 'rgba(90,80,74,0.50)',
+                  color: 'rgba(98,91,85,0.50)',
                 }}
               >
                 — Maddy the Techie
@@ -171,7 +126,7 @@ export default function FaAboutPageContent() {
                 style={{
                   fontFamily: vaFont,
                   fontSize: '15px',
-                  color: '#5A504A',
+                  color: '#625B55',
                   lineHeight: 1.9,
                   margin: 0,
                 }}
@@ -183,39 +138,24 @@ export default function FaAboutPageContent() {
         </motion.div>
       </section>
 
-      {/* Beliefs — numbered list on warm bg */}
+      {/* Beliefs — numbered list */}
       <section
         dir="rtl"
         style={{
-          background: '#F5ECE0',
+          background: '#FFF9F1',
           padding: '72px 24px',
-          borderTop: '0.5px solid #D8C7B8',
+          borderBottom: '0.5px solid #E6D7C8',
         }}
       >
         <motion.div style={{ maxWidth: '640px', margin: '0 auto' }} {...fadeIn}>
-          <p
-            style={{
-              fontFamily: vaFont,
-              fontSize: '11px',
-              fontWeight: 500,
-              letterSpacing: '0.04em',
-              color: 'rgba(90,80,74,0.48)',
-              marginBottom: '12px',
-              textAlign: 'center',
-              textTransform: 'uppercase',
-            }}
-          >
-            باورها
-          </p>
           <h2
             style={{
               fontFamily: vaFont,
-              fontSize: 'clamp(17px, 2.2vw, 22px)',
-              fontWeight: 700,
+              fontSize: 'clamp(20px, 2.5vw, 28px)',
+              fontWeight: 800,
               color: '#111111',
-              lineHeight: 1.6,
+              lineHeight: 1.5,
               marginBottom: '40px',
-              textAlign: 'center',
             }}
           >
             اینها را باور دارم
@@ -230,7 +170,7 @@ export default function FaAboutPageContent() {
                   gap: '16px',
                   padding: '20px 0',
                   borderBottom:
-                    i < BELIEFS.length - 1 ? '0.5px solid #D8C7B8' : 'none',
+                    i < BELIEFS.length - 1 ? '0.5px solid #E6D7C8' : 'none',
                 }}
               >
                 <span
@@ -238,11 +178,11 @@ export default function FaAboutPageContent() {
                     fontFamily: vaFont,
                     fontSize: '13px',
                     fontWeight: 700,
-                    color: '#C08064',
-                    marginTop: '2px',
+                    color: '#ED5821',
                     flexShrink: 0,
                     width: '22px',
                     textAlign: 'center',
+                    marginTop: '2px',
                   }}
                 >
                   {['۱', '۲', '۳', '۴'][i]}
@@ -251,7 +191,7 @@ export default function FaAboutPageContent() {
                   style={{
                     fontFamily: vaFont,
                     fontSize: '15px',
-                    color: '#5A504A',
+                    color: '#625B55',
                     lineHeight: 1.9,
                     margin: 0,
                     flex: 1,
@@ -265,26 +205,25 @@ export default function FaAboutPageContent() {
         </motion.div>
       </section>
 
-      {/* CTA — dark closing panel */}
+      {/* CTA — editorial dark closing panel */}
       <section
         dir="rtl"
         style={{
-          background: '#351C1C',
+          background: '#111111',
           padding: '72px 24px',
-          borderTop: '0.5px solid rgba(255,255,255,0.06)',
         }}
       >
         <motion.div
-          style={{ maxWidth: '480px', margin: '0 auto', textAlign: 'center' }}
+          style={{ maxWidth: '520px', margin: '0 auto', textAlign: 'center' }}
           {...fadeIn}
         >
           <h2
             style={{
               fontFamily: vaFont,
-              fontSize: 'clamp(17px, 2.5vw, 24px)',
-              fontWeight: 700,
-              color: '#FFFFFF',
-              lineHeight: 1.6,
+              fontSize: 'clamp(20px, 2.8vw, 28px)',
+              fontWeight: 800,
+              color: '#FFFDF8',
+              lineHeight: 1.5,
               marginBottom: '14px',
             }}
           >
@@ -294,7 +233,7 @@ export default function FaAboutPageContent() {
             style={{
               fontFamily: vaFont,
               fontSize: '14px',
-              color: 'rgba(239,231,220,0.68)',
+              color: 'rgba(255,255,255,0.52)',
               lineHeight: 1.85,
               marginBottom: '32px',
             }}
@@ -315,8 +254,8 @@ export default function FaAboutPageContent() {
                 fontFamily: vaFont,
                 fontSize: '14px',
                 fontWeight: 600,
-                color: '#FFFFFF',
-                background: '#4B92DB',
+                color: '#FFFDF8',
+                background: '#3F8DDE',
                 padding: '12px 26px',
                 borderRadius: '100px',
                 textDecoration: 'none',
@@ -332,9 +271,9 @@ export default function FaAboutPageContent() {
                 fontFamily: vaFont,
                 fontSize: '14px',
                 fontWeight: 500,
-                color: 'rgba(239,231,220,0.72)',
+                color: 'rgba(255,255,255,0.65)',
                 background: 'rgba(255,255,255,0.07)',
-                border: '0.5px solid rgba(255,255,255,0.14)',
+                border: '0.5px solid rgba(255,255,255,0.16)',
                 padding: '12px 26px',
                 borderRadius: '100px',
                 textDecoration: 'none',

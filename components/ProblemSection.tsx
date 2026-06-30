@@ -26,7 +26,7 @@ export default async function ProblemSection() {
   return (
     <section
       style={{
-        background: '#EFE7DC',
+        background: '#F1E8DD',
         padding: '96px 24px',
         borderTop: '0.5px solid rgba(0,0,0,0.06)',
         direction: isFa ? 'rtl' : 'ltr',
@@ -94,7 +94,7 @@ export default async function ProblemSection() {
             <div
               key={card.number}
               style={{
-                background: '#fff',
+                background: '#FFFDF8',
                 border: '0.5px solid rgba(0,0,0,0.08)',
                 borderRadius: '16px',
                 padding: '28px',

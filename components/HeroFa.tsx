@@ -28,13 +28,13 @@ function FloatCard({
         animate={{ y: reduced ? 0 : [0, -6, 0] }}
         transition={{ duration: reduced ? 0 : floatDur, repeat: reduced ? 0 : Infinity, ease: "easeInOut", delay: floatDelay }}
         style={{
-          background:           "rgba(255,255,255,0.82)",
+          background:           "rgba(255,255,255,0.88)",
           backdropFilter:       "blur(10px)",
           WebkitBackdropFilter: "blur(10px)",
-          border:               "0.5px solid rgba(0,0,0,0.08)",
+          border:               "0.5px solid #E6D7C8",
           borderRadius:         "14px",
           padding:              "14px 18px",
-          boxShadow:            "0 4px 20px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.04)",
+          boxShadow:            "0 4px 20px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.03)",
           minWidth:             "174px",
         }}
       >
@@ -51,7 +51,7 @@ const label: React.CSSProperties = {
   margin: 0, lineHeight: 1.5, fontFamily: faFont,
 }
 const sub: React.CSSProperties = {
-  fontSize: 11, color: "rgba(17,17,17,0.42)",
+  fontSize: 11, color: "rgba(17,17,17,0.40)",
   margin: "3px 0 0", fontFamily: faFont, lineHeight: 1.5,
 }
 
@@ -59,43 +59,18 @@ export default function HeroFa() {
   return (
     <section
       className="relative min-h-screen overflow-hidden"
-      style={{ background: '#F5ECE0' }}
+      style={{ background: '#FFF9F1' }}
     >
 
-      {/* Warm orange radial bloom */}
+      {/* Soft blue radial accent */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 30%, rgba(75,146,219,0.07) 0%, transparent 70%)",
+            "radial-gradient(ellipse 80% 60% at 50% 30%, rgba(156,204,239,0.10) 0%, transparent 70%)",
         }}
       />
-
-      {/* Editorial side labels — xl+ only */}
-      <div
-        aria-hidden
-        className="hidden xl:flex absolute left-5 top-1/2 -translate-y-1/2 flex-col gap-12 pointer-events-none select-none"
-        style={{ zIndex: 5 }}
-      >
-        {['01 Learn', '02 Build', '03 Automate'].map((text) => (
-          <span
-            key={text}
-            style={{
-              writingMode:   'vertical-rl',
-              transform:     'rotate(180deg)',
-              fontSize:      '11px',
-              fontWeight:    500,
-              letterSpacing: '0.16em',
-              color:         'rgba(17,17,17,0.32)',
-              fontFamily:    'system-ui, sans-serif',
-              textTransform: 'uppercase',
-            }}
-          >
-            {text}
-          </span>
-        ))}
-      </div>
 
       {/* ── Decorative floating workflow cards (xl+, aria-hidden) ─────── */}
       <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none select-none">
@@ -104,7 +79,7 @@ export default function HeroFa() {
         <FloatCard pos="right-[10%] top-[32%]" inDelay={0.8} floatDur={7.0} floatDelay={1.6}>
           <div dir="rtl" style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
             <span style={{
-              width: 8, height: 8, borderRadius: "50%", background: "#4B92DB",
+              width: 8, height: 8, borderRadius: "50%", background: "#3F8DDE",
               flexShrink: 0, marginTop: 3,
             }} />
             <div>
@@ -120,7 +95,7 @@ export default function HeroFa() {
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
               <span style={{
                 display: "inline-block", width: 8, height: 8, borderRadius: "50%",
-                background: "#22C55E", boxShadow: "0 0 0 3px rgba(34,197,94,0.20)",
+                background: "#22C55E", boxShadow: "0 0 0 3px rgba(34,197,94,0.18)",
                 flexShrink: 0,
               }} />
               <p style={label}>گردش‌کار فعال</p>
@@ -132,7 +107,7 @@ export default function HeroFa() {
         {/* Card C — left lower · "گزارش آماده شد" */}
         <FloatCard pos="left-[10%] top-[57%]" inDelay={1.2} floatDur={7.8} floatDelay={1.0}>
           <div dir="rtl">
-            <p style={{ fontSize: 11, color: "rgba(17,17,17,0.38)", margin: "0 0 4px",
+            <p style={{ fontSize: 11, color: "rgba(17,17,17,0.35)", margin: "0 0 4px",
                         fontFamily: faFont, textTransform: "uppercase",
                         letterSpacing: "0.04em" }}>
               گزارش
@@ -142,11 +117,11 @@ export default function HeroFa() {
               {[0,1,2,3].map(i => (
                 <span key={i} style={{
                   display: "block", height: 4, flex: 1, borderRadius: 2,
-                  background: i < 3 ? "#4B92DB" : "rgba(0,0,0,0.09)",
+                  background: i < 3 ? "#3F8DDE" : "rgba(0,0,0,0.08)",
                 }} />
               ))}
             </div>
-            <p style={{ fontSize: 10, color: "rgba(17,17,17,0.38)", margin: "6px 0 0",
+            <p style={{ fontSize: 10, color: "rgba(17,17,17,0.35)", margin: "6px 0 0",
                         fontFamily: faFont }}>
               هوش مصنوعی · ۴ ثانیه
             </p>
@@ -172,16 +147,16 @@ export default function HeroFa() {
             <span
               className="inline-flex items-center gap-2 rounded-full px-4 py-2"
               style={{
-                background: '#89CFF0',
-                border: '0.5px solid rgba(75,146,219,0.18)',
+                background: 'rgba(156,204,239,0.14)',
+                border: '0.5px solid rgba(156,204,239,0.32)',
               }}
             >
               <span
                 style={{
-                  width: 6,
-                  height: 6,
+                  width: 5,
+                  height: 5,
                   borderRadius: "50%",
-                  background: "#4B92DB",
+                  background: "#9CCCEF",
                   display: "inline-block",
                   flexShrink: 0,
                 }}
@@ -190,7 +165,7 @@ export default function HeroFa() {
                 style={{
                   fontFamily: faFont,
                   fontSize: "12px",
-                  color: "rgba(17,17,17,0.55)",
+                  color: "#625B55",
                   fontWeight: 500,
                 }}
               >
@@ -226,7 +201,7 @@ export default function HeroFa() {
             style={{
               fontFamily: faFont,
               fontSize: 'clamp(15px, 2vw, 18px)',
-              color: '#5A504A',
+              color: '#625B55',
               lineHeight: 1.85,
               maxWidth: '480px',
               margin: '0 auto',
@@ -245,8 +220,8 @@ export default function HeroFa() {
           >
             <a
               href="/fa/services#contact-form"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-white rounded-full no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150"
-              style={{ padding: "13px 28px", fontFamily: faFont }}
+              className="inline-flex items-center gap-2 text-sm font-semibold text-white rounded-full no-underline transition-opacity duration-150 hover:opacity-90"
+              style={{ padding: "13px 28px", fontFamily: faFont, background: '#3F8DDE' }}
             >
               شروع پروژه ←
             </a>
@@ -261,7 +236,7 @@ export default function HeroFa() {
         className="absolute bottom-0 inset-x-0 pointer-events-none"
         style={{
           height:     '160px',
-          background: 'linear-gradient(to bottom, transparent, rgba(245,236,224,0.95))',
+          background: 'linear-gradient(to bottom, transparent, rgba(255,249,241,0.95))',
           zIndex:     15,
         }}
       />

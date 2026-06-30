@@ -22,7 +22,7 @@ function FieldLabel({ htmlFor, children }: { htmlFor: string; children: React.Re
     <label
       htmlFor={htmlFor}
       className="block font-ui text-xs font-semibold uppercase tracking-[0.15em] mb-2"
-      style={{ color: '#5A504A' }}
+      style={{ color: '#625B55' }}
     >
       {children}
     </label>
@@ -50,7 +50,7 @@ export default function ServiceInquiryForm() {
     border:     '0.5px solid rgba(0,0,0,0.12)',
     color:      '#111111',
   }
-  const inputFocusStyle: React.CSSProperties = { borderColor: 'rgba(75,146,219,0.50)' }
+  const inputFocusStyle: React.CSSProperties = { borderColor: 'rgba(63,141,222,0.50)' }
   const inputErrorStyle: React.CSSProperties = { borderColor: 'rgba(239,68,68,0.55)' }
 
   const validate = (): boolean => {
@@ -101,7 +101,7 @@ export default function ServiceInquiryForm() {
           role="alert"
           style={{ background: 'rgba(0,0,0,0.04)', border: '0.5px solid rgba(0,0,0,0.10)' }}
         >
-          <CheckCircle size={18} className="flex-shrink-0" style={{ color: '#4B92DB' }} />
+          <CheckCircle size={18} className="flex-shrink-0" style={{ color: '#3F8DDE' }} />
           <p className={`${isFa ? 'font-fa' : 'font-ui'} text-sm font-medium`} style={{ color: '#111111' }}>
             {t('successMessage')}
           </p>
