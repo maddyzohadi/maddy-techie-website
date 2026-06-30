@@ -44,7 +44,7 @@ function FloatCard({
   )
 }
 
-const faFont = "'Noto Naskh Arabic', serif"
+const faFont = "var(--font-vazirmatn), 'Vazirmatn', sans-serif"
 
 const label: React.CSSProperties = {
   fontSize: 12, fontWeight: 600, color: "#111111",
@@ -227,7 +227,7 @@ export default function HeroFa() {
               fontFamily: faFont,
               fontSize: 'clamp(15px, 2vw, 18px)',
               color: '#5A504A',
-              lineHeight: 2,
+              lineHeight: 1.85,
               maxWidth: '480px',
               margin: '0 auto',
             }}

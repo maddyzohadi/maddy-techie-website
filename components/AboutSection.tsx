@@ -100,14 +100,14 @@ export default async function AboutSection() {
               </span>
               <h2
                 className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight`}
-                style={{ color: headingColor }}
+                style={{ color: headingColor, ...(isFa && { lineHeight: 1.55 }) }}
               >
                 {t('title')}
                 <br />
                 <span style={{ color: bodyColor }}>{t('titleHighlight')}</span>
               </h2>
 
-              <p className="font-ui text-lg leading-relaxed mb-7" style={{ color: bodyColor }}>
+              <p className={`${isFa ? 'font-fa' : 'font-ui'} text-lg leading-relaxed mb-7`} style={{ color: bodyColor }}>
                 {t('desc1')}
               </p>
 
@@ -117,7 +117,7 @@ export default async function AboutSection() {
                 style={{ borderTop: '0.5px solid rgba(0,0,0,0.08)', paddingTop: '20px' }}
               >
                 {([t('stat0'), t('stat1'), t('stat2')] as string[]).map((stat, i) => (
-                  <span key={i} className="font-ui font-semibold text-sm" style={{ color: headingColor }}>
+                  <span key={i} className={`${isFa ? 'font-fa' : 'font-ui'} font-semibold text-sm`} style={{ color: headingColor }}>
                     {stat}
                   </span>
                 ))}
@@ -125,7 +125,7 @@ export default async function AboutSection() {
 
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2.5 font-ui font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150"
+                className={`inline-flex items-center gap-2.5 ${isFa ? 'font-fa' : 'font-ui'} font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150`}
               >
                 {t('ctaLabel')}
                 <ArrowRight size={16} className={locale === 'fa' ? 'rotate-180' : ''} />
