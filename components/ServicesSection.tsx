@@ -5,10 +5,172 @@ import { useTranslations, useLocale } from 'next-intl'
 import { Link } from '@/i18n/navigation'
 import { motion } from 'motion/react'
 
+const vaFont = "var(--font-vazirmatn), 'Vazirmatn', sans-serif"
+
+const FA_SERVICES = [
+  {
+    num: '۱',
+    title: 'شناسایی کارهای قابل ساده‌سازی',
+    desc: 'می‌بینیم کدام کارها وقتت را می‌گیرند و هوش مصنوعی کجا واقعاً می‌تواند کمک کند.',
+  },
+  {
+    num: '۲',
+    title: 'سیستم پرامپت اختصاصی',
+    desc: 'پرامپت‌های قابل استفاده دوباره برای ایمیل، گزارش، محتوا، تحقیق و برنامه‌ریزی آماده می‌کنیم.',
+  },
+  {
+    num: '۳',
+    title: 'قالب‌ها و گردش‌کارهای ساده',
+    desc: 'trackerها، فایل‌های Google Sheets و روندهای کاری سبک می‌سازیم که بتوانی واقعاً استفاده کنی.',
+  },
+]
+
+const fadeIn = {
+  initial: { opacity: 0, y: 18 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.55, ease: 'easeOut' },
+} as const
+
 export default function ServicesSection() {
   const t = useTranslations('services')
   const locale = useLocale()
   const isFa = locale === 'fa'
+
+  if (isFa) {
+    return (
+      <section
+        id="services"
+        dir="rtl"
+        style={{
+          background: '#EFE7DC',
+          borderTop: '0.5px solid #D8C7B8',
+          padding: '64px 24px',
+          scrollMarginTop: '96px',
+        }}
+      >
+        <motion.div style={{ maxWidth: '640px', margin: '0 auto' }} {...fadeIn}>
+          {/* Header */}
+          <div style={{ marginBottom: '36px' }}>
+            <p
+              style={{
+                fontFamily: vaFont,
+                fontSize: '11px',
+                fontWeight: 600,
+                color: '#C08064',
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+                marginBottom: '12px',
+              }}
+            >
+              خدمات
+            </p>
+            <h2
+              style={{
+                fontFamily: vaFont,
+                fontSize: 'clamp(17px, 2.4vw, 22px)',
+                fontWeight: 700,
+                color: '#111111',
+                lineHeight: 1.6,
+                marginBottom: '12px',
+              }}
+            >
+              کارهای تکراری را به یک سیستم ساده تبدیل کن
+            </h2>
+            <p
+              style={{
+                fontFamily: vaFont,
+                fontSize: '14px',
+                color: '#5A504A',
+                lineHeight: 1.9,
+                maxWidth: '520px',
+              }}
+            >
+              اگر ایمیل‌ها، گزارش‌ها، برنامه‌ریزی یا فایل‌هایت پراکنده‌اند، با کمک هوش مصنوعی یک روند کاری سبک و قابل استفاده می‌سازیم.
+            </p>
+          </div>
+
+          {/* Service list */}
+          <ul style={{ listStyle: 'none', margin: '0 0 32px', padding: 0 }}>
+            {FA_SERVICES.map((svc, i) => (
+              <li
+                key={svc.num}
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '16px',
+                  padding: '20px 0',
+                  borderBottom:
+                    i < FA_SERVICES.length - 1 ? '0.5px solid #D8C7B8' : 'none',
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: vaFont,
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    color: '#C08064',
+                    flexShrink: 0,
+                    width: '20px',
+                    textAlign: 'center',
+                    marginTop: '3px',
+                  }}
+                >
+                  {svc.num}
+                </span>
+                <div style={{ flex: 1 }}>
+                  <p
+                    style={{
+                      fontFamily: vaFont,
+                      fontSize: '15px',
+                      fontWeight: 600,
+                      color: '#111111',
+                      lineHeight: 1.5,
+                      marginBottom: '5px',
+                    }}
+                  >
+                    {svc.title}
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: vaFont,
+                      fontSize: '13px',
+                      color: '#5A504A',
+                      lineHeight: 1.85,
+                      margin: 0,
+                    }}
+                  >
+                    {svc.desc}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          {/* CTA */}
+          <Link
+            href="/services"
+            style={{
+              fontFamily: vaFont,
+              fontSize: '14px',
+              fontWeight: 600,
+              color: '#FFFFFF',
+              background: '#4B92DB',
+              padding: '11px 24px',
+              borderRadius: '100px',
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+            }}
+          >
+            مشاهده خدمات
+            <ArrowRight size={14} style={{ transform: 'rotate(180deg)' }} />
+          </Link>
+        </motion.div>
+      </section>
+    )
+  }
 
   const services = [
     { icon: Zap,           titleKey: 'svc0title', descKey: 'svc0desc' },
@@ -26,18 +188,18 @@ export default function ServicesSection() {
 
         <div className="text-center mb-16">
           <span
-            className={`inline-flex items-center ${isFa ? 'font-fa' : 'font-ui'} text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full`}
+            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
           >
             {t('badge')}
           </span>
           <h2
-            className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight`}
-            style={{ color: '#111111', ...(isFa ? {} : { letterSpacing: '-.02em' }) }}
+            className="font-en font-bold text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight"
+            style={{ color: '#111111', letterSpacing: '-.02em' }}
           >
             {t('title')}
           </h2>
           <p
-            className={`${isFa ? 'font-fa' : 'font-ui'} text-lg md:text-xl max-w-2xl mx-auto leading-relaxed`}
+            className="font-ui text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
             style={{ color: '#5A504A' }}
           >
             {t('subtitle')}
@@ -71,13 +233,13 @@ export default function ServicesSection() {
                   <Icon size={22} style={{ color: '#4B92DB' }} />
                 </div>
                 <h3
-                  className={`${isFa ? 'font-fa' : 'font-en'} font-semibold text-xl md:text-2xl mb-3 leading-snug`}
+                  className="font-en font-semibold text-xl md:text-2xl mb-3 leading-snug"
                   style={{ color: '#111111' }}
                 >
                   {t(service.titleKey)}
                 </h3>
                 <p
-                  className={`${isFa ? 'font-fa' : 'font-ui'} text-base md:text-lg leading-relaxed flex-1`}
+                  className="font-ui text-base md:text-lg leading-relaxed flex-1"
                   style={{ color: '#5A504A' }}
                 >
                   {t(service.descKey)}
@@ -90,10 +252,10 @@ export default function ServicesSection() {
         <div className="text-center">
           <Link
             href="/services"
-            className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150`}
+            className="font-ui inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150"
           >
             {t('cta')}
-            <ArrowRight size={16} className={isFa ? 'rotate-180' : ''} />
+            <ArrowRight size={16} />
           </Link>
         </div>
 
