@@ -30,7 +30,7 @@ export default function CurriculumSection() {
 
         <div className="text-center mb-16">
           <span
-            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
+            className={`inline-flex items-center ${isFa ? 'font-fa' : 'font-ui'} text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full`}
           >
             {t('badge')}
           </span>
@@ -42,7 +42,7 @@ export default function CurriculumSection() {
             <span style={{ color: bodyColor }}>{t('titleHighlight')}</span>
           </h2>
           <p
-            className="font-ui text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+            className={`${isFa ? 'font-fa' : 'font-ui'} text-lg md:text-xl max-w-2xl mx-auto leading-relaxed`}
             style={{ color: bodyColor }}
           >
             {t('subtitle')}

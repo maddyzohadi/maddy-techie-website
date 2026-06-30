@@ -1,11 +1,12 @@
 'use client'
 
 import { CheckCircle2 } from 'lucide-react'
+import { motion } from 'motion/react'
 
 const PAIN_POINTS = [
   'از هوش مصنوعی استفاده می‌کنی، اما هنوز نمی‌دانی چطور آن را به یک روند کاری واقعی تبدیل کنی.',
   'زمان زیادی را صرف ایمیل‌ها، گزارش‌ها، برنامه‌ریزی یا کارهای تکراری می‌کنی.',
-  'پرامپت‌ها، فایل‌ها و ابزارهایت پراکنده‌اند.',
+  'پرامپت‌ها، فایل‌ها و ابزارهایت پراکنده‌اند و نمی‌دانی از کجا شروع کنی.',
   'می‌خواهی از هوش مصنوعی استفاده کنی، اما نمی‌خواهی وارد کدنویسی یا تنظیمات پیچیده شوی.',
 ]
 
@@ -16,92 +17,80 @@ const OUTCOMES = [
   'اعتمادبه‌نفس بیشتر برای استفاده از هوش مصنوعی، بدون حس فنی بودن',
 ]
 
-const faFont = "var(--font-vazirmatn), 'Vazirmatn', sans-serif"
+const vaFont = "var(--font-vazirmatn), 'Vazirmatn', sans-serif"
+
+const fadeIn = {
+  initial: { opacity: 0, y: 18 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-60px' },
+  transition: { duration: 0.55, ease: 'easeOut' },
+} as const
 
 export default function FaPainPoints() {
   return (
     <>
-      {/* Section 1: Who it's for */}
+      {/* Section 1: Pain Points — dark premium panel */}
       <section
         dir="rtl"
         style={{
-          background: '#EFE7DC',
-          borderTop: '0.5px solid #D8C7B8',
+          background: '#351C1C',
           padding: '72px 24px',
         }}
       >
-        <div style={{ maxWidth: '680px', margin: '0 auto' }}>
-          <p
-            style={{
-              fontFamily: faFont,
-              fontSize: '11px',
-              fontWeight: 500,
-              letterSpacing: '0.04em',
-              color: 'rgba(90,80,74,0.55)',
-              marginBottom: '12px',
-              textAlign: 'center',
-            }}
-          >
-            این برای توست اگر
-          </p>
+        <motion.div style={{ maxWidth: '680px', margin: '0 auto' }} {...fadeIn}>
           <h2
             style={{
-              fontFamily: faFont,
-              fontSize: 'clamp(20px, 2.5vw, 28px)',
+              fontFamily: vaFont,
+              fontSize: 'clamp(17px, 2vw, 22px)',
               fontWeight: 700,
-              color: '#111111',
-              lineHeight: 1.6,
+              color: 'rgba(255,255,255,0.95)',
+              lineHeight: 1.65,
               marginBottom: '36px',
               textAlign: 'center',
             }}
           >
-            این برای تو مناسب است اگر…
+            این آموزش برای توست اگر…
           </h2>
-          <ul style={{ display: 'flex', flexDirection: 'column', gap: '12px', listStyle: 'none', margin: 0, padding: 0 }}>
+          <ul
+            style={{
+              listStyle: 'none',
+              margin: 0,
+              padding: 0,
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
             {PAIN_POINTS.map((point, i) => (
               <li
                 key={i}
                 style={{
                   display: 'flex',
                   alignItems: 'flex-start',
-                  gap: '12px',
-                  padding: '16px 18px',
-                  background: '#F5ECE0',
-                  border: '0.5px solid #D8C7B8',
-                  borderRadius: '12px',
-                  flexDirection: 'row-reverse',
+                  gap: '14px',
+                  padding: '18px 0',
+                  borderBottom:
+                    i < PAIN_POINTS.length - 1
+                      ? '0.5px solid rgba(255,255,255,0.10)'
+                      : 'none',
                 }}
               >
                 <span
                   style={{
-                    width: '20px',
-                    height: '20px',
+                    width: '6px',
+                    height: '6px',
                     borderRadius: '50%',
-                    background: 'rgba(75,146,219,0.08)',
-                    border: '0.5px solid rgba(75,146,219,0.22)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    background: '#89CFF0',
                     flexShrink: 0,
-                    marginTop: '2px',
+                    marginTop: '10px',
+                    display: 'block',
                   }}
-                >
-                  <span
-                    style={{
-                      width: '6px',
-                      height: '6px',
-                      borderRadius: '50%',
-                      background: '#4B92DB',
-                      display: 'block',
-                    }}
-                  />
-                </span>
+                />
                 <p
                   style={{
-                    fontFamily: faFont,
-                    fontSize: '14px',
-                    color: '#5A504A',
-                    lineHeight: 1.85,
+                    fontFamily: vaFont,
+                    fontSize: '15px',
+                    color: 'rgba(239,231,220,0.85)',
+                    lineHeight: 1.9,
                     margin: 0,
                     flex: 1,
                     textAlign: 'right',
@@ -112,46 +101,42 @@ export default function FaPainPoints() {
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
       </section>
 
-      {/* Section 2: What you get */}
+      {/* Section 2: Outcomes — warm light */}
       <section
         dir="rtl"
         style={{
           background: '#F5ECE0',
-          borderTop: '0.5px solid #D8C7B8',
-          padding: '56px 24px',
+          borderTop: '0.5px solid rgba(255,255,255,0.06)',
+          padding: '64px 24px',
         }}
       >
-        <div style={{ maxWidth: '680px', margin: '0 auto' }}>
-          <p
-            style={{
-              fontFamily: faFont,
-              fontSize: '11px',
-              fontWeight: 500,
-              letterSpacing: '0.04em',
-              color: 'rgba(90,80,74,0.55)',
-              marginBottom: '12px',
-              textAlign: 'center',
-            }}
-          >
-            نتیجه
-          </p>
+        <motion.div style={{ maxWidth: '680px', margin: '0 auto' }} {...fadeIn}>
           <h2
             style={{
-              fontFamily: faFont,
-              fontSize: 'clamp(18px, 2vw, 24px)',
+              fontFamily: vaFont,
+              fontSize: 'clamp(16px, 2vw, 21px)',
               fontWeight: 700,
               color: '#111111',
-              lineHeight: 1.6,
-              marginBottom: '28px',
+              lineHeight: 1.65,
+              marginBottom: '32px',
               textAlign: 'center',
             }}
           >
             بعد از این، چه چیزی به دست می‌آوری
           </h2>
-          <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', listStyle: 'none', margin: 0, padding: 0 }}>
+          <ul
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px',
+              listStyle: 'none',
+              margin: 0,
+              padding: 0,
+            }}
+          >
             {OUTCOMES.map((outcome, i) => (
               <li
                 key={i}
@@ -159,23 +144,22 @@ export default function FaPainPoints() {
                   display: 'flex',
                   alignItems: 'flex-start',
                   gap: '12px',
-                  padding: '14px 16px',
+                  padding: '14px 18px',
                   background: '#EFE7DC',
                   border: '0.5px solid #D8C7B8',
                   borderRadius: '12px',
-                  flexDirection: 'row',
                 }}
               >
                 <CheckCircle2
                   size={17}
-                  style={{ color: '#4B92DB', flexShrink: 0, marginTop: '3px' }}
+                  style={{ color: '#C08064', flexShrink: 0, marginTop: '3px' }}
                 />
                 <p
                   style={{
-                    fontFamily: faFont,
+                    fontFamily: vaFont,
                     fontSize: '14px',
                     color: '#5A504A',
-                    lineHeight: 1.75,
+                    lineHeight: 1.8,
                     margin: 0,
                     flex: 1,
                     textAlign: 'right',
@@ -186,7 +170,7 @@ export default function FaPainPoints() {
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
       </section>
     </>
   )

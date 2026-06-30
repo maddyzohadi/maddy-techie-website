@@ -100,7 +100,7 @@ export default async function AboutSection() {
               </span>
               <h2
                 className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight`}
-                style={{ color: headingColor, ...(isFa && { lineHeight: 1.55 }) }}
+                style={{ color: headingColor, ...(isFa && { lineHeight: 1.4 }) }}
               >
                 {t('title')}
                 <br />

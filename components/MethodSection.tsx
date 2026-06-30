@@ -1,31 +1,48 @@
 'use client'
 
-import { Zap, Brain } from 'lucide-react'
+import { Zap, Sparkles } from 'lucide-react'
 import { useLocale } from 'next-intl'
 import { motion } from 'motion/react'
 
+const vaFont = "var(--font-vazirmatn), 'Vazirmatn', sans-serif"
+
+const FA_CARDS = [
+  {
+    Icon: Sparkles,
+    badge: 'کاربرد عملی هوش مصنوعی',
+    title: 'هوش مصنوعی را وارد کارهای روزمره‌ات کن',
+    desc:  'با Claude و ChatGPT برای نوشتن، خلاصه‌سازی، برنامه‌ریزی و کارهای فکری ساده‌تر کار کن.',
+  },
+  {
+    Icon: Zap,
+    badge: 'اتوماسیون بدون کدنویسی',
+    title: 'کارهای تکراری را ساده کن',
+    desc:  'با Claude، ChatGPT و Google Sheets مسیرهای کاری سبک بساز، بدون اینکه وارد کدنویسی شوی.',
+  },
+]
+
+const EN_CARDS = [
+  {
+    Icon: Zap,
+    badge: 'NO-CODE AUTOMATION',
+    title: 'Connect your tools together',
+    desc:  'Link Make, Zapier, and ChatGPT so tasks complete themselves — no developer required.',
+  },
+  {
+    Icon: Sparkles,
+    badge: 'AI IN DAILY WORK',
+    title: 'Put AI inside your workflow',
+    desc:  'Use ChatGPT and Claude to handle thinking tasks — drafts, summaries, and plans.',
+  },
+]
+
 export default function MethodSection() {
-  const locale   = useLocale()
-  const isFa     = locale === 'fa'
+  const locale = useLocale()
+  const isFa   = locale === 'fa'
 
-  const headingFont = isFa ? "'Noto Naskh Arabic', serif" : "'DM Serif Display', serif"
-  const bodyFont    = isFa ? "'Noto Naskh Arabic', serif" : 'system-ui, sans-serif'
-
-  const card1 = {
-    badge: isFa ? 'اتوماسیون بدون کدنویسی' : 'NO-CODE AUTOMATION',
-    title: isFa ? 'کارهای تکراری را ساده کن'  : 'Connect your tools together',
-    desc:  isFa
-      ? 'Claude، ChatGPT و Google Sheets رو برای ساخت گردش‌کار کاری به کار بگیر — بدون کد.'
-      : 'Link Make, Zapier, and ChatGPT so tasks complete themselves — no developer required.',
-  }
-
-  const card2 = {
-    badge: isFa ? 'کاربرد عملی هوش مصنوعی' : 'AI IN DAILY WORK',
-    title: isFa ? 'هوش مصنوعی را وارد کارهای روزمره‌ات کن' : 'Put AI inside your workflow',
-    desc:  isFa
-      ? 'ChatGPT و Claude رو برای کارهای فکری به کار بگیر — نوشتن، خلاصه و برنامه‌ریزی.'
-      : 'Use ChatGPT and Claude to handle thinking tasks — drafts, summaries, and plans.',
-  }
+  const headingFont = isFa ? vaFont : "'DM Serif Display', serif"
+  const bodyFont    = isFa ? vaFont : 'system-ui, sans-serif'
+  const cards       = isFa ? FA_CARDS : EN_CARDS
 
   const iconBox: React.CSSProperties = {
     width: '40px',
@@ -36,22 +53,22 @@ export default function MethodSection() {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: '20px',
+    marginBottom: '16px',
     flexShrink: 0,
   }
 
   const cardStyle: React.CSSProperties = {
     background: '#EFE7DC',
     border: '0.5px solid #D8C7B8',
-    borderRadius: '16px',
-    padding: '32px',
+    borderRadius: '14px',
+    padding: '28px',
   }
 
   return (
     <section
       style={{
         background: '#F5ECE0',
-        padding: '96px 24px',
+        padding: '64px 24px',
         borderTop: '0.5px solid rgba(0,0,0,0.06)',
         direction: isFa ? 'rtl' : 'ltr',
       }}
@@ -59,21 +76,33 @@ export default function MethodSection() {
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
 
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: '56px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
           <span
-            className="inline-flex items-center font-ui text-[11px] font-semibold uppercase tracking-[0.12em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              fontFamily: isFa ? vaFont : 'system-ui, sans-serif',
+              fontSize: '11px',
+              fontWeight: 600,
+              letterSpacing: isFa ? undefined : '0.12em',
+              textTransform: isFa ? 'none' : 'uppercase',
+              color: 'rgba(17,17,17,0.55)',
+              background: '#89CFF0',
+              padding: '5px 12px',
+              borderRadius: '100px',
+              marginBottom: '16px',
+            }}
           >
             {isFa ? 'روش کار' : 'HOW IT WORKS'}
           </span>
           <h2
             style={{
               fontFamily: headingFont,
-              fontSize: 'clamp(24px, 2.8vw, 36px)',
+              fontSize: 'clamp(22px, 2.8vw, 34px)',
               fontWeight: 700,
               color: '#111111',
-              lineHeight: 1.2,
-              letterSpacing: '-0.02em',
-              maxWidth: '26ch',
+              lineHeight: isFa ? 1.5 : 1.2,
+              letterSpacing: isFa ? undefined : '-0.02em',
               margin: '0 auto',
             }}
           >
@@ -88,104 +117,63 @@ export default function MethodSection() {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '20px',
-            maxWidth: '900px',
+            gap: '16px',
+            maxWidth: '860px',
             margin: '0 auto',
           }}
         >
-          <motion.div
-            style={cardStyle}
-            whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-          >
-            <div style={iconBox}>
-              <Zap size={20} style={{ color: '#4B92DB' }} />
-            </div>
-            <span
-              style={{
-                fontFamily: 'system-ui, sans-serif',
-                fontSize: '11px',
-                fontWeight: 600,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: '#8C7E74',
-                display: 'block',
-                marginBottom: '10px',
-              }}
-            >
-              {card1.badge}
-            </span>
-            <h3
-              style={{
-                fontFamily: headingFont,
-                fontSize: '22px',
-                fontWeight: 700,
-                color: '#111111',
-                lineHeight: 1.3,
-                marginBottom: '12px',
-              }}
-            >
-              {card1.title}
-            </h3>
-            <p
-              style={{
-                fontFamily: bodyFont,
-                fontSize: '15px',
-                color: '#5A504A',
-                lineHeight: 1.7,
-                margin: 0,
-              }}
-            >
-              {card1.desc}
-            </p>
-          </motion.div>
-
-          <motion.div
-            style={cardStyle}
-            whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-          >
-            <div style={iconBox}>
-              <Brain size={20} style={{ color: '#4B92DB' }} />
-            </div>
-            <span
-              style={{
-                fontFamily: 'system-ui, sans-serif',
-                fontSize: '11px',
-                fontWeight: 600,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: '#8C7E74',
-                display: 'block',
-                marginBottom: '10px',
-              }}
-            >
-              {card2.badge}
-            </span>
-            <h3
-              style={{
-                fontFamily: headingFont,
-                fontSize: '22px',
-                fontWeight: 700,
-                color: '#111111',
-                lineHeight: 1.3,
-                marginBottom: '12px',
-              }}
-            >
-              {card2.title}
-            </h3>
-            <p
-              style={{
-                fontFamily: bodyFont,
-                fontSize: '15px',
-                color: '#5A504A',
-                lineHeight: 1.7,
-                margin: 0,
-              }}
-            >
-              {card2.desc}
-            </p>
-          </motion.div>
+          {cards.map((card) => {
+            const { Icon, badge, title, desc } = card
+            return (
+              <motion.div
+                key={badge}
+                style={cardStyle}
+                whileHover={{ y: -3, boxShadow: '0 8px 24px rgba(0,0,0,0.07)' }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+              >
+                <div style={iconBox}>
+                  <Icon size={20} style={{ color: '#4B92DB' }} />
+                </div>
+                <span
+                  style={{
+                    fontFamily: isFa ? vaFont : 'system-ui, sans-serif',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    letterSpacing: isFa ? undefined : '0.1em',
+                    textTransform: isFa ? 'none' : 'uppercase',
+                    color: '#8C7E74',
+                    display: 'block',
+                    marginBottom: '10px',
+                  }}
+                >
+                  {badge}
+                </span>
+                <h3
+                  style={{
+                    fontFamily: headingFont,
+                    fontSize: isFa ? '20px' : '22px',
+                    fontWeight: 700,
+                    color: '#111111',
+                    lineHeight: isFa ? 1.55 : 1.3,
+                    marginBottom: '10px',
+                  }}
+                >
+                  {title}
+                </h3>
+                <p
+                  style={{
+                    fontFamily: bodyFont,
+                    fontSize: '15px',
+                    color: '#5A504A',
+                    lineHeight: isFa ? 1.85 : 1.7,
+                    margin: 0,
+                  }}
+                >
+                  {desc}
+                </p>
+              </motion.div>
+            )
+          })}
         </div>
 
       </div>

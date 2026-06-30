@@ -26,13 +26,13 @@ export default function ServicesSection() {
 
         <div className="text-center mb-16">
           <span
-            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full"
+            className={`inline-flex items-center ${isFa ? 'font-fa' : 'font-ui'} text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-babyblue text-brand-text px-3 py-1.5 rounded-full`}
           >
             {t('badge')}
           </span>
           <h2
             className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight`}
-            style={{ color: '#111111', letterSpacing: '-.02em' }}
+            style={{ color: '#111111', ...(isFa ? {} : { letterSpacing: '-.02em' }) }}
           >
             {t('title')}
           </h2>

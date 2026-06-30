@@ -51,7 +51,7 @@ export default async function Home() {
     <main className="min-h-screen overflow-x-hidden">
       <Navigation />
       <Hero />
-      <MaddyRibbonDivider direction="left" duration={7} />
+      {!isFa && <MaddyRibbonDivider direction="left" duration={7} />}
 
       {/* EN: problem cards */}
       {!isFa && <ProblemSection />}
