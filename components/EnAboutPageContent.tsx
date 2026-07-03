@@ -90,7 +90,7 @@ export default function EnAboutPageContent() {
             letterSpacing: '-0.025em',
             marginBottom: '28px',
           }}>
-            Practical AI education{' '}
+            AI education{' '}
             <em style={{ fontStyle: 'italic' }}>for modern work</em>
           </motion.h1>
 
@@ -142,7 +142,7 @@ export default function EnAboutPageContent() {
               color: '#E34E2E',
               marginBottom: '20px',
             }}>
-              Get the notes
+              Get Maddy Notes
             </p>
 
             <h2 style={{
@@ -154,7 +154,7 @@ export default function EnAboutPageContent() {
               letterSpacing: '-0.025em',
               marginBottom: '16px',
             }}>
-              The Practical AI Letter
+              Maddy Notes
             </h2>
 
             <p style={{
@@ -164,7 +164,7 @@ export default function EnAboutPageContent() {
               lineHeight: 1.70,
               marginBottom: '10px',
             }}>
-              Practical AI tips, templates, and workflow ideas in your inbox.
+              AI tips, templates, and workflow ideas in your inbox.
             </p>
 
             <p style={{
@@ -293,7 +293,7 @@ export default function EnAboutPageContent() {
               color: 'rgba(140,126,116,0.70)',
               marginTop: '18px',
             }}>
-              No spam. Just practical AI ideas you can actually use.
+              No spam. Just useful AI ideas you can actually use.
             </p>
           </div>
         </motion.div>

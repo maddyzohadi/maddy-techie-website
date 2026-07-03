@@ -50,7 +50,7 @@ export default function ServiceInquiryForm() {
     border:     '0.5px solid rgba(0,0,0,0.12)',
     color:      '#111111',
   }
-  const inputFocusStyle: React.CSSProperties = { borderColor: isFa ? 'rgba(63,141,222,0.50)' : 'rgba(227,78,46,0.40)' }
+  const inputFocusStyle: React.CSSProperties = { borderColor: 'rgba(227,78,46,0.40)' }
   const inputErrorStyle: React.CSSProperties = { borderColor: 'rgba(239,68,68,0.55)' }
 
   const validate = (): boolean => {
@@ -101,7 +101,7 @@ export default function ServiceInquiryForm() {
           role="alert"
           style={{ background: 'rgba(0,0,0,0.04)', border: '0.5px solid rgba(0,0,0,0.10)' }}
         >
-          <CheckCircle size={18} className="flex-shrink-0" style={{ color: isFa ? '#3F8DDE' : '#E34E2E' }} />
+          <CheckCircle size={18} className="flex-shrink-0" style={{ color: '#E34E2E' }} />
           <p className={`${isFa ? 'font-fa' : 'font-ui'} text-sm font-medium`} style={{ color: '#111111' }}>
             {t('successMessage')}
           </p>
@@ -181,10 +181,10 @@ export default function ServiceInquiryForm() {
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center justify-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white disabled:opacity-60 transition duration-150 self-start ${isFa ? 'bg-brand-blue hover:bg-brand-blue-dark' : ''}`}
-        style={{ border: 'none', ...(isFa ? {} : { background: '#E34E2E' }) }}
-        onMouseEnter={(e) => { if (!isFa) (e.currentTarget as HTMLButtonElement).style.background = '#C63C1E' }}
-        onMouseLeave={(e) => { if (!isFa) (e.currentTarget as HTMLButtonElement).style.background = '#E34E2E' }}
+        className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center justify-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white disabled:opacity-60 transition duration-150 self-start`}
+        style={{ border: 'none', background: '#E34E2E' }}
+        onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = '#C63C1E' }}
+        onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = '#E34E2E' }}
       >
         {status === 'submitting' ? (
           t('submitting')
