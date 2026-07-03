@@ -17,11 +17,11 @@ interface FormErrors {
 
 const EMPTY: FormState = { name: '', email: '', help: '' }
 
-function FieldLabel({ htmlFor, children }: { htmlFor: string; children: React.ReactNode }) {
+function FieldLabel({ htmlFor, children, isFa }: { htmlFor: string; children: React.ReactNode; isFa?: boolean }) {
   return (
     <label
       htmlFor={htmlFor}
-      className="block font-ui text-xs font-semibold uppercase tracking-[0.15em] mb-2"
+      className={`block text-xs font-semibold mb-2 ${isFa ? 'font-fa' : 'font-ui uppercase tracking-[0.15em]'}`}
       style={{ color: '#625B55' }}
     >
       {children}
@@ -50,7 +50,7 @@ export default function ServiceInquiryForm() {
     border:     '0.5px solid rgba(0,0,0,0.12)',
     color:      '#111111',
   }
-  const inputFocusStyle: React.CSSProperties = { borderColor: 'rgba(63,141,222,0.50)' }
+  const inputFocusStyle: React.CSSProperties = { borderColor: isFa ? 'rgba(63,141,222,0.50)' : 'rgba(227,78,46,0.40)' }
   const inputErrorStyle: React.CSSProperties = { borderColor: 'rgba(239,68,68,0.55)' }
 
   const validate = (): boolean => {
@@ -93,7 +93,7 @@ export default function ServiceInquiryForm() {
     errors[field] ? inputErrorStyle : focused === field ? inputFocusStyle : {}
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6">
+    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-6" dir={isFa ? 'rtl' : 'ltr'}>
 
       {status === 'success' && (
         <div
@@ -101,7 +101,7 @@ export default function ServiceInquiryForm() {
           role="alert"
           style={{ background: 'rgba(0,0,0,0.04)', border: '0.5px solid rgba(0,0,0,0.10)' }}
         >
-          <CheckCircle size={18} className="flex-shrink-0" style={{ color: '#3F8DDE' }} />
+          <CheckCircle size={18} className="flex-shrink-0" style={{ color: isFa ? '#3F8DDE' : '#E34E2E' }} />
           <p className={`${isFa ? 'font-fa' : 'font-ui'} text-sm font-medium`} style={{ color: '#111111' }}>
             {t('successMessage')}
           </p>
@@ -123,7 +123,7 @@ export default function ServiceInquiryForm() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <FieldLabel htmlFor="inq-name">{t('nameLabel')}</FieldLabel>
+          <FieldLabel htmlFor="inq-name" isFa={isFa}>{t('nameLabel')}</FieldLabel>
           <input
             id="inq-name"
             type="text"
@@ -133,6 +133,7 @@ export default function ServiceInquiryForm() {
             onChange={set('name')}
             onFocus={() => setFocused('name')}
             onBlur={() => setFocused(null)}
+            dir={isFa ? 'rtl' : 'ltr'}
             aria-required
             aria-invalid={!!errors.name}
             className={inputBase}
@@ -141,7 +142,7 @@ export default function ServiceInquiryForm() {
           <FieldError msg={errors.name} />
         </div>
         <div>
-          <FieldLabel htmlFor="inq-email">{t('emailLabel')}</FieldLabel>
+          <FieldLabel htmlFor="inq-email" isFa={isFa}>{t('emailLabel')}</FieldLabel>
           <input
             id="inq-email"
             type="email"
@@ -151,6 +152,7 @@ export default function ServiceInquiryForm() {
             onChange={set('email')}
             onFocus={() => setFocused('email')}
             onBlur={() => setFocused(null)}
+            dir="ltr"
             aria-required
             aria-invalid={!!errors.email}
             className={inputBase}
@@ -161,7 +163,7 @@ export default function ServiceInquiryForm() {
       </div>
 
       <div>
-        <FieldLabel htmlFor="inq-help">{t('helpLabel')}</FieldLabel>
+        <FieldLabel htmlFor="inq-help" isFa={isFa}>{t('helpLabel')}</FieldLabel>
         <textarea
           id="inq-help"
           rows={3}
@@ -170,6 +172,7 @@ export default function ServiceInquiryForm() {
           onChange={set('help')}
           onFocus={() => setFocused('help')}
           onBlur={() => setFocused(null)}
+          dir={isFa ? 'rtl' : 'ltr'}
           className={`${inputBase} resize-none`}
           style={{ ...inputStyle, ...(focused === 'help' ? inputFocusStyle : {}) }}
         />
@@ -178,8 +181,10 @@ export default function ServiceInquiryForm() {
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center justify-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white bg-brand-blue hover:bg-brand-blue-dark disabled:opacity-60 transition duration-150 self-start`}
-        style={{ border: 'none' }}
+        className={`${isFa ? 'font-fa' : 'font-ui'} inline-flex items-center justify-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white disabled:opacity-60 transition duration-150 self-start ${isFa ? 'bg-brand-blue hover:bg-brand-blue-dark' : ''}`}
+        style={{ border: 'none', ...(isFa ? {} : { background: '#E34E2E' }) }}
+        onMouseEnter={(e) => { if (!isFa) (e.currentTarget as HTMLButtonElement).style.background = '#C63C1E' }}
+        onMouseLeave={(e) => { if (!isFa) (e.currentTarget as HTMLButtonElement).style.background = '#E34E2E' }}
       >
         {status === 'submitting' ? (
           t('submitting')

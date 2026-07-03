@@ -3,7 +3,7 @@
 import { motion } from 'motion/react'
 import { Link } from '@/i18n/navigation'
 
-export default function ProblemSection() {
+export default function AutomationBenefitSection() {
   return (
     <section
       dir="ltr"
@@ -45,7 +45,7 @@ export default function ProblemSection() {
                   letterSpacing: '-0.02em',
                 }}
               >
-                01
+                03
               </span>
               <span
                 style={{
@@ -57,7 +57,7 @@ export default function ProblemSection() {
                   color: '#8C7E74',
                 }}
               >
-                LEARN
+                SERVICES
               </span>
             </div>
             <div style={{ height: '0.5px', background: 'rgba(17,17,17,0.14)' }} />
@@ -76,7 +76,7 @@ export default function ProblemSection() {
                 marginBottom: '28px',
               }}
             >
-              AI should make work easier, not harder.
+              Let AI handle the repetitive work.
             </h2>
 
             <p
@@ -89,12 +89,12 @@ export default function ProblemSection() {
                 maxWidth: '580px',
               }}
             >
-              Learn simple ways to use ChatGPT, Claude, and automation tools to save time,
-              organize your ideas, and get more done — without feeling technical.
+              From email drafts to content ideas, spreadsheets, and simple workflows —
+              I&apos;ll help you build systems that keep your work moving.
             </p>
 
             <Link
-              href="/learn"
+              href="/services"
               style={{
                 display: 'inline-block',
                 fontFamily: 'system-ui, -apple-system, sans-serif',

@@ -42,9 +42,9 @@ export default function FaPainPoints() {
           <p
             style={{
               fontFamily: vaFont,
-              fontSize: '11px',
-              fontWeight: 600,
-              color: '#ED5821',
+              fontSize: '13px',
+              fontWeight: 700,
+              color: '#E34E2E',
               letterSpacing: '0.06em',
               textTransform: 'uppercase',
               marginBottom: '14px',
@@ -94,7 +94,7 @@ export default function FaPainPoints() {
                     width: '6px',
                     height: '6px',
                     borderRadius: '50%',
-                    background: '#ED5821',
+                    background: '#E34E2E',
                     flexShrink: 0,
                     marginTop: '10px',
                     display: 'block',
@@ -164,7 +164,7 @@ export default function FaPainPoints() {
               >
                 <CheckCircle2
                   size={16}
-                  style={{ color: '#ED5821', flexShrink: 0, marginTop: '3px' }}
+                  style={{ color: '#E34E2E', flexShrink: 0, marginTop: '3px' }}
                 />
                 <p
                   style={{

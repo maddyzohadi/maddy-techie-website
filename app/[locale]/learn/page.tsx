@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Navigation from '@/components/Navigation'
+import LearnHero from '@/components/LearnHero'
 import MethodSection from '@/components/MethodSection'
 import CurriculumSection from '@/components/CurriculumSection'
 import WhoItsFor from '@/components/WhoItsFor'
@@ -55,6 +56,7 @@ export default async function LearnPage({
       </h1>
       <Navigation />
       <div className="pt-[72px]">
+        {!isFa && <LearnHero />}
         {isFa && <MethodSection />}
         <CurriculumSection />
         {isFa && <WhoItsFor />}

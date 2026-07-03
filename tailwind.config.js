@@ -18,9 +18,9 @@ module.exports = {
           blue:        '#3F8DDE',   // primary CTAs, active states, links, icons
           'blue-dark': '#2F70BF',   // hover state for blue
           sky:         '#9CCCEF',   // soft highlights, badges, icon backgrounds
-          orange:      '#ED5821',   // warm accent — eyebrows, labels, dots, accents (FA-primary)
-          clay:        '#ED5821',   // alias for orange
-          coral:       '#C9785A',   // alias kept for EN components using text-brand-coral
+          orange:      '#E34E2E',   // warm accent — section kickers, eyebrows, labels, dots
+          clay:        '#E34E2E',   // alias for orange
+          coral:       '#E34E2E',   // shared label color used by EN + FA pill badges
           white:       '#FFFDF8',   // floating cards, overlays, clean surfaces
         },
       },

@@ -1,7 +1,7 @@
 'use client'
 
-import { Zap, MessageSquare, LayoutGrid, ArrowRight } from 'lucide-react'
-import { useTranslations, useLocale } from 'next-intl'
+import { ArrowRight } from 'lucide-react'
+import { useLocale } from 'next-intl'
 import { Link } from '@/i18n/navigation'
 import { motion } from 'motion/react'
 
@@ -33,7 +33,6 @@ const fadeIn = {
 } as const
 
 export default function ServicesSection() {
-  const t = useTranslations('services')
   const locale = useLocale()
   const isFa = locale === 'fa'
 
@@ -55,9 +54,9 @@ export default function ServicesSection() {
             <p
               style={{
                 fontFamily: vaFont,
-                fontSize: '11px',
-                fontWeight: 600,
-                color: '#ED5821',
+                fontSize: '13px',
+                fontWeight: 700,
+                color: '#E34E2E',
                 letterSpacing: '0.06em',
                 textTransform: 'uppercase',
                 marginBottom: '12px',
@@ -109,7 +108,7 @@ export default function ServicesSection() {
                     fontFamily: vaFont,
                     fontSize: '12px',
                     fontWeight: 700,
-                    color: '#ED5821',
+                    color: '#E34E2E',
                     flexShrink: 0,
                     width: '20px',
                     textAlign: 'center',
@@ -172,94 +171,115 @@ export default function ServicesSection() {
     )
   }
 
-  const services = [
-    { icon: Zap,           titleKey: 'svc0title', descKey: 'svc0desc' },
-    { icon: MessageSquare, titleKey: 'svc1title', descKey: 'svc1desc' },
-    { icon: LayoutGrid,    titleKey: 'svc2title', descKey: 'svc2desc' },
-  ] as const
-
   return (
     <section
+      dir="ltr"
       id="services"
-      className="py-24 md:py-32 relative scroll-mt-24"
-      style={{ background: '#F1E8DD', borderTop: '0.5px solid rgba(17,17,17,0.12)' }}
+      style={{
+        background: '#FAF6EF',
+        padding: 'clamp(96px, 12vw, 140px) clamp(24px, 8vw, 80px)',
+        borderTop: '0.5px solid rgba(17,17,17,0.07)',
+      }}
     >
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.65, ease: 'easeOut' }}
+        style={{ maxWidth: '1200px', margin: '0 auto' }}
+      >
+        <div
+          className="grid grid-cols-1 md:grid-cols-[196px_1fr] gap-10 md:gap-[72px]"
+          style={{ alignItems: 'start' }}
+        >
 
-        <div className="text-center mb-16">
-          <span
-            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
-          >
-            {t('badge')}
-          </span>
-          <h2
-            className="font-en font-bold text-3xl md:text-4xl lg:text-5xl mb-5 leading-tight"
-            style={{ color: '#111111', letterSpacing: '-.02em' }}
-          >
-            {t('title')}
-          </h2>
-          <p
-            className="font-ui text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
-            style={{ color: '#5A504A' }}
-          >
-            {t('subtitle')}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12">
-          {services.map((service) => {
-            const Icon = service.icon
-            return (
-              <motion.div
-                key={service.titleKey}
+          {/* Left: section label */}
+          <div style={{ paddingTop: '6px' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'baseline',
+                gap: '14px',
+                marginBottom: '16px',
+              }}
+            >
+              <span
                 style={{
-                  background: '#FAF6EF',
-                  border: '0.5px solid rgba(17,17,17,0.12)',
-                  borderRadius: '16px',
-                  padding: '28px 30px',
-                  display: 'flex',
-                  flexDirection: 'column',
+                  fontFamily: "'DM Serif Display', serif",
+                  fontStyle: 'italic',
+                  fontSize: 'clamp(52px, 6vw, 80px)',
+                  color: '#E34E2E',
+                  lineHeight: 1,
+                  letterSpacing: '-0.02em',
                 }}
-                whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}
-                transition={{ duration: 0.2, ease: 'easeOut' }}
               >
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-                  style={{
-                    background: 'rgba(63,141,222,0.06)',
-                    border: '0.5px solid rgba(63,141,222,0.15)',
-                  }}
-                >
-                  <Icon size={22} style={{ color: '#3F8DDE' }} />
-                </div>
-                <h3
-                  className="font-en font-semibold text-xl md:text-2xl mb-3 leading-snug"
-                  style={{ color: '#111111' }}
-                >
-                  {t(service.titleKey)}
-                </h3>
-                <p
-                  className="font-ui text-base md:text-lg leading-relaxed flex-1"
-                  style={{ color: '#5A504A' }}
-                >
-                  {t(service.descKey)}
-                </p>
-              </motion.div>
-            )
-          })}
-        </div>
+                02
+              </span>
+              <span
+                style={{
+                  fontFamily: 'system-ui, -apple-system, sans-serif',
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase',
+                  color: '#8C7E74',
+                }}
+              >
+                WORKFLOWS
+              </span>
+            </div>
+            <div style={{ height: '0.5px', background: 'rgba(17,17,17,0.14)' }} />
+          </div>
 
-        <div className="text-center">
-          <Link
-            href="/services"
-            className="font-ui inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150"
-          >
-            {t('cta')}
-            <ArrowRight size={16} />
-          </Link>
-        </div>
+          {/* Right: content */}
+          <div>
+            <h2
+              style={{
+                fontFamily: "'DM Serif Display', serif",
+                fontSize: 'clamp(38px, 5vw, 68px)',
+                fontWeight: 400,
+                color: '#111111',
+                lineHeight: 1.06,
+                letterSpacing: '-0.02em',
+                marginBottom: '28px',
+              }}
+            >
+              Practical AI that works with you.
+            </h2>
 
-      </div>
+            <p
+              style={{
+                fontFamily: 'system-ui, -apple-system, sans-serif',
+                fontSize: 'clamp(16px, 1.4vw, 19px)',
+                color: '#625B55',
+                lineHeight: 1.72,
+                marginBottom: '40px',
+                maxWidth: '580px',
+              }}
+            >
+              I help you set up AI workflows, templates, and simple automations that reduce
+              repetitive work and make your daily tools easier to use.
+            </p>
+
+            <Link
+              href="/services"
+              style={{
+                display: 'inline-block',
+                fontFamily: 'system-ui, -apple-system, sans-serif',
+                fontSize: '16px',
+                fontWeight: 700,
+                color: '#111111',
+                textDecoration: 'none',
+                paddingBottom: '6px',
+                borderBottom: '1.5px solid rgba(17,17,17,0.22)',
+                transition: 'opacity 0.15s',
+              }}
+            >
+              Explore more →
+            </Link>
+          </div>
+        </div>
+      </motion.div>
     </section>
   )
 }

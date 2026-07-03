@@ -1,302 +1,350 @@
-import { getTranslations, getLocale } from 'next-intl/server'
-import { ArrowRight, Zap, MessageSquare, LayoutGrid, PenLine, CheckCircle } from 'lucide-react'
+import { getLocale } from 'next-intl/server'
+import { ArrowRight } from 'lucide-react'
 import ServiceInquiryForm from '@/components/ServiceInquiryForm'
 import ServicesPageContentFa from '@/components/ServicesPageContentFa'
+import ServicesHero from '@/components/ServicesHero'
+import MotionFadeIn from '@/components/MotionFadeIn'
 
-const SERVICES = [
+// ── Static EN copy ─────────────────────────────────────────────────────────
+const EN_SERVICES = [
   {
-    icon: Zap,
-    titleKey:   'svc1title' as const,
-    descKey:    'svc1desc'  as const,
-    bestForKey: 'svc1bestFor' as const,
-    ctaKey:     'svc1cta'   as const,
-    tools: ['ChatGPT', 'Claude', 'Google Sheets'],
+    num: '01',
+    label: 'AI SETUP',
+    title: 'Set up AI for your daily work',
+    body: 'I help you organize ChatGPT, Claude, and your everyday tools so AI becomes easier to use, not another thing to manage.',
+    bestFor: [
+      'Professionals who want a simple AI setup',
+      'Creators who need repeatable workflows',
+      'Small business owners who want less manual work',
+    ],
   },
   {
-    icon: MessageSquare,
-    titleKey:   'svc2title' as const,
-    descKey:    'svc2desc'  as const,
-    bestForKey: 'svc2bestFor' as const,
-    ctaKey:     'svc2cta'   as const,
-    tools: ['ChatGPT', 'Claude'],
+    num: '02',
+    label: 'WORKFLOW DESIGN',
+    title: 'Turn repeated tasks into clear workflows',
+    body: 'We map the task, simplify the steps, and design a practical AI-assisted workflow you can actually use.',
+    bestFor: [
+      'Email and message workflows',
+      'Content planning',
+      'Research and reporting',
+      'Client follow-up systems',
+    ],
   },
   {
-    icon: LayoutGrid,
-    titleKey:   'svc3title' as const,
-    descKey:    'svc3desc'  as const,
-    bestForKey: 'svc3bestFor' as const,
-    ctaKey:     'svc3cta'   as const,
-    tools: ['Google Sheets', 'Make', 'Zapier'],
-  },
-  {
-    icon: PenLine,
-    titleKey:   'svc4title' as const,
-    descKey:    'svc4desc'  as const,
-    bestForKey: 'svc4bestFor' as const,
-    ctaKey:     'svc4cta'   as const,
-    tools: ['ChatGPT', 'Claude', 'Google Sheets'],
+    num: '03',
+    label: 'TEMPLATES & TRAINING',
+    title: 'Learn the system, not just the tool',
+    body: 'You get simple templates, clear instructions, and hands-on guidance so you understand how the workflow works.',
+    bestFor: [
+      'Non-technical teams',
+      'Solo business owners',
+      'Creators and freelancers',
+      'Anyone tired of vague AI advice',
+    ],
   },
 ] as const
 
-const HOW_STEPS = [
-  { numKey: 'step1num' as const, titleKey: 'step1title' as const, descKey: 'step1desc' as const },
-  { numKey: 'step2num' as const, titleKey: 'step2title' as const, descKey: 'step2desc' as const },
-  { numKey: 'step3num' as const, titleKey: 'step3title' as const, descKey: 'step3desc' as const },
-  { numKey: 'step4num' as const, titleKey: 'step4title' as const, descKey: 'step4desc' as const },
+const EN_STEPS = [
+  { label: 'Step 1', title: 'Understand your work',  desc: 'We identify the repeated tasks, messy steps, and places where AI can actually help.' },
+  { label: 'Step 2', title: 'Design the workflow',   desc: 'We turn the task into a simple, practical system using the tools you already use.' },
+  { label: 'Step 3', title: 'Build and test',        desc: 'We create the workflow, prompts, templates, or setup and test it with real examples.' },
+  { label: 'Step 4', title: 'Teach and hand off',    desc: 'You learn how it works, how to use it, and how to keep improving it.' },
 ] as const
 
-const WHO_KEYS = ['who0', 'who1', 'who2', 'who3'] as const
+const EN_WHO = [
+  'You want to save time on repeated work',
+  'You want better prompts and templates',
+  'You want simple systems, not complicated tools',
+  'You want guidance that feels clear and human',
+] as const
 
+// ── Shared typography constants ────────────────────────────────────────────
+const SERIF = "'DM Serif Display', serif"
+const SANS  = 'system-ui, -apple-system, sans-serif'
+const SECTION_PAD = 'clamp(96px, 12vw, 140px) clamp(24px, 8vw, 80px)'
+const BORDER = '0.5px solid rgba(17,17,17,0.07)'
+
+// ── Section label (left column) ────────────────────────────────────────────
+function SectionLabel({ num, label }: { num: string; label: string }) {
+  return (
+    <div style={{ paddingTop: '6px' }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: '14px', marginBottom: '16px' }}>
+        <span style={{ fontFamily: SERIF, fontStyle: 'italic', fontSize: 'clamp(52px, 6vw, 80px)', color: '#E34E2E', lineHeight: 1, letterSpacing: '-0.02em' }}>
+          {num}
+        </span>
+        <span style={{ fontFamily: SANS, fontSize: '11px', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase' as const, color: '#8C7E74' }}>
+          {label}
+        </span>
+      </div>
+      <div style={{ height: '0.5px', background: 'rgba(17,17,17,0.14)' }} />
+    </div>
+  )
+}
+
+// ── "Explore service →" link ───────────────────────────────────────────────
+function ServiceLink() {
+  return (
+    <a
+      href="#contact-form"
+      style={{
+        display: 'inline-block',
+        fontFamily: SANS,
+        fontSize: '16px',
+        fontWeight: 700,
+        color: '#111111',
+        textDecoration: 'none',
+        paddingBottom: '6px',
+        borderBottom: '1.5px solid rgba(17,17,17,0.22)',
+      }}
+    >
+      Explore service →
+    </a>
+  )
+}
+
+// ── Main export ────────────────────────────────────────────────────────────
 export default async function ServicesPageContent() {
   const locale = await getLocale()
   if (locale === 'fa') return <ServicesPageContentFa />
 
-  const t = await getTranslations('servicesPage')
-
   return (
     <>
-      {/* Hero */}
+
+      {/* ── Hero (animated client component) ─────────────────────────────── */}
+      <ServicesHero />
+
+      {/* ── Services 01 / 02 / 03 ─────────────────────────────────────────── */}
+      {EN_SERVICES.map((svc, i) => (
+        <section
+          key={svc.num}
+          dir="ltr"
+          style={{
+            background: i % 2 === 0 ? '#FFFDF8' : '#FAF6EF',
+            padding: SECTION_PAD,
+            borderTop: BORDER,
+          }}
+        >
+          <MotionFadeIn>
+            <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+              <div className="grid grid-cols-1 md:grid-cols-[196px_1fr] gap-10 md:gap-[72px]" style={{ alignItems: 'start' }}>
+
+                <SectionLabel num={svc.num} label={svc.label} />
+
+                <div>
+                  <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(32px, 4vw, 56px)', fontWeight: 400, color: '#111111', lineHeight: 1.08, letterSpacing: '-0.02em', marginBottom: '20px' }}>
+                    {svc.title}
+                  </h2>
+                  <p style={{ fontFamily: SANS, fontSize: 'clamp(16px, 1.4vw, 18px)', color: '#625B55', lineHeight: 1.72, marginBottom: '36px', maxWidth: '520px' }}>
+                    {svc.body}
+                  </p>
+
+                  <p style={{ fontFamily: SANS, fontSize: '11px', fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#8C7E74', marginBottom: '14px' }}>
+                    Best for
+                  </p>
+                  <ul style={{ margin: '0 0 40px', padding: 0, listStyle: 'none' }}>
+                    {svc.bestFor.map((item, idx) => (
+                      <li
+                        key={idx}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'flex-start',
+                          gap: '12px',
+                          padding: '9px 0',
+                          borderTop: idx > 0 ? '0.5px solid rgba(17,17,17,0.06)' : 'none',
+                          fontFamily: SANS,
+                          fontSize: 'clamp(14px, 1.2vw, 16px)',
+                          color: '#625B55',
+                          lineHeight: 1.65,
+                        }}
+                      >
+                        <span aria-hidden="true" style={{ flexShrink: 0, marginTop: '7px', width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(227,78,46,0.40)', display: 'block' }} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <ServiceLink />
+                </div>
+
+              </div>
+            </div>
+          </MotionFadeIn>
+        </section>
+      ))}
+
+      {/* ── 04 / Process ──────────────────────────────────────────────────── */}
       <section
-        className="py-24 md:py-32 relative overflow-hidden"
-        style={{ background: '#FAF6EF' }}
+        dir="ltr"
+        style={{ background: '#FAF6EF', padding: SECTION_PAD, borderTop: BORDER }}
       >
-        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <span
-            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-5 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
-          >
-            {t('heroBadge')}
-          </span>
-          <h1
-            className="font-en font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6"
-            style={{ color: '#111111', letterSpacing: '-.025em' }}
-          >
-            {t('heroTitle')}
-          </h1>
-          <p
-            className="font-ui text-lg md:text-xl leading-relaxed mb-10 max-w-2xl mx-auto"
-            style={{ color: '#5A504A' }}
-          >
-            {t('heroSubtitle')}
-          </p>
-          <a
-            href="#contact-form"
-            className="font-ui inline-flex items-center gap-2.5 font-semibold text-base px-9 py-4 rounded-full text-white no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150"
-          >
-            {t('heroCta')}
-            <ArrowRight size={16} />
-          </a>
-        </div>
-      </section>
+        <MotionFadeIn>
+          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+            <div className="grid grid-cols-1 md:grid-cols-[196px_1fr] gap-10 md:gap-[72px]" style={{ alignItems: 'start' }}>
 
-      {/* Service Cards */}
-      <section
-        className="py-20 md:py-24 relative"
-        style={{ background: '#FAF6EF', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
-      >
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {SERVICES.map((svc) => {
-              const Icon = svc.icon
-              return (
-                <div
-                  key={svc.titleKey}
-                  style={{
-                    background: '#F1E8DD',
-                    border: '0.5px solid rgba(17,17,17,0.12)',
-                    borderRadius: '16px',
-                    padding: '28px 30px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '16px',
-                  }}
-                >
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: 'rgba(63,141,222,0.08)', border: '0.5px solid rgba(63,141,222,0.20)' }}
-                  >
-                    <Icon size={20} style={{ color: '#3F8DDE' }} />
-                  </div>
+              <SectionLabel num="04" label="PROCESS" />
 
-                  <div>
-                    <h2 className="font-en font-semibold text-xl md:text-2xl mb-2 leading-snug" style={{ color: '#111111' }}>
-                      {t(svc.titleKey)}
-                    </h2>
-                    <p className="font-ui text-base leading-relaxed" style={{ color: '#5A504A' }}>
-                      {t(svc.descKey)}
-                    </p>
-                  </div>
+              <div>
+                <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(32px, 4vw, 56px)', fontWeight: 400, color: '#111111', lineHeight: 1.08, letterSpacing: '-0.02em', marginBottom: '16px' }}>
+                  From first message to working system
+                </h2>
+                <p style={{ fontFamily: SANS, fontSize: 'clamp(16px, 1.4vw, 18px)', color: '#625B55', lineHeight: 1.72, marginBottom: '52px', maxWidth: '480px' }}>
+                  Four focused steps. One clear workflow. Built around the way you actually work.
+                </p>
 
-                  <div>
-                    <span
-                      className="font-ui text-xs font-semibold uppercase tracking-[0.14em] block mb-1"
-                      style={{ color: '#8C7E74' }}
+                <div>
+                  {EN_STEPS.map((step, i) => (
+                    <div
+                      key={step.label}
+                      style={{
+                        paddingTop: i === 0 ? 0 : '28px',
+                        paddingBottom: i < EN_STEPS.length - 1 ? '28px' : 0,
+                        borderTop: i === 0 ? 'none' : '0.5px solid rgba(17,17,17,0.09)',
+                      }}
                     >
-                      {t('bestForLabel')}
-                    </span>
-                    <p className="font-ui text-sm" style={{ color: '#5A504A' }}>
-                      {t(svc.bestForKey)}
-                    </p>
-                  </div>
-
-                  <div>
-                    <span
-                      className="font-ui text-xs font-semibold uppercase tracking-[0.14em] block mb-2"
-                      style={{ color: '#8C7E74' }}
-                    >
-                      {t('toolsLabel')}
-                    </span>
-                    <div className="flex flex-wrap gap-2">
-                      {svc.tools.map((tool) => (
-                        <span
-                          key={tool}
-                          className="font-ui text-xs px-2.5 py-1 rounded-full"
-                          style={{
-                            background: 'rgba(0,0,0,0.04)',
-                            border: '0.5px solid rgba(0,0,0,0.08)',
-                            color: '#8C7E74',
-                          }}
-                        >
-                          {tool}
-                        </span>
-                      ))}
+                      <p style={{ fontFamily: SANS, fontSize: '10px', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#8C7E74', marginBottom: '8px' }}>
+                        {step.label}
+                      </p>
+                      <h3 style={{ fontFamily: SERIF, fontSize: 'clamp(19px, 2vw, 24px)', fontWeight: 400, color: '#111111', lineHeight: 1.2, letterSpacing: '-0.01em', marginBottom: '8px' }}>
+                        {step.title}
+                      </h3>
+                      <p style={{ fontFamily: SANS, fontSize: 'clamp(14px, 1.2vw, 16px)', color: '#625B55', lineHeight: 1.70, margin: 0, maxWidth: '500px' }}>
+                        {step.desc}
+                      </p>
                     </div>
-                  </div>
-
-                  <a
-                    href="#contact-form"
-                    className="mt-auto inline-flex items-center gap-1.5 font-ui font-semibold text-sm transition-opacity duration-200 hover:opacity-75 self-start"
-                    style={{ color: '#3F8DDE' }}
-                  >
-                    {t(svc.ctaKey)}
-                    <ArrowRight size={13} />
-                  </a>
+                  ))}
                 </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* How It Works */}
-      <section
-        className="py-20 md:py-24 relative overflow-hidden"
-        style={{ background: '#FAF6EF', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
-      >
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <span
-              className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
-            >
-              {t('howBadge')}
-            </span>
-            <h2
-              className="font-en font-bold text-3xl md:text-4xl leading-tight"
-              style={{ color: '#111111', letterSpacing: '-.02em' }}
-            >
-              {t('howTitle')}
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {HOW_STEPS.map((step) => (
-              <div
-                key={step.numKey}
-                className="relative p-6 rounded-2xl"
-                style={{
-                  background: '#F1E8DD',
-                  border: '0.5px solid rgba(17,17,17,0.12)',
-                }}
-              >
-                <div
-                  className="font-en font-bold text-4xl mb-4 leading-none"
-                  style={{ color: 'rgba(0,0,0,0.08)' }}
-                >
-                  {t(step.numKey)}
-                </div>
-                <h3 className="font-en font-semibold text-lg mb-2" style={{ color: '#111111' }}>
-                  {t(step.titleKey)}
-                </h3>
-                <p className="font-ui text-sm leading-relaxed" style={{ color: '#5A504A' }}>
-                  {t(step.descKey)}
-                </p>
               </div>
-            ))}
+
+            </div>
           </div>
-        </div>
+        </MotionFadeIn>
       </section>
 
-      {/* Who This Is For */}
+      {/* ── 05 / Who It's For ─────────────────────────────────────────────── */}
       <section
-        className="py-20 md:py-24 relative"
-        style={{ background: '#FAF6EF', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+        dir="ltr"
+        style={{ background: '#F1E8DD', padding: SECTION_PAD, borderTop: BORDER }}
       >
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span
-              className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
-            >
-              {t('whoBadge')}
-            </span>
-            <h2
-              className="font-en font-bold text-3xl md:text-4xl leading-tight"
-              style={{ color: '#111111', letterSpacing: '-.02em' }}
-            >
-              {t('whoTitle')}
-            </h2>
-          </div>
+        <MotionFadeIn>
+          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+            <div className="grid grid-cols-1 md:grid-cols-[196px_1fr] gap-10 md:gap-[72px]" style={{ alignItems: 'start' }}>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {WHO_KEYS.map((key) => (
-              <div
-                key={key}
-                className="flex items-start gap-3 p-5 rounded-xl"
-                style={{
-                  background: '#F1E8DD',
-                  border: '0.5px solid rgba(17,17,17,0.12)',
-                }}
-              >
-                <CheckCircle
-                  size={18}
-                  className="flex-shrink-0 mt-0.5"
-                  style={{ color: '#3F8DDE' }}
-                />
-                <p className="font-ui text-sm leading-relaxed" style={{ color: '#5A504A' }}>
-                  {t(key)}
+              <SectionLabel num="05" label="WHO IT'S FOR" />
+
+              <div>
+                <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(32px, 4vw, 56px)', fontWeight: 400, color: '#111111', lineHeight: 1.08, letterSpacing: '-0.02em', marginBottom: '20px' }}>
+                  Built for people who want AI to feel practical
+                </h2>
+                <p style={{ fontFamily: SANS, fontSize: 'clamp(16px, 1.4vw, 18px)', color: '#625B55', lineHeight: 1.72, marginBottom: '44px', maxWidth: '520px' }}>
+                  This is for non-technical professionals, creators, freelancers, and small business owners who want useful AI systems without learning to code.
                 </p>
+
+                <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+                  {EN_WHO.map((item, i) => (
+                    <li
+                      key={i}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '14px',
+                        padding: '14px 0',
+                        borderTop: '0.5px solid rgba(17,17,17,0.09)',
+                        fontFamily: SANS,
+                        fontSize: 'clamp(15px, 1.3vw, 17px)',
+                        color: '#625B55',
+                        lineHeight: 1.65,
+                      }}
+                    >
+                      <span aria-hidden="true" style={{ flexShrink: 0, marginTop: '8px', width: '5px', height: '5px', borderRadius: '50%', background: '#E34E2E', display: 'block' }} />
+                      {item}
+                    </li>
+                  ))}
+                  <li style={{ height: '0.5px', background: 'rgba(17,17,17,0.09)', padding: 0, border: 'none', display: 'block' }} />
+                </ul>
               </div>
-            ))}
+
+            </div>
           </div>
-        </div>
+        </MotionFadeIn>
       </section>
 
-      {/* Inquiry Form */}
+      {/* ── Final CTA ─────────────────────────────────────────────────────── */}
+      <section
+        dir="ltr"
+        style={{
+          background: [
+            'radial-gradient(ellipse 70% 90% at 85% 0%, rgba(227,78,46,0.14) 0%, rgba(244,160,130,0.09) 40%, transparent 68%)',
+            '#FFFDF8',
+          ].join(', '),
+          padding: SECTION_PAD,
+          borderTop: BORDER,
+        }}
+      >
+        <MotionFadeIn>
+          <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+            <p style={{ fontFamily: SANS, fontSize: '11px', fontWeight: 600, letterSpacing: '0.20em', textTransform: 'uppercase', color: '#E34E2E', marginBottom: '28px' }}>
+              Ready when you are
+            </p>
+            <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(34px, 5vw, 68px)', fontWeight: 400, color: '#111111', lineHeight: 1.06, letterSpacing: '-0.025em', marginBottom: '24px' }}>
+              Let&apos;s build your first{' '}
+              <em style={{ fontStyle: 'italic' }}>practical AI workflow.</em>
+            </h2>
+            <p style={{ fontFamily: SANS, fontSize: 'clamp(16px, 1.4vw, 18px)', color: '#625B55', lineHeight: 1.72, maxWidth: '500px', margin: '0 auto 48px' }}>
+              Start with one repeated task, one clear system, and a setup you can actually use.
+            </p>
+            <a
+              href="#contact-form"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '17px 40px',
+                background: '#E34E2E',
+                color: '#FFFDF8',
+                borderRadius: '100px',
+                textDecoration: 'none',
+                fontFamily: SANS,
+                fontSize: '17px',
+                fontWeight: 600,
+                letterSpacing: '0.01em',
+              }}
+            >
+              Start a Project
+              <ArrowRight size={16} />
+            </a>
+          </div>
+        </MotionFadeIn>
+      </section>
+
+      {/* ── Contact Form ──────────────────────────────────────────────────── */}
       <section
         id="contact-form"
-        className="py-20 md:py-24 relative"
-        style={{ background: '#FAF6EF', borderTop: '0.5px solid rgba(0,0,0,0.06)' }}
+        dir="ltr"
+        style={{
+          background: '#FAF6EF',
+          padding: SECTION_PAD,
+          borderTop: BORDER,
+          scrollMarginTop: '88px',
+        }}
       >
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span
-              className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
-            >
-              {t('formBadge')}
-            </span>
-            <h2
-              className="font-en font-bold text-3xl md:text-4xl leading-tight mb-4"
-              style={{ color: '#111111', letterSpacing: '-.02em' }}
-            >
-              {t('formTitle')}
-            </h2>
-            <p className="font-ui text-base leading-relaxed" style={{ color: '#5A504A' }}>
-              {t('formSubtitle')}
-            </p>
+        <MotionFadeIn>
+          <div style={{ maxWidth: '640px', margin: '0 auto' }}>
+            <div style={{ textAlign: 'center', marginBottom: '52px' }}>
+              <p style={{ fontFamily: SANS, fontSize: '11px', fontWeight: 600, letterSpacing: '0.20em', textTransform: 'uppercase', color: '#E34E2E', marginBottom: '20px' }}>
+                Work with me
+              </p>
+              <h2 style={{ fontFamily: SERIF, fontSize: 'clamp(28px, 3.5vw, 48px)', fontWeight: 400, color: '#111111', lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: '16px' }}>
+                Tell me about your project
+              </h2>
+              <p style={{ fontFamily: SANS, fontSize: '16px', color: '#625B55', lineHeight: 1.65 }}>
+                Fill in a few details and I&apos;ll get back to you within 48 hours.
+              </p>
+            </div>
+            <ServiceInquiryForm />
           </div>
-          <ServiceInquiryForm />
-        </div>
+        </MotionFadeIn>
       </section>
 
-      {/* Start CTA */}
     </>
   )
 }

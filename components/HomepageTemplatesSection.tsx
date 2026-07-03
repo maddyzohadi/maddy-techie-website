@@ -22,7 +22,7 @@ export default async function HomepageTemplatesSection() {
 
         <div className="text-center mb-16">
           <span
-            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
+            className="inline-flex items-center font-ui text-[13px] font-bold uppercase tracking-[0.10em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
           >
             {t('badge')}
           </span>
@@ -67,7 +67,7 @@ export default async function HomepageTemplatesSection() {
                     <Icon size={20} style={{ color: '#3F8DDE' }} />
                   </div>
                   <span
-                    className="font-ui text-xs font-semibold uppercase tracking-[0.14em] px-2.5 py-1 rounded-md bg-brand-surface text-brand-coral"
+                    className="font-ui text-[12px] font-bold uppercase tracking-[0.08em] px-2.5 py-1 rounded-md bg-brand-surface text-brand-coral"
                   >
                     {t(tmpl.badgeKey)}
                   </span>

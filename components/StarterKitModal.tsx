@@ -132,8 +132,8 @@ export default function StarterKitModal({ isOpen, onClose }: StarterKitModalProp
           ) : (
             <>
               <p
-                className="font-ui text-xs font-semibold uppercase tracking-[0.20em] mb-4"
-                style={{ color: 'rgba(90,80,74,0.55)' }}
+                className="font-ui text-[13px] font-bold uppercase tracking-[0.12em] mb-4"
+                style={{ color: '#E34E2E' }}
               >
                 Free Resource
               </p>

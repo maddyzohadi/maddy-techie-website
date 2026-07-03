@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Navigation from '@/components/Navigation'
-import AboutSection from '@/components/AboutSection'
+import EnAboutPageContent from '@/components/EnAboutPageContent'
 import FaAboutPageContent from '@/components/FaAboutPageContent'
 import Footer from '@/components/Footer'
 import AIAssistant from '@/components/AIAssistant'
@@ -53,7 +53,7 @@ export default async function AboutPage({
       </h1>
       <Navigation />
       <div className="pt-[72px]">
-        {isFa ? <FaAboutPageContent /> : <AboutSection />}
+        {isFa ? <FaAboutPageContent /> : <EnAboutPageContent />}
       </div>
       <Footer />
       <AIAssistant />

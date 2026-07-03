@@ -142,8 +142,176 @@ const FA_CATEGORY_LABELS: Record<string, string> = {
   'Client Work': 'کار مشتری',
 }
 
-// ── Thumbnail ──────────────────────────────────────────────────────────────
-function Thumbnail({ cat }: { cat: string }) {
+// ── EN Thumbnail (editorial, no blue) ─────────────────────────────────────
+function ThumbnailEN({ cat }: { cat: string }) {
+  const base: React.CSSProperties = {
+    height: '148px',
+    borderRadius: '8px',
+    overflow: 'hidden',
+    position: 'relative',
+    background: '#FFFDF8',
+    border: '0.5px solid rgba(17,17,17,0.08)',
+    flexShrink: 0,
+  }
+
+  if (cat === 'AI Prompts') {
+    return (
+      <div style={base} aria-hidden>
+        <div style={{ padding: '14px', display: 'flex', flexDirection: 'column', gap: '8px', height: '100%' }}>
+          {/* User message */}
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <div style={{ background: '#F1E8DD', border: '0.5px solid #E6D7C8', borderRadius: '8px 8px 2px 8px', padding: '7px 10px', maxWidth: '80%' }}>
+              <div style={{ height: 3, borderRadius: 2, background: '#D4CCC5', width: '88%', marginBottom: 4 }} />
+              <div style={{ height: 3, borderRadius: 2, background: '#D4CCC5', width: '60%' }} />
+            </div>
+          </div>
+          {/* AI reply */}
+          <div style={{ display: 'flex', gap: '6px', alignItems: 'flex-start' }}>
+            <div style={{ width: 16, height: 16, borderRadius: '50%', background: 'rgba(227,78,46,0.12)', border: '0.5px solid rgba(227,78,46,0.22)', flexShrink: 0, marginTop: 1 }} />
+            <div style={{ background: 'rgba(227,78,46,0.06)', border: '0.5px solid rgba(227,78,46,0.14)', borderRadius: '2px 8px 8px 8px', padding: '7px 10px', flex: 1 }}>
+              <div style={{ height: 3, borderRadius: 2, background: 'rgba(227,78,46,0.26)', width: '76%', marginBottom: 4 }} />
+              <div style={{ height: 3, borderRadius: 2, background: 'rgba(227,78,46,0.15)', width: '52%' }} />
+            </div>
+          </div>
+          {/* Second user message */}
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <div style={{ background: '#F1E8DD', border: '0.5px solid #E6D7C8', borderRadius: '8px 8px 2px 8px', padding: '7px 10px', maxWidth: '65%' }}>
+              <div style={{ height: 3, borderRadius: 2, background: '#D4CCC5', width: '80%' }} />
+            </div>
+          </div>
+          {/* Typing dots */}
+          <div style={{ display: 'flex', gap: 4, paddingLeft: 22, alignItems: 'center', marginTop: 2 }}>
+            {[0, 1, 2].map((i) => (
+              <div key={i} style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(227,78,46,0.30)' }} />
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (cat === 'Reports') {
+    return (
+      <div style={base} aria-hidden>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+          <div style={{ background: '#111111', padding: '9px 13px', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#E34E2E', flexShrink: 0 }} />
+            <div style={{ height: 4, width: 58, borderRadius: 3, background: 'rgba(255,249,241,0.28)' }} />
+          </div>
+          <div style={{ padding: '11px 13px', display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
+            {[90, 76, 84, 56].map((w, i) => (
+              <div key={i} style={{ height: 4, borderRadius: 3, background: i === 3 ? 'rgba(227,78,46,0.20)' : '#E6D7C8', width: `${w}%` }} />
+            ))}
+            <div style={{ display: 'flex', gap: 6, marginTop: 1 }}>
+              <div style={{ background: 'rgba(227,78,46,0.08)', border: '0.5px solid rgba(227,78,46,0.18)', borderRadius: 5, width: 50, height: 16 }} />
+              <div style={{ background: '#F1E8DD', border: '0.5px solid #E6D7C8', borderRadius: 5, width: 38, height: 16 }} />
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (cat === 'Content') {
+    return (
+      <div style={base} aria-hidden>
+        <div style={{ padding: '12px', display: 'flex', flexDirection: 'column', gap: 6, height: '100%' }}>
+          <div style={{ display: 'flex', gap: 4 }}>
+            {(['M', 'T', 'W', 'T', 'F'] as const).map((d, i) => (
+              <div
+                key={i}
+                style={{
+                  flex: 1, height: 22, borderRadius: 5,
+                  background: i === 2 ? '#E34E2E' : '#FFFDF8',
+                  border: `0.5px solid ${i === 2 ? 'rgba(227,78,46,0.42)' : '#E6D7C8'}`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                }}
+              >
+                <span style={{ fontSize: '8px', fontFamily: 'system-ui', fontWeight: 700, color: i === 2 ? '#fff' : '#B8B0A7' }}>{d}</span>
+              </div>
+            ))}
+          </div>
+          {[
+            ['rgba(227,78,46,0.07)', 'rgba(227,78,46,0.16)', '56%'],
+            ['#FFFDF8', '#E6D7C8', '40%'],
+            ['#FFFDF8', '#E6D7C8', '64%'],
+            ['rgba(227,78,46,0.04)', 'rgba(227,78,46,0.12)', '48%'],
+          ].map(([bg, border, w], i) => (
+            <div key={i} style={{ height: 18, borderRadius: 5, background: bg, border: `0.5px solid ${border}`, width: w }} />
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  if (cat === 'Google Sheets') {
+    return (
+      <div style={{ ...base }} aria-hidden>
+        <div style={{ display: 'flex', borderBottom: '0.5px solid rgba(255,255,255,0.18)' }}>
+          {(['Name', 'Category', '★'] as const).map((h, i) => (
+            <div
+              key={i}
+              style={{
+                flex: i === 0 ? 2 : 1,
+                padding: '7px 9px',
+                background: '#111111',
+                borderRight: i < 2 ? '0.5px solid rgba(255,255,255,0.14)' : 'none',
+                display: 'flex', alignItems: 'center',
+              }}
+            >
+              <span style={{ fontSize: '9px', fontFamily: 'system-ui', fontWeight: 700, color: 'rgba(255,249,241,0.82)' }}>{h}</span>
+            </div>
+          ))}
+        </div>
+        {[0, 1, 2, 3].map((ri) => (
+          <div key={ri} style={{ display: 'flex', borderBottom: ri < 3 ? '0.5px solid #E6D7C8' : 'none', background: ri % 2 === 0 ? '#FFFDF8' : '#FAF6EF' }}>
+            {[2, 1, 1].map((flex, ci) => (
+              <div key={ci} style={{ flex, padding: '8px 9px', borderRight: ci < 2 ? '0.5px solid #E6D7C8' : 'none', display: 'flex', alignItems: 'center' }}>
+                <div style={{ height: 4, borderRadius: 2, background: ci === 2 ? 'rgba(227,78,46,0.22)' : '#E6D7C8', width: ci === 0 ? '68%' : '52%' }} />
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  // Client Work (default)
+  const enStatuses = [
+    { color: '#E34E2E', label: 'HOT' },
+    { color: '#8C7E74', label: 'WARM' },
+    { color: 'rgba(17,17,17,0.28)', label: 'cold' },
+  ]
+  return (
+    <div style={{ ...base }} aria-hidden>
+      <div style={{ background: '#111111', padding: '8px 12px', display: 'flex', gap: 6 }}>
+        {(['Name', 'Status', 'Follow-up'] as const).map((h, i) => (
+          <div key={i} style={{ flex: i === 0 ? 2 : 1 }}>
+            <span style={{ fontSize: '8px', fontFamily: 'system-ui', fontWeight: 700, color: 'rgba(255,249,241,0.40)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{h}</span>
+          </div>
+        ))}
+      </div>
+      {enStatuses.map((s, ri) => (
+        <div key={ri} style={{ display: 'flex', padding: '9px 12px', borderBottom: '0.5px solid #E6D7C8', alignItems: 'center', gap: 6, background: '#FFFDF8' }}>
+          <div style={{ flex: 2 }}>
+            <div style={{ height: 4, borderRadius: 2, background: '#E6D7C8', width: '68%' }} />
+          </div>
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 4 }}>
+            <div style={{ width: 6, height: 6, borderRadius: '50%', background: s.color, flexShrink: 0 }} />
+            <span style={{ fontSize: '8px', fontFamily: 'system-ui', fontWeight: 700, color: s.color, textTransform: 'uppercase' }}>{s.label}</span>
+          </div>
+          <div style={{ flex: 1 }}>
+            <div style={{ height: 4, borderRadius: 2, background: '#E6D7C8', width: '78%' }} />
+          </div>
+        </div>
+      ))}
+      <div style={{ flex: 1, background: '#FAF6EF' }} />
+    </div>
+  )
+}
+
+// ── FA Thumbnail (original design unchanged) ───────────────────────────────
+function ThumbnailFA({ cat }: { cat: string }) {
   const base: React.CSSProperties = {
     height: '148px',
     borderRadius: '10px',
@@ -267,7 +435,7 @@ function Thumbnail({ cat }: { cat: string }) {
   }
 
   // Client Work (default)
-  const statuses = [
+  const faStatuses = [
     { color: '#3F8DDE', label: 'HOT' },
     { color: '#52C47A', label: 'WARM' },
     { color: '#B8B0A7', label: 'cold' },
@@ -281,7 +449,7 @@ function Thumbnail({ cat }: { cat: string }) {
           </div>
         ))}
       </div>
-      {statuses.map((s, ri) => (
+      {faStatuses.map((s, ri) => (
         <div key={ri} style={{ display: 'flex', padding: '9px 12px', borderBottom: '0.5px solid #E6D7C8', alignItems: 'center', gap: 6, background: '#FFFDF8' }}>
           <div style={{ flex: 2 }}>
             <div style={{ height: 4, borderRadius: 2, background: '#E6D7C8', width: '68%' }} />
@@ -426,9 +594,10 @@ function PreviewModal({
           className="font-ui font-bold inline-flex items-center justify-center gap-2"
           style={{
             width: '100%', padding: '14px 24px',
-            borderRadius: '8px', fontSize: '15px',
+            borderRadius: isFa ? '8px' : '100px',
+            fontSize: '15px',
             color: '#FFFDF8', textDecoration: 'none',
-            background: '#3F8DDE',
+            background: isFa ? '#3F8DDE' : '#111111',
           }}
         >
           {isFa ? 'دریافت قالب' : 'Get template'}
@@ -457,6 +626,207 @@ export default function ResourcesSection() {
 
   const catLabel = (cat: string) => isFa ? (FA_CATEGORY_LABELS[cat] ?? cat) : cat
 
+  // ── EN: editorial premium design ────────────────────────────────────
+  if (!isFa) {
+    return (
+      <>
+        <section
+          id="templates"
+          className="scroll-mt-24"
+          style={{
+            background: '#FFFDF8',
+            padding: 'clamp(56px, 7vw, 80px) clamp(24px, 8vw, 80px) clamp(80px, 10vw, 104px)',
+          }}
+        >
+          <div style={{ maxWidth: '1160px', margin: '0 auto' }}>
+
+            {/* Filter pills */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px', marginBottom: '12px' }}>
+              {CATEGORIES.map((cat) => {
+                const active = filter === cat
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => setFilter(cat)}
+                    className="font-ui cursor-pointer transition-all duration-200"
+                    style={{
+                      padding: '8px 20px',
+                      borderRadius: '100px',
+                      fontSize: '13.5px',
+                      fontWeight: active ? 600 : 400,
+                      border: active ? 'none' : '0.5px solid rgba(17,17,17,0.14)',
+                      background: active ? '#111111' : 'transparent',
+                      color: active ? '#FFFDF8' : '#625B55',
+                    }}
+                  >
+                    {cat}
+                  </button>
+                )
+              })}
+            </div>
+
+            {/* Template count */}
+            <p
+              className="font-ui text-center mb-10"
+              style={{ fontSize: '12px', color: 'rgba(17,17,17,0.32)', letterSpacing: '0.06em' }}
+            >
+              {visible.length} ready-to-run template{visible.length !== 1 ? 's' : ''}
+            </p>
+
+            {/* Card grid */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+                gap: '24px',
+              }}
+            >
+              {visible.map((tmpl) => (
+                <div
+                  key={tmpl.id}
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '16px',
+                    padding: '20px',
+                    borderRadius: '12px',
+                    background: '#FFFDF8',
+                    border: '0.5px solid rgba(17,17,17,0.09)',
+                    boxShadow: '0 1px 4px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.03)',
+                  }}
+                >
+                  <ThumbnailEN cat={tmpl.cat} />
+
+                  {/* Tier + name */}
+                  <div>
+                    <span
+                      className="font-ui"
+                      style={{
+                        display: 'inline-block',
+                        marginBottom: '7px',
+                        padding: '3px 9px',
+                        borderRadius: '4px',
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        letterSpacing: '.06em',
+                        ...(tmpl.tier === 'Premium'
+                          ? { background: '#111111', color: '#FFFDF8' }
+                          : { background: 'rgba(17,17,17,0.05)', border: '0.5px solid rgba(17,17,17,0.09)', color: '#8C7E74' }),
+                      }}
+                    >
+                      {tmpl.tier.toUpperCase()}
+                    </span>
+                    <h3
+                      style={{
+                        fontFamily: "'DM Serif Display', serif",
+                        fontSize: 'clamp(18px, 1.6vw, 21px)',
+                        fontWeight: 400,
+                        color: '#111111',
+                        letterSpacing: '-0.01em',
+                        lineHeight: 1.2,
+                        margin: 0,
+                      }}
+                    >
+                      {tmpl.name}
+                    </h3>
+                  </div>
+
+                  {/* Description */}
+                  <p
+                    className="font-ui"
+                    style={{ fontSize: '14px', color: '#625B55', lineHeight: 1.55, margin: 0, flexGrow: 1 }}
+                  >
+                    {tmpl.desc}
+                  </p>
+
+                  {/* Tool tags */}
+                  <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                    {tmpl.tools.map((tool) => (
+                      <span
+                        key={tool}
+                        className="font-ui"
+                        style={{
+                          padding: '4px 10px',
+                          borderRadius: '6px',
+                          fontSize: '11.5px',
+                          fontWeight: 500,
+                          color: '#8C7E74',
+                          background: 'rgba(17,17,17,0.04)',
+                          border: '0.5px solid rgba(17,17,17,0.09)',
+                        }}
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Footer actions */}
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      paddingTop: '14px',
+                      borderTop: '0.5px solid rgba(17,17,17,0.07)',
+                    }}
+                  >
+                    <a
+                      href="#contact"
+                      className="font-ui font-bold inline-flex items-center gap-1.5"
+                      style={{ fontSize: '14px', color: '#E34E2E', textDecoration: 'none' }}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Get template
+                      <ArrowRight size={13} />
+                    </a>
+                    <button
+                      type="button"
+                      className="font-ui cursor-pointer"
+                      style={{
+                        fontSize: '13px', fontWeight: 500, color: '#625B55',
+                        background: 'none',
+                        border: '0.5px solid rgba(17,17,17,0.12)',
+                        padding: '6px 14px', borderRadius: '8px',
+                        transition: 'color 0.15s, border-color 0.15s',
+                      }}
+                      onMouseEnter={(e) => {
+                        const el = e.currentTarget as HTMLButtonElement
+                        el.style.color = '#E34E2E'
+                        el.style.borderColor = 'rgba(227,78,46,0.30)'
+                      }}
+                      onMouseLeave={(e) => {
+                        const el = e.currentTarget as HTMLButtonElement
+                        el.style.color = '#625B55'
+                        el.style.borderColor = 'rgba(17,17,17,0.12)'
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setPreviewId(tmpl.id)
+                      }}
+                    >
+                      Preview
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </section>
+
+        {previewTmpl && (
+          <PreviewModal
+            tmpl={previewTmpl}
+            isFa={false}
+            onClose={() => setPreviewId(null)}
+          />
+        )}
+      </>
+    )
+  }
+
+  // ── FA: keep existing design unchanged ───────────────────────────────
   return (
     <>
       <section
@@ -472,8 +842,9 @@ export default function ResourcesSection() {
               return (
                 <button
                   key={cat}
+                  type="button"
                   onClick={() => setFilter(cat)}
-                  className={`${isFa ? 'font-fa' : 'font-ui'} font-semibold cursor-pointer transition-all duration-200`}
+                  className="font-fa font-semibold cursor-pointer transition-all duration-200"
                   style={{
                     padding: '9px 20px',
                     borderRadius: '8px',
@@ -490,12 +861,10 @@ export default function ResourcesSection() {
           </div>
 
           <p
-            className={`${isFa ? 'font-fa' : 'font-ui'} text-center mb-10`}
-            style={{ fontSize: '13.5px', color: 'rgba(98,91,85,0.45)' }}
+            className="font-fa text-center mb-10"
+            style={{ fontSize: '13px', fontWeight: 700, color: '#E34E2E' }}
           >
-            {isFa
-              ? `${visible.length} قالب آماده`
-              : `${visible.length} ready-to-run template${visible.length !== 1 ? 's' : ''}`}
+            {visible.length} قالب آماده
           </p>
 
           <div
@@ -509,7 +878,6 @@ export default function ResourcesSection() {
             {visible.map((tmpl) => (
               <div
                 key={tmpl.id}
-                className="template-card"
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -520,7 +888,7 @@ export default function ResourcesSection() {
                   border: '0.5px solid #E6D7C8',
                 }}
               >
-                <Thumbnail cat={tmpl.cat} />
+                <ThumbnailFA cat={tmpl.cat} />
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
                   <span
@@ -539,7 +907,7 @@ export default function ResourcesSection() {
                     {tierLabel(tmpl.tier)}
                   </span>
                   <h3
-                    className={`${isFa ? 'font-fa' : 'font-en'}`}
+                    className="font-fa"
                     style={{ fontSize: '18px', fontWeight: 700, color: '#111111', letterSpacing: '-.01em', lineHeight: 1.25, margin: 0 }}
                   >
                     {tmpl.name}
@@ -547,7 +915,7 @@ export default function ResourcesSection() {
                 </div>
 
                 <p
-                  className={`${isFa ? 'font-fa' : 'font-ui'}`}
+                  className="font-fa"
                   style={{ fontSize: '14px', color: '#625B55', lineHeight: 1.5, margin: 0, flexGrow: 1 }}
                 >
                   {tmpl.desc}
@@ -584,15 +952,16 @@ export default function ResourcesSection() {
                 >
                   <a
                     href="#contact"
-                    className={`${isFa ? 'font-fa' : 'font-ui'} font-bold inline-flex items-center gap-1.5`}
+                    className="font-fa font-bold inline-flex items-center gap-1.5"
                     style={{ fontSize: '14.5px', color: '#3F8DDE', textDecoration: 'none' }}
                     onClick={(e) => e.stopPropagation()}
                   >
-                    {isFa ? 'دریافت قالب' : 'Get template'}
-                    <ArrowRight size={14} className={isFa ? 'rotate-180' : ''} />
+                    دریافت قالب
+                    <ArrowRight size={14} className="rotate-180" />
                   </a>
                   <button
-                    className={`${isFa ? 'font-fa' : 'font-ui'} cursor-pointer transition-colors duration-200`}
+                    type="button"
+                    className="font-fa cursor-pointer transition-colors duration-200"
                     style={{
                       fontSize: '13.5px', fontWeight: 500, color: '#625B55',
                       background: 'none',
@@ -614,7 +983,7 @@ export default function ResourcesSection() {
                       setPreviewId(tmpl.id)
                     }}
                   >
-                    {isFa ? 'پیش‌نمایش' : 'Preview'}
+                    پیش‌نمایش
                   </button>
                 </div>
               </div>
@@ -627,7 +996,7 @@ export default function ResourcesSection() {
       {previewTmpl && (
         <PreviewModal
           tmpl={previewTmpl}
-          isFa={isFa}
+          isFa={true}
           onClose={() => setPreviewId(null)}
         />
       )}

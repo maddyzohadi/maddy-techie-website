@@ -40,9 +40,9 @@ export default function FaAboutPageContent() {
           <p
             style={{
               fontFamily: vaFont,
-              fontSize: '11px',
-              fontWeight: 600,
-              color: '#ED5821',
+              fontSize: '13px',
+              fontWeight: 700,
+              color: '#E34E2E',
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
               marginBottom: '20px',
@@ -105,11 +105,11 @@ export default function FaAboutPageContent() {
                   color: '#111111',
                   lineHeight: 1.75,
                   marginBottom: '14px',
-                  borderRight: '2px solid #ED5821',
+                  borderRight: '2px solid #E34E2E',
                   paddingRight: '16px',
                 }}
               >
-                «هوش مصنوعی را برای همه‌ی کسانی که کد نمی‌زنند، کاربردی می‌کنم.»
+                «کمک می‌کنم هوش مصنوعی را بدون کدنویسی، در کار واقعی و روزمره به کار بگیری.»
               </p>
               <p
                 style={{
@@ -178,7 +178,7 @@ export default function FaAboutPageContent() {
                     fontFamily: vaFont,
                     fontSize: '13px',
                     fontWeight: 700,
-                    color: '#ED5821',
+                    color: '#E34E2E',
                     flexShrink: 0,
                     width: '22px',
                     textAlign: 'center',

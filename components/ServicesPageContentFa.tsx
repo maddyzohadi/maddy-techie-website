@@ -44,9 +44,9 @@ export default function ServicesPageContentFa() {
           <p
             style={{
               fontFamily: vaFont,
-              fontSize: '11px',
-              fontWeight: 600,
-              color: '#ED5821',
+              fontSize: '13px',
+              fontWeight: 700,
+              color: '#E34E2E',
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
               marginBottom: '20px',
@@ -224,7 +224,7 @@ export default function ServicesPageContentFa() {
                     fontFamily: vaFont,
                     fontSize: '13px',
                     fontWeight: 700,
-                    color: '#ED5821',
+                    color: '#E34E2E',
                     flexShrink: 0,
                     width: '28px',
                     textAlign: 'center',
@@ -285,7 +285,7 @@ export default function ServicesPageContentFa() {
                 marginBottom: '8px',
               }}
             >
-              {t('formTitle')}
+              از کاری که می‌خواهی ساده‌تر شود بگو
             </h2>
             <p
               style={{
@@ -295,7 +295,7 @@ export default function ServicesPageContentFa() {
                 lineHeight: 1.85,
               }}
             >
-              {t('formSubtitle')}
+              چند خط درباره کاری که می‌خواهی ساده‌تر، سریع‌تر یا منظم‌تر شود بنویس. حداکثر تا ۴۸ ساعت پاسخ می‌دهم.
             </p>
           </div>
           <ServiceInquiryForm />

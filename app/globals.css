@@ -1,5 +1,5 @@
 /* --- Google Fonts ----------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=DM+Serif+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -21,8 +21,8 @@
   --color-brand-blue:    #3F8DDE;
   --color-brand-blue-dk: #2F70BF;
   --color-brand-sky:     #9CCCEF;
-  --color-brand-orange:  #ED5821;
-  --color-brand-clay:    #ED5821;
+  --color-brand-orange:  #E34E2E;
+  --color-brand-clay:    #E34E2E;
   --color-brand-white:   #FFFDF8;
 
   /* Derived */
@@ -407,6 +407,29 @@ h3 { font-size: var(--text-h3); }
     animation: none !important;
     transform: none !important;
   }
+}
+
+/* --- Hero background animations (EN homepage) ------------- */
+@keyframes heroRingPulse {
+  0%, 100% { stroke-opacity: 0.24; }
+  50%       { stroke-opacity: 0.58; }
+}
+@keyframes heroDashFlow {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -1200; }
+}
+@keyframes heroDashFlowRev {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: 900; }
+}
+.hero-ring-pulse {
+  animation: heroRingPulse 5s ease-in-out infinite;
+}
+.hero-dash-fwd {
+  animation: heroDashFlow 28s linear infinite;
+}
+.hero-dash-rev {
+  animation: heroDashFlowRev 20s linear infinite;
 }
 
 /* --- MaddyRibbonDivider — ribbon marquee -----------------------------------

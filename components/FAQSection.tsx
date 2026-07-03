@@ -64,7 +64,7 @@ export default function FAQSection() {
 
           <div className="text-center mb-14">
             <div className="flex justify-center mb-4">
-              <span className="inline-flex items-center font-ui text-[11px] font-semibold uppercase tracking-[0.18em] bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full">
+              <span className="inline-flex items-center font-ui text-[13px] font-bold uppercase tracking-[0.10em] bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full">
                 {isFa ? 'سوالات رایج' : 'FAQ'}
               </span>
             </div>

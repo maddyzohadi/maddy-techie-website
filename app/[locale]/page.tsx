@@ -5,11 +5,12 @@ import Hero from '@/components/Hero'
 import ProblemSection from '@/components/ProblemSection'
 import FaPainPoints from '@/components/FaPainPoints'
 import ServicesSection from '@/components/ServicesSection'
+import AutomationBenefitSection from '@/components/AutomationBenefitSection'
+import StartTodayCTA from '@/components/StartTodayCTA'
 import ProcessSection from '@/components/ProcessSection'
 import AboutSection from '@/components/AboutSection'
 import Footer from '@/components/Footer'
 import AIAssistant from '@/components/AIAssistant'
-import MaddyRibbonDivider from '@/components/MaddyRibbonDivider'
 import { routing } from '@/i18n/routing'
 
 const BASE = 'https://www.maddythetechie.com'
@@ -51,18 +52,19 @@ export default async function Home() {
     <main className="min-h-screen overflow-x-hidden">
       <Navigation />
       <Hero />
-      {!isFa && <MaddyRibbonDivider direction="left" duration={7} />}
 
-      {/* EN: problem cards */}
+      {/* EN: intro statement */}
       {!isFa && <ProblemSection />}
 
       {/* FA: who it's for + outcomes */}
       {isFa && <FaPainPoints />}
 
-      {/* Both: services preview → process → about */}
+      {/* Both: services → EN-only automation benefit → process → about */}
       <ServicesSection />
+      {!isFa && <AutomationBenefitSection />}
       <ProcessSection />
       <AboutSection />
+      {!isFa && <StartTodayCTA />}
 
       <Footer />
       <AIAssistant />

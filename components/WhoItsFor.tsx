@@ -48,7 +48,7 @@ export default async function WhoItsFor() {
 
         <div className="text-center mb-16">
           <span
-            className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
+            className="inline-flex items-center font-ui text-[13px] font-bold uppercase tracking-[0.10em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
           >
             {t('badge')}
           </span>
@@ -80,7 +80,7 @@ export default async function WhoItsFor() {
                   padding: '28px 30px',
                 }}
               >
-                <div className={`flex items-center gap-3 mb-6 ${isFa ? 'flex-row-reverse' : ''}`}>
+                <div className="flex items-center gap-3 mb-6">
                   <span
                     className="w-9 h-9 rounded-full flex items-center justify-center font-ui font-bold text-sm flex-shrink-0"
                     style={{
@@ -157,7 +157,7 @@ export default async function WhoItsFor() {
             {notKeys.map((key) => (
               <div
                 key={key}
-                className={`flex items-center gap-2.5 ${isFa ? 'font-fa flex-row-reverse' : 'font-ui'} text-sm`}
+                className={`flex items-center gap-2.5 ${isFa ? 'font-fa' : 'font-ui'} text-sm`}
                 style={{ color: '#625B55' }}
               >
                 <CheckCircle size={15} style={{ color: '#3F8DDE', flexShrink: 0 }} />

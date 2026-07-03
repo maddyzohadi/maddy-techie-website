@@ -32,7 +32,7 @@ export default function OutcomesSection() {
         <div className="text-center mb-14">
           <p
             className="font-ui font-bold mb-4"
-            style={{ fontSize: '13px', letterSpacing: '.22em', color: 'rgba(90,80,74,0.55)', textTransform: 'uppercase' }}
+            style={{ fontSize: '13px', fontWeight: 700, letterSpacing: '.12em', color: '#E34E2E', textTransform: 'uppercase' }}
           >
             {isFa ? 'چه چیزی ممکن می‌شود' : "What you'll be able to do"}
           </p>

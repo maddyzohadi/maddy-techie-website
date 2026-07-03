@@ -12,9 +12,9 @@ const FA_STEPS = [
 
 const EN_STEPS = [
   { week: 'Week 1', title: 'Understanding your needs', desc: "We find what's slowing you down and what would actually help." },
-  { week: 'Week 2', title: 'System design',            desc: 'A simple, clear plan built around your work.' },
-  { week: 'Week 3', title: 'Build & training',         desc: 'We build it together. You learn how it works.' },
-  { week: 'Week 4', title: 'Delivery & support',       desc: 'Ready to go. You take it from here.' },
+  { week: 'Week 2', title: 'System design',            desc: 'A simple, clear plan built around your work.'               },
+  { week: 'Week 3', title: 'Build & training',         desc: 'We build it together. You learn how it works.'              },
+  { week: 'Week 4', title: 'Delivery & support',       desc: 'Ready to go. You take it from here.'                       },
 ]
 
 const fadeIn = {
@@ -28,6 +28,7 @@ export default function ProcessSection() {
   const locale = useLocale()
   const isFa   = locale === 'fa'
 
+  /* ── FA: keep existing design unchanged ── */
   if (isFa) {
     const faFont = "var(--font-vazirmatn), 'Vazirmatn', sans-serif"
     return (
@@ -38,11 +39,12 @@ export default function ProcessSection() {
               <p
                 style={{
                   fontFamily: faFont,
-                  fontSize: '11px',
-                  fontWeight: 500,
-                  color: 'rgba(98,91,85,0.55)',
-                  marginBottom: '10px',
-                  letterSpacing: '0.04em',
+                  fontSize: '13px',
+                  fontWeight: 700,
+                  color: '#E34E2E',
+                  marginBottom: '12px',
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
                 }}
               >
                 روش کار
@@ -117,111 +119,146 @@ export default function ProcessSection() {
     )
   }
 
+  /* ── EN: editorial two-column layout ── */
   return (
     <section
+      dir="ltr"
       style={{
-        background: '#F1E8DD',
-        padding: '96px 24px',
-        borderTop: '0.5px solid rgba(17,17,17,0.12)',
+        background: '#FFFDF8',
+        padding: 'clamp(96px, 12vw, 140px) clamp(24px, 8vw, 80px)',
+        borderTop: '0.5px solid rgba(17,17,17,0.07)',
       }}
     >
       <motion.div
-        style={{ maxWidth: '1280px', margin: '0 auto', display: 'flex', gap: '80px', alignItems: 'flex-start', flexWrap: 'wrap' }}
+        style={{ maxWidth: '1200px', margin: '0 auto' }}
         {...fadeIn}
       >
-        {/* Left: eyebrow + heading */}
-        <div style={{ flex: '1 1 260px', maxWidth: '340px' }}>
-          <span
-            style={{
-              display: 'block',
-              fontFamily: 'system-ui, sans-serif',
-              fontSize: '11px',
-              fontWeight: 600,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: '#8C7E74',
-              marginBottom: '16px',
-            }}
-          >
-            THE PROCESS
-          </span>
-          <h2
-            style={{
-              fontFamily: "'DM Serif Display', serif",
-              fontSize: 'clamp(26px, 3.5vw, 42px)',
-              fontWeight: 700,
-              color: '#111111',
-              lineHeight: 1.2,
-              letterSpacing: '-0.02em',
-            }}
-          >
-            From first message to working system
-          </h2>
-        </div>
+        <div
+          className="grid grid-cols-1 md:grid-cols-[196px_1fr] gap-10 md:gap-[72px]"
+          style={{ alignItems: 'start' }}
+        >
 
-        {/* Right: timeline */}
-        <div style={{ flex: '2 1 360px' }}>
-          {EN_STEPS.map((step, i) => (
-            <div key={i}>
-              {i > 0 && (
-                <div style={{ height: '0.5px', background: 'rgba(0,0,0,0.08)' }} />
-              )}
-              <motion.div
+          {/* Left: section label */}
+          <div style={{ paddingTop: '6px' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'baseline',
+                gap: '14px',
+                marginBottom: '16px',
+              }}
+            >
+              <span
                 style={{
-                  display: 'flex',
-                  gap: '24px',
-                  alignItems: 'flex-start',
-                  padding: '28px 0',
+                  fontFamily: "'DM Serif Display', serif",
+                  fontStyle: 'italic',
+                  fontSize: 'clamp(52px, 6vw, 80px)',
+                  color: '#E34E2E',
+                  lineHeight: 1,
+                  letterSpacing: '-0.02em',
                 }}
-                whileHover={{ y: -4, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}
-                transition={{ duration: 0.2, ease: 'easeOut' }}
               >
-                <span
+                05
+              </span>
+              <span
+                style={{
+                  fontFamily: 'system-ui, -apple-system, sans-serif',
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase',
+                  color: '#8C7E74',
+                }}
+              >
+                PROCESS
+              </span>
+            </div>
+            <div style={{ height: '0.5px', background: 'rgba(17,17,17,0.14)' }} />
+          </div>
+
+          {/* Right: headline + steps */}
+          <div>
+            <h2
+              style={{
+                fontFamily: "'DM Serif Display', serif",
+                fontSize: 'clamp(38px, 5vw, 68px)',
+                fontWeight: 400,
+                color: '#111111',
+                lineHeight: 1.06,
+                letterSpacing: '-0.02em',
+                marginBottom: '20px',
+              }}
+            >
+              From first message to working system
+            </h2>
+
+            <p
+              style={{
+                fontFamily: 'system-ui, -apple-system, sans-serif',
+                fontSize: 'clamp(16px, 1.4vw, 19px)',
+                color: '#625B55',
+                lineHeight: 1.72,
+                marginBottom: '56px',
+                maxWidth: '480px',
+              }}
+            >
+              Four focused weeks. One clear system. Ready to use on day one.
+            </p>
+
+            {/* Steps */}
+            <div>
+              {EN_STEPS.map((step, i) => (
+                <div
+                  key={step.week}
                   style={{
-                    flexShrink: 0,
-                    fontFamily: 'system-ui, sans-serif',
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    color: '#8C7E74',
-                    letterSpacing: '0.06em',
-                    background: 'rgba(0,0,0,0.05)',
-                    border: '0.5px solid rgba(0,0,0,0.08)',
-                    borderRadius: '100px',
-                    padding: '4px 12px',
-                    whiteSpace: 'nowrap',
-                    marginTop: '2px',
+                    paddingTop: i === 0 ? 0 : '32px',
+                    paddingBottom: i < EN_STEPS.length - 1 ? '32px' : 0,
+                    borderTop: i === 0 ? 'none' : '0.5px solid rgba(17,17,17,0.09)',
                   }}
                 >
-                  {step.week}
-                </span>
-                <div>
                   <p
                     style={{
-                      fontFamily: "'DM Serif Display', serif",
-                      fontSize: '17px',
+                      fontFamily: 'system-ui, -apple-system, sans-serif',
+                      fontSize: '10px',
                       fontWeight: 700,
+                      letterSpacing: '0.18em',
+                      textTransform: 'uppercase',
+                      color: '#8C7E74',
+                      marginBottom: '10px',
+                    }}
+                  >
+                    {step.week}
+                  </p>
+                  <h3
+                    style={{
+                      fontFamily: "'DM Serif Display', serif",
+                      fontSize: 'clamp(20px, 2vw, 26px)',
+                      fontWeight: 400,
                       color: '#111111',
-                      lineHeight: 1.3,
-                      marginBottom: '6px',
+                      lineHeight: 1.2,
+                      letterSpacing: '-0.01em',
+                      marginBottom: '10px',
                     }}
                   >
                     {step.title}
-                  </p>
+                  </h3>
                   <p
                     style={{
-                      fontFamily: 'system-ui, sans-serif',
-                      fontSize: '14px',
-                      color: '#5A504A',
-                      lineHeight: 1.65,
+                      fontFamily: 'system-ui, -apple-system, sans-serif',
+                      fontSize: 'clamp(15px, 1.3vw, 17px)',
+                      color: '#625B55',
+                      lineHeight: 1.70,
                       margin: 0,
+                      maxWidth: '520px',
                     }}
                   >
                     {step.desc}
                   </p>
                 </div>
-              </motion.div>
+              ))}
             </div>
-          ))}
+          </div>
+
         </div>
       </motion.div>
     </section>

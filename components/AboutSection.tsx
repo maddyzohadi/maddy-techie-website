@@ -1,151 +1,175 @@
-import { ArrowRight } from 'lucide-react'
 import MotionFadeIn from './MotionFadeIn'
 import { getTranslations, getLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
+import { ArrowRight } from 'lucide-react'
 
 export default async function AboutSection() {
   const locale = await getLocale()
-  const t = await getTranslations('about')
-  const isFa = locale === 'fa'
+  const t      = await getTranslations('about')
+  const isFa   = locale === 'fa'
 
-  const headingColor = '#111111'
-  const bodyColor    = '#625B55'
+  /* ── FA: keep existing editorial design unchanged ── */
+  if (isFa) {
+    return (
+      <>
+        <section
+          id="about"
+          dir="rtl"
+          className="py-24 md:py-32 relative scroll-mt-[88px]"
+          style={{ background: '#FFF9F1', borderTop: '0.5px solid #E6D7C8' }}
+        >
+          <div className="relative z-10 max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <MotionFadeIn>
+              <div>
+                <span
+                  className="inline-flex items-center font-fa text-[13px] font-bold uppercase tracking-[0.06em] mb-4 px-3 py-1.5 rounded-full"
+                  style={{ background: 'rgba(156,204,239,0.14)', color: '#E34E2E', border: '0.5px solid rgba(156,204,239,0.30)' }}
+                >
+                  {t('badge')}
+                </span>
 
-  return (
-    <>
-      <section id="about" className="py-24 md:py-32 relative scroll-mt-[88px]" style={{ background: '#FFF9F1', borderTop: '0.5px solid #E6D7C8' }}>
-
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <MotionFadeIn>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-
-            {/* Left — avatar card */}
-            <div className="order-2 lg:order-1">
-              <div
-                className="bg-white border border-[#E6D7C8] rounded-2xl p-8 max-w-sm mx-auto"
-                dir={isFa ? 'rtl' : 'ltr'}
-              >
-                <p className={`${isFa ? 'font-fa text-xl' : "font-['DM_Serif_Display'] text-lg"} text-[#111111] mb-1`}>
-                  Maddy the Techie
-                </p>
-                {!isFa && (
-                  <p className="text-sm text-[#625B55] opacity-60 mb-6">
-                    AI &amp; Automation Educator · Silicon Valley
-                  </p>
-                )}
-                {isFa && (
-                  <p className="font-fa text-sm text-[#625B55] opacity-60 mb-6">
-                    مربی هوش مصنوعی و اتوماسیون
-                  </p>
-                )}
+                <h2
+                  className="font-fa font-bold text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight"
+                  style={{ color: '#111111', lineHeight: 1.4 }}
+                >
+                  {t('title')}
+                  <br />
+                  <span style={{ color: '#625B55' }}>{t('titleHighlight')}</span>
+                </h2>
 
                 <p
-                  className={`text-sm text-[#625B55] leading-relaxed italic mb-6 ${
-                    isFa
-                      ? 'font-fa border-r-2 border-[#ED5821] pr-3 text-right'
-                      : 'border-l-2 border-[#3F8DDE] pl-3'
-                  }`}
+                  className="font-fa text-lg leading-relaxed mb-10"
+                  style={{ color: '#625B55' }}
                 >
-                  {isFa
-                    ? 'هوش مصنوعی را برای همه‌ی کسانی که کد نمی‌زنند، کاربردی می‌کنم.'
-                    : "Making AI practical for everyone who doesn't code"}
+                  {t('desc1')}
                 </p>
 
-                {!isFa && (
-                  <div className="grid grid-cols-3 gap-3 mb-5">
-                    {[
-                      { num: '4', label: 'Modules' },
-                      { num: '12+', label: 'Projects' },
-                      { num: '100%', label: 'No-code' },
-                    ].map(({ num, label }) => (
-                      <div key={label} className="bg-[#FAF6EF] rounded-xl p-3 text-center">
-                        <span className="block text-xl font-medium text-[#111111]">{num}</span>
-                        <span className="block text-[11px] text-[#625B55] opacity-60 mt-0.5">{label}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {isFa && (
-                  <div className="flex justify-center mb-5">
-                    <div className="bg-[#FFF9F1] border border-[#E6D7C8] rounded-xl px-6 py-3 text-center">
-                      <span className="block text-2xl font-medium text-[#111111]">۴</span>
-                      <span className="block font-fa text-xs text-[#625B55] opacity-60 mt-0.5">ماژول</span>
-                    </div>
-                  </div>
-                )}
-
-                <div className="flex flex-wrap gap-1.5">
-                  {(isFa
-                    ? ['ChatGPT', 'Claude', 'Google Sheets']
-                    : ['ChatGPT', 'Claude', 'n8n', 'Google Sheets', 'Make']
-                  ).map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-[11px] text-[#625B55] opacity-60 border border-[#E6D7C8] rounded-full px-2.5 py-0.5"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                <Link
+                  href="/about"
+                  className="inline-flex items-center gap-2.5 font-fa font-semibold text-base px-9 py-4 rounded-full text-white no-underline"
+                  style={{ background: '#3F8DDE' }}
+                >
+                  {t('ctaLabel')}
+                  <ArrowRight size={16} className="rotate-180" />
+                </Link>
               </div>
+            </MotionFadeIn>
+          </div>
+        </section>
+
+        <FaFinalCTA />
+      </>
+    )
+  }
+
+  /* ── EN: editorial two-column layout ── */
+  return (
+    <section
+      id="about"
+      dir="ltr"
+      style={{
+        background: '#F1E8DD',
+        padding: 'clamp(96px, 12vw, 140px) clamp(24px, 8vw, 80px)',
+        borderTop: '0.5px solid rgba(17,17,17,0.07)',
+        scrollMarginTop: '88px',
+      }}
+    >
+      <MotionFadeIn>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div
+            className="grid grid-cols-1 md:grid-cols-[196px_1fr] gap-10 md:gap-[72px]"
+            style={{ alignItems: 'start' }}
+          >
+
+            {/* Left: section label */}
+            <div style={{ paddingTop: '6px' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  gap: '14px',
+                  marginBottom: '16px',
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "'DM Serif Display', serif",
+                    fontStyle: 'italic',
+                    fontSize: 'clamp(52px, 6vw, 80px)',
+                    color: '#E34E2E',
+                    lineHeight: 1,
+                    letterSpacing: '-0.02em',
+                  }}
+                >
+                  04
+                </span>
+                <span
+                  style={{
+                    fontFamily: 'system-ui, -apple-system, sans-serif',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    letterSpacing: '0.18em',
+                    textTransform: 'uppercase',
+                    color: '#8C7E74',
+                  }}
+                >
+                  ABOUT
+                </span>
+              </div>
+              <div style={{ height: '0.5px', background: 'rgba(17,17,17,0.14)' }} />
             </div>
 
-            {/* Right — intro */}
-            <div className="order-1 lg:order-2">
-              {isFa ? (
-                <span
-                  className="inline-flex items-center font-fa text-xs font-semibold uppercase tracking-[0.08em] mb-4 px-3 py-1.5 rounded-full"
-                  style={{ background: 'rgba(156,204,239,0.14)', color: '#ED5821', border: '0.5px solid rgba(156,204,239,0.30)' }}
-                >
-                  {t('badge')}
-                </span>
-              ) : (
-                <span className="inline-flex items-center font-ui text-xs font-semibold uppercase tracking-[0.14em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full">
-                  {t('badge')}
-                </span>
-              )}
+            {/* Right: content */}
+            <div>
               <h2
-                className={`${isFa ? 'font-fa' : 'font-en'} font-bold text-3xl md:text-4xl lg:text-5xl mb-6 leading-tight`}
-                style={{ color: headingColor, ...(isFa && { lineHeight: 1.4 }) }}
+                style={{
+                  fontFamily: "'DM Serif Display', serif",
+                  fontSize: 'clamp(38px, 5vw, 68px)',
+                  fontWeight: 400,
+                  color: '#111111',
+                  lineHeight: 1.06,
+                  letterSpacing: '-0.02em',
+                  marginBottom: '28px',
+                }}
               >
-                {t('title')}
-                <br />
-                <span style={{ color: bodyColor }}>{t('titleHighlight')}</span>
+                Practical AI education for modern work
               </h2>
 
-              <p className={`${isFa ? 'font-fa' : 'font-ui'} text-lg leading-relaxed mb-7`} style={{ color: bodyColor }}>
+              <p
+                style={{
+                  fontFamily: 'system-ui, -apple-system, sans-serif',
+                  fontSize: 'clamp(16px, 1.4vw, 19px)',
+                  color: '#625B55',
+                  lineHeight: 1.72,
+                  marginBottom: '40px',
+                  maxWidth: '580px',
+                }}
+              >
                 {t('desc1')}
               </p>
 
-              {/* Stat strip */}
-              <div
-                className="flex flex-wrap gap-x-6 gap-y-2 mb-8"
-                style={{ borderTop: '0.5px solid #E6D7C8', paddingTop: '20px' }}
-              >
-                {([t('stat0'), t('stat1'), t('stat2')] as string[]).map((stat, i) => (
-                  <span key={i} className={`${isFa ? 'font-fa' : 'font-ui'} font-semibold text-sm`} style={{ color: headingColor }}>
-                    {stat}
-                  </span>
-                ))}
-              </div>
-
               <Link
                 href="/about"
-                className={`inline-flex items-center gap-2.5 ${isFa ? 'font-fa' : 'font-ui'} font-semibold text-base px-9 py-4 rounded-full text-white no-underline transition-opacity duration-150 hover:opacity-90 ${isFa ? '' : 'bg-brand-blue hover:bg-brand-blue-dark hover:opacity-100'}`}
-                style={isFa ? { background: '#3F8DDE' } : undefined}
+                style={{
+                  display: 'inline-block',
+                  fontFamily: 'system-ui, -apple-system, sans-serif',
+                  fontSize: '16px',
+                  fontWeight: 700,
+                  color: '#111111',
+                  textDecoration: 'none',
+                  paddingBottom: '6px',
+                  borderBottom: '1.5px solid rgba(17,17,17,0.22)',
+                  transition: 'opacity 0.15s',
+                }}
               >
-                {t('ctaLabel')}
-                <ArrowRight size={16} className={locale === 'fa' ? 'rotate-180' : ''} />
+                {t('ctaLabel')} →
               </Link>
             </div>
 
           </div>
-          </MotionFadeIn>
         </div>
-      </section>
-
-      {locale === 'fa' && <FaFinalCTA />}
-    </>
+      </MotionFadeIn>
+    </section>
   )
 }
 
@@ -173,10 +197,10 @@ async function FaFinalCTA() {
           href="/services#contact-form"
           className="inline-flex items-center gap-2.5 font-fa font-semibold text-base px-9 py-4"
           style={{
-            background: '#111111',
-            color: '#ffffff',
-            borderRadius: '100px',
-            border: 'none',
+            background:     '#111111',
+            color:          '#ffffff',
+            borderRadius:   '100px',
+            border:         'none',
             textDecoration: 'none',
           }}
         >

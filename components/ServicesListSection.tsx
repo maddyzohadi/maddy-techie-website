@@ -49,11 +49,11 @@ export default function ServicesListSection() {
           style={{
             display: 'block',
             fontFamily: 'system-ui, sans-serif',
-            fontSize: '11px',
-            fontWeight: 600,
-            letterSpacing: '0.12em',
+            fontSize: '13px',
+            fontWeight: 700,
+            letterSpacing: '0.10em',
             textTransform: 'uppercase',
-            color: '#8C7E74',
+            color: '#E34E2E',
             marginBottom: '48px',
             textAlign: isFa ? 'center' : 'left',
           }}

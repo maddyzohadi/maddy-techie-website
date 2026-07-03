@@ -35,7 +35,6 @@ export default function Navigation() {
     return () => { document.body.style.overflow = '' }
   }, [isOpen])
 
-  // Close language dropdown on outside click
   useEffect(() => {
     if (!langOpen) return
     const handler = (e: MouseEvent) => {
@@ -47,34 +46,41 @@ export default function Navigation() {
     return () => document.removeEventListener('mousedown', handler)
   }, [langOpen])
 
-  const isActive = (href: string) => pathname === href
-  const navFont  = isFa ? "'Noto Naskh Arabic', serif" : "system-ui, sans-serif"
+  const isActive   = (href: string) => pathname === href
+  const navFont    = isFa ? "'Noto Naskh Arabic', serif" : "system-ui, sans-serif"
+  const activeColor = '#E34E2E'
 
   return (
     <>
       <header
+        dir={isFa ? 'rtl' : 'ltr'}
         style={{
           position: 'fixed',
-          top: 0, left: 0, right: 0,
+          top: '12px',
+          left: '12px',
+          right: '12px',
           zIndex: 100,
-          background: scrolled ? 'rgba(255,249,241,0.88)' : '#FFF9F1',
-          backdropFilter: scrolled ? 'blur(12px)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
-          borderBottom: '0.5px solid rgba(17,17,17,0.12)',
-          boxShadow: scrolled ? '0 1px 0 rgba(0,0,0,0.06)' : 'none',
-          transition: 'box-shadow 0.25s, backdrop-filter 0.25s, background 0.25s',
+          background: 'rgba(255,249,241,0.92)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          borderRadius: '16px',
+          border: '0.5px solid rgba(17,17,17,0.08)',
+          boxShadow: scrolled
+            ? '0 8px 32px rgba(0,0,0,0.10)'
+            : '0 2px 12px rgba(0,0,0,0.06)',
+          transition: 'box-shadow 0.25s',
         }}
       >
-        <div style={{ maxWidth: '1480px', margin: '0 auto', padding: '0 24px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '68px' }}>
+        <div style={{ maxWidth: '1480px', margin: '0 auto', padding: '0 20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px' }}>
 
             {/* Logo + Desktop nav — grouped left */}
-            <div className="flex items-center" style={{ gap: '32px' }}>
+            <div className="flex items-center" style={{ gap: '28px' }}>
               <Link href="/" onClick={() => setIsOpen(false)} style={{ textDecoration: 'none', flexShrink: 0 }}>
                 <span
                   style={{
                     fontFamily: "'DM Serif Display', serif",
-                    fontSize: '17px',
+                    fontSize: '16px',
                     fontWeight: 700,
                     color: '#111111',
                     letterSpacing: '-0.01em',
@@ -84,10 +90,9 @@ export default function Navigation() {
                 </span>
               </Link>
 
-              <nav className="hidden lg:flex" style={{ alignItems: 'center', gap: '24px' }}>
+              <nav className="hidden lg:flex" style={{ alignItems: 'center', gap: '20px' }}>
                 {navLinks.map((link) => {
                   const active = isActive(link.href)
-                  const activeColor = isFa ? '#111111' : '#3F8DDE'
                   return (
                     <Link
                       key={link.key}
@@ -144,14 +149,13 @@ export default function Navigation() {
                   <span style={{ fontSize: '8px', opacity: 0.55, marginLeft: '1px' }}>▾</span>
                 </button>
 
-                {/* Dropdown panel */}
                 {langOpen && (
                   <div
                     role="listbox"
                     style={{
                       position: 'absolute',
                       top: 'calc(100% + 8px)',
-                      right: 0,
+                      insetInlineEnd: 0,
                       background: '#FFFDF8',
                       border: '0.5px solid rgba(0,0,0,0.10)',
                       borderRadius: '12px',
@@ -180,7 +184,7 @@ export default function Navigation() {
                     >
                       English
                       {locale === 'en' && (
-                        <span style={{ color: '#3F8DDE', fontSize: '11px' }}>✓</span>
+                        <span style={{ color: activeColor, fontSize: '11px' }}>✓</span>
                       )}
                     </Link>
                     <Link
@@ -203,7 +207,7 @@ export default function Navigation() {
                     >
                       فارسی
                       {locale === 'fa' && (
-                        <span style={{ color: '#3F8DDE', fontSize: '11px', fontFamily: 'system-ui' }}>✓</span>
+                        <span style={{ color: activeColor, fontSize: '11px', fontFamily: 'system-ui' }}>✓</span>
                       )}
                     </Link>
                   </div>
@@ -213,8 +217,23 @@ export default function Navigation() {
               {/* CTA */}
               <Link
                 href="/services"
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-white rounded-full no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150"
-                style={{ padding: '10px 22px', fontFamily: navFont }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '9px 20px',
+                  background: '#E34E2E',
+                  color: '#fff',
+                  borderRadius: '100px',
+                  textDecoration: 'none',
+                  fontFamily: navFont,
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  transition: 'background 0.15s',
+                  whiteSpace: 'nowrap',
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = '#C43E22' }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = '#E34E2E' }}
               >
                 {isFa ? 'شروع پروژه ←' : 'Start a Project →'}
               </Link>
@@ -256,9 +275,9 @@ export default function Navigation() {
         <div
           style={{
             position: 'absolute',
-            left: '16px',
-            right: '16px',
-            top: '80px',
+            left: '12px',
+            right: '12px',
+            top: '88px',
             background: '#FFFDF8',
             borderRadius: '16px',
             border: '0.5px solid rgba(0,0,0,0.08)',
@@ -280,8 +299,8 @@ export default function Navigation() {
                   fontFamily: navFont,
                   fontSize: '15px',
                   fontWeight: isActive(link.href) ? 600 : 500,
-                  color: isActive(link.href) ? '#111111' : '#444',
-                  background: isActive(link.href) ? 'rgba(0,0,0,0.05)' : 'transparent',
+                  color: isActive(link.href) ? activeColor : '#444',
+                  background: isActive(link.href) ? 'rgba(227,78,46,0.06)' : 'transparent',
                   textDecoration: 'none',
                 }}
               >
@@ -299,7 +318,6 @@ export default function Navigation() {
                 gap: '8px',
               }}
             >
-              {/* Language section label */}
               <span
                 style={{
                   padding: '0 8px',
@@ -314,7 +332,6 @@ export default function Navigation() {
                 Language
               </span>
 
-              {/* Locale buttons */}
               <div style={{ display: 'flex', gap: '8px' }}>
                 <Link
                   href={pathname}
@@ -358,12 +375,23 @@ export default function Navigation() {
                 </Link>
               </div>
 
-              {/* CTA mobile */}
               <Link
                 href="/services"
                 onClick={() => setIsOpen(false)}
-                className="flex items-center justify-center gap-1.5 font-semibold text-white rounded-full no-underline bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150"
-                style={{ padding: '13px 20px', fontSize: '15px', fontFamily: navFont }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '6px',
+                  padding: '13px 20px',
+                  background: '#E34E2E',
+                  color: '#fff',
+                  borderRadius: '100px',
+                  textDecoration: 'none',
+                  fontSize: '15px',
+                  fontWeight: 600,
+                  fontFamily: navFont,
+                }}
               >
                 {isFa ? 'شروع پروژه ←' : 'Start a Project →'}
               </Link>
