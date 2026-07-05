@@ -9,6 +9,7 @@ import AutomationBenefitSection from '@/components/AutomationBenefitSection'
 import StartTodayCTA from '@/components/StartTodayCTA'
 import ProcessSection from '@/components/ProcessSection'
 import AboutSection from '@/components/AboutSection'
+import FaHomepageCTA from '@/components/FaHomepageCTA'
 import Footer from '@/components/Footer'
 import AIAssistant from '@/components/AIAssistant'
 import { routing } from '@/i18n/routing'
@@ -56,15 +57,22 @@ export default async function Home() {
       {/* EN: intro statement */}
       {!isFa && <ProblemSection />}
 
-      {/* FA: who it's for + outcomes */}
+      {/* FA: learn + workflows sections */}
       {isFa && <FaPainPoints />}
 
-      {/* Both: services → EN-only automation benefit → process → about */}
+      {/* Services — both locales */}
       <ServicesSection />
+
+      {/* EN-only sections */}
       {!isFa && <AutomationBenefitSection />}
-      <ProcessSection />
-      <AboutSection />
+      {!isFa && <ProcessSection />}
+      {!isFa && <AboutSection />}
       {!isFa && <StartTodayCTA />}
+
+      {/* FA: About → Process → Final CTA */}
+      {isFa && <AboutSection />}
+      {isFa && <ProcessSection />}
+      {isFa && <FaHomepageCTA />}
 
       <Footer />
       <AIAssistant />

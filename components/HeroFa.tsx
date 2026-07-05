@@ -1,245 +1,367 @@
-"use client"
+'use client'
 
-import { motion, useReducedMotion } from "motion/react"
+import { motion, useReducedMotion } from 'motion/react'
 
-// Shared card shell: entrance fade-up + continuous float
-function FloatCard({
-  pos,
-  inDelay,
-  floatDur,
-  floatDelay,
-  children,
-}: {
-  pos:        string
-  inDelay:    number
-  floatDur:   number
-  floatDelay: number
-  children:   React.ReactNode
-}) {
-  const reduced = useReducedMotion()
+const vaFont = "var(--font-vazirmatn), 'Vazirmatn', sans-serif"
+const EASE   = [0.22, 1, 0.36, 1] as const
+
+// ── Fingerprint SVG — same visual as HeroEn, Fa-scoped IDs/class names ──────
+function FingerprintIcon() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: reduced ? 0 : 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.65, delay: inDelay, ease: "easeOut" }}
-      className={`hidden xl:block absolute pointer-events-none select-none ${pos}`}
+    <svg
+      viewBox="0 0 40 50"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden
+      style={{
+        height:        '0.82em',
+        width:         'auto',
+        display:       'inline-block',
+        verticalAlign: 'middle',
+        flexShrink:    0,
+        marginBottom:  '0.05em',
+      }}
     >
-      <motion.div
-        animate={{ y: reduced ? 0 : [0, -6, 0] }}
-        transition={{ duration: reduced ? 0 : floatDur, repeat: reduced ? 0 : Infinity, ease: "easeInOut", delay: floatDelay }}
-        style={{
-          background:           "rgba(255,255,255,0.88)",
-          backdropFilter:       "blur(10px)",
-          WebkitBackdropFilter: "blur(10px)",
-          border:               "0.5px solid #E6D7C8",
-          borderRadius:         "14px",
-          padding:              "14px 18px",
-          boxShadow:            "0 4px 20px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.03)",
-          minWidth:             "174px",
-        }}
-      >
-        {children}
-      </motion.div>
-    </motion.div>
+      <defs>
+        <clipPath id="hFpOvalFa">
+          <ellipse cx="20" cy="25" rx="17.5" ry="22"/>
+        </clipPath>
+        <radialGradient id="hFpGlowFa" cx="38%" cy="35%" r="58%" gradientUnits="objectBoundingBox">
+          <stop offset="0%"   stopColor="#F4A082" stopOpacity="0.72"/>
+          <stop offset="100%" stopColor="#F4A082" stopOpacity="0"/>
+        </radialGradient>
+        <style>{`
+          @keyframes hFpPulseFa {
+            0%,100% { opacity:0.48; }
+            50%     { opacity:1.00; }
+          }
+          .hFpGlowLayerFa { animation: hFpPulseFa 3.2s ease-in-out infinite; }
+          @media (prefers-reduced-motion:reduce) {
+            .hFpGlowLayerFa { animation:none; opacity:0.65; }
+          }
+        `}</style>
+      </defs>
+
+      <ellipse cx="20" cy="25" rx="17.5" ry="22" fill="#E34E2E" fillOpacity="0.055"/>
+
+      <g clipPath="url(#hFpOvalFa)">
+        <ellipse cx="20" cy="25" rx="17.0" ry="21.5" stroke="#E34E2E" strokeWidth="1.35" strokeOpacity="0.40"/>
+        <ellipse cx="20" cy="25" rx="13.8" ry="17.5" stroke="#E34E2E" strokeWidth="1.35" strokeOpacity="0.56"/>
+        <ellipse cx="20" cy="25" rx="10.6" ry="13.5" stroke="#E34E2E" strokeWidth="1.35" strokeOpacity="0.70"/>
+        <ellipse cx="20" cy="25" rx="7.4"  ry="9.4"  stroke="#E34E2E" strokeWidth="1.35" strokeOpacity="0.83"/>
+        <ellipse cx="20" cy="25" rx="4.2"  ry="5.4"  stroke="#E34E2E" strokeWidth="1.35" strokeOpacity="0.92"/>
+        <ellipse cx="20" cy="25" rx="1.5"  ry="1.9"  stroke="#E34E2E" strokeWidth="1.35" strokeOpacity="1.00"/>
+        <ellipse className="hFpGlowLayerFa" cx="20" cy="25" rx="17" ry="21" fill="url(#hFpGlowFa)"/>
+      </g>
+
+      <ellipse cx="20" cy="25" rx="17.5" ry="22" stroke="#E34E2E" strokeWidth="1.1" strokeOpacity="0.26"/>
+    </svg>
   )
 }
 
-const faFont = "var(--font-vazirmatn), 'Vazirmatn', sans-serif"
-
-const label: React.CSSProperties = {
-  fontSize: 12, fontWeight: 600, color: "#111111",
-  margin: 0, lineHeight: 1.5, fontFamily: faFont,
+// ── Background ────────────────────────────────────────────────────────────────
+function HeroBackground() {
+  return (
+    <div
+      aria-hidden
+      style={{
+        position:      'absolute',
+        top:           '50%',
+        left:          '50%',
+        transform:     'translate(-50%, -50%)',
+        width:         'max(100vw, 100vh)',
+        height:        'max(100vw, 100vh)',
+        pointerEvents: 'none',
+        zIndex:        0,
+      }}
+    >
+      <svg
+        viewBox="0 0 1200 1200"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ width: '100%', height: '100%', display: 'block' }}
+      >
+        <defs>
+          <radialGradient id="hgAFa" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stopColor="#E34E2E" stopOpacity="0.28"/>
+            <stop offset="100%" stopColor="#E34E2E" stopOpacity="0"/>
+          </radialGradient>
+          <radialGradient id="hgBFa" cx="50%" cy="50%" r="50%">
+            <stop offset="0%"   stopColor="#F4A082" stopOpacity="0.22"/>
+            <stop offset="100%" stopColor="#F4A082" stopOpacity="0"/>
+          </radialGradient>
+        </defs>
+        <ellipse cx="900" cy="220" rx="420" ry="340" fill="url(#hgAFa)"/>
+        <ellipse cx="260" cy="1020" rx="380" ry="300" fill="url(#hgBFa)"/>
+      </svg>
+    </div>
+  )
 }
-const sub: React.CSSProperties = {
-  fontSize: 11, color: "rgba(17,17,17,0.40)",
-  margin: "3px 0 0", fontFamily: faFont, lineHeight: 1.5,
-}
 
+// ── Hero ──────────────────────────────────────────────────────────────────────
 export default function HeroFa() {
+  const reduced = useReducedMotion() ?? false
+
   return (
     <section
-      className="relative min-h-screen overflow-hidden"
-      style={{ background: '#FFF9F1' }}
+      dir="ltr"
+      style={{
+        background:    '#FAF6EF',
+        minHeight:     '100dvh',
+        display:       'flex',
+        flexDirection: 'column',
+        overflow:      'hidden',
+        position:      'relative',
+      }}
     >
+      <style>{`
+        @keyframes hSweepFa {
+          0%   { transform: skewX(-14deg) translateX(-130%); opacity: 0; }
+          4%   { opacity: 1; }
+          33%  { transform: skewX(-14deg) translateX(360%); opacity: 1; }
+          34%  { opacity: 0; }
+          100% { opacity: 0; transform: skewX(-14deg) translateX(360%); }
+        }
+        .h-sweep-fa {
+          animation: hSweepFa 9s linear infinite;
+          animation-delay: 1.6s;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .h-sweep-fa { animation: none; opacity: 0; }
+        }
+      `}</style>
 
-      {/* Soft blue radial accent */}
+      {/* Background drift */}
+      <motion.div
+        aria-hidden
+        animate={reduced ? {} : { y: [0, -28, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', repeatType: 'mirror' }}
+        style={{ position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 0 }}
+      >
+        <HeroBackground />
+      </motion.div>
+
+      {/* Light sweep */}
       <div
         aria-hidden
-        className="absolute inset-0 pointer-events-none"
+        className="h-sweep-fa"
         style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 50% 30%, rgba(156,204,239,0.10) 0%, transparent 70%)",
+          position:      'absolute',
+          top:            0,
+          left:           0,
+          width:         '34%',
+          height:        '100%',
+          background:    'linear-gradient(to right, transparent, rgba(244,160,130,0.09) 30%, rgba(255,250,245,0.22) 50%, rgba(244,160,130,0.09) 70%, transparent)',
+          pointerEvents: 'none',
+          zIndex:         2,
+          willChange:    'transform',
         }}
       />
 
-      {/* ── Decorative floating workflow cards (xl+, aria-hidden) ─────── */}
-      <div aria-hidden className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+      {/* Centre vignette */}
+      <div
+        aria-hidden
+        style={{
+          position:      'absolute',
+          inset:          0,
+          pointerEvents: 'none',
+          zIndex:         3,
+          background:
+            'radial-gradient(ellipse 54% 62% at 50% 48%, rgba(250,246,239,0.46) 0%, rgba(250,246,239,0.14) 55%, rgba(250,246,239,0.02) 100%)',
+        }}
+      />
 
-        {/* Card A — right · "ایمیل نوشته شد" */}
-        <FloatCard pos="right-[10%] top-[32%]" inDelay={0.8} floatDur={7.0} floatDelay={1.6}>
-          <div dir="rtl" style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-            <span style={{
-              width: 8, height: 8, borderRadius: "50%", background: "#3F8DDE",
-              flexShrink: 0, marginTop: 3,
-            }} />
-            <div>
-              <p style={label}>ایمیل نوشته شد</p>
-              <p style={sub}>پرامپت ← پاسخ · ۲ دقیقه</p>
-            </div>
-          </div>
-        </FloatCard>
+      {/* ── Main centred content ─────────────────────────────────────────── */}
+      <div
+        style={{
+          position:      'relative',
+          zIndex:         10,
+          flex:            1,
+          display:        'flex',
+          alignItems:     'center',
+          justifyContent: 'center',
+          padding:        'clamp(72px, 9dvh, 88px) clamp(20px, 4vw, 44px) clamp(40px, 5dvh, 56px)',
+        }}
+      >
+        <div style={{ textAlign: 'center', maxWidth: '820px', width: '100%' }}>
 
-        {/* Card B — left top · "گردش‌کار فعال" */}
-        <FloatCard pos="left-[10%] top-[25%]" inDelay={1.0} floatDur={6.5} floatDelay={0.4}>
-          <div dir="rtl">
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-              <span style={{
-                display: "inline-block", width: 8, height: 8, borderRadius: "50%",
-                background: "#22C55E", boxShadow: "0 0 0 3px rgba(34,197,94,0.18)",
-                flexShrink: 0,
-              }} />
-              <p style={label}>گردش‌کار فعال</p>
-            </div>
-            <p style={sub}>۳ اتوماسیون در حال اجرا</p>
-          </div>
-        </FloatCard>
-
-        {/* Card C — left lower · "گزارش آماده شد" */}
-        <FloatCard pos="left-[10%] top-[57%]" inDelay={1.2} floatDur={7.8} floatDelay={1.0}>
-          <div dir="rtl">
-            <p style={{ fontSize: 11, color: "rgba(17,17,17,0.35)", margin: "0 0 4px",
-                        fontFamily: faFont, textTransform: "uppercase",
-                        letterSpacing: "0.04em" }}>
-              گزارش
-            </p>
-            <p style={{ ...label, margin: "0 0 10px" }}>خلاصه آماده شد</p>
-            <div style={{ display: "flex", gap: 3 }}>
-              {[0,1,2,3].map(i => (
-                <span key={i} style={{
-                  display: "block", height: 4, flex: 1, borderRadius: 2,
-                  background: i < 3 ? "#3F8DDE" : "rgba(0,0,0,0.08)",
-                }} />
-              ))}
-            </div>
-            <p style={{ fontSize: 10, color: "rgba(17,17,17,0.35)", margin: "6px 0 0",
-                        fontFamily: faFont }}>
-              هوش مصنوعی · ۴ ثانیه
-            </p>
-          </div>
-        </FloatCard>
-
-      </div>
-
-      {/* Content — RTL */}
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-6 pt-[68px]">
-        <div
-          className="text-center w-full max-w-2xl mx-auto"
-          dir="rtl"
-        >
-
-          {/* Eyebrow badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="flex justify-center mb-8"
+          {/* Eyebrow */}
+          <motion.p
+            initial={{ opacity: 0, filter: reduced ? 'blur(0px)' : 'blur(8px)' }}
+            animate={{ opacity: 1, filter: 'blur(0px)' }}
+            transition={{ duration: 0.72, ease: EASE }}
+            dir="rtl"
+            style={{
+              fontFamily:   vaFont,
+              fontSize:     'clamp(13px, 1.3vw, 15px)',
+              fontWeight:    600,
+              color:         '#A09288',
+              marginBottom:  '22px',
+            }}
           >
-            <span
-              className="inline-flex items-center gap-2 rounded-full px-4 py-2"
+            یادگیری هوش مصنوعی، ساده‌تر از همیشه
+          </motion.p>
+
+          {/* Headline — fingerprint floats, headline fades in */}
+          <h1
+            style={{
+              fontFamily:    vaFont,
+              fontSize:      'clamp(40px, 6vw, 78px)',
+              fontWeight:     800,
+              color:          '#111111',
+              lineHeight:     1.12,
+              letterSpacing: '-0.02em',
+              marginBottom:   '28px',
+              display:        'flex',
+              alignItems:     'center',
+              justifyContent: 'center',
+              gap:            '0.22em',
+              flexWrap:       'wrap',
+            }}
+          >
+            {/* Fingerprint — own flex slot, floats on y only */}
+            <motion.span
+              initial={{ opacity: 0, scale: reduced ? 1 : 0.78, rotate: reduced ? 0 : -6 }}
+              animate={{
+                opacity: 1,
+                scale:   1,
+                rotate:  0,
+                y:       reduced ? 0 : [0, -10, 0],
+              }}
+              transition={{
+                opacity: { duration: 0.65, delay: 0.04, ease: EASE },
+                scale:   { duration: 0.65, delay: 0.04, ease: EASE },
+                rotate:  { duration: 0.65, delay: 0.04, ease: EASE },
+                y:       { duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.8, repeatType: 'mirror' },
+              }}
+              style={{ display: 'inline-flex', alignItems: 'center', flexShrink: 0 }}
+            >
+              <FingerprintIcon />
+            </motion.span>
+
+            {/* Headline text — fades and lifts in */}
+            <motion.span
+              dir="rtl"
+              initial={{ opacity: 0, y: reduced ? 0 : 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.80, delay: 0.10, ease: EASE }}
+            >
+              هوشمندتر کار کن
+            </motion.span>
+          </h1>
+
+          {/* Subheadline */}
+          <motion.div
+            initial={{ opacity: 0, y: reduced ? 0 : 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.60, delay: 0.36, ease: EASE }}
+          >
+            <p
+              dir="rtl"
               style={{
-                background: 'rgba(156,204,239,0.14)',
-                border: '0.5px solid rgba(156,204,239,0.32)',
+                fontFamily:  vaFont,
+                fontSize:    'clamp(14px, 1.3vw, 17px)',
+                color:       '#625B55',
+                lineHeight:   1.90,
+                maxWidth:    '560px',
+                margin:      '0 auto 36px',
               }}
             >
-              <span
-                style={{
-                  width: 5,
-                  height: 5,
-                  borderRadius: "50%",
-                  background: "#9CCCEF",
-                  display: "inline-block",
-                  flexShrink: 0,
-                }}
-              />
-              <span
-                style={{
-                  fontFamily: faFont,
-                  fontSize: "12px",
-                  color: "#625B55",
-                  fontWeight: 500,
-                }}
-              >
-                هوش مصنوعی برای کار و بهره‌وری
-              </span>
-            </span>
+              ابزارهای هوش مصنوعی را بدون کدنویسی یاد بگیر؛ ساده، واضح و بدون سردرگمی
+            </p>
           </motion.div>
-
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-            style={{
-              fontFamily: faFont,
-              fontSize: "clamp(34px, 5.5vw, 64px)",
-              fontWeight: 700,
-              color: "#111111",
-              lineHeight: 1.3,
-              margin: "0 0 24px",
-            }}
-          >
-            ابزارهای هوش مصنوعی زیادند؟
-            <br />
-            با مسیر درست شروع کن.
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.18, ease: "easeOut" }}
-            style={{
-              fontFamily: faFont,
-              fontSize: 'clamp(15px, 2vw, 18px)',
-              color: '#625B55',
-              lineHeight: 1.85,
-              maxWidth: '480px',
-              margin: '0 auto',
-            }}
-          >
-            هوش مصنوعی و اتوماسیون کاربردی برای کارهای روزمره — بدون کدنویسی، بدون اصطلاح پیچیده.
-          </motion.p>
 
           {/* CTA */}
           <motion.div
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: reduced ? 0 : 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.28, ease: "easeOut" }}
-            className="flex justify-center"
-            style={{ marginTop: "40px" }}
+            transition={{ duration: 0.60, delay: 0.52, ease: EASE }}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           >
             <a
-              href="/fa/services#contact-form"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-white rounded-full no-underline transition-opacity duration-150 hover:opacity-90"
-              style={{ padding: "13px 28px", fontFamily: faFont, background: '#3F8DDE' }}
+              href="/fa/learn"
+              dir="rtl"
+              style={{
+                display:        'inline-flex',
+                alignItems:     'center',
+                gap:            '8px',
+                padding:        '14px 32px',
+                background:     '#E34E2E',
+                color:          '#fff',
+                borderRadius:   '100px',
+                textDecoration: 'none',
+                fontFamily:     vaFont,
+                fontSize:       '15px',
+                fontWeight:      700,
+                transition:     'background 0.15s, transform 0.15s',
+                whiteSpace:     'nowrap',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = '#C43E22'
+                e.currentTarget.style.transform  = 'translateY(-1px)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = '#E34E2E'
+                e.currentTarget.style.transform  = 'translateY(0)'
+              }}
             >
-              شروع پروژه ←
+              از اینجا شروع کن
             </a>
           </motion.div>
 
         </div>
       </div>
 
-      {/* Bottom fade — softens the edge into the next section */}
-      <div
-        aria-hidden
-        className="absolute bottom-0 inset-x-0 pointer-events-none"
-        style={{
-          height:     '160px',
-          background: 'linear-gradient(to bottom, transparent, rgba(255,249,241,0.95))',
-          zIndex:     15,
-        }}
-      />
+      {/* ── Bottom strip ─────────────────────────────────────────────────── */}
+      <motion.div
+        initial={{ opacity: 0, y: reduced ? 0 : 18 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.65, delay: 0.62, ease: EASE }}
+        style={{ position: 'relative', zIndex: 10, borderTop: '0.5px solid rgba(17,17,17,0.09)' }}
+      >
+        <div
+          dir="rtl"
+          style={{
+            maxWidth:   '1200px',
+            margin:     '0 auto',
+            padding:    'clamp(24px, 3.5vw, 40px) clamp(20px, 4vw, 44px)',
+            display:    'flex',
+            flexWrap:   'wrap',
+            gap:        'clamp(20px, 5vw, 72px)',
+            alignItems: 'start',
+          }}
+        >
+          <p
+            style={{
+              fontFamily: vaFont,
+              fontSize:   'clamp(14px, 1.3vw, 16px)',
+              color:      '#625B55',
+              lineHeight:  1.80,
+              margin:      0,
+              flex:        '1 1 240px',
+              maxWidth:    '480px',
+              textAlign:   'right',
+            }}
+          >
+            هوش مصنوعی و اتوماسیون برای ساده‌تر کردن کارهای روزمره، نظم بیشتر و ساختن جریان‌های کاری بهتر
+          </p>
+          <p
+            style={{
+              fontFamily: vaFont,
+              fontSize:   '13px',
+              color:      '#8C7E74',
+              lineHeight:  1.75,
+              margin:      0,
+              flex:        '1 1 180px',
+              maxWidth:    '280px',
+              textAlign:   'right',
+            }}
+          >
+            برای افراد غیر فنی که می‌خواهند هوش مصنوعی را واضح، مفید و انسانی تجربه کنند
+          </p>
+        </div>
+      </motion.div>
+
     </section>
   )
 }

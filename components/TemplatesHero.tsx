@@ -102,68 +102,95 @@ export default function TemplatesHero() {
     )
   }
 
-  // ── FA: keep existing design unchanged ────────────────────────────────
+  // ── FA: editorial hero matching EN style ─────────────────────────────
+  const vaFont = "var(--font-vazirmatn), 'Vazirmatn', sans-serif"
+
   return (
     <section
+      dir="rtl"
       style={{
-        position: 'relative',
-        background: '#FFF9F1',
-        borderBottom: '0.5px solid #E6D7C8',
-        paddingTop: 'calc(68px + 40px)',
-        paddingBottom: '52px',
-        overflow: 'hidden',
+        background: '#FAF6EF',
+        paddingTop:    'clamp(120px, 14vw, 160px)',
+        paddingBottom: 'clamp(72px, 9vw, 100px)',
+        paddingLeft:   'clamp(24px, 8vw, 80px)',
+        paddingRight:  'clamp(24px, 8vw, 80px)',
+        borderBottom:  '0.5px solid rgba(17,17,17,0.07)',
       }}
     >
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-lg" dir="rtl">
-          <p
-            className="font-ui font-bold mb-5"
-            style={{
-              fontSize: '13px',
-              fontWeight: 700,
-              letterSpacing: '.12em',
-              color: '#E34E2E',
-              textTransform: 'uppercase',
-            }}
-          >
-            سیستم‌های آماده
-          </p>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.65, ease: 'easeOut' }}
+        style={{ maxWidth: '760px', margin: '0 auto', textAlign: 'center' }}
+      >
+        <p
+          style={{
+            fontFamily:    vaFont,
+            fontSize:      '11px',
+            fontWeight:     700,
+            letterSpacing: '0.16em',
+            color:          '#E34E2E',
+            marginBottom:  '28px',
+          }}
+        >
+          قالب‌های آماده
+        </p>
 
-          <h2
-            className="font-fa"
-            style={{
-              fontSize: 'clamp(28px, 3.5vw, 46px)',
-              fontWeight: 700,
-              color: '#111111',
-              lineHeight: 1.1,
-              marginBottom: '16px',
-            }}
-          >
-            هوش مصنوعی را به یک سیستم ساده{' '}
-            <span style={{ color: 'rgba(17,17,17,0.38)' }}>تبدیل کن</span>
-          </h2>
+        <h1
+          style={{
+            fontFamily:    vaFont,
+            fontSize:      'clamp(36px, 5.5vw, 68px)',
+            fontWeight:     800,
+            color:          '#111111',
+            lineHeight:     1.15,
+            letterSpacing: '-0.01em',
+            marginBottom:  '28px',
+          }}
+        >
+          سیستم‌های آماده برای کارهای روزمره با هوش مصنوعی
+        </h1>
 
-          <p
-            className="font-fa"
-            style={{
-              fontSize: '16px',
-              color: '#625B55',
-              lineHeight: 1.65,
-              marginBottom: '28px',
-            }}
-          >
-            با یک قالب رایگان شروع کن. بدون شروع از صفر، بدون وقت‌تلف.
-          </p>
+        <p
+          style={{
+            fontFamily:  vaFont,
+            fontSize:    'clamp(15px, 1.4vw, 18px)',
+            color:       '#625B55',
+            lineHeight:   1.80,
+            maxWidth:    '560px',
+            margin:      '0 auto 44px',
+          }}
+        >
+          با قالب‌های آماده شروع کن؛ برای نوشتن، برنامه‌ریزی، گزارش‌سازی، مدیریت مشتری و ساخت جریان‌های کاری ساده، بدون اینکه از صفر شروع کنی
+        </p>
 
-          <a
-            href="#templates"
-            className="font-ui font-bold inline-flex items-center gap-2 text-white no-underline rounded-full bg-brand-blue hover:bg-brand-blue-dark transition-colors duration-150"
-            style={{ padding: '13px 28px', fontSize: '14.5px' }}
-          >
-            مشاهده قالب‌ها ↓
-          </a>
-        </div>
-      </div>
+        <a
+          href="#templates"
+          style={{
+            display:        'inline-flex',
+            alignItems:     'center',
+            gap:            '8px',
+            padding:        '14px 32px',
+            background:     '#E34E2E',
+            color:          '#FFFDF8',
+            borderRadius:   '100px',
+            textDecoration: 'none',
+            fontFamily:      vaFont,
+            fontSize:        '15px',
+            fontWeight:       700,
+            transition:      'background 0.15s, transform 0.15s',
+          }}
+          onMouseEnter={(e) => {
+            ;(e.currentTarget as HTMLAnchorElement).style.background = '#C63C1E'
+            ;(e.currentTarget as HTMLAnchorElement).style.transform  = 'translateY(-1px)'
+          }}
+          onMouseLeave={(e) => {
+            ;(e.currentTarget as HTMLAnchorElement).style.background = '#E34E2E'
+            ;(e.currentTarget as HTMLAnchorElement).style.transform  = 'translateY(0)'
+          }}
+        >
+          دیدن قالب‌ها ↓
+        </a>
+      </motion.div>
     </section>
   )
 }

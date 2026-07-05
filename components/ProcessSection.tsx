@@ -4,10 +4,10 @@ import { useLocale } from 'next-intl'
 import { motion } from 'motion/react'
 
 const FA_STEPS = [
-  { week: 'هفته ۱', title: 'آشنایی با نیاز',    body: 'می‌فهمیم کجا وقت هدر می‌رود و چه کاری واقعاً کمک می‌کند.' },
-  { week: 'هفته ۲', title: 'طراحی سیستم',       body: 'یک مسیر ساده برای کار روزانه طراحی می‌کنیم.' },
-  { week: 'هفته ۳', title: 'اجرا و آموزش',      body: 'سیستم را با هم می‌سازیم. یاد می‌گیری چطور کار کند.' },
-  { week: 'هفته ۴', title: 'تحویل و پشتیبانی', body: 'همه چیز آماده است. بقیه‌اش را خودت پیش می‌بری.' },
+  { step: 'مرحله ۰۱', title: 'شناخت نیاز',      body: 'اول می‌فهمیم کدام بخش کار نیاز به تغییر دارد و چه چیزی واقعاً می‌تواند کمکت کند' },
+  { step: 'مرحله ۰۲', title: 'طراحی مسیر',       body: 'یک مسیر ساده و قابل اجرا برای جریان کاری، قالب‌ها یا ابزارهایی که نیاز داری طراحی می‌شود' },
+  { step: 'مرحله ۰۳', title: 'ساخت و تنظیم',    body: 'سیستم ساخته، تست و برای استفاده روزمره آماده می‌شود' },
+  { step: 'مرحله ۰۴', title: 'آموزش و تحویل',   body: 'یاد می‌گیری چطور از سیستم استفاده کنی و بعد با اطمینان ادامه بدهی' },
 ]
 
 const EN_STEPS = [
@@ -28,93 +28,125 @@ export default function ProcessSection() {
   const locale = useLocale()
   const isFa   = locale === 'fa'
 
-  /* ── FA: keep existing design unchanged ── */
+  /* ── FA: editorial two-column layout ── */
   if (isFa) {
-    const faFont = "var(--font-vazirmatn), 'Vazirmatn', sans-serif"
+    const vaFont = "var(--font-vazirmatn), 'Vazirmatn', sans-serif"
+    const SERIF  = "'DM Serif Display', serif"
     return (
-      <section className="py-20 px-6 bg-[#FAF1E6]" dir="rtl" style={{ borderTop: '0.5px solid #E6D7C8' }}>
-        <div className="max-w-3xl mx-auto">
-          <motion.div {...fadeIn}>
-            <div className="text-center mb-12">
-              <p
-                style={{
-                  fontFamily: faFont,
-                  fontSize: '13px',
-                  fontWeight: 700,
-                  color: '#E34E2E',
-                  marginBottom: '12px',
-                  letterSpacing: '0.06em',
-                  textTransform: 'uppercase',
-                }}
-              >
-                روش کار
-              </p>
-              <h2
-                style={{
-                  fontFamily: faFont,
-                  fontSize: 'clamp(20px, 2.5vw, 26px)',
-                  fontWeight: 700,
-                  color: '#111111',
-                  lineHeight: 1.6,
-                }}
-              >
-                از اولین پیام تا سیستم آماده
-              </h2>
+      <section
+        dir="rtl"
+        style={{
+          background: '#FFFDF8',
+          padding:    'clamp(96px, 12vw, 140px) clamp(24px, 8vw, 80px)',
+          borderTop:  '0.5px solid rgba(17,17,17,0.07)',
+        }}
+      >
+        <motion.div style={{ maxWidth: '1200px', margin: '0 auto' }} {...fadeIn}>
+          <div
+            className="grid grid-cols-1 md:grid-cols-[196px_1fr] gap-10 md:gap-[72px]"
+            style={{ alignItems: 'start' }}
+          >
+
+            {/* Right: section label (first in DOM = right in RTL) */}
+            <div style={{ paddingTop: '6px' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '14px', marginBottom: '16px' }}>
+                <span style={{
+                  fontFamily:    SERIF,
+                  fontStyle:     'italic',
+                  fontSize:      'clamp(38px, 4vw, 58px)',
+                  color:          '#E34E2E',
+                  lineHeight:     1,
+                  letterSpacing: '-0.02em',
+                }}>
+                  05
+                </span>
+                <span style={{
+                  fontFamily:    vaFont,
+                  fontSize:      '11px',
+                  fontWeight:     700,
+                  letterSpacing: '0.10em',
+                  color:          '#8C7E74',
+                }}>
+                  روند کار
+                </span>
+              </div>
+              <div style={{ height: '0.5px', background: 'rgba(17,17,17,0.14)' }} />
             </div>
 
-            <div className="flex flex-col divide-y divide-[#E6D7C8]">
-              {FA_STEPS.map(({ week, title, body }) => (
-                <motion.div
-                  key={week}
-                  className="flex items-start gap-5 py-6"
-                  whileHover={{ y: -2 }}
-                  transition={{ duration: 0.2, ease: 'easeOut' }}
-                >
-                  <div className="flex-1 text-right">
-                    <h3
-                      style={{
-                        fontFamily: faFont,
-                        fontSize: '15px',
-                        fontWeight: 600,
-                        color: '#111111',
-                        marginBottom: '6px',
-                        lineHeight: 1.5,
-                      }}
-                    >
-                      {title}
-                    </h3>
-                    <p
-                      style={{
-                        fontFamily: faFont,
-                        fontSize: '13px',
-                        color: '#625B55',
-                        lineHeight: 1.8,
-                        margin: 0,
-                      }}
-                    >
-                      {body}
-                    </p>
-                  </div>
+            {/* Left: headline + steps */}
+            <div>
+              <h2 style={{
+                fontFamily:    vaFont,
+                fontSize:      'clamp(26px, 3.2vw, 48px)',
+                fontWeight:     800,
+                color:          '#111111',
+                lineHeight:     1.28,
+                letterSpacing: '-0.01em',
+                marginBottom:  '20px',
+              }}>
+                از اولین ایده تا یک سیستم قابل استفاده
+              </h2>
+
+              <p style={{
+                fontFamily:   vaFont,
+                fontSize:     'clamp(15px, 1.4vw, 18px)',
+                color:        '#625B55',
+                lineHeight:    1.80,
+                marginBottom: '52px',
+                maxWidth:     '480px',
+              }}>
+                چند مرحله‌ی ساده برای اینکه یک جریان کاری واقعی بسازی
+              </p>
+
+              {/* Steps */}
+              <div>
+                {FA_STEPS.map((step, i) => (
                   <div
+                    key={step.step}
                     style={{
-                      flexShrink: 0,
-                      background: '#FFF9F1',
-                      border: '0.5px solid #E6D7C8',
-                      borderRadius: '100px',
-                      padding: '4px 14px',
-                      fontSize: '12px',
-                      fontFamily: faFont,
-                      color: 'rgba(98,91,85,0.65)',
-                      whiteSpace: 'nowrap',
+                      paddingTop:    i === 0 ? 0 : '32px',
+                      paddingBottom: i < FA_STEPS.length - 1 ? '32px' : 0,
+                      borderTop:     i === 0 ? 'none' : '0.5px solid rgba(17,17,17,0.09)',
                     }}
                   >
-                    {week}
+                    <p style={{
+                      fontFamily:    vaFont,
+                      fontSize:      '10px',
+                      fontWeight:     700,
+                      letterSpacing: '0.14em',
+                      color:          '#8C7E74',
+                      marginBottom:  '10px',
+                    }}>
+                      {step.step}
+                    </p>
+                    <h3 style={{
+                      fontFamily:    vaFont,
+                      fontSize:      'clamp(18px, 1.8vw, 24px)',
+                      fontWeight:     800,
+                      color:          '#111111',
+                      lineHeight:     1.22,
+                      letterSpacing: '-0.01em',
+                      marginBottom:  '10px',
+                    }}>
+                      {step.title}
+                    </h3>
+                    <p style={{
+                      fontFamily:  vaFont,
+                      fontSize:    'clamp(14px, 1.2vw, 16px)',
+                      color:       '#625B55',
+                      lineHeight:   1.78,
+                      margin:       0,
+                      maxWidth:    '480px',
+                    }}>
+                      {step.body}
+                    </p>
                   </div>
-                </motion.div>
-              ))}
+                ))}
+              </div>
             </div>
-          </motion.div>
-        </div>
+
+          </div>
+        </motion.div>
       </section>
     )
   }

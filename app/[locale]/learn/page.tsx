@@ -1,9 +1,8 @@
 import type { Metadata } from 'next'
 import Navigation from '@/components/Navigation'
 import LearnHero from '@/components/LearnHero'
-import MethodSection from '@/components/MethodSection'
+import FaLearnHero from '@/components/FaLearnHero'
 import CurriculumSection from '@/components/CurriculumSection'
-import WhoItsFor from '@/components/WhoItsFor'
 import CTASection from '@/components/CTASection'
 import Footer from '@/components/Footer'
 import AIAssistant from '@/components/AIAssistant'
@@ -57,9 +56,8 @@ export default async function LearnPage({
       <Navigation />
       <div className="pt-[72px]">
         {!isFa && <LearnHero />}
-        {isFa && <MethodSection />}
+        {isFa && <FaLearnHero />}
         <CurriculumSection />
-        {isFa && <WhoItsFor />}
       </div>
       <CTASection />
       <Footer />

@@ -1,186 +1,201 @@
 'use client'
 
-import { CheckCircle2 } from 'lucide-react'
 import { motion } from 'motion/react'
 
-const PAIN_POINTS = [
-  'از هوش مصنوعی استفاده می‌کنی، اما هنوز نمی‌دانی چطور آن را به یک روند کاری واقعی تبدیل کنی.',
-  'زمان زیادی را صرف ایمیل‌ها، گزارش‌ها، برنامه‌ریزی یا کارهای تکراری می‌کنی.',
-  'پرامپت‌ها، فایل‌ها و ابزارهایت پراکنده‌اند و نمی‌دانی از کجا شروع کنی.',
-  'می‌خواهی از هوش مصنوعی استفاده کنی، اما نمی‌خواهی وارد کدنویسی یا تنظیمات پیچیده شوی.',
-]
-
-const OUTCOMES = [
-  'مسیری ساده‌تر برای استفاده از هوش مصنوعی در کارهای روزمره',
-  'پرامپت‌های قابل استفاده برای ایمیل، گزارش، محتوا و برنامه‌ریزی',
-  'سیستمی سبک برای نظم دادن به کارها، فایل‌ها و ایده‌ها',
-  'اعتمادبه‌نفس بیشتر برای استفاده از هوش مصنوعی، بدون حس فنی بودن',
-]
-
 const vaFont = "var(--font-vazirmatn), 'Vazirmatn', sans-serif"
+const SERIF  = "'DM Serif Display', serif"
+const BORDER = '0.5px solid rgba(17,17,17,0.07)'
+const EASE   = [0.22, 1, 0.36, 1] as const
 
-const fadeIn = {
-  initial: { opacity: 0, y: 18 },
+const scrollFade = {
+  initial:     { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.55, ease: 'easeOut' },
+  viewport:    { once: true, margin: '-80px' as const },
+  transition:  { duration: 0.65, ease: EASE },
 } as const
 
 export default function FaPainPoints() {
   return (
     <>
-      {/* Section 1: Pain Points — editorial light panel */}
+      {/* ── Section 01 / یادگیری ─────────────────────────────────────────── */}
       <section
         dir="rtl"
+        id="learn"
         style={{
-          background: '#FFF9F1',
-          padding: '72px 24px',
-          borderTop: '0.5px solid #E6D7C8',
+          background: '#FAF6EF',
+          padding:    'clamp(96px, 12vw, 140px) clamp(24px, 8vw, 80px)',
+          borderTop:   BORDER,
         }}
       >
-        <motion.div style={{ maxWidth: '680px', margin: '0 auto' }} {...fadeIn}>
-          <p
-            style={{
-              fontFamily: vaFont,
-              fontSize: '13px',
-              fontWeight: 700,
-              color: '#E34E2E',
-              letterSpacing: '0.06em',
-              textTransform: 'uppercase',
-              marginBottom: '14px',
-            }}
+        <motion.div {...scrollFade} style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div
+            className="grid grid-cols-1 md:grid-cols-[196px_1fr] gap-10 md:gap-[72px]"
+            style={{ alignItems: 'start' }}
           >
-            این آموزش برای توست اگر
-          </p>
-          <h2
-            style={{
-              fontFamily: vaFont,
-              fontSize: 'clamp(20px, 2.8vw, 30px)',
-              fontWeight: 800,
-              color: '#111111',
-              lineHeight: 1.55,
-              marginBottom: '36px',
-            }}
-          >
-            هنوز مطمئن نیستی هوش مصنوعی
-            <br />
-            کجای کارت می‌تواند واقعاً کمک کند
-          </h2>
-          <ul
-            style={{
-              listStyle: 'none',
-              margin: 0,
-              padding: 0,
-              display: 'flex',
-              flexDirection: 'column',
-            }}
-          >
-            {PAIN_POINTS.map((point, i) => (
-              <li
-                key={i}
+
+            {/* Right: section label (first DOM child = right in RTL grid) */}
+            <div style={{ paddingTop: '6px' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '14px', marginBottom: '16px' }}>
+                <span style={{
+                  fontFamily:    SERIF,
+                  fontStyle:     'italic',
+                  fontSize:      'clamp(38px, 4vw, 58px)',
+                  color:         '#E34E2E',
+                  lineHeight:     1,
+                  letterSpacing: '-0.02em',
+                }}>
+                  01
+                </span>
+                <span style={{
+                  fontFamily:    vaFont,
+                  fontSize:      '11px',
+                  fontWeight:     700,
+                  letterSpacing: '0.10em',
+                  color:         '#8C7E74',
+                }}>
+                  یادگیری
+                </span>
+              </div>
+              <div style={{ height: '0.5px', background: 'rgba(17,17,17,0.14)' }} />
+            </div>
+
+            {/* Left: content */}
+            <div>
+              <h2 style={{
+                fontFamily:    vaFont,
+                fontSize:      'clamp(26px, 3.2vw, 48px)',
+                fontWeight:     800,
+                color:          '#111111',
+                lineHeight:     1.28,
+                letterSpacing: '-0.01em',
+                marginBottom:  '28px',
+              }}>
+                هوش مصنوعی کارها را ساده‌تر می‌کند
+              </h2>
+
+              <p style={{
+                fontFamily:   vaFont,
+                fontSize:     'clamp(15px, 1.4vw, 18px)',
+                color:        '#625B55',
+                lineHeight:    1.85,
+                marginBottom: '40px',
+                maxWidth:     '560px',
+              }}>
+                یاد بگیر چطور از هوش مصنوعی برای نوشتن، برنامه‌ریزی، خلاصه‌سازی و ساختن جریان‌های کاری ساده‌تر استفاده کنی؛ بدون نیاز به دانش فنی یا کدنویسی
+              </p>
+
+              <a
+                href="/fa/learn"
                 style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '14px',
-                  padding: '18px 0',
-                  borderBottom:
-                    i < PAIN_POINTS.length - 1
-                      ? '0.5px solid #E6D7C8'
-                      : 'none',
+                  display:       'inline-block',
+                  fontFamily:     vaFont,
+                  fontSize:      '16px',
+                  fontWeight:     700,
+                  color:          '#111111',
+                  textDecoration: 'none',
+                  paddingBottom:  '6px',
+                  borderBottom:   '1.5px solid rgba(17,17,17,0.22)',
+                  transition:     'opacity 0.15s',
                 }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = '0.55' }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = '1' }}
               >
-                <span
-                  style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    background: '#E34E2E',
-                    flexShrink: 0,
-                    marginTop: '10px',
-                    display: 'block',
-                  }}
-                />
-                <p
-                  style={{
-                    fontFamily: vaFont,
-                    fontSize: '15px',
-                    color: '#625B55',
-                    lineHeight: 1.9,
-                    margin: 0,
-                    flex: 1,
-                    textAlign: 'right',
-                  }}
-                >
-                  {point}
-                </p>
-              </li>
-            ))}
-          </ul>
+                بیشتر ببین ←
+              </a>
+            </div>
+
+          </div>
         </motion.div>
       </section>
 
-      {/* Section 2: Outcomes — warm surface */}
+      {/* ── Section 02 / جریان‌های کاری ─────────────────────────────────── */}
       <section
         dir="rtl"
+        id="workflows"
         style={{
-          background: '#FAF1E6',
-          borderTop: '0.5px solid #E6D7C8',
-          padding: '64px 24px',
+          background: '#FFFDF8',
+          padding:    'clamp(96px, 12vw, 140px) clamp(24px, 8vw, 80px)',
+          borderTop:   BORDER,
         }}
       >
-        <motion.div style={{ maxWidth: '680px', margin: '0 auto' }} {...fadeIn}>
-          <h2
-            style={{
-              fontFamily: vaFont,
-              fontSize: 'clamp(17px, 2.2vw, 22px)',
-              fontWeight: 700,
-              color: '#111111',
-              lineHeight: 1.6,
-              marginBottom: '32px',
-            }}
+        <motion.div {...scrollFade} style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div
+            className="grid grid-cols-1 md:grid-cols-[196px_1fr] gap-10 md:gap-[72px]"
+            style={{ alignItems: 'start' }}
           >
-            بعد از این، چه چیزی به دست می‌آوری
-          </h2>
-          <ul
-            style={{
-              listStyle: 'none',
-              margin: 0,
-              padding: 0,
-            }}
-          >
-            {OUTCOMES.map((outcome, i) => (
-              <li
-                key={i}
+
+            {/* Right: section label */}
+            <div style={{ paddingTop: '6px' }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '14px', marginBottom: '16px' }}>
+                <span style={{
+                  fontFamily:    SERIF,
+                  fontStyle:     'italic',
+                  fontSize:      'clamp(38px, 4vw, 58px)',
+                  color:         '#E34E2E',
+                  lineHeight:     1,
+                  letterSpacing: '-0.02em',
+                }}>
+                  02
+                </span>
+                <span style={{
+                  fontFamily:    vaFont,
+                  fontSize:      '11px',
+                  fontWeight:     700,
+                  letterSpacing: '0.10em',
+                  color:         '#8C7E74',
+                }}>
+                  جریان‌های کاری
+                </span>
+              </div>
+              <div style={{ height: '0.5px', background: 'rgba(17,17,17,0.14)' }} />
+            </div>
+
+            {/* Left: content */}
+            <div>
+              <h2 style={{
+                fontFamily:    vaFont,
+                fontSize:      'clamp(26px, 3.2vw, 48px)',
+                fontWeight:     800,
+                color:          '#111111',
+                lineHeight:     1.28,
+                letterSpacing: '-0.01em',
+                marginBottom:  '28px',
+              }}>
+                سیستم‌هایی که همراه کارت کار می‌کنند
+              </h2>
+
+              <p style={{
+                fontFamily:   vaFont,
+                fontSize:     'clamp(15px, 1.4vw, 18px)',
+                color:        '#625B55',
+                lineHeight:    1.85,
+                marginBottom: '40px',
+                maxWidth:     '560px',
+              }}>
+                کمکت می‌کنم جریان‌های کاری، قالب‌ها و اتوماسیون‌های ساده‌ای بسازی که کارهای تکراری را کمتر کنند و ابزارهای روزمره‌ات را راحت‌تر قابل استفاده کنند
+              </p>
+
+              <a
+                href="/fa/services"
                 style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '14px',
-                  padding: '18px 0',
-                  borderBottom:
-                    i < OUTCOMES.length - 1
-                      ? '0.5px solid #E6D7C8'
-                      : 'none',
+                  display:       'inline-block',
+                  fontFamily:     vaFont,
+                  fontSize:      '16px',
+                  fontWeight:     700,
+                  color:          '#111111',
+                  textDecoration: 'none',
+                  paddingBottom:  '6px',
+                  borderBottom:   '1.5px solid rgba(17,17,17,0.22)',
+                  transition:     'opacity 0.15s',
                 }}
+                onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = '0.55' }}
+                onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = '1' }}
               >
-                <CheckCircle2
-                  size={16}
-                  style={{ color: '#E34E2E', flexShrink: 0, marginTop: '3px' }}
-                />
-                <p
-                  style={{
-                    fontFamily: vaFont,
-                    fontSize: '14px',
-                    color: '#625B55',
-                    lineHeight: 1.85,
-                    margin: 0,
-                    flex: 1,
-                  }}
-                >
-                  {outcome}
-                </p>
-              </li>
-            ))}
-          </ul>
+                بیشتر ببین ←
+              </a>
+            </div>
+
+          </div>
         </motion.div>
       </section>
     </>

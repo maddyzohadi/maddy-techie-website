@@ -187,119 +187,283 @@ export default function CurriculumSection() {
     )
   }
 
-  // ── FA: keep existing design unchanged ───────────────────────────────
-  const headingColor = '#111111'
-  const bodyColor    = '#625B55'
-  const accent = { text: '#3F8DDE', bg: 'rgba(63,141,222,0.06)', border: 'rgba(63,141,222,0.15)' }
+  // ── FA: editorial accordion matching EN quality ──────────────────────
+  const vaFont  = "var(--font-vazirmatn), 'Vazirmatn', sans-serif"
+  const SERIF   = "'DM Serif Display', serif"
+
+  const faParts = [
+    {
+      number: '01',
+      label:  'بخش ۰۱',
+      title:  'مبانی هوش مصنوعی و اتوماسیون',
+      tagline: 'اول یاد می‌گیری هوش مصنوعی و اتوماسیون دقیقاً چه کار می‌کنند، کجا به درد می‌خورند و چطور می‌شود از آن‌ها بدون پیچیدگی در کار روزمره استفاده کرد',
+      items: [
+        'هوش مصنوعی چیست و کجا مفید است',
+        'تفاوت ابزار، پرامپت و جریان کاری',
+        'اتوماسیون یعنی چه',
+        'چطور یک کار تکراری را برای هوش مصنوعی آماده کنیم',
+      ],
+    },
+    {
+      number: '02',
+      label:  'بخش ۰۲',
+      title:  'ChatGPT و Claude برای کار روزمره',
+      tagline: 'یاد می‌گیری چطور از ChatGPT و Claude برای نوشتن، خلاصه‌سازی، تحقیق، ایده‌پردازی و تصمیم‌گیری بهتر استفاده کنی',
+      items: [
+        'نوشتن پرامپت‌های واضح',
+        'ساخت ایمیل، گزارش و خلاصه',
+        'تبدیل یادداشت‌های پراکنده به خروجی منظم',
+        'تشخیص محدودیت‌ها و خطاهای هوش مصنوعی',
+      ],
+    },
+    {
+      number: '03',
+      label:  'بخش ۰۳',
+      title:  'ساخت جریان‌های کاری هوشمند',
+      tagline: 'در این بخش یاد می‌گیری چطور چند ابزار را کنار هم قرار بدهی و برای کارهای تکراری یک سیستم ساده بسازی',
+      items: [
+        'طراحی جریان کاری از یک کار واقعی',
+        'استفاده از قالب‌ها و فایل‌ها',
+        'ترکیب هوش مصنوعی با Google Sheets',
+        'ساده‌سازی کارهای تکراری',
+      ],
+    },
+    {
+      number: '04',
+      label:  'بخش ۰۴',
+      title:  'پروژه‌های قابل استفاده',
+      tagline: 'در پایان، با چند پروژه واقعی تمرین می‌کنی تا چیزی بسازی که بعداً بتوانی در کار خودت استفاده کنی',
+      items: [
+        'سیستم پاسخ ایمیل',
+        'خلاصه جلسه و کارهای بعدی',
+        'برنامه‌ریز محتوا',
+        'گزارش هفتگی با کمک هوش مصنوعی',
+      ],
+    },
+  ]
 
   return (
-    <section id="training" className="py-24 md:py-32 relative scroll-mt-24" style={{ background: '#FFF9F1' }}>
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="training"
+      dir="rtl"
+      style={{
+        background:      '#FFFDF8',
+        padding:         'clamp(72px, 9vw, 104px) clamp(24px, 8vw, 80px)',
+        scrollMarginTop: '88px',
+      }}
+    >
+      <div style={{ maxWidth: '860px', margin: '0 auto' }}>
 
-        <div className="text-center mb-16">
-          <span
-            className="inline-flex items-center font-fa text-[13px] font-bold uppercase tracking-[0.10em] mb-4 bg-brand-surface text-brand-coral px-3 py-1.5 rounded-full"
+        {/* Section header */}
+        <div style={{ textAlign: 'center', marginBottom: 'clamp(48px, 7vw, 72px)' }}>
+          <p
+            style={{
+              fontFamily:    vaFont,
+              fontSize:      '11px',
+              fontWeight:     700,
+              letterSpacing: '0.16em',
+              color:          '#E34E2E',
+              marginBottom:  '20px',
+            }}
           >
-            {t('badge')}
-          </span>
+            مسیر یادگیری
+          </p>
           <h2
-            className="font-fa font-bold text-2xl md:text-3xl lg:text-4xl mb-5 leading-tight max-w-xl mx-auto"
-            style={{ color: headingColor }}
+            style={{
+              fontFamily:    vaFont,
+              fontSize:      'clamp(28px, 4vw, 48px)',
+              fontWeight:     800,
+              color:          '#111111',
+              lineHeight:     1.22,
+              letterSpacing: '-0.01em',
+              marginBottom:  '20px',
+            }}
           >
-            {t('title')}{' '}
-            <span style={{ color: bodyColor }}>{t('titleHighlight')}</span>
+            از پایه شروع کن، با سیستم‌های واقعی تمرین کن
           </h2>
           <p
-            className="font-fa text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
-            style={{ color: bodyColor }}
+            style={{
+              fontFamily:  vaFont,
+              fontSize:    'clamp(15px, 1.3vw, 17px)',
+              color:       '#625B55',
+              lineHeight:   1.80,
+              maxWidth:    '580px',
+              margin:      '0 auto',
+            }}
           >
-            {t('subtitle')}
+            این آموزش‌ها برای آدم‌های غیر فنی ساخته شده‌اند؛ برای اینکه یاد بگیری هوش مصنوعی را در ایمیل، گزارش، برنامه‌ریزی، محتوا و جریان‌های کاری روزمره استفاده کنی
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-2.5" dir="rtl">
-          {parts.map((part, index) => {
-            const Icon = part.icon
+        {/* Accordion */}
+        <div>
+          {faParts.map((part, index) => {
             const isOpen = openPart === index
             return (
-              <div
-                key={part.number}
-                className="overflow-hidden transition-all duration-300"
-                style={{
-                  background: '#FAF1E6',
-                  border: '0.5px solid #E6D7C8',
-                  borderRadius: '12px',
-                }}
-              >
+              <div key={part.number} style={{ borderTop: '0.5px solid rgba(17,17,17,0.09)' }}>
+
+                {/* Trigger row */}
                 <button
                   type="button"
                   onClick={() => setOpenPart(isOpen ? null : index)}
-                  className="w-full flex items-center gap-4 p-6 md:p-7 text-right group cursor-pointer"
                   aria-expanded={isOpen}
+                  style={{
+                    width:      '100%',
+                    display:    'flex',
+                    alignItems: 'flex-start',
+                    gap:        '24px',
+                    padding:    '28px 0',
+                    background: 'none',
+                    border:     'none',
+                    cursor:     'pointer',
+                    textAlign:  'right',
+                  }}
                 >
-                  <div
-                    className="flex-shrink-0 p-2 rounded-xl"
-                    style={{ background: accent.bg, border: `0.5px solid ${accent.border}` }}
-                  >
-                    <Icon size={18} style={{ color: accent.text }} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div
-                      className="font-fa font-semibold text-xl md:text-2xl leading-snug"
-                      style={{ color: headingColor }}
+                  {/* Chevron on far LEFT in RTL */}
+                  <ChevronDown
+                    size={17}
+                    style={{
+                      color:      '#8C7E74',
+                      flexShrink:  0,
+                      transform:  isOpen ? 'rotate(180deg)' : 'none',
+                      transition: 'transform 0.25s ease',
+                      marginTop:  '8px',
+                      order:       3,
+                    }}
+                  />
+
+                  {/* Title + tagline */}
+                  <div style={{ flex: 1, paddingTop: '4px', order: 2 }}>
+                    <p
+                      style={{
+                        fontFamily:    vaFont,
+                        fontSize:      'clamp(18px, 1.8vw, 24px)',
+                        fontWeight:     800,
+                        color:          '#111111',
+                        lineHeight:     1.20,
+                        letterSpacing: '-0.01em',
+                        marginBottom:  '5px',
+                      }}
                     >
                       {part.title}
-                    </div>
-                    <div
-                      className="font-fa text-base md:text-lg mt-0.5 hidden sm:block"
-                      style={{ color: bodyColor }}
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: vaFont,
+                        fontSize:   'clamp(13px, 1.1vw, 15px)',
+                        color:      '#8C7E74',
+                        lineHeight:  1.65,
+                        margin:      0,
+                      }}
                     >
-                      {part.tagline}
-                    </div>
+                      {part.label}
+                    </p>
                   </div>
-                  <ChevronDown
-                    size={18}
-                    className={`flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-                    style={{ color: '#625B55' }}
-                  />
+
+                  {/* Orange italic number on RIGHT in RTL */}
+                  <span
+                    style={{
+                      fontFamily:    SERIF,
+                      fontStyle:     'italic',
+                      fontSize:      'clamp(36px, 4vw, 48px)',
+                      color:          '#E34E2E',
+                      lineHeight:     1,
+                      letterSpacing: '-0.02em',
+                      flexShrink:     0,
+                      width:         '52px',
+                      textAlign:     'left',
+                      display:       'block',
+                      order:          1,
+                    }}
+                  >
+                    {part.number}
+                  </span>
                 </button>
 
-                <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
-                  <div
-                    className="px-6 md:px-7 pb-7 pt-5"
-                    style={{ borderTop: '0.5px solid #E6D7C8' }}
-                  >
-                    <p
-                      className="font-fa text-base md:text-lg mb-5 sm:hidden"
-                      style={{ color: bodyColor }}
-                    >
-                      {part.tagline}
-                    </p>
-                    <ul className="space-y-3">
-                      {part.items.map((item, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-3 text-base md:text-lg"
-                          style={{ color: bodyColor }}
-                        >
-                          <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-brand-blue" />
-                          <span className="font-fa flex-1 text-right">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+                {/* Expanded content */}
+                <div
+                  style={{
+                    overflow:   'hidden',
+                    maxHeight:  isOpen ? '500px' : '0',
+                    transition: 'max-height 0.3s ease',
+                  }}
+                >
+                  <div style={{ display: 'flex', gap: '24px', paddingBottom: '36px' }}>
+                    {/* Spacer matching number column — on RIGHT in RTL */}
+                    <div style={{ width: '52px', flexShrink: 0, order: 1 }} className="hidden sm:block" />
+
+                    {/* Description + topics */}
+                    <div style={{ flex: 1, order: 2 }}>
+                      <p
+                        style={{
+                          fontFamily:   vaFont,
+                          fontSize:     'clamp(14px, 1.2vw, 15px)',
+                          color:        '#625B55',
+                          lineHeight:    1.78,
+                          marginBottom: '20px',
+                        }}
+                      >
+                        {part.tagline}
+                      </p>
+                      <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+                        {part.items.map((item, i) => (
+                          <li
+                            key={i}
+                            style={{
+                              display:    'flex',
+                              alignItems: 'flex-start',
+                              gap:        '12px',
+                              padding:    '9px 0',
+                              borderTop:  i > 0 ? '0.5px solid rgba(17,17,17,0.06)' : 'none',
+                              fontFamily: vaFont,
+                              fontSize:   'clamp(14px, 1.1vw, 15px)',
+                              color:      '#625B55',
+                              lineHeight:  1.65,
+                            }}
+                          >
+                            <span
+                              aria-hidden="true"
+                              style={{
+                                flexShrink:   0,
+                                marginTop:    '8px',
+                                width:        '4px',
+                                height:       '4px',
+                                borderRadius: '50%',
+                                background:   'rgba(227,78,46,0.40)',
+                                display:      'block',
+                              }}
+                            />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Spacer on LEFT in RTL (chevron column) */}
+                    <div style={{ width: '17px', flexShrink: 0, order: 3 }} className="hidden sm:block" />
                   </div>
                 </div>
+
               </div>
             )
           })}
+          {/* Bottom rule */}
+          <div style={{ height: '0.5px', background: 'rgba(17,17,17,0.09)' }} />
         </div>
 
+        {/* Bottom note */}
         <p
-          className="text-center font-ui text-sm mt-10"
-          style={{ color: '#625B55' }}
+          style={{
+            fontFamily: vaFont,
+            fontSize:   '14px',
+            color:      '#8C7E74',
+            marginTop:  '48px',
+            textAlign:  'center',
+            lineHeight:  1.7,
+          }}
         >
-          {t('bottomNote')}{' '}
-          <span className="font-medium" style={{ color: '#111111' }}>{t('bottomNoteHighlight')}</span>
+          هر بخش باید به یک خروجی واقعی ختم شود؛{' '}
+          <span style={{ color: '#625B55', fontWeight: 500 }}>نه فقط توضیح، نه فقط تئوری</span>
         </p>
 
       </div>

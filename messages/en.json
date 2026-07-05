@@ -303,9 +303,10 @@
     "motto": "Learn AI. Automate work. No code."
   },
   "aiAssistant": {
+    "headerTitle": "Maddy AI Assistant",
     "welcome": "Hi! What would you like to simplify today?",
-    "placeholder": "Ask about AI, automation, or the training…",
-    "disclaimer": "AI assistant · For guidance & workflow suggestions only.",
+    "placeholder": "Ask about AI, automation, or training...",
+    "disclaimer": "AI assistant · For guidance and workflow suggestions only.",
     "disclaimerNote": "Not a substitute for professional advice.",
     "quickStart": "Quick questions to get started:",
     "online": "Online · Practical AI & Automation help",
