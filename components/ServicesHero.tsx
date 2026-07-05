@@ -87,7 +87,7 @@ export default function ServicesHero() {
           <h1
             style={{
               fontFamily: SERIF,
-              fontSize: 'clamp(52px, 9vw, 112px)',
+              fontSize: 'clamp(40px, 7.5vw, 88px)',
               fontWeight: 400,
               color: '#111111',
               lineHeight: 0.96,
@@ -95,18 +95,12 @@ export default function ServicesHero() {
               margin: 0,
             }}
           >
-            {LINES.map((line, i) => (
-              <motion.span
-                key={line.text}
-                initial={{ opacity: 0, y: reduced ? 0 : 36, skewY: reduced ? 0 : 4 }}
-                animate={{ opacity: 1, y: 0, skewY: 0 }}
-                transition={{ duration: 0.70, delay: 0.08 + i * 0.10, ease }}
-                style={{ display: 'block' }}
-              >
+            {LINES.map((line) => (
+              <span key={line.text} style={{ display: 'block' }}>
                 {line.italic
                   ? <em style={{ fontStyle: 'italic' }}>{line.text}</em>
                   : line.text}
-              </motion.span>
+              </span>
             ))}
           </h1>
 
