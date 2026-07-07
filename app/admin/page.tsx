@@ -66,12 +66,28 @@ export default function AdminDashboard() {
     <div style={{ padding: '40px', maxWidth: '1100px' }}>
 
       {/* Header */}
-      <div style={{ marginBottom: '36px' }}>
-        <h1 style={{ margin: '0 0 6px', fontSize: '22px', fontWeight: 700, color: '#111111', letterSpacing: '-0.02em' }}>
-          Dashboard
-        </h1>
-        <p style={{ margin: 0, fontSize: '14px', color: '#8C7E74', lineHeight: 1.5 }}>
-          Overview of Maddy AI Assistant activity. Demo data shown — connect Supabase to see live metrics.
+      <div style={{ marginBottom: '28px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+          <h1 style={{ margin: 0, fontSize: '22px', fontWeight: 700, color: '#111111', letterSpacing: '-0.02em' }}>
+            Dashboard
+          </h1>
+          <span
+            style={{
+              fontSize:     '11px',
+              fontWeight:   600,
+              color:        '#C43E22',
+              background:   'rgba(200,60,30,0.09)',
+              border:       '0.5px solid rgba(200,60,30,0.20)',
+              padding:      '3px 9px',
+              borderRadius: '100px',
+              letterSpacing: '0.02em',
+            }}
+          >
+            Demo Data
+          </span>
+        </div>
+        <p style={{ margin: 0, fontSize: '14px', color: '#8C7E74', lineHeight: 1.6, maxWidth: '560px' }}>
+          This dashboard currently shows sample data. Connect Supabase later to track real chatbot conversations, leads, and messages.
         </p>
       </div>
 
@@ -81,11 +97,16 @@ export default function AdminDashboard() {
           display:             'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(196px, 1fr))',
           gap:                 '16px',
-          marginBottom:        '32px',
+          marginBottom:        '12px',
         }}
       >
         {STATS.map(s => <StatCard key={s.label} {...s} />)}
       </div>
+
+      {/* Metrics disclaimer */}
+      <p style={{ margin: '0 0 28px', fontSize: '12px', color: '#C0B8B2', fontStyle: 'italic' }}>
+        Real analytics will require database integration.
+      </p>
 
       {/* Recent conversations table */}
       <div

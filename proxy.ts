@@ -8,6 +8,38 @@ const intlMiddleware = createMiddleware(routing)
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
+  // ── Admin route protection ────────────────────────────────────────
+  if (pathname.startsWith('/admin')) {
+    // Login page is always accessible
+    if (pathname === '/admin/login') {
+      return NextResponse.next()
+    }
+
+    const adminPassword = process.env.ADMIN_PASSWORD
+    if (!adminPassword) {
+      // No password configured — dev mode, allow through
+      return NextResponse.next()
+    }
+
+    const sessionCookie = request.cookies.get('admin_session')
+    if (!sessionCookie?.value) {
+      return NextResponse.redirect(new URL('/admin/login', request.url))
+    }
+
+    // Verify cookie against deterministic token derived from ADMIN_PASSWORD
+    const encoder    = new TextEncoder()
+    const hashBuffer = await crypto.subtle.digest('SHA-256', encoder.encode(adminPassword + ':maddy_admin_v1'))
+    const expected   = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('')
+
+    if (sessionCookie.value !== expected) {
+      return NextResponse.redirect(new URL('/admin/login', request.url))
+    }
+
+    return NextResponse.next()
+  }
+
+  // ── Locale routing for public pages ──────────────────────────────
+
   // next-intl runs first — handles /en /fa detection and root redirect
   const intlResponse = intlMiddleware(request)
 
