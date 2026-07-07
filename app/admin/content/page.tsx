@@ -45,77 +45,6 @@ const YESNO:         YesNo[]       = ['No', 'Yes']
 
 const LS_KEY = 'mdt_content_v1'
 
-// ── Sample data ────────────────────────────────────────────────────────────
-
-const SAMPLES: ContentItem[] = [
-  {
-    id: 'P001',
-    date: '2026-06-25',
-    platform: 'Instagram',
-    language: 'English',
-    pillar: 'AI Productivity',
-    topic: 'How to use ChatGPT to write emails faster',
-    hook: "You're still writing emails from scratch? Here's the 30-second fix.",
-    format: 'Reel',
-    script: 'Open phone to ChatGPT. Show inbox. Paste the email thread. Type: "Write a professional reply in 3 sentences." Show the AI response in 4 seconds. Cut to clean inbox.',
-    caption: "Stop writing emails manually. Here's how I draft a professional reply in under 30 seconds using ChatGPT — and you can copy this exact workflow today.",
-    cta: 'Save this for your next email',
-    hashtags: '#ChatGPT #AI #EmailHacks #Productivity #WorkSmarter #NoCode',
-    visualDirection: 'Screen recording with voiceover. Warm tones. No face cam needed.',
-    assetStatus: 'Asset Created',
-    reviewStatus: 'Approved',
-    finalApproved: 'Yes',
-    scheduled: 'Yes',
-    published: 'No',
-    publishLink: '',
-    performanceNotes: '',
-  },
-  {
-    id: 'P002',
-    date: '2026-07-01',
-    platform: 'TikTok',
-    language: 'Persian',
-    pillar: 'شروع با هوش مصنوعی',
-    topic: 'اتوماسیون ایمیل برای غیر فنی‌ها',
-    hook: 'اگه هنوز ایمیل‌هاتو دستی می‌نویسی، این ویدیو برای توئه',
-    format: 'TikTok',
-    script: 'صفحه گوشی رو نشون بده. ChatGPT رو باز کن. متن ایمیل رو کپی کن. دستور بده: "یه جواب حرفه‌ای بنویس".',
-    caption: 'با هوش مصنوعی ایمیل‌هاتو در ۳۰ ثانیه بنویس. این روش کار می‌کنه.',
-    cta: 'اگه مفید بود، ذخیره کن',
-    hashtags: '#هوش_مصنوعی #ChatGPT #اتوماسیون #بهره_وری',
-    visualDirection: 'ضبط صفحه با صدا. بدون نیاز به دوربین.',
-    assetStatus: 'Asset Needed',
-    reviewStatus: 'Needs Review',
-    finalApproved: 'No',
-    scheduled: 'No',
-    published: 'No',
-    publishLink: '',
-    performanceNotes: '',
-  },
-  {
-    id: 'P003',
-    date: '2026-07-05',
-    platform: 'LinkedIn',
-    language: 'English',
-    pillar: 'AI Workflow Design',
-    topic: '5 things I replaced with AI in my workflow',
-    hook: 'I used to spend 3 hours a week on tasks that now take 20 minutes.',
-    format: 'LinkedIn Post',
-    script: '',
-    caption: "I used to spend 3 hours a week on tasks that now take 20 minutes.\n\n1. Email drafts → ChatGPT\n2. Meeting summaries → Claude\n3. Content repurposing → a 3-step prompt\n4. Research → Perplexity\n5. Weekly reports → Google Sheets + AI\n\nNone of this required coding. Which one would save you the most time?",
-    cta: 'Comment which one you need most',
-    hashtags: '#AI #WorkflowDesign #Productivity #FutureOfWork #NoCode',
-    visualDirection: 'Text-only post. Clean formatting. No image needed.',
-    assetStatus: 'Not Started',
-    reviewStatus: 'Draft Ready',
-    finalApproved: 'No',
-    scheduled: 'No',
-    published: 'No',
-    publishLink: '',
-    performanceNotes: '',
-  },
-]
-
 // ── Helpers ────────────────────────────────────────────────────────────────
 
 function emptyForm(): Partial<ContentItem> {
@@ -329,12 +258,10 @@ export default function ContentPage() {
       const raw = localStorage.getItem(LS_KEY)
       if (raw) {
         setItems(JSON.parse(raw) as ContentItem[])
-      } else {
-        setItems(SAMPLES)
-        localStorage.setItem(LS_KEY, JSON.stringify(SAMPLES))
       }
+      // No seeding — start empty until the user adds real content
     } catch {
-      setItems(SAMPLES)
+      // localStorage unavailable; items stay empty
     }
   }, [])
 
@@ -524,8 +451,19 @@ export default function ContentPage() {
             <tbody>
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={11} style={{ padding: '48px', textAlign: 'center', color: '#B0A89E', fontSize: '14px' }}>
-                    {hasActiveFilter ? 'No items match the current filters.' : 'No content items yet. Click "+ New Content" to add one.'}
+                  <td colSpan={11}>
+                    <div style={{ padding: '56px 32px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                      {hasActiveFilter ? (
+                        <p style={{ margin: 0, fontSize: '13px', color: '#B0A89E' }}>No items match the current filters.</p>
+                      ) : (
+                        <>
+                          <p style={{ margin: 0, fontSize: '14px', fontWeight: 600, color: '#625B55' }}>No content items yet.</p>
+                          <p style={{ margin: 0, fontSize: '13px', color: '#B0A89E', maxWidth: '380px', lineHeight: 1.6 }}>
+                            Click <strong style={{ color: '#C43E22' }}>+ New Content</strong> to add your first Instagram, TikTok, or LinkedIn post.
+                          </p>
+                        </>
+                      )}
+                    </div>
                   </td>
                 </tr>
               ) : (
