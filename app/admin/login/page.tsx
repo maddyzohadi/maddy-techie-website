@@ -3,6 +3,7 @@
 import { useState, FormEvent } from 'react'
 
 export default function AdminLoginPage() {
+  const [email,    setEmail]    = useState('')
   const [password, setPassword] = useState('')
   const [error,    setError]    = useState('')
   const [loading,  setLoading]  = useState(false)
@@ -17,7 +18,7 @@ export default function AdminLoginPage() {
       const res  = await fetch('/api/admin/login', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ password }),
+        body:    JSON.stringify(email.trim() ? { email: email.trim(), password } : { password }),
       })
       const data = await res.json()
 
@@ -130,6 +131,46 @@ export default function AdminLoginPage() {
 
           {!devMode && (
             <form onSubmit={handleSubmit}>
+              <div style={{ marginBottom: '16px' }}>
+                <label
+                  htmlFor="email"
+                  style={{
+                    display:       'block',
+                    fontSize:      '11px',
+                    fontWeight:    600,
+                    color:         '#8C7E74',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.07em',
+                    marginBottom:  '7px',
+                  }}
+                >
+                  Email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  autoComplete="username"
+                  autoFocus
+                  style={{
+                    width:        '100%',
+                    padding:      '10px 14px',
+                    fontSize:     '14px',
+                    background:   '#FAF6EF',
+                    border:       '0.5px solid rgba(17,17,17,0.14)',
+                    borderRadius: '10px',
+                    color:        '#111111',
+                    outline:      'none',
+                    boxSizing:    'border-box',
+                  }}
+                />
+                <p style={{ margin: '6px 0 0', fontSize: '11px', color: '#B0A89E' }}>
+                  Leave blank to use the legacy shared password instead.
+                </p>
+              </div>
+
               <div style={{ marginBottom: '20px' }}>
                 <label
                   htmlFor="password"
@@ -143,7 +184,7 @@ export default function AdminLoginPage() {
                     marginBottom:  '7px',
                   }}
                 >
-                  Admin Password
+                  Password
                 </label>
                 <input
                   id="password"
@@ -152,7 +193,6 @@ export default function AdminLoginPage() {
                   onChange={e => setPassword(e.target.value)}
                   placeholder="Enter password"
                   autoComplete="current-password"
-                  autoFocus
                   required
                   style={{
                     width:        '100%',

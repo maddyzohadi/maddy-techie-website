@@ -9,15 +9,41 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // ── Admin route protection ────────────────────────────────────────
+  // Dual-gate during the Supabase Auth migration: a valid Supabase admin
+  // session OR the legacy password cookie is accepted. Remove the legacy
+  // branch only after confirming Supabase sign-in works end to end.
   if (pathname.startsWith('/admin')) {
     // Login page is always accessible
     if (pathname === '/admin/login') {
       return NextResponse.next()
     }
 
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ''
+    if (supabaseUrl && !supabaseUrl.startsWith('your-') && supabaseAnonKey) {
+      const passthrough = NextResponse.next()
+      const supabase = createServerClient(supabaseUrl, supabaseAnonKey, {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll()
+          },
+          setAll(cookiesToSet) {
+            cookiesToSet.forEach(({ name, value, options }) =>
+              passthrough.cookies.set(name, value, options)
+            )
+          },
+        },
+      })
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user?.app_metadata?.is_admin === true) {
+        return passthrough
+      }
+    }
+
+    // Legacy fallback — shared password cookie
     const adminPassword = process.env.ADMIN_PASSWORD
     if (!adminPassword) {
-      // No password configured — dev mode, allow through
+      // No password configured and no Supabase admin session — dev mode, allow through
       return NextResponse.next()
     }
 

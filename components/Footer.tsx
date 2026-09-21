@@ -7,6 +7,7 @@ const EXPLORE_LINKS = [
   { labelKey: 'templates' as const, href: '/templates'},
   { labelKey: 'services'  as const, href: '/services' },
   { labelKey: 'about'     as const, href: '/about'    },
+  { labelKey: 'blog'      as const, href: '/blog'     },
 ] as const
 
 const LEGAL_LINKS = [

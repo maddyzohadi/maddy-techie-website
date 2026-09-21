@@ -6,9 +6,21 @@
     "workWithMe": "Collaborate",
     "services": "Services",
     "about": "About",
+    "blog": "Blog",
     "contact": "Contact",
     "startLearning": "Start Learning",
     "startProject": "Start a Project"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Practical AI and automation, explained simply.",
+    "empty": "No posts yet — check back soon.",
+    "readMore": "Read more",
+    "backToBlog": "← Back to Blog",
+    "readInEnglish": "Read in English",
+    "readInPersian": "Read in Persian",
+    "publishedOn": "Published",
+    "updatedOn": "Updated"
   },
   "hero": {
     "badge": "AI Systems for Everyday Work",
@@ -299,6 +311,7 @@
     "training": "Training",
     "templates": "Templates",
     "about": "About",
+    "blog": "Blog",
     "contact": "Contact",
     "motto": "Learn AI. Automate work. No code."
   },

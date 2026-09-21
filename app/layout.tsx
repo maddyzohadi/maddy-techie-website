@@ -58,6 +58,7 @@ export default async function RootLayout({
     <html
       lang={locale}
       dir={dir}
+      data-scroll-behavior="smooth"
       className={`${sora.variable} ${inter.variable} ${vazirmatn.variable}`}
     >
       <body>{children}</body>

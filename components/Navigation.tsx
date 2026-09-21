@@ -5,12 +5,13 @@ import { Menu, X } from 'lucide-react'
 import { useTranslations, useLocale } from 'next-intl'
 import { Link, usePathname } from '@/i18n/navigation'
 
-const navLinks: { key: 'home' | 'learn' | 'templates' | 'services' | 'about'; href: string }[] = [
+const navLinks: { key: 'home' | 'learn' | 'templates' | 'services' | 'about' | 'blog'; href: string }[] = [
   { key: 'home',      href: '/'          },
   { key: 'learn',     href: '/learn'     },
   { key: 'templates', href: '/templates' },
   { key: 'services',  href: '/services'  },
   { key: 'about',     href: '/about'     },
+  { key: 'blog',      href: '/blog'      },
 ]
 
 export default function Navigation() {

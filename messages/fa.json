@@ -6,9 +6,21 @@
     "workWithMe": "همکاری",
     "services": "خدمات",
     "about": "درباره من",
+    "blog": "وبلاگ",
     "contact": "تماس",
     "startLearning": "شروع یادگیری",
     "startProject": "شروع پروژه"
+  },
+  "blog": {
+    "title": "وبلاگ",
+    "subtitle": "آموزش کاربردی هوش مصنوعی و اتوماسیون، به زبان ساده.",
+    "empty": "هنوز مطلبی منتشر نشده — به‌زودی بازگردید.",
+    "readMore": "ادامه مطلب",
+    "backToBlog": "→ بازگشت به وبلاگ",
+    "readInEnglish": "خواندن به انگلیسی",
+    "readInPersian": "خواندن به فارسی",
+    "publishedOn": "تاریخ انتشار",
+    "updatedOn": "به‌روزرسانی"
   },
   "hero": {
     "badge": "هوش مصنوعی برای کار و بهره‌وری",
@@ -303,6 +315,7 @@
     "training": "آموزش",
     "templates": "قالب‌ها",
     "about": "درباره من",
+    "blog": "وبلاگ",
     "contact": "تماس"
   },
   "aiAssistant": {

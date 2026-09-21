@@ -1,7 +1,41 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createHash } from 'node:crypto'
+import { createClient } from '@/lib/supabase/server'
 
 export async function POST(req: NextRequest) {
+  let body: { email?: string; password?: string }
+  try {
+    body = await req.json()
+  } catch {
+    return NextResponse.json({ error: 'Invalid request body.' }, { status: 400 })
+  }
+
+  const { email, password } = body
+
+  // ── Supabase Auth path (used whenever an email is submitted) ───────────
+  if (email) {
+    if (!password) {
+      return NextResponse.json({ error: 'Password is required.' }, { status: 400 })
+    }
+
+    const supabase = await createClient()
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+
+    if (error || !data.user) {
+      return NextResponse.json({ error: 'Incorrect email or password.' }, { status: 401 })
+    }
+
+    if (data.user.app_metadata?.is_admin !== true) {
+      await supabase.auth.signOut()
+      return NextResponse.json({ error: 'This account is not authorized for admin access.' }, { status: 403 })
+    }
+
+    // @supabase/ssr already wrote the session cookies onto this request's
+    // cookie store via lib/supabase/server.ts's setAll handler.
+    return NextResponse.json({ ok: true })
+  }
+
+  // ── Legacy shared-password path (fallback during the auth migration) ───
   const adminPassword = process.env.ADMIN_PASSWORD
 
   if (!adminPassword) {
@@ -11,14 +45,6 @@ export async function POST(req: NextRequest) {
     )
   }
 
-  let body: { password?: string }
-  try {
-    body = await req.json()
-  } catch {
-    return NextResponse.json({ error: 'Invalid request body.' }, { status: 400 })
-  }
-
-  const { password } = body
   if (!password || password !== adminPassword) {
     return NextResponse.json({ error: 'Incorrect password.' }, { status: 401 })
   }
