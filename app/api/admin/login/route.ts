@@ -10,7 +10,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid request body.' }, { status: 400 })
   }
 
-  const { email, password } = body
+  const password = typeof body.password === 'string' ? body.password : ''
+  const email = typeof body.email === 'string' ? body.email.trim() : ''
 
   // ── Supabase Auth path (used whenever an email is submitted) ───────────
   if (email) {
