@@ -54,10 +54,13 @@ export async function POST(req: NextRequest) {
     .update(adminPassword + ':maddy_admin_v1')
     .digest('hex')
 
-  const res = NextResponse.json({ ok: true })
+  const res = new NextResponse(JSON.stringify({ ok: true }), {
+    status: 200,
+    headers: { 'content-type': 'application/json; charset=utf-8' },
+  })
   res.cookies.set('admin_session', token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: req.nextUrl.protocol === 'https:',
     sameSite: 'lax',
     path: '/',
     maxAge: 60 * 60 * 24 * 7, // 7 days

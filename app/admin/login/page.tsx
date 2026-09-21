@@ -20,7 +20,23 @@ export default function AdminLoginPage() {
         headers: { 'Content-Type': 'application/json' },
         body:    JSON.stringify(email.trim() ? { email: email.trim(), password } : { password }),
       })
-      const data = await res.json()
+      const contentType = res.headers.get('content-type') ?? ''
+      const responseText = await res.text()
+      let data: { error?: string } = {}
+      if (!contentType.includes('application/json')) {
+        setError('Login failed. Please try again.')
+        setLoading(false)
+        return
+      }
+      if (responseText) {
+        try {
+          data = JSON.parse(responseText) as { error?: string }
+        } catch {
+          setError('Login failed. Please try again.')
+          setLoading(false)
+          return
+        }
+      }
 
       if (res.status === 500 && data.error?.includes('not configured')) {
         setDevMode(true)
