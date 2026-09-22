@@ -18,6 +18,8 @@ export async function proxy(request: NextRequest) {
       return NextResponse.next()
     }
 
+    const requiresSupabaseAdmin = pathname === '/admin/blog' || pathname.startsWith('/admin/blog/')
+
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
     const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ''
     if (supabaseUrl && !supabaseUrl.startsWith('your-') && supabaseAnonKey) {
@@ -38,6 +40,12 @@ export async function proxy(request: NextRequest) {
       if (user?.app_metadata?.is_admin === true) {
         return passthrough
       }
+    }
+
+    if (requiresSupabaseAdmin) {
+      const loginUrl = new URL('/auth/login', request.url)
+      loginUrl.searchParams.set('next', pathname)
+      return NextResponse.redirect(loginUrl)
     }
 
     // Legacy fallback — shared password cookie

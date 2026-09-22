@@ -19,13 +19,25 @@ export default function LoginPage() {
     setLoading(true)
     setError('')
 
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
 
     if (error) {
       setError(error.message)
       setLoading(false)
     } else {
-      router.push('/dashboard')
+      const requestedNext = new URLSearchParams(window.location.search).get('next')
+      const next = requestedNext?.startsWith('/') && !requestedNext.startsWith('//')
+        ? requestedNext
+        : '/dashboard'
+
+      if (next.startsWith('/admin/blog') && data.user?.app_metadata?.is_admin !== true) {
+        await supabase.auth.signOut()
+        setError('This account is not authorized for blog administration.')
+        setLoading(false)
+        return
+      }
+
+      router.push(next)
       router.refresh()
     }
   }
@@ -119,6 +131,11 @@ export default function LoginPage() {
             Don&apos;t have an account?{' '}
             <Link href="/auth/signup" className="font-semibold" style={{ color: '#5B9CF8' }}>
               Sign up
+            </Link>
+          </p>
+          <p className="font-body text-sm text-center mt-3">
+            <Link href="/auth/forgot-password" className="font-semibold" style={{ color: '#5B9CF8' }}>
+              Forgot your password?
             </Link>
           </p>
         </div>
